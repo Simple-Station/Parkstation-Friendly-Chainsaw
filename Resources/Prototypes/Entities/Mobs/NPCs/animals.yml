@@ -2390,13 +2390,14 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-hamster-name
-    description: ghost-role-information-hamster-description
-  - type: GhostTakeoverAvailable
+  # - type: GhostTakeoverAvailable
+  #   makeSentient: true
+  #   allowSpeech: true
+  #   allowMovement: true
+  #   whitelistRequired: false
+  #   name: ghost-role-information-hamster-name
+  #   description: ghost-role-information-hamster-description
+  # - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
@@ -2513,6 +2514,8 @@
     BaseResistTime: 3
   - type: MobPrice
     price: 60
+  - type: RandomBark
+    barkMultiplier: 0.45
 
 - type: entity
   name: pig
