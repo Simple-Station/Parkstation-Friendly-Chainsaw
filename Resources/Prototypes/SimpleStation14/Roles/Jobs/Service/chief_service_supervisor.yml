@@ -5,7 +5,7 @@
   playTimeTracker: JobChiefServiceSupervisor
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Service
+      department: Civilian
       time: 21600
     - !type:OverallPlaytimeRequirement
       time: 86400
