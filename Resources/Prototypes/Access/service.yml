@@ -26,9 +26,14 @@
   id: Chapel
   name: id-card-access-level-chapel
 
+- type: accessLevel
+  id: ChiefServiceSupervisor
+  name: id-card-access-level-chief-service-supervisor
+
 - type: accessGroup
   id: Service
   tags:
+  - ChiefServiceSupervisor
   - HeadOfPersonnel
   - Bar
   - Kitchen
