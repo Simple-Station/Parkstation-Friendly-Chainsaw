@@ -14,7 +14,7 @@ namespace Content.Server.Corvax.StationGoal
     /// </summary>
     public sealed class StationGoalPaperSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly FaxSystem _faxSystem = default!;
         [Dependency] private readonly StationSystem _station = default!;
