@@ -3,7 +3,7 @@
   reactants:
     Milk:
       amount: 5
-    Theobromine:
+    CocoaPowder:
       amount: 1
   products:
     ChocolateMilk: 5
