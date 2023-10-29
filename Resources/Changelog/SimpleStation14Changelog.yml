@@ -11,3 +11,13 @@ Entries:
       type: Add
   id: 2
   time: '2023-10-29T08:00:00.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: >-
+        Added a secondary expedition music that plays when the expedition is
+        almost over
+    - type: Add
+      message: Added chocolate milk
+  id: 3
+  time: '2023-10-29T23:36:15.0000000+00:00'
