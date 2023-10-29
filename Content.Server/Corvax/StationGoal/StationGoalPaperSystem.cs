@@ -16,7 +16,7 @@ namespace Content.Server.Corvax.StationGoal
     {
         [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly FaxSystem _faxSystem = default!;
+        [Dependency] private readonly FaxSystem _fax = default!;
         [Dependency] private readonly StationSystem _station = default!;
 
         private static readonly Regex StationIdRegex = new(@".*-(\d+)$");
