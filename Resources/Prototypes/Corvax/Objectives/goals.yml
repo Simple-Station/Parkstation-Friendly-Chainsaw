@@ -1,55 +1,41 @@
 - type: stationGoal
   id: Shuttle
-  text: station-goal-shuttle
 
 - type: stationGoal
   id: Singularity
-  text: station-goal-singularity
 
 - type: stationGoal
   id: SolarPanels
-  text: station-goal-solar-panels
 
 - type: stationGoal
   id: Artifacts
-  text: station-goal-artifacts
 
 - type: stationGoal
   id: Storage
-  text: station-goal-storage
 
 - type: stationGoal
   id: Zoo
-  text: station-goal-zoo
 
 - type: stationGoal
   id: Xeno
-  text: station-goal-xeno
 
 - type: stationGoal
   id: Area
-  text: station-goal-area
 
 - type: stationGoal
   id: BureaucraticError
-  text: station-goal-bureaucratic-error
 
 - type: stationGoal
   id: Museum
-  text: station-goal-museum
 
 - type: stationGoal
   id: Combat
-  text: station-goal-combat
 
 - type: stationGoal
   id: SpaceArtifacts
-  text: station-goal-space-artifacts
 
 - type: stationGoal
   id: Labor
-  text: station-goal-labor
 
 - type: stationGoal
   id: Lectures
-  text: station-goal-lectures
