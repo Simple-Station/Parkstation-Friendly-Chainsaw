@@ -1,55 +1,55 @@
 - type: stationGoal
-  id: StationGoalShuttle
+  id: Shuttle
   text: station-goal-shuttle
 
 - type: stationGoal
-  id: StationGoalSingularity
+  id: Singularity
   text: station-goal-singularity
 
 - type: stationGoal
-  id: StationGoalSolarPanels
+  id: SolarPanels
   text: station-goal-solar-panels
 
 - type: stationGoal
-  id: StationGoalArtifacts
+  id: Artifacts
   text: station-goal-artifacts
 
 - type: stationGoal
-  id: StationGoalStorage
+  id: Storage
   text: station-goal-storage
 
 - type: stationGoal
-  id: StationGoalZoo
+  id: Zoo
   text: station-goal-zoo
 
 - type: stationGoal
-  id: StationGoalXeno
+  id: Xeno
   text: station-goal-xeno
 
 - type: stationGoal
-  id: StationGoalArea
+  id: Area
   text: station-goal-area
 
 - type: stationGoal
-  id: StationGoalBureaucraticError
+  id: BureaucraticError
   text: station-goal-bureaucratic-error
 
 - type: stationGoal
-  id: StationGoalMuseum
+  id: Museum
   text: station-goal-museum
 
 - type: stationGoal
-  id: StationGoalCombat
+  id: Combat
   text: station-goal-combat
 
 - type: stationGoal
-  id: StationGoalSpaceArtifacts
+  id: SpaceArtifacts
   text: station-goal-space-artifacts
 
 - type: stationGoal
-  id: StationGoalLabor
+  id: Labor
   text: station-goal-labor
 
 - type: stationGoal
-  id: StationGoalLectures
+  id: Lectures
   text: station-goal-lectures

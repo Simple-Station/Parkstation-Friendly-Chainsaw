@@ -25,18 +25,18 @@ namespace Content.Server.Corvax.StationGoal
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             if (!prototypeManager.TryIndex<StationGoalPrototype>(protoId, out var proto))
             {
-                shell.WriteError($"No station goal found with ID {protoId}!");
+                shell.WriteError(Loc.GetString("send-station-goal-command-error-no-goal-proto", ("id", protoId)));
                 return;
             }
 
             var stationGoalPaper = IoCManager.Resolve<IEntityManager>().System<StationGoalPaperSystem>();
             if (!stationGoalPaper.SendStationGoal(proto))
             {
-                shell.WriteError("Station goal was not sent");
+                shell.WriteError(Loc.GetString("send-station-goal-command-error-couldnt-fax"));
                 return;
             }
         }
-        
+
         public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
             if (args.Length == 1)

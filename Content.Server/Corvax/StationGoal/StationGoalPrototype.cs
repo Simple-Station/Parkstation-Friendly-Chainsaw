@@ -7,6 +7,6 @@ namespace Content.Server.Corvax.StationGoal
     {
         [IdDataFieldAttribute] public string ID { get; } = default!;
 
-        [DataField("text")] public string Text { get; set; } = string.Empty;
+        public string Text => Loc.GetString($"station-goal-{ID.ToLower()}");
     }
 }

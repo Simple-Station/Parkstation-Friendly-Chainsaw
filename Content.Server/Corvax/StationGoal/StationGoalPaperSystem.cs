@@ -1,79 +1,116 @@
-using System.Linq;
+using System.Data;
 using System.Text.RegularExpressions;
 using Content.Server.Fax;
 using Content.Server.Station.Systems;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
-using Content.Shared.Paper;
+using Content.Shared.Random;
+using Content.Shared.Random.Helpers;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Corvax.StationGoal
+namespace Content.Server.Corvax.StationGoal;
+
+/// <summary>
+///     System to spawn paper with station goal.
+/// </summary>
+public sealed partial class StationGoalPaperSystem : EntitySystem
 {
-    /// <summary>
-    ///     System to spawn paper with station goal.
-    /// </summary>
-    public sealed class StationGoalPaperSystem : EntitySystem
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly FaxSystem _fax = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+
+    private static readonly Regex StationIdRegex = new(@".*-(\d+)$");
+
+    private const string RandomPrototype = "StationGoals";
+
+    public override void Initialize()
     {
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly FaxSystem _fax = default!;
-        [Dependency] private readonly StationSystem _station = default!;
+        base.Initialize();
 
-        private static readonly Regex StationIdRegex = new(@".*-(\d+)$");
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+    }
 
-        public override void Initialize()
+    private void OnRoundStarted(RoundStartedEvent ev)
+    {
+        if (_config.GetCVar(CCCVars.StationGoalsEnabled) != true)
+            return;
+
+        SendRandomGoal();
+    }
+
+    /// <summary>
+    ///     Send a random station goal to all faxes which are authorized to receive it
+    /// </summary>
+    /// <returns>If the fax was successful</returns>
+    /// <exception cref="ConstraintException">Raised when station goal types in the prototype is invalid</exception>
+    public bool SendRandomGoal()
+    {
+        // Get the random station goal list
+        if (!_prototype.TryIndex<WeightedRandomPrototype>(RandomPrototype, out var goals))
+            return false;
+
+        // Get a random goal
+        var goal = RecursiveRandom(goals);
+
+        // Send the goal
+        return SendStationGoal(goal);
+    }
+
+    private StationGoalPrototype RecursiveRandom(WeightedRandomPrototype random)
+    {
+        var goal = random.Pick(_random);
+
+        if (_prototype.TryIndex<StationGoalPrototype>(goal, out var goalPrototype))
         {
-            base.Initialize();
-
-            SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+            return goalPrototype;
         }
 
-        private void OnRoundStarted(RoundStartedEvent ev)
+        if (_prototype.TryIndex<WeightedRandomPrototype>(goal, out var goalRandom))
         {
-            SendRandomGoal();
+            return RecursiveRandom(goalRandom);
         }
 
-        public bool SendRandomGoal()
+        throw new Exception($"StationGoalPaperSystem: Random station goal could not be found from origin prototype {RandomPrototype}");
+    }
+
+    /// <summary>
+    ///     Send a station goal to all faxes which are authorized to receive it
+    /// </summary>
+    /// <returns>True if at least one fax received paper</returns>
+    public bool SendStationGoal(StationGoalPrototype goal)
+    {
+        var enumerator = EntityManager.EntityQueryEnumerator<FaxMachineComponent>();
+        var wasSent = false;
+
+        while (enumerator.MoveNext(out var uid, out var fax))
         {
-            var availableGoals = _prototypeManager.EnumeratePrototypes<StationGoalPrototype>().ToList();
-            var goal = _random.Pick(availableGoals);
-            return SendStationGoal(goal);
+            if (!fax.ReceiveStationGoal)
+                continue;
+
+            if (!TryComp<MetaDataComponent>(_station.GetOwningStation(uid), out var meta))
+                continue;
+
+            var stationId = StationIdRegex.Match(meta.EntityName).Groups[1].Value;
+
+            var printout = new FaxPrintout(
+                Loc.GetString("station-goal-fax-paper-header",
+                    ("date", DateTime.Now.AddYears(1000).ToString("yyyy MMMM dd")),
+                    ("station", string.IsNullOrEmpty(stationId) ? "???" : stationId),
+                    ("content", goal.Text)
+                ),
+                Loc.GetString("station-goal-fax-paper-name"),
+                "StationGoalPaper"
+            );
+
+            _fax.Receive(uid, printout, null, fax);
+
+            wasSent = true;
         }
 
-        /// <summary>
-        ///     Send a station goal to all faxes which are authorized to receive it.
-        /// </summary>
-        /// <returns>True if at least one fax received paper</returns>
-        public bool SendStationGoal(StationGoalPrototype goal)
-        {
-            var enumerator = EntityManager.EntityQueryEnumerator<FaxMachineComponent>();
-            var wasSent = false;
-            while (enumerator.MoveNext(out var uid, out var fax))
-            {
-                if (!fax.ReceiveStationGoal) continue;
-
-                if (!TryComp<MetaDataComponent>(_station.GetOwningStation(uid), out var meta))
-                    continue;
-
-                var stationId = StationIdRegex.Match(meta.EntityName).Groups[1].Value;
-
-                var printout = new FaxPrintout(
-                    Loc.GetString(goal.Text,
-                        ("date", DateTime.Now.AddYears(1000).ToString("dd.MM.yyyy")),
-                        ("station", string.IsNullOrEmpty(stationId) ? "???" : stationId)),
-                    Loc.GetString("station-goal-fax-paper-name"),
-                    null,
-                    "paper_stamp-centcom",
-                    new List<StampDisplayInfo>
-                    {
-                        new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#BB3232") },
-                    });
-                _faxSystem.Receive(uid, printout, null, fax);
-
-                wasSent = true;
-            }
-
-            return wasSent;
-        }
+        return wasSent;
     }
 }
