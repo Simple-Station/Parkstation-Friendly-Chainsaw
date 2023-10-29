@@ -24,6 +24,7 @@ namespace Content.Server.Corvax.StationGoal
         public override void Initialize()
         {
             base.Initialize();
+
             SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         }
 
