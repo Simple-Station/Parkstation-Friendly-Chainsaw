@@ -18,22 +18,22 @@
   canBeAntag: false
   antagAdvantage: 6
   access:
-  - Command
-  - ChiefServiceSupervisor
-  - Bar
-  - Service
-  - Mail
-  - Cargo
-  - Maintenance
-  - Janitor
-  - Theatre
-  - Kitchen
-  - Hydroponics
+    - Command
+    - ChiefServiceSupervisor
+    - Bar
+    - Service
+    - Mail
+    - Cargo
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Hydroponics
   special:
-  - !type:AddComponentSpecial
-    components:
-    - type: PsionicBonusChance
-      flatBonus: 0.025
+    - !type:AddComponentSpecial
+      components:
+        - type: PsionicBonusChance
+          flatBonus: 0.025
 
 - type: startingGear
   id: CSSGear

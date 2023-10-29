@@ -21,7 +21,7 @@
   - Chef
   - Clown
   - HeadOfPersonnel
-  - ChiefServiceSupervisor
+  - ChiefServiceSupervisor # Parkstation-CSS
   - Janitor
   - Lawyer
   - Librarian
@@ -42,7 +42,7 @@
   roles:
   - Captain
   - CentralCommandOfficial
-  - ChiefServiceSupervisor
+  - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
