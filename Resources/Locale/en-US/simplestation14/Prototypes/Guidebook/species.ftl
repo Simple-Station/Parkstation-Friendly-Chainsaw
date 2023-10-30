@@ -1,23 +1,33 @@
 # species_categories.yml
 guide-entry-species = Species
-guide-entry-wizden-species = Wizard Den Species
-guide-entry-nyano-species = Nyanotrasen Species
-guide-entry-simplestation-species = ParkStation Species
+guide-entry-species-wizden-species = Wizard's Den Species
+guide-entry-species-nyano-species = Nyanotrasen Species
+guide-entry-species-delta-species = Delta-V Species
+guide-entry-species-simplestation-species = ParkStation Species
 
 # species_specific.yml
 # wizden-species
-guide-entry-diona = Diona
-guide-entry-dwarf = Dwarf
-guide-entry-human = Human
-guide-entry-reptilian = Reptilian
-guide-entry-skeleton = Skeleton
-guide-entry-slime = Slime
-guide-entry-vox = Vox
+guide-entry-species-arachnid = Arachnid
+guide-entry-species-diona = Diona
+guide-entry-species-dwarf = Dwarf
+guide-entry-species-human = Human
+guide-entry-species-moth = Moth
+guide-entry-species-reptilian = Reptilian
+guide-entry-species-skeleton = Skeleton
+guide-entry-species-slime = Slime
+guide-entry-species-vox = Vox
+
 # nyano-species
-guide-entry-arachne = Arachne
-guide-entry-felinid = Felinid
-guide-entry-moth = Moth
-guide-entry-oni = Oni
+guide-entry-species-arachne = Arachne
+guide-entry-species-felinid = Felinid
+guide-entry-species-moff = Moth
+guide-entry-species-oni = Oni
+
+# delta-species
+guide-entry-species-harpy = Harpy
+guide-entry-species-vulpkanin = Vulpkanin
+
 # parkstation-species
-guide-entry-plasmaman = Plasmaman
-guide-entry-shadowkin = Shadowkin
+guide-entry-species-ipc = IPC
+guide-entry-species-plasmaman = Plasmaman
+guide-entry-species-shadowkin = Shadowkin
