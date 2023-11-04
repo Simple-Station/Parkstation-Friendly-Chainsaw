@@ -51,10 +51,22 @@
     # Shuttle
     - id: shuttlecalled
       path: shuttlecalled.ogg
-    - id: shuttledock
-      path: shuttledock.ogg
     - id: shuttlerecalled
       path: shuttlerecalled.ogg
+    - id: shuttledock
+      path: shuttledock.ogg
+    # - id: shuttlenearby
+    #   path: shuttlenearby.ogg
+    # - id: shuttlealmostlaunching
+    #   path: shuttlealmostlaunching.ogg
+    # - id: shuttlegoodluck
+    #   path: shuttlegoodluck.ogg
+    # - id: shuttleleft
+    #   path: shuttleleft.ogg
+    # - id: shuttleauthrevoked
+    #   path: shuttleauthrevoked.ogg
+    # - id: shuttleauthaddded
+    #   path: shuttleauthaddded.ogg
     # New AI
     - id: newai
       path: newai.ogg # This is the same as the MedBot announcer
