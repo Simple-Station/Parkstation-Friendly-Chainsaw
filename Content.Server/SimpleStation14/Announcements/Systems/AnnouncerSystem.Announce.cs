@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.SimpleStation14.Announcements.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Server.SimpleStation14.Announcements.Systems;
 
@@ -10,56 +11,65 @@ public sealed partial class AnnouncerSystem
     /// <summary>
     ///     Gets an announcement path from the announcer
     /// </summary>
-    /// <param name="announcerId">ID of the announcer</param>
     /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
-    private string GetAnnouncementPath(string announcerId, string announcementId)
+    /// <param name="announcerId">ID of the announcer to use instead of the current one</param>
+    private string GetAnnouncementPath(string announcementId, string? announcerId = null)
     {
-        var announcer = _prototypeManager.EnumeratePrototypes<AnnouncerPrototype>().ToArray().First(a => a.ID == announcerId);
+        var announcer = announcerId != null ? _prototypeManager.Index<AnnouncerPrototype>(announcerId) : Announcer;
 
+        // Get the announcement data from the announcer
+        // Will be the fallback if the data for the announcementId is not found
+        // A fallback is REQUIRED // TODO: Make a test to see if there is a fallback on every announcerPrototype
         var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
             announcer.AnnouncementPaths.First(a => a.ID.ToLower() == "fallback");
 
-        if (announcementType.Path != null)
-            return $"{announcer.BasePath}/{announcementType.Path}";
+        // This is not possible, throw an error if this happens
+        DebugTools.Assert(announcementType.Path == null && announcementType.IgnoreBasePath);
+
+        // If the greedy announcementType wants to do the job of announcer, ignore the base path and just return the path
+        if (announcementType.IgnoreBasePath)
+            return announcementType.Path!;
+        // If the announcementType has a collection, get the sound from the collection
         if (announcementType.Collection != null)
             return _audioSystem.GetSound(new SoundCollectionSpecifier(announcementType.Collection));
+        // If nothing is overriding the base paths, return the base path + the announcement file path
         return $"{announcer.BasePath}/{announcementType.Path}";
     }
 
     /// <summary>
     ///     Gets audio params from the announcer
     /// </summary>
-    /// <param name="announcerId">ID of the announcer</param>
     /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
-    private AudioParams? GetAudioParams(string announcerId, string announcementId)
+    /// <param name="announcerId">ID of the announcer to use instead of the current one</param>
+    private AudioParams? GetAudioParams(string announcementId, string? announcerId = null)
     {
-        var announcer = _prototypeManager.EnumeratePrototypes<AnnouncerPrototype>().ToArray().First(a => a.ID == announcerId);
+        // Fetch the announcer prototype if a different one is specified
+        var announcer = announcerId != null && announcerId != Announcer.ID ? _prototypeManager.Index<AnnouncerPrototype>(announcerId) : Announcer;
 
+        // Get the announcement data from the announcer
+        // Will be the fallback if the data for the announcementId is not found
         var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-                               announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+            announcer.AnnouncementPaths.First(a => a.ID == "fallback");
 
-        return announcementType.AudioParams;
+        // Return the announcer.BaseAudioParams if the announcementType doesn't have an override
+        return announcementType.AudioParams ?? announcer.BaseAudioParams ?? null; // For some reason the formatter doesn't warn me about "?? null" being redundant
     }
 
     /// <summary>
     ///     Gets an announcement message from the announcer
     /// </summary>
-    /// <param name="announcerId">ID of the announcer</param>
     /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
-    private string? GetAnnouncementMessage(string announcerId, string announcementId)
+    private string? GetAnnouncementMessage(string announcementId)
     {
-        string? result = null;
-
-        var announcer = _prototypeManager.EnumeratePrototypes<AnnouncerPrototype>().ToArray().First(a => a.ID == announcerId);
-
+        // Get the announcement data from the announcer
+        // Will be the fallback if the data for the announcementId is not found
         var announcementType = Announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-                               Announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+            Announcer.AnnouncementPaths.First(a => a.ID == "fallback");
 
-        if (announcementType.MessageOverride != null)
-            result = Loc.GetString(announcementType.MessageOverride);
-
-        return result;
+        // Return the announcementType.MessageOverride if it exists, otherwise return null
+        return announcementType.MessageOverride != null ? Loc.GetString(announcementType.MessageOverride) : null;
     }
+
 
     /// <summary>
     ///     Sends an announcement audio
@@ -68,8 +78,8 @@ public sealed partial class AnnouncerSystem
     /// <param name="filter">Who hears the announcement audio</param>
     public void SendAnnouncementAudio(string announcementId, Filter filter)
     {
-        var announcement = GetAnnouncementPath(Announcer.ID, announcementId.ToLower());
-        _audioSystem.PlayGlobal(announcement, filter, true, GetAudioParams(Announcer.ID, announcementId.ToLower()));
+        var announcement = GetAnnouncementPath(announcementId.ToLower());
+        _audioSystem.PlayGlobal(announcement, filter, true, GetAudioParams(announcementId.ToLower()));
     }
 
     /// <summary>
@@ -84,18 +94,16 @@ public sealed partial class AnnouncerSystem
     {
         sender ??= Announcer.Name;
 
-        var announcementMessage = GetAnnouncementMessage(Announcer.ID, announcementId.ToLower());
-        if (announcementMessage != null)
+        // If the announcement has a message override, use that instead of the message parameter
+        if (GetAnnouncementMessage(announcementId) is { } announcementMessage)
             message = announcementMessage;
 
+        // If there is a station, send the announcement to the station, otherwise send it to everyone
         if (station == null)
-        {
             _chatSystem.DispatchGlobalAnnouncement(message, sender, false, colorOverride: colorOverride);
-        }
         else
-        {
-            _chatSystem.DispatchStationAnnouncement(station.Value, message, sender, false, colorOverride: colorOverride);
-        }
+            _chatSystem.DispatchStationAnnouncement(station.Value, message, sender, false,
+                colorOverride: colorOverride);
     }
 
     /// <summary>
