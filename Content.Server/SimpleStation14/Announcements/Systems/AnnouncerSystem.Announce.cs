@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Shared.SimpleStation14.Announcements.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
-using Robust.Shared.Utility;
 
 namespace Content.Server.SimpleStation14.Announcements.Systems;
 
@@ -19,12 +18,8 @@ public sealed partial class AnnouncerSystem
 
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        // A fallback is REQUIRED // TODO: Make a test to see if there is a fallback on every announcerPrototype
         var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
             announcer.AnnouncementPaths.First(a => a.ID.ToLower() == "fallback");
-
-        // This is not possible, throw an error if this happens
-        DebugTools.Assert(announcementType.Path == null && announcementType.IgnoreBasePath);
 
         // If the greedy announcementType wants to do the job of announcer, ignore the base path and just return the path
         if (announcementType.IgnoreBasePath)

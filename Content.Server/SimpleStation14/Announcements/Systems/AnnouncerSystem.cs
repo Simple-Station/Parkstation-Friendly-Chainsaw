@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Events;
+using Content.Shared.GameTicking;
 using Content.Shared.SimpleStation14.Announcements.Prototypes;
 using Content.Shared.SimpleStation14.CCVar;
 using Robust.Shared.Configuration;
@@ -30,12 +31,6 @@ public sealed partial class AnnouncerSystem : EntitySystem
 
         _configManager.OnValueChanged(SimpleStationCCVars.Announcer, SetAnnouncer);
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
-    }
-
-
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        SetAnnouncer(_configManager.GetCVar(SimpleStationCCVars.Announcer));
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestarting);
     }
 }

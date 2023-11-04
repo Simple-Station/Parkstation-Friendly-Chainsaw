@@ -9,7 +9,7 @@ public sealed class SimpleStationCCVars
     ///     Optionally force set an announcer
     /// </summary>
     public static readonly CVarDef<string> Announcer =
-        CVarDef.Create("announcer.announcer", "random", CVar.SERVERONLY);
+        CVarDef.Create("announcer.announcer", "", CVar.SERVERONLY);
 
     /// <summary>
     ///     Optionally blacklist announcers
