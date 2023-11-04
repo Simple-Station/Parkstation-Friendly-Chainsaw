@@ -7,6 +7,8 @@ using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
+using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -17,6 +19,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 
 namespace Content.Server.Communications
 {
@@ -34,6 +37,7 @@ namespace Content.Server.Communications
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly AnnouncerSystem _announcer = default!; // Parkstation-RandomAnnouncer
 
         private const int MaxMessageLength = 256;
         private const int MaxMessageNewlines = 2;
@@ -272,14 +276,15 @@ namespace Content.Server.Communications
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
+                _announcer.SendAnnouncement("announce", Filter.Broadcast(), msg, title, comp.Color); // Parkstation-RandomAnnouncer
 
                 if (message.Session.AttachedEntity != null)
                     _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Session.AttachedEntity.Value):player} has sent the following global announcement: {msg}");
 
                 return;
             }
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+            if (TryComp<StationDataComponent>(_stationSystem.GetOwningStation(uid), out var stationData)) // Parkstation-RandomAnnouncer
+                _announcer.SendAnnouncement("announce", _stationSystem.GetInStation(stationData), msg, title, comp.Color);
 
             if (message.Session.AttachedEntity != null)
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Session.AttachedEntity.Value):player} has sent the following station announcement: {msg}");

@@ -7,6 +7,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Systems;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -34,6 +35,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -146,15 +148,15 @@ namespace Content.Server.RoundEnd
                units = "eta-units-minutes";
             }
 
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(text,
-                ("time", time),
-                ("units", Loc.GetString(units))),
+            _announcer.SendAnnouncement("shuttlecalled", // Parkstation-RandomAnnouncers
+                Filter.Broadcast(),
+                Loc.GetString(text,
+                    ("time", time),
+                    ("units", Loc.GetString(units))
+                ),
                 name,
-                false,
-                null,
-                Color.Gold);
-
-            SoundSystem.Play("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast());
+                Color.Gold
+            );
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -182,10 +184,12 @@ namespace Content.Server.RoundEnd
                 _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
             }
 
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
-                Loc.GetString("Station"), false, colorOverride: Color.Gold);
-
-            SoundSystem.Play("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast());
+            _announcer.SendAnnouncement("shuttlerecalled", // Parkstation-RandomAnnouncers
+                Filter.Broadcast(),
+                Loc.GetString("round-end-system-shuttle-recalled-announcement"),
+                Loc.GetString("Station"),
+                Color.Gold
+            );
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
