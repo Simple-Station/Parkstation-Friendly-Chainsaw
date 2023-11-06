@@ -24,7 +24,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
         sLight.OldRadiusEdited = false;
 
         if (sLight.OldEnergyEdited)
-            light.Energy = sLight.OldEnergy;
+            _light.SetEnergy(light.Owner, sLight.OldEnergy);
         sLight.OldEnergyEdited = false;
     }
 
@@ -136,7 +136,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
 
                 // Put changes into effect
                 _light.SetRadius(pointLight.Owner, radius);
-                pointLight.Energy = energy;
+                _light.SetEnergy(pointLight.Owner, energy);
             }
         }
     }

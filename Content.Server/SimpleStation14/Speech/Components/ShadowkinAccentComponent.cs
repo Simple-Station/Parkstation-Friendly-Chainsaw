@@ -1,4 +1,4 @@
 ﻿namespace Content.Server.Speech.Components;
 
 [RegisterComponent]
-public sealed class ShadowkinAccentComponent : Component {}
+public sealed partial class ShadowkinAccentComponent : Component {}

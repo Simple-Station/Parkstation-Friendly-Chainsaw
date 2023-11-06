@@ -37,7 +37,7 @@ namespace Content.Server.SimpleStation14.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            EntitySystem.Get<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Empathy, false, shell, player, checkRadioPrefix: false);
+            EntitySystem.Get<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Empathy, false, false, shell, player, checkRadioPrefix: false);
         }
     }
 }

@@ -24,7 +24,7 @@ public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent, ISp
 
 
     [DataField("speech")]
-    public string? Speech { get; }
+    public string? Speech { get; set; }
 }
 
 /// <summary>

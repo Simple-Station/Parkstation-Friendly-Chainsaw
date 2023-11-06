@@ -80,15 +80,9 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         var minus = damageable.TotalDamage;
 
-        _damageable.TryChangeDamage(
-            ev.Uid,
-            new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
+        _damageable.TryChangeDamage(ev.Uid, new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
                 Math.Max((double) (key.Value - minus - 5), 0)),
-            true,
-            true,
-            null,
-            null,
-            false
-        );
+                true,
+                true, null, null);
     }
 }
