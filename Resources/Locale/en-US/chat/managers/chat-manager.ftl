@@ -47,6 +47,10 @@ chat-manager-send-hook-ooc-wrap-message = OOC: (D){$senderName}: {$message}
 chat-manager-dead-channel-name = DEAD
 chat-manager-admin-channel-name = ADMIN
 
+chat-manager-send-empathy-chat-wrap-message = {$empathyChannelName}: {$message}
+chat-manager-send-empathy-chat-wrap-message-admin = {$empathyChannelName} - {$source}: {$message}
+chat-manager-empathy-channel-name = EMPATHY
+
 ## Speech verbs for chat
 
 chat-speech-verb-suffix-exclamation = !

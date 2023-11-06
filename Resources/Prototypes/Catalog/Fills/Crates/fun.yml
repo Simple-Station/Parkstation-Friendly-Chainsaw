@@ -20,6 +20,7 @@
       - id: PlushieSharkGrey
         orGroup: PlushieShark
       - id: PlushieAtmosian
+      - id: PlushieShadowkin
       - id: PlushieDiona
       - id: PlushieXeno
       - id: PlushieHampter
@@ -308,4 +309,4 @@
       - id: BoxDarts
         amount: 1
         prob: 0.05
-  
+

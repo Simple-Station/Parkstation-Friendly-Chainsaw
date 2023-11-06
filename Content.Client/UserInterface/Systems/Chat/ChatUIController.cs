@@ -11,6 +11,7 @@ using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
+using Content.Client.SimpleStation14.Chat;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -56,6 +57,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; //Nyano - Summary: makes the psionic chat available.
+    [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -71,7 +73,9 @@ public sealed class ChatUIController : UIController
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
         {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead},
-        {SharedChatSystem.TelepathicPrefix, ChatSelectChannel.Telepathic} //Nyano - Summary: adds the telepathic prefix =.
+        {SharedChatSystem.TelepathicPrefix, ChatSelectChannel.Telepathic}, //Nyano - Summary: adds the telepathic prefix =.
+        {SharedChatSystem.TelepathicPrefix, ChatSelectChannel.Telepathic},
+        {SharedChatSystem.EmpathyPrefix, ChatSelectChannel.Empathy}
     };
 
     public static readonly Dictionary<ChatSelectChannel, char> ChannelPrefixes = new()
@@ -85,7 +89,9 @@ public sealed class ChatUIController : UIController
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
         {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix},
-        {ChatSelectChannel.Telepathic, SharedChatSystem.TelepathicPrefix } //Nyano - Summary: associates telepathic with =.
+        {ChatSelectChannel.Telepathic, SharedChatSystem.TelepathicPrefix }, //Nyano - Summary: associates telepathic with =.
+        {ChatSelectChannel.Telepathic, SharedChatSystem.TelepathicPrefix},
+        {ChatSelectChannel.Empathy, SharedChatSystem.EmpathyPrefix}
     };
 
     /// <summary>
@@ -530,15 +536,23 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
             FilterableChannels |= ChatChannel.Telepathic; //Nyano - Summary: makes admins able to see psionic chat.
+            FilterableChannels |= ChatChannel.Empathy;
         }
 
-        // Nyano - Summary: - Begin modified code block to add telepathic as a channel for a psionic user. 
+        // Nyano - Summary: - Begin modified code block to add telepathic as a channel for a psionic user.
         if (_psionic != null && _psionic.IsPsionic)
         {
             FilterableChannels |= ChatChannel.Telepathic;
             CanSendChannels |= ChatSelectChannel.Telepathic;
         }
         // /Nyano - End modified code block
+
+        // Shadowkin
+        if (_shadowkin != null && _shadowkin.IsShadowkin)
+        {
+            FilterableChannels |= ChatChannel.Empathy;
+            CanSendChannels |= ChatSelectChannel.Empathy;
+        }
 
         SelectableChannels = CanSendChannels;
 
