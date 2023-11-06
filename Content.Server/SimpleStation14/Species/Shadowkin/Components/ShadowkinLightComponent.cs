@@ -1,7 +1,7 @@
 ﻿namespace Content.Server.SimpleStation14.Species.Shadowkin.Components;
 
 [RegisterComponent]
-public sealed class ShadowkinLightComponent : Component
+public sealed partial class ShadowkinLightComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid AttachedEntity = EntityUid.Invalid;

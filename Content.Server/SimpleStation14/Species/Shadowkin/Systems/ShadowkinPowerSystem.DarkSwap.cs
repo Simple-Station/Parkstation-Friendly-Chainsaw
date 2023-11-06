@@ -4,10 +4,10 @@ using Content.Server.SimpleStation14.Species.Shadowkin.Components;
 using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Server.Visible;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Ghost;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Stealth;
@@ -47,12 +47,14 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void Startup(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentStartup args)
     {
-        _actions.AddAction(uid, new InstantAction(_prototype.Index<InstantActionPrototype>("ShadowkinDarkSwap")), null);
+        var componentActionShadowkinDarkSwap = component.ActionShadowkinDarkSwap;
+        _actions.AddAction(uid, ref componentActionShadowkinDarkSwap, "ActionShadowkinDarkSwap");
+        // _actions.AddAction(uid, "ActionShadowkinDarkSwap");
     }
 
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, new InstantAction(_prototype.Index<InstantActionPrototype>("ShadowkinDarkSwap")));
+        _actions.RemoveAction(uid, component.ActionShadowkinDarkSwap);
     }
 
 
@@ -87,6 +89,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         );
         _magic.Speak(args, false);
     }
+
     public void SetDarkened(
         EntityUid performer,
         bool addComp,
@@ -128,12 +131,14 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (args != null)
             args.Handled = true;
     }
+
     private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
         EnsureComp<PacifiedComponent>(uid);
         if (component.Invisible)
             SetCanSeeInvisibility(uid, true);
     }
+
     private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
         RemComp<PacifiedComponent>(uid);
@@ -149,15 +154,17 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         }
         component.DarkenedLights.Clear();
     }
+
+    // Commented out eye and ghost stuff until ported
     public void SetCanSeeInvisibility(EntityUid uid, bool set)
     {
         var visibility = _entity.EnsureComponent<VisibilityComponent>(uid);
         if (set)
         {
-            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+            /*if (_entity.TryGetComponent(uid, out EyeComponent? eye))
             {
                 eye.VisibilityMask |= (uint) VisibilityFlags.DarkSwapInvisibility;
-            }
+            }*/
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
@@ -166,10 +173,10 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         }
         else
         {
-            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+            /*if (_entity.TryGetComponent(uid, out EyeComponent? eye))
             {
-                eye.VisibilityMask &= ~(uint) VisibilityFlags.DarkSwapInvisibility;
-            }
+                // eye.VisibilityMask &= ~(uint) VisibilityFlags.DarkSwapInvisibility;
+            }*/
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);

@@ -3,7 +3,7 @@
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Components;
 
 [RegisterComponent]
-public sealed class ShadowkinTeleportPowerComponent : Component
+public sealed partial class ShadowkinTeleportPowerComponent : Component
 {
-
+    public EntityUid? ActionShadowkinTeleport { get; set; }
 }

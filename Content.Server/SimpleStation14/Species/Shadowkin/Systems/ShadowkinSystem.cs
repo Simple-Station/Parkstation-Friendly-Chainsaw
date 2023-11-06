@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
+using Content.Shared.Mind.Components;
 using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
@@ -100,7 +100,7 @@ public sealed class ShadowkinSystem : EntitySystem
             }
 
             // Don't update things for ssd shadowkin
-            if (!_entity.System<MindSystem>().TryGetMind(uid, out var mind) ||
+            if (!_entity.System<MindSystem>().TryGetMind(uid, out var mindId, out var mind) ||
                 mind.Session == null)
                 continue;
 

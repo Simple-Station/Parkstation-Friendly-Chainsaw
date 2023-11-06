@@ -1,7 +1,7 @@
 ﻿namespace Content.Server.SimpleStation14.Species.Shadowkin.Components;
 
 [RegisterComponent]
-public sealed class ShadowkinDarkSwapPowerComponent : Component
+public sealed partial class ShadowkinDarkSwapPowerComponent : Component
 {
-
+    public EntityUid? ActionShadowkinDarkSwap { get; set; }
 }

@@ -3,7 +3,6 @@ using Content.Server.Pulling;
 using Content.Server.SimpleStation14.Species.Shadowkin.Components;
 using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Pulling.Components;
@@ -38,12 +37,15 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
     private void Startup(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentStartup args)
     {
-        _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
+        var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
+        _actions.AddAction(uid, ref componentActionShadowkinTeleport, "ActionShadowkinTeleport");
+        // _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
+        _actions.RemoveAction(uid, component.ActionShadowkinTeleport);
+        // _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
     }
 
 
