@@ -135,6 +135,7 @@
       - id: ClothingUniformJumpsuitBoatswain # DeltaV - Add turtleneck for HoP.
       - id: ClothingShoesBootsLaceup # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
+      - id: ClothingOuterHardsuitHoP # Parkstation-HoPSuit
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
