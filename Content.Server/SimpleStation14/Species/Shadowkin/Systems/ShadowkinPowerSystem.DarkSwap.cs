@@ -15,7 +15,9 @@ using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
+
 public sealed class ShadowkinDarkSwapSystem : EntitySystem
 {
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
@@ -28,36 +30,48 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentStartup>(Startup);
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentShutdown>(Shutdown);
+
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ShadowkinDarkSwapEvent>(DarkSwap);
+
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentStartup>(OnInvisStartup);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnInvisShutdown);
     }
+
+
     private void Startup(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentStartup args)
     {
         _actions.AddAction(uid, new InstantAction(_prototype.Index<InstantActionPrototype>("ShadowkinDarkSwap")), null);
     }
+
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, new InstantAction(_prototype.Index<InstantActionPrototype>("ShadowkinDarkSwap")));
     }
+
+
     private void DarkSwap(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ShadowkinDarkSwapEvent args)
     {
         // Need power to drain power
         if (!_entity.HasComponent<ShadowkinComponent>(args.Performer))
             return;
+
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
         if (_entity.HasComponent<HandcuffComponent>(args.Performer))
             return;
+
+
         var hasComp = _entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Performer);
+
         SetDarkened(
             args.Performer,
-            !hasComp,
             !hasComp,
             !hasComp,
             true,
@@ -77,7 +91,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         EntityUid performer,
         bool addComp,
         bool invisible,
-        bool pacify,
         bool darken,
         float staminaCostOn,
         float powerCostOn,
@@ -98,9 +111,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         {
             var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(performer);
             comp.Invisible = invisible;
-            comp.Pacify = pacify;
             comp.Darken = darken;
-
             RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, true));
             _audio.PlayPvs(soundOn, performer, AudioParams.Default.WithVolume(volumeOn));
             _power.TryAddPowerLevel(performer, -powerCostOn);
@@ -117,13 +128,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (args != null)
             args.Handled = true;
     }
-
     private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
         EnsureComp<PacifiedComponent>(uid);
-        if (component.Pacify)
-            EnsureComp<PacifiedComponent>(uid);
-
         if (component.Invisible)
             SetCanSeeInvisibility(uid, true);
     }
@@ -142,13 +149,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         }
         component.DarkenedLights.Clear();
     }
-
     public void SetCanSeeInvisibility(EntityUid uid, bool set)
     {
         var visibility = _entity.EnsureComponent<VisibilityComponent>(uid);
-        if (!TryComp<VisibilityComponent>(uid, out var visibility))
-            return;
-
         if (set)
         {
             if (_entity.TryGetComponent(uid, out EyeComponent? eye))
@@ -158,9 +161,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
-
             if (!_entity.TryGetComponent<GhostComponent>(uid, out var _))
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out _))
                 _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
         }
         else
@@ -172,9 +173,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
-
             if (!_entity.TryGetComponent<GhostComponent>(uid, out var _))
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out _))
                 _entity.RemoveComponent<StealthComponent>(uid);
         }
     }
