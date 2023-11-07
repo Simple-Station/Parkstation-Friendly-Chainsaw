@@ -5,14 +5,14 @@
   description: A unqiue rifle with an clock-like internals and a top fed magazine. Uses .20 rifle ammo. #switch to caseless when you have the time
   components:
   - type: Sprite
-    sprite: SimpleStation14/weapons/G11.rsi
+    sprite: SimpleStation14\weapons\G11.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: SimpleStation14/weapons/G11.rsi
+    sprite: SimpleStation14\weapons\G11.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
