@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Interaction.Events;
-using Content.Shared.Item;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
@@ -22,13 +21,14 @@ public sealed class ShadowkinDarken : EntitySystem
 
     private void OnInteractionAttempt(EntityUid uid, ShadowkinDarkSwappedComponent component, InteractionAttemptEvent args)
     {
-        if (args.Target == null ||
-            !_entity.HasComponent<TransformComponent>(args.Target) ||
-            _entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Target))
+        if (args.Target == null || !_entity.TryGetComponent<TransformComponent>(args.Target, out var __) ||
+            _entity.TryGetComponent<ShadowkinDarkSwappedComponent>(args.Target, out _))
             return;
 
         args.Cancel();
-        if (_gameTiming.InPrediction && _gameTiming.IsFirstTimePredicted)
-            _popup.PopupEntity(Loc.GetString("ethereal-pickup-fail"), args.Target.Value, uid);
+        if (_gameTiming.InPrediction)
+            return;
+
+        _popup.PopupEntity(Loc.GetString("ethereal-pickup-fail"), args.Target.Value, uid);
     }
 }

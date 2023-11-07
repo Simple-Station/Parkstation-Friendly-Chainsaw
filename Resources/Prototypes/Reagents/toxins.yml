@@ -324,7 +324,7 @@
         damage:
           groups:
             Toxin: 2
-      - !type:ChemRemovePsionic #Nyano - Summary: removes psionics from the user at 20u.
+      - !type:ChemRemovePsionic #Nyano - Summary: removes psionics from the user at 20u. 
         conditions:
         - !type:ReagentThreshold
           reagent: MindbreakerToxin
@@ -469,14 +469,6 @@
           type: Animal
         reagent: Protein
         amount: 0.5
-      # Parkstation-Shadowkin Start
-      - !type:AdjustReagent
-        conditions:
-          - !type:OrganType
-            type: Shadowkin
-        reagent: Protein
-        amount: 0.5
-      # Parkstation-Shadowkin End
 
 - type: reagent
   id: Allicin
@@ -541,7 +533,7 @@
         damage:
           types:
             Poison: 0.06
-
+            
 
 - type: reagent
   id: Lead

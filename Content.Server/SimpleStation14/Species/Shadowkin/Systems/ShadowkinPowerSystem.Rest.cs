@@ -22,6 +22,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ComponentShutdown>(OnShutdown);
+
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ShadowkinRestEvent>(Rest);
     }
 
@@ -56,7 +57,8 @@ public sealed class ShadowkinRestSystem : EntitySystem
             // Sleepy time
             _entity.EnsureComponent<ForcedSleepingComponent>(args.Performer);
             // No waking up normally (it would do nothing)
-            // _actions.RemoveAction(args.Performer, uid....Wake);  // ??
+            // Not sure what needs to be done here with the refactor
+            // _actions.RemoveAction(args.Performer, component.WakeAction);  // ??
             // _actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
 
             _power.TryAddMultiplier(args.Performer, 1.5f);
@@ -69,7 +71,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
             // Wake up
             _entity.RemoveComponent<ForcedSleepingComponent>(args.Performer);
             _entity.RemoveComponent<SleepingComponent>(args.Performer);
-            _power.TryAddMultiplier(args.Performer, -2f);
+            _power.TryAddMultiplier(args.Performer, -1.5f);
             // Action cooldown
             args.Handled = true;
         }

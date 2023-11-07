@@ -7,10 +7,8 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Pulling.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
-using Content.Shared.Storage.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
 
@@ -36,29 +34,34 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinTeleportPowerComponent, ShadowkinTeleportEvent>(Teleport);
     }
 
+
     private void Startup(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentStartup args)
     {
         var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
         _actions.AddAction(uid, ref componentActionShadowkinTeleport, "ActionShadowkinTeleport");
+        // _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, component.ActionShadowkinTeleport);
+        // _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
     }
 
 
     private void Teleport(EntityUid uid, ShadowkinTeleportPowerComponent component, ShadowkinTeleportEvent args)
     {
-        // Don't activate abilities if...
-        if (!_entity.TryGetComponent<ShadowkinComponent>(args.Performer, out var comp) || // Not a Shadowkin
-            _entity.TryGetComponent<HandcuffComponent>(args.Performer, out var cuffs) && cuffs.AntiShadowkin || // Specially handcuffed
-            _entity.HasComponent<InsideEntityStorageComponent>(args.Performer)) // Inside an entity storage
+        // Need power to drain power
+        if (!_entity.TryGetComponent<ShadowkinComponent>(args.Performer, out var comp))
+            return;
+
+        // Don't activate abilities if handcuffed
+        // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
+        if (_entity.HasComponent<HandcuffComponent>(args.Performer))
             return;
 
 
         var transform = Transform(args.Performer);
-        // Must be on the same map
         if (transform.MapID != args.Target.GetMapId(EntityManager))
             return;
 
@@ -67,12 +70,14 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
             puller.Pulling != null &&
             _entity.TryGetComponent<SharedPullableComponent>(puller.Pulling, out pullable) &&
             pullable.BeingPulled)
-            // Temporarily stop pulling to avoid not teleporting fully to the target
+        {
+            // Temporarily stop pulling to avoid not teleporting to the target
             _pulling.TryStopPull(pullable);
+        }
 
         // Teleport the performer to the target
         _transform.SetCoordinates(args.Performer, args.Target);
-        _transform.AttachToGridOrMap(args.Performer, transform);
+        transform.AttachToGridOrMap();
 
         if (pullable != null && puller != null)
         {
@@ -82,7 +87,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
             // Teleport the pulled entity to the target
             // TODO: Relative position to the performer
             _transform.SetCoordinates(pullable.Owner, args.Target);
-            _transform.AttachToGridOrMap(args.Performer, transform);
+            pulledTransform.AttachToGridOrMap();
 
             // Resume pulling
             // TODO: This does nothing? // This does things sometimes, but the client never knows

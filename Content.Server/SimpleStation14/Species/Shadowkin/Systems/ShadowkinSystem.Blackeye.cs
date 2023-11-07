@@ -1,6 +1,4 @@
-﻿using Content.Server.Cloning;
-using Content.Server.SimpleStation14.Species.Shadowkin.Components;
-using Content.Server.SimpleStation14.Traits.Events;
+﻿using Content.Server.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.Damage.Systems;
@@ -30,20 +28,14 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinBlackeyeAttemptEvent>(OnBlackeyeAttempt);
         SubscribeAllEvent<ShadowkinBlackeyeEvent>(OnBlackeye);
-
-        SubscribeLocalEvent<BeenClonedEvent>(OnCloned);
     }
 
 
     private void OnBlackeyeAttempt(ShadowkinBlackeyeAttemptEvent ev)
     {
-        // Cancel if one of the following is true:
-        // - The entity is not a shadowkin
-        // - The entity is already blackeyed
-        // - The entity has more than 5 power and ev.CheckPower is true
         if (!_entity.TryGetComponent<ShadowkinComponent>(ev.Uid, out var component) ||
             component.Blackeye ||
-            (ev.CheckPower && component.PowerLevel > ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5))
+            !(component.PowerLevel <= ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5))
             ev.Cancel();
     }
 
@@ -66,7 +58,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(ev.Uid);
         _entity.RemoveComponent<ShadowkinRestPowerComponent>(ev.Uid);
         _entity.RemoveComponent<ShadowkinTeleportPowerComponent>(ev.Uid);
-        _entity.RemoveComponent<EmpathyChatComponent>(ev.Uid);
+
 
         if (!ev.Damage)
             return;
@@ -88,29 +80,9 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         var minus = damageable.TotalDamage;
 
-        _damageable.TryChangeDamage(
-            ev.Uid,
-            new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
+        _damageable.TryChangeDamage(ev.Uid, new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
                 Math.Max((double) (key.Value - minus - 5), 0)),
                 true,
-                true,
-                null,
-                null
-            );
-
-    }
-
-
-    private void OnCloned(BeenClonedEvent ev)
-    {
-        // Don't give blackeyed Shadowkin their abilities back when they're cloned.
-        if (_entity.TryGetComponent<ShadowkinComponent>(ev.OriginalMob, out var shadowkin) &&
-            shadowkin.Blackeye)
-            _power.TryBlackeye(ev.Mob, false, false);
-
-        // Blackeye the Shadowkin that come from the metempsychosis machine
-        if (_entity.HasComponent<MetempsychoticMachineComponent>(ev.Cloner) &&
-            _entity.HasComponent<ShadowkinComponent>(ev.Mob))
-            _power.TryBlackeye(ev.Mob, false, false);
+                true, null, null);
     }
 }

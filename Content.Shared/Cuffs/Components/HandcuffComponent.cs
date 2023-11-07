@@ -86,12 +86,6 @@ public sealed partial class HandcuffComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier EndUncuffSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/cuff_takeoff_end.ogg");
-
-
-    // Parkstation-Shadowkin Start
-    [DataField("antiShadowkin")]
-    public bool AntiShadowkin = false;
-    // Parkstation-Shadowkin End
 }
 
 /// <summary>
