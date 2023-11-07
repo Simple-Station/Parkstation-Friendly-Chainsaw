@@ -76,7 +76,7 @@ public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakS
 
 public sealed class ShadowkinDarkSwapAttemptEvent : CancellableEntityEventArgs
 {
-    public EntityUid Performer;
+    EntityUid Performer;
 
     public ShadowkinDarkSwapAttemptEvent(EntityUid performer)
     {
