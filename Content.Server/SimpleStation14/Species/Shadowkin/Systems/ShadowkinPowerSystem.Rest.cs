@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
 
+
 public sealed class ShadowkinRestSystem : EntitySystem
 {
     [Dependency] private readonly IEntityManager _entity = default!;
@@ -24,7 +25,6 @@ public sealed class ShadowkinRestSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ShadowkinRestEvent>(Rest);
     }
-
 
     private void OnStartup(EntityUid uid, ShadowkinRestPowerComponent component, ComponentStartup args)
     {
@@ -44,8 +44,8 @@ public sealed class ShadowkinRestSystem : EntitySystem
             return;
 
         // Rest is a funny ability, keep it :)
-        // // Don't activate abilities if handcuffed
-        // if (_entity.HasComponent<HandcuffComponent>(args.Performer))
+        // // Don't activate abilities if specially handcuffed
+        // if (_entity.TryGetComponent<HandcuffComponent>(args.Performer, out var cuffs) && cuffs.AntiShadowkin)
         //     return;
 
         // Now doing what you weren't before
