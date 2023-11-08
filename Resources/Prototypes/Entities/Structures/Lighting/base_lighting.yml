@@ -29,7 +29,7 @@
     - state: on
       map: ["enum.PoweredLightLayers.Base"]
     state: on
-  - type: ShadowkinLight
+  - type: ShadowkinLight # Parkstation-Shadowkin
   - type: PointLight
     radius: 10
     energy: 0.8

@@ -7,7 +7,7 @@ namespace Content.Server.SimpleStation14.Species.Shadowkin.Components;
 public sealed partial class ShadowkinDarkSwapPowerComponent : Component
 {
     /// <summary>
-    ///     Factions temporarily deleted from the entity while swapped
+    ///     Factions temporarily removed from the entity while swapped
     /// </summary>
     public List<string> SuppressedFactions = new();
 

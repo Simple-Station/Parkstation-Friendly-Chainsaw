@@ -12,6 +12,7 @@ public sealed class ShadowkinBlackeyeTraitSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinBlackeyeTraitComponent, ComponentStartup>(OnStartup);
     }
 
+
     private void OnStartup(EntityUid uid, ShadowkinBlackeyeTraitComponent _, ComponentStartup args)
     {
         RaiseLocalEvent(uid, new ShadowkinBlackeyeEvent(uid, false));

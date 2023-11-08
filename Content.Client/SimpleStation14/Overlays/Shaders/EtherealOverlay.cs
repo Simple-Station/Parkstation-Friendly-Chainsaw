@@ -14,11 +14,13 @@ public sealed class EtherealOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     private readonly ShaderInstance _shader;
 
+
     public EtherealOverlay()
     {
         IoCManager.InjectDependencies(this);
         _shader = _prototype.Index<ShaderPrototype>("Ethereal").InstanceUnique();
     }
+
 
     protected override void Draw(in OverlayDrawArgs args)
     {

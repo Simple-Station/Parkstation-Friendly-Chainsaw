@@ -14,7 +14,7 @@ public sealed class ChannelSelectorPopup : Popup
         ChatSelectChannel.Emotes,
         ChatSelectChannel.Radio,
         ChatSelectChannel.Telepathic, //Nyano - Summary: determines the order in which telepathic shows.
-        ChatSelectChannel.Empathy,
+        ChatSelectChannel.Empathy, // Parkstation-EmpathyChat
         ChatSelectChannel.LOOC,
         ChatSelectChannel.OOC,
         ChatSelectChannel.Dead,

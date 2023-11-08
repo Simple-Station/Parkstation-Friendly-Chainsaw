@@ -37,7 +37,7 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.FirstDashFirst:
                     return Loc.GetString("namepreset-firstdashfirst",
                         ("first1", GetFirstName(speciesProto, gender)), ("first2", GetFirstName(speciesProto, gender)));
-                case SpeciesNaming.First:
+                case SpeciesNaming.First: // Parkstation-Shadowkin
                     return Loc.GetString("namepreset-first",
                         ("first", GetFirstName(speciesProto, gender)));
                 case SpeciesNaming.FirstLast:

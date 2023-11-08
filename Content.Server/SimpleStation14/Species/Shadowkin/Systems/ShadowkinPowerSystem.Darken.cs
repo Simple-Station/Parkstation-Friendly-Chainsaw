@@ -33,6 +33,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // TODO Use a cached query, and update it on ShadowkinDarkSwappedComponent.Initialize
         var shadowkins = _entity.EntityQueryEnumerator<ShadowkinDarkSwappedComponent>();
 
         while (shadowkins.MoveNext(out var uid, out var shadowkin))

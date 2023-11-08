@@ -9,6 +9,7 @@ namespace Content.Client.SimpleStation14.Chat
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
+
         public override void Initialize()
         {
             base.Initialize();
@@ -16,6 +17,7 @@ namespace Content.Client.SimpleStation14.Chat
             SubscribeLocalEvent<EmpathyChatComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<EmpathyChatComponent, ComponentRemove>(OnRemove);
         }
+
 
         public EmpathyChatComponent? Player => CompOrNull<EmpathyChatComponent>(_playerManager.LocalPlayer?.ControlledEntity);
         public bool IsShadowkin => Player != null;

@@ -13,10 +13,12 @@ namespace Content.Server.SimpleStation14.Speech.EntitySystems
         private static readonly Regex aRegex = new(@"[behknqtwy]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex rRegex = new(@"[cfiloruxz]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
+
         public override void Initialize()
         {
             SubscribeLocalEvent<ShadowkinAccentComponent, AccentGetEvent>(OnAccent);
         }
+
 
         public string Accentuate(string message)
         {

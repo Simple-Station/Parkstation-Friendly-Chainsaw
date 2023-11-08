@@ -59,7 +59,7 @@
         /// <summary>
         ///     Shadowkin empathy channel
         /// </summary>
-        Empathy = ChatChannel.Empathy,
+        Empathy = ChatChannel.Empathy, // Parkstation-EmpathyChat
 
         Console = ChatChannel.Unspecified
     }

@@ -9,6 +9,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 {
     [Dependency] private readonly IEntityManager _entity = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -17,6 +18,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
     }
+
 
     private void OnBlackeye(ShadowkinBlackeyeEvent ev)
     {
@@ -34,6 +36,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         // Blackeye if none of the RGB values are greater than 75
         if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
         {
+            // TODO Need to move this to server somehow, can't trust the client with this 
             RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid, false));
         }
     }
