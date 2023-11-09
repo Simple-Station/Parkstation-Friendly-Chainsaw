@@ -177,7 +177,7 @@
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Shadowkin] # Parkstation-Shadowkin
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_tiger

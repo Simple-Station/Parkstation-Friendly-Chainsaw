@@ -20,6 +20,7 @@
     Chest: MobReptilianTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobReptilianLArm
@@ -33,13 +34,15 @@
 
 - type: markingPoints
   id: MobReptilianMarkingLimits
-  onlyWhitelisted: true
   points:
     Hair:
       points: 0
       required: false
     FacialHair:
       points: 0
+      required: false
+    Wings: # Parkstation-WideUseMarkings
+      points: 1
       required: false
     Tail:
       points: 1
@@ -50,10 +53,16 @@
       required: true
       defaultMarkings: [ LizardSnoutRound ]
     HeadTop:
-      points: 1
+      points: 2 # Parkstation-WideUseMarkings
       required: false
-    HeadSide:
-      points: 1
+    Chest: # Parkstation-WideUseMarkings
+      points: 3
+      required: false
+    Legs: # Parkstation-WideUseMarkings
+      points: 2
+      required: false
+    Arms: # Parkstation-WideUseMarkings
+      points: 2
       required: false
 
 - type: humanoidBaseSprite
