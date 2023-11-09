@@ -332,8 +332,8 @@
 # Wings
 - type: marking
   id: MothWingsClassicAspen
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -347,8 +347,8 @@
 
 - type: marking
   id: MothWingsClassicAtlas
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -362,8 +362,8 @@
 
 - type: marking
   id: MothWingsClassicBrown
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -377,8 +377,8 @@
 
 - type: marking
   id: MothWingsClassicDeathshead
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -392,8 +392,8 @@
 
 - type: marking
   id: MothWingsClassicFeathery
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -407,8 +407,8 @@
 
 - type: marking
   id: MothWingsClassicFirewatch
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -422,8 +422,8 @@
 
 - type: marking
   id: MothWingsClassicGothic
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -437,8 +437,8 @@
 
 - type: marking
   id: MothWingsClassicJungle
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -452,8 +452,8 @@
 
 - type: marking
   id: MothWingsClassicLovers
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -467,8 +467,8 @@
 
 - type: marking
   id: MothWingsClassicLuna
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -482,8 +482,8 @@
 
 - type: marking
   id: MothWingsClassicMint
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -497,8 +497,8 @@
 
 - type: marking
   id: MothWingsClassicMoffra
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -512,8 +512,8 @@
 
 - type: marking
   id: MothWingsClassicMonarch
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -527,8 +527,8 @@
 
 - type: marking
   id: MothWingsClassicMoonfly
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -542,8 +542,8 @@
 
 - type: marking
   id: MothWingsClassicOakworm
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -557,8 +557,8 @@
 
 - type: marking
   id: MothWingsClassicPlain
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -572,8 +572,8 @@
 
 - type: marking
   id: MothWingsClassicPlasmafire
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -587,8 +587,8 @@
 
 - type: marking
   id: MothWingsClassicPoison
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -602,8 +602,8 @@
 
 - type: marking
   id: MothWingsClassicRagged
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -617,8 +617,8 @@
 
 - type: marking
   id: MothWingsClassicReddish
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -632,8 +632,8 @@
 
 - type: marking
   id: MothWingsClassicRosy
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -647,8 +647,8 @@
 
 - type: marking
   id: MothWingsClassicRoyal
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -662,8 +662,8 @@
 
 - type: marking
   id: MothWingsClassicSnow
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -677,8 +677,8 @@
 
 - type: marking
   id: MothWingsClassicWhitefly
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
@@ -692,8 +692,8 @@
 
 - type: marking
   id: MothWingsClassicWitchking
-  bodyPart: Tail
-  markingCategory: Tail
+  bodyPart: Wings # Parkstation-Wings
+  markingCategory: Wings # Parkstation-Wings
   forcedColoring: true
   speciesRestriction: [Moth]
   coloring:
