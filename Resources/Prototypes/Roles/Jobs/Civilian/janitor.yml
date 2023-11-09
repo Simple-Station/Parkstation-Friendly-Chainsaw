@@ -8,6 +8,7 @@
   supervisors: job-supervisors-css
   access:
   - Janitor
+  - Service # DeltaV - quite honestly the most noble service occupation
   - Maintenance
   special:
   - !type:GiveItemOnHolidaySpecial
