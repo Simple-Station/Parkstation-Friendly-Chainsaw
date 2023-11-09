@@ -14,16 +14,24 @@
 - type: speciesBaseSprites
   id: MobSkeletonSprites
   sprites:
-    Head: MobSkeletonHead
-    Chest: MobSkeletonTorso
-    LArm: MobSkeletonLArm
-    RArm: MobSkeletonRArm
-    LHand: MobSkeletonLHand
-    RHand: MobSkeletonRHand
-    LLeg: MobSkeletonLLeg
-    RLeg: MobSkeletonRLeg
-    LFoot: MobSkeletonLFoot
-    RFoot: MobSkeletonRFoot
+    # Parkstation-WideUseMarkings-Start
+    Head: MobHumanHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobHumanTorso
+    Eyes: MobHumanoidEyes
+    LArm: MobHumanLArm
+    RArm: MobHumanRArm
+    LHand: MobHumanLHand
+    RHand: MobHumanRHand
+    LLeg: MobHumanLLeg
+    RLeg: MobHumanRLeg
+    LFoot: MobHumanLFoot
+    RFoot: MobHumanRFoot
+    Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    # Parkstation-WideUseMarkings-End
 
 - type: humanoidBaseSprite
   id: MobSkeletonHead

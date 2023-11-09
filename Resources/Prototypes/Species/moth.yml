@@ -20,8 +20,8 @@
     Chest: MobMothTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Wings: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
     Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Eyes: MobMothEyes
     LArm: MobMothLArm
     RArm: MobMothRArm
@@ -75,7 +75,7 @@
       points: 2
       required: false
     Arms:
-      points: 2
+      points: 4 # Parkstation-WideUseMarkings
       required: false
 
 - type: humanoidBaseSprite

@@ -26,8 +26,8 @@
     LFoot: MobSlimeLFoot
     RFoot: MobSlimeRFoot
     # Parkstation-FixSlimeMarkings-Start
-    Wings: MobSlimeMarking
     Tail: MobSlimeMarking
+    Wings: MobHumanoidAnyMarking
     HeadTop: MobSlimeMarking
     Snout: MobSlimeMarking
     # Parkstation-FixSlimeMarkings-End
@@ -45,7 +45,7 @@
       points: 1
       required: false
     Legs:
-      points: 4 # Parkstation-WideUseMarkings
+      points: 2 # Parkstation-WideUseMarkings
       required: false
     Arms:
       points: 4

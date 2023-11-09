@@ -20,8 +20,8 @@
     Chest: MobReptilianTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Wings: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
     Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Eyes: MobHumanoidEyes
     LArm: MobReptilianLArm
     RArm: MobReptilianRArm
@@ -62,7 +62,7 @@
       points: 2
       required: false
     Arms: # Parkstation-WideUseMarkings
-      points: 2
+      points: 4
       required: false
 
 - type: humanoidBaseSprite
