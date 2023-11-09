@@ -59,6 +59,7 @@
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ClothingHeadHatCapcap
+      - id: ClothingHeadHatBeretCap # Nyanotrasen - Captain's Beret
       - id: ClothingShoesLeather # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
 
@@ -94,6 +95,7 @@
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ClothingHeadHatCapcap
+      - id: ClothingHeadHatBeretCap # Nyanotrasen - Captain's Beret
       - id: ClothingShoesLeather # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
 
@@ -135,6 +137,7 @@
       - id: ClothingUniformJumpsuitBoatswain # DeltaV - Add turtleneck for HoP.
       - id: ClothingShoesBootsLaceup # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
+      - id: ClothingOuterHardsuitHoP # Parkstation-HoPSuit
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -299,7 +302,7 @@
       - id: ClothingOuterCoatHoSTrench
       - id: ClothingUniformJumpskirtHoSAlt
       - id: ClothingUniformJumpsuitHoSAlt
-      - id: ClothingOuterHardsuitSecurityRed
+      - id: ClothingOuterHardsuitCombatHoS # DeltaV - ClothingOuterHardsuitSecurityRed replaced in favour of head of security's advanced combat hardsuit.
       - id: ClothingMaskGasSwat
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
