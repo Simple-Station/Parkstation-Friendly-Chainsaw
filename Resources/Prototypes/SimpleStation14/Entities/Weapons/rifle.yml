@@ -2,7 +2,7 @@
   name: G11
   parent: BaseWeaponRifle
   id: WeaponRifleG11
-  description: A unqiue rifle with an clock-like internals and a top fed magazine. Uses .20 rifle ammo. #switch to caseless when you have the time
+  description: A unique rifle with an clock-like internals and a top fed magazine. Uses .20 rifle ammo. #switch to caseless when you have the time
   components:
   - type: Sprite
     sprite: SimpleStation14\weapons\G11.rsi
@@ -20,6 +20,7 @@
     selectedMode: Burst
     availableModes:
     - Burst
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
