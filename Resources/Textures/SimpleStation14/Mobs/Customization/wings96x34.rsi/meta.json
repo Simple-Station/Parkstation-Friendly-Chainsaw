@@ -9,15 +9,7 @@
             "directions": 4
         },
         {
-            "name": "dragon",
-            "directions": 4
-        },
-        {
             "name": "fly_open",
-            "directions": 4
-        },
-        {
-            "name": "fly",
             "directions": 4
         },
         {
@@ -37,15 +29,7 @@
             "directions": 4
         },
         {
-            "name": "robotic",
-            "directions": 4
-        },
-        {
             "name": "skeleton_open",
-            "directions": 4
-        },
-        {
-            "name": "skeleton",
             "directions": 4
         }
     ]

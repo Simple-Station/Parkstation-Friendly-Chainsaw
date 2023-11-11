@@ -13,7 +13,7 @@
   markingCategory: Wings
   speciesRestriction: [Reptilian]
   sprites:
-    - sprite: SimpleStation14/Mobs/Customization/wings96x34.rsi
+    - sprite: SimpleStation14/Mobs/Customization/wings64x34.rsi
       state: dragon
 
 - type: marking
@@ -31,7 +31,7 @@
   markingCategory: Wings
   speciesRestriction: [Moth]
   sprites:
-    - sprite: SimpleStation14/Mobs/Customization/wings96x34.rsi
+    - sprite: SimpleStation14/Mobs/Customization/wings64x34.rsi
       state: fly
 
 - type: marking
@@ -76,7 +76,7 @@
   markingCategory: Wings
   speciesRestriction: [nHuman]
   sprites:
-    - sprite: SimpleStation14/Mobs/Customization/wings96x34.rsi
+    - sprite: SimpleStation14/Mobs/Customization/wings64x34.rsi
       state: robotic
 
 - type: marking
@@ -94,16 +94,5 @@
   markingCategory: Wings
   speciesRestriction: [Skeleton]
   sprites:
-    - sprite: SimpleStation14/Mobs/Customization/wings96x34.rsi
+    - sprite: SimpleStation14/Mobs/Customization/wings64x34.rsi
       state: skeleton
-
-
-
-- type: marking
-  id: WingsHarpy
-  bodyPart: Wings
-  markingCategory: Wings
-  speciesRestriction: [Moth]
-  sprites:
-    - sprite: SimpleStation14/Mobs/Customization/wings64x32.rsi
-      state: harpy
