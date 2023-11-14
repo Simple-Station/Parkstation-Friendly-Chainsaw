@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: PartShadowkin
   parent: BaseItem
-  name: "Shadowkin body part"
+  name: Shadowkin body part
   abstract: true
   components:
     - type: Sprite
@@ -19,25 +19,25 @@
 
 - type: entity
   id: TorsoShadowkin
-  name: "Shadowkin torso"
+  name: Shadowkin torso
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "torso_m"
+      state: torso_m
     - type: Icon
-      state: "torso_m"
+      state: torso_m
     - type: BodyPart
       partType: Torso
 
 - type: entity
   id: HeadShadowkin
-  name: "Shadowkin head"
+  name: Shadowkin head
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "head_m"
+      state: head_m
     - type: Icon
-      state: "head_m"
+      state: head_m
     - type: BodyPart
       partType: Head
     - type: Input
@@ -50,65 +50,65 @@
 
 - type: entity
   id: LeftArmShadowkin
-  name: "left Shadowkin arm"
+  name: left Shadowkin arm
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "l_arm"
+      state: l_arm
     - type: Icon
-      state: "l_arm"
+      state: l_arm
     - type: BodyPart
       partType: Arm
       symmetry: Left
 
 - type: entity
   id: RightArmShadowkin
-  name: "right Shadowkin arm"
+  name: right Shadowkin arm
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "r_arm"
+      state: r_arm
     - type: Icon
-      state: "r_arm"
+      state: r_arm
     - type: BodyPart
       partType: Arm
       symmetry: Right
 
 - type: entity
   id: LeftHandShadowkin
-  name: "left Shadowkin hand"
+  name: left Shadowkin hand
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "l_hand"
+      state: l_hand
     - type: Icon
-      state: "l_hand"
+      state: l_hand
     - type: BodyPart
       partType: Hand
       symmetry: Left
 
 - type: entity
   id: RightHandShadowkin
-  name: "right Shadowkin hand"
+  name: right Shadowkin hand
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "r_hand"
+      state: r_hand
     - type: Icon
-      state: "r_hand"
+      state: r_hand
     - type: BodyPart
       partType: Hand
       symmetry: Right
 
 - type: entity
   id: LeftLegShadowkin
-  name: "left Shadowkin leg"
+  name: left Shadowkin leg
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "l_leg"
+      state: l_leg
     - type: Icon
-      state: "l_leg"
+      state: l_leg
     - type: BodyPart
       partType: Leg
       symmetry: Left
@@ -116,13 +116,13 @@
 
 - type: entity
   id: RightLegShadowkin
-  name: "right Shadowkin leg"
+  name: right Shadowkin leg
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "r_leg"
+      state: r_leg
     - type: Icon
-      state: "r_leg"
+      state: r_leg
     - type: BodyPart
       partType: Leg
       symmetry: Right
@@ -130,26 +130,26 @@
 
 - type: entity
   id: LeftFootShadowkin
-  name: "left Shadowkin foot"
+  name: left Shadowkin foot
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "l_foot"
+      state: l_foot
     - type: Icon
-      state: "l_foot"
+      state: l_foot
     - type: BodyPart
       partType: Foot
       symmetry: Left
 
 - type: entity
   id: RightFootShadowkin
-  name: "right Shadowkin foot"
+  name: right Shadowkin foot
   parent: PartShadowkin
   components:
     - type: Sprite
-      state: "r_foot"
+      state: r_foot
     - type: Icon
-      state: "r_foot"
+      state: r_foot
     - type: BodyPart
       partType: Foot
       symmetry: Right

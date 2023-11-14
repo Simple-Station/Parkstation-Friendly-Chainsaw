@@ -24,6 +24,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -90,7 +91,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
             pulledTransform.AttachToGridOrMap();
 
             // Resume pulling
-            // TODO: This does nothing? // This does things sometimes, but the client never knows
+            // TODO: This does nothing? // This does things sometimes, but the client never knows // This does nothing??
             _pulling.TryStartPull(puller, pullable);
         }
 

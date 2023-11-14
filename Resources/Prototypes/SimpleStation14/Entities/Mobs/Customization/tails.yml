@@ -6,6 +6,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: axolotl
+
 - type: marking
   id: TailDatashark
   bodyPart: Tail
@@ -22,6 +23,7 @@
       state: datashark_tail
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: datashark_taildata
+
 - type: marking
   id: TailEasternDragon
   bodyPart: Tail
@@ -32,6 +34,7 @@
       state: easternd_primary
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: easternd_secondary
+
 - type: marking
   id: TailFennec
   bodyPart: Tail
@@ -40,6 +43,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: fennec
+
 - type: marking
   id: TailFish
   bodyPart: Tail
@@ -50,6 +54,7 @@
       state: fish_primary
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: fish_secondary
+
 - type: marking
   id: TailFluffy
   bodyPart: Tail
@@ -58,6 +63,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: fluffy
+
 - type: marking
   id: TailFox
   bodyPart: Tail
@@ -68,6 +74,7 @@
       state: fox_primary
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: fox_secondary
+
 - type: marking
   id: TailGecko
   bodyPart: Tail
@@ -80,6 +87,7 @@
       state: gecko_secondary
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: gecko_tertiary
+
 - type: marking
   id: TailKitsune
   bodyPart: Tail
@@ -90,6 +98,7 @@
       state: kitsune_primary
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: kitsune_secondary
+
 - type: marking
   id: TailMaw
   bodyPart: Tail
@@ -98,6 +107,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: maw
+
 - type: marking
   id: TailShark
   bodyPart: Tail
@@ -108,6 +118,7 @@
       state: shark_fin
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: shark_tail
+
 - type: marking
   id: TailSnake
   bodyPart: Tail
@@ -116,6 +127,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: snake
+
 - type: marking
   id: TailSuccubus
   bodyPart: Tail
@@ -124,6 +136,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: succubus
+
 - type: marking
   id: TailTentacle
   bodyPart: Tail
@@ -132,6 +145,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
       state: tentacle
+
 - type: marking
   id: TailShadowkin
   bodyPart: Tail
@@ -140,6 +154,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails64x32.rsi
       state: shadowkin
+
 - type: marking
   id: TailShadowkinBig
   bodyPart: Tail
@@ -148,6 +163,7 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/tails64x32.rsi
       state: shadowkin_big
+
 - type: marking
   id: TailShadowkinBigFluff
   bodyPart: Tail

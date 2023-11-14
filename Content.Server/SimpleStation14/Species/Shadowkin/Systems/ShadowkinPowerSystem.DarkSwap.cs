@@ -35,6 +35,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -47,6 +48,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentStartup>(OnInvisStartup);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnInvisShutdown);
     }
+
 
     private void Startup(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentStartup args)
     {

@@ -24,6 +24,7 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();

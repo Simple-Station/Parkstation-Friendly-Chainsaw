@@ -16,6 +16,7 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
     private IgnoreHumanoidWithComponentOverlay _ignoreOverlay = default!;
     private EtherealOverlay _etherealOverlay = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();

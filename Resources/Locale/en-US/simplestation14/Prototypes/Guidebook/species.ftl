@@ -1,1 +1,0 @@
-﻿guide-entry-shadowkin = Shadowkin

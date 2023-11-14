@@ -17,6 +17,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private ColorTintOverlay _tintOverlay = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -34,6 +35,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
+
 
     private void OnStartup(EntityUid uid, ShadowkinComponent component, ComponentStartup args)
     {
@@ -82,13 +84,13 @@ public sealed class ShadowkinTintSystem : EntitySystem
         // Eye color
         comp.TintColor = new Vector3(layer.Color.R, layer.Color.G, layer.Color.B);
 
-        // 1/3 = 0.333...
         // intensity = min + (power / max)
-        // intensity = intensity / 0.333
+        // intensity = intensity / 3
         // intensity = clamp intensity min, max
         const float min = 0.45f;
         const float max = 0.75f;
-        comp.TintIntensity = Math.Clamp(min + (comp.PowerLevel / comp.PowerLevelMax) * 0.333f, min, max);
+        // TODO This math doesn't match the comments, figure out which is correct
+        comp.TintIntensity = Math.Clamp(min + (comp.PowerLevel / comp.PowerLevelMax) / 3, min, max);
 
         UpdateShader(comp.TintColor, comp.TintIntensity);
     }
@@ -97,9 +99,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
     private void UpdateShader(Vector3? color, float? intensity)
     {
         while (_overlay.HasOverlay<ColorTintOverlay>())
-        {
             _overlay.RemoveOverlay(_tintOverlay);
-        }
 
         if (color != null)
             _tintOverlay.TintColor = color;

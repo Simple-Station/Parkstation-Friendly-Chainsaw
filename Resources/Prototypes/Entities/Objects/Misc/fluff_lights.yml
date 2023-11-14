@@ -40,7 +40,7 @@
     sprite: Objects/Misc/Lights/lights.rsi
     size: 20
     heldPrefix: off
-  - type: ShadowkinLight
+  - type: ShadowkinLight # Parkstation-Shadowkin
   - type: PointLight
     enabled: false
     radius: 3

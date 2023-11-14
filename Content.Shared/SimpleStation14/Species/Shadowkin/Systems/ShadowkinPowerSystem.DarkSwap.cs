@@ -11,6 +11,7 @@ public sealed class ShadowkinDarken : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -29,6 +30,7 @@ public sealed class ShadowkinDarken : EntitySystem
         if (_gameTiming.InPrediction)
             return;
 
+        // TODO This appears on way too many things
         _popup.PopupEntity(Loc.GetString("ethereal-pickup-fail"), args.Target.Value, uid);
     }
 }

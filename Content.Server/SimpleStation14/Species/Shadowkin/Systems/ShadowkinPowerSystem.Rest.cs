@@ -15,6 +15,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
 
+
     public override void Initialize()
     {
         base.Initialize();

@@ -396,12 +396,12 @@ public sealed class MagicSystem : EntitySystem
 
     #endregion
 
-    public void Speak(BaseActionEvent args, bool showInChat = true)
+    public void Speak(BaseActionEvent args, bool showInChat = true) // Parkstation-Shadowkin // Make Spell Speak function public and add showInChat
     {
         if (args is not ISpeakSpell speak || string.IsNullOrWhiteSpace(speak.Speech))
             return;
 
         _chat.TrySendInGameICMessage(args.Performer, Loc.GetString(speak.Speech),
-            InGameICChatType.Speak, !showInChat);
+            InGameICChatType.Speak, !showInChat); // Parkstation-Shadowkin
     }
 }

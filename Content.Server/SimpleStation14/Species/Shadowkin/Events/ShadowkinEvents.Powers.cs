@@ -1,5 +1,5 @@
-﻿using Content.Server.Magic.Events;
-using Content.Shared.Actions;
+﻿using Content.Shared.Actions;
+using Content.Shared.Magic;
 using Robust.Shared.Audio;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Events;

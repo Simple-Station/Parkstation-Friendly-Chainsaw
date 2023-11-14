@@ -31,12 +31,14 @@ public sealed class ColorTintOverlay : Overlay
     /// </summary>
     public Component? Comp = null;
 
+
     public ColorTintOverlay()
     {
         IoCManager.InjectDependencies(this);
 
         _shader = _prototype.Index<ShaderPrototype>("ColorTint").InstanceUnique();
     }
+
 
     protected override void Draw(in OverlayDrawArgs args)
     {

@@ -83,7 +83,7 @@ public sealed class ChannelSelectorButton : Button
             ChatSelectChannel.Dead => Color.MediumPurple,
             ChatSelectChannel.Admin => Color.HotPink,
             ChatSelectChannel.Telepathic => Color.PaleVioletRed, //Nyano - Summary: determines the color for the chat.
-            ChatSelectChannel.Empathy => Color.PaleVioletRed,
+            ChatSelectChannel.Empathy => Color.PaleVioletRed, // Parkstation-EmpathyChat
             _ => Color.DarkGray
         };
     }

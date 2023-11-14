@@ -10,6 +10,8 @@ namespace Content.Shared.Eye
         Normal = 1 << 0,
         Ghost  = 1 << 1,
         PsionicInvisibility = 1 << 2, //Nyano - Summary: adds Psionic Invisibility as a visibility layer. Currently does nothing.
+        DarkSwapInvisibility = 1 << 3, // Parkstation-Shadowkin
+        AIEye = 1 << 4, // Parkstation-SAI
         TelegnosticProjection = 5, 
     }
 }

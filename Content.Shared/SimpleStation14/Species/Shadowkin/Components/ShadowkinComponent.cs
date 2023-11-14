@@ -98,6 +98,7 @@ public sealed partial class ShadowkinComponent : Component
     public bool Blackeye = false;
 
 
+    // TODO This sucks, make this not hardcoded so we can do some fun things with it
     public static readonly Dictionary<ShadowkinPowerThreshold, float> PowerThresholds = new()
     {
         { ShadowkinPowerThreshold.Max, 250.0f },

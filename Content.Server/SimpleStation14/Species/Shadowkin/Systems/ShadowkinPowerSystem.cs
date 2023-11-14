@@ -12,9 +12,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
     private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary;
 
+
     public ShadowkinPowerSystem()
     {
-        var Locale = IoCManager.Resolve<ILocalizationManager>(); // Whyyyy
+        var Locale = IoCManager.Resolve<ILocalizationManager>(); // Whyyyy // Dependencies aren't resolved yet, must resolve manually to get locale for the _powerDictionary
 
         _powerDictionary = new Dictionary<ShadowkinPowerThreshold, string>
         {
@@ -26,6 +27,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
             { ShadowkinPowerThreshold.Min, Locale.GetString("shadowkin-power-min") }
         };
     }
+
 
     /// <param name="powerLevel">The current power level.</param>
     /// <returns>The name of the power level.</returns>

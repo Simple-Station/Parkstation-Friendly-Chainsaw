@@ -5,6 +5,9 @@ using Robust.Client.Player;
 
 namespace Content.Client.SimpleStation14.Overlays.Shaders;
 
+/// <remarks>
+///     Not really an overlay to be honest
+/// </remarks>
 public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -14,10 +17,12 @@ public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
     public List<Component> AllowAnywayComponents = new();
     private readonly List<EntityUid> _nonVisibleList = new();
 
+
     public IgnoreHumanoidWithComponentOverlay()
     {
         IoCManager.InjectDependencies(this);
     }
+
 
     protected override void Draw(in OverlayDrawArgs args)
     {
@@ -72,6 +77,9 @@ public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
     }
 
 
+    /// <summary>
+    ///     Resets the overlay, making all entities visible again
+    /// </summary>
     public void Reset()
     {
         foreach (var humanoid in _nonVisibleList.ToArray())
@@ -83,6 +91,9 @@ public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
         }
     }
 
+    /// <summary>
+    ///     Resets the overlay for a specific entity, making it visible again
+    /// </summary>
     public void Reset(EntityUid entity)
     {
         if (!_nonVisibleList.Contains(entity))
