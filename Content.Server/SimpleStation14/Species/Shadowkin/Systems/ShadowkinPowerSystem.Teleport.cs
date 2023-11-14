@@ -40,13 +40,13 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     {
         var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
         _actions.AddAction(uid, ref componentActionShadowkinTeleport, "ActionShadowkinTeleport");
-        // _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
+        // // _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, component.ActionShadowkinTeleport);
-        // _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
+        // // _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
     }
 
 

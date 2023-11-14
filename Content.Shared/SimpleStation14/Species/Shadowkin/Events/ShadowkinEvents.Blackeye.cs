@@ -7,11 +7,11 @@ namespace Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 /// </summary>
 public sealed class ShadowkinBlackeyeAttemptEvent : CancellableEntityEventArgs
 {
-    public readonly EntityUid Uid;
+    public readonly NetEntity Ent;
 
-    public ShadowkinBlackeyeAttemptEvent(EntityUid uid)
+    public ShadowkinBlackeyeAttemptEvent(NetEntity ent)
     {
-        Uid = uid;
+        Ent = ent;
     }
 }
 
@@ -21,12 +21,12 @@ public sealed class ShadowkinBlackeyeAttemptEvent : CancellableEntityEventArgs
 [Serializable, NetSerializable]
 public sealed class ShadowkinBlackeyeEvent : EntityEventArgs
 {
-    public readonly EntityUid Uid;
+    public readonly NetEntity Ent;
     public readonly bool Damage;
 
-    public ShadowkinBlackeyeEvent(EntityUid uid, bool damage = true)
+    public ShadowkinBlackeyeEvent(NetEntity ent, bool damage = true)
     {
-        Uid = uid;
+        Ent = ent;
         Damage = damage;
     }
 }

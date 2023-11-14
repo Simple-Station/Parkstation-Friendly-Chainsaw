@@ -34,7 +34,8 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
     private void OnBlackeyeAttempt(ShadowkinBlackeyeAttemptEvent ev)
     {
-        if (!_entity.TryGetComponent<ShadowkinComponent>(ev.Uid, out var component) ||
+        var uid = _entity.GetEntity(ev.Ent);
+        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component) ||
             component.Blackeye ||
             !(component.PowerLevel <= ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5))
             ev.Cancel();
@@ -42,46 +43,48 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
     private void OnBlackeye(ShadowkinBlackeyeEvent ev)
     {
+        var uid = _entity.GetEntity(ev.Ent);
+
         // Check if the entity is a shadowkin
-        if (!_entity.TryGetComponent<ShadowkinComponent>(ev.Uid, out var component))
+        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
             return;
 
         // Stop gaining power
         component.Blackeye = true;
         component.PowerLevelGainEnabled = false;
-        _power.SetPowerLevel(ev.Uid, ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min]);
+        _power.SetPowerLevel(uid, ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min]);
 
         // Update client state
         Dirty(component);
 
         // Remove powers
-        _entity.RemoveComponent<ShadowkinDarkSwapPowerComponent>(ev.Uid);
-        _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(ev.Uid);
-        _entity.RemoveComponent<ShadowkinRestPowerComponent>(ev.Uid);
-        _entity.RemoveComponent<ShadowkinTeleportPowerComponent>(ev.Uid);
+        _entity.RemoveComponent<ShadowkinDarkSwapPowerComponent>(uid);
+        _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
+        _entity.RemoveComponent<ShadowkinRestPowerComponent>(uid);
+        _entity.RemoveComponent<ShadowkinTeleportPowerComponent>(uid);
 
 
         if (!ev.Damage)
             return;
 
         // Popup
-        _popup.PopupEntity(Loc.GetString("shadowkin-blackeye"), ev.Uid, ev.Uid, PopupType.Large);
+        _popup.PopupEntity(Loc.GetString("shadowkin-blackeye"), uid, uid, PopupType.Large);
 
         // Stamina crit
-        if (_entity.TryGetComponent<StaminaComponent>(ev.Uid, out var stamina))
+        if (_entity.TryGetComponent<StaminaComponent>(uid, out var stamina))
         {
-            _stamina.TakeStaminaDamage(ev.Uid, stamina.CritThreshold, null, ev.Uid);
+            _stamina.TakeStaminaDamage(uid, stamina.CritThreshold, null, uid);
         }
 
         // Nearly crit with cellular damage
         // If already 5 damage off of crit, don't do anything
-        if (!_entity.TryGetComponent<DamageableComponent>(ev.Uid, out var damageable) ||
-            !_mobThreshold.TryGetThresholdForState(ev.Uid, MobState.Critical, out var key))
+        if (!_entity.TryGetComponent<DamageableComponent>(uid, out var damageable) ||
+            !_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var key))
             return;
 
         var minus = damageable.TotalDamage;
 
-        _damageable.TryChangeDamage(ev.Uid,
+        _damageable.TryChangeDamage(uid,
             new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
                 Math.Max((double) (key.Value - minus - 5), 0)),
             true,

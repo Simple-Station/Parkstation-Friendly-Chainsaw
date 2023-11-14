@@ -53,12 +53,12 @@ public sealed class ShadowkinTintSystem : EntitySystem
         _overlay.RemoveOverlay(_tintOverlay);
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShadowkinComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, ShadowkinComponent component)// , PlayerAttachedEvent args)
     {
         _overlay.AddOverlay(_tintOverlay);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShadowkinComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, ShadowkinComponent component)// , PlayerDetachedEvent args)
     {
         _overlay.RemoveOverlay(_tintOverlay);
     }

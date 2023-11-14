@@ -8,10 +8,10 @@ namespace Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 [Serializable, NetSerializable]
 public sealed class ShadowkinDarkSwappedEvent : EntityEventArgs
 {
-    public EntityUid Performer { get; }
+    public NetEntity Performer { get; }
     public bool DarkSwapped { get; }
 
-    public ShadowkinDarkSwappedEvent(EntityUid performer, bool darkSwapped)
+    public ShadowkinDarkSwappedEvent(NetEntity performer, bool darkSwapped)
     {
         Performer = performer;
         DarkSwapped = darkSwapped;

@@ -5,6 +5,8 @@ namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
 
 public sealed class ShadowkinBlackeyeTraitSystem : EntitySystem
 {
+    [Dependency] private readonly IEntityManager _entity = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -15,7 +17,8 @@ public sealed class ShadowkinBlackeyeTraitSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinBlackeyeTraitComponent _, ComponentStartup args)
     {
-        RaiseLocalEvent(uid, new ShadowkinBlackeyeEvent(uid, false));
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid, false));
+        var ent = _entity.GetNetEntity(uid);
+        RaiseLocalEvent(uid, new ShadowkinBlackeyeEvent(ent, false));
+        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent, false));
     }
 }

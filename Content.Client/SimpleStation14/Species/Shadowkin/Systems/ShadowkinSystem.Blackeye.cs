@@ -22,7 +22,8 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
     private void OnBlackeye(ShadowkinBlackeyeEvent ev)
     {
-        SetColor(ev.Uid, Color.Black);
+        var uid = _entity.GetEntity(ev.Ent);
+        SetColor(uid, Color.Black);
     }
 
 
@@ -36,8 +37,9 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         // Blackeye if none of the RGB values are greater than 75
         if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
         {
-            // TODO Need to move this to server somehow, can't trust the client with this 
-            RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid, false));
+            // TODO Need to move this to server somehow, can't trust the client with this
+            var ent = _entity.GetNetEntity(uid);
+            RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent, false));
         }
     }
 

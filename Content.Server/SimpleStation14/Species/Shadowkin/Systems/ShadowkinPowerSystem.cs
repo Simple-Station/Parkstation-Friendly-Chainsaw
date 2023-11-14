@@ -200,8 +200,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// </summary>
     public bool TryBlackeye(EntityUid uid)
     {
+        var ent = _entity.GetNetEntity(uid);
         // Raise an attempted blackeye event
-        var ev = new ShadowkinBlackeyeAttemptEvent(uid);
+        var ev = new ShadowkinBlackeyeAttemptEvent(ent);
         RaiseLocalEvent(ev);
         if (ev.Cancelled)
             return false;
@@ -215,6 +216,8 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// </summary>
     public void Blackeye(EntityUid uid)
     {
+        var ent = _entity.GetNetEntity(uid);
+
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
@@ -223,8 +226,8 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         }
 
         component.Blackeye = true;
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid));
-        RaiseLocalEvent(new ShadowkinBlackeyeEvent(uid));
+        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent));
+        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent));
     }
 
 

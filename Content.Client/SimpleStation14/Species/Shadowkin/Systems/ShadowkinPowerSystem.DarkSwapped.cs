@@ -49,12 +49,12 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
         RemoveOverlay();
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShadowkinDarkSwappedComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, ShadowkinDarkSwappedComponent component)//, PlayerAttachedEvent args)
     {
         AddOverlay();
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShadowkinDarkSwappedComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, ShadowkinDarkSwappedComponent component)//, PlayerDetachedEvent args)
     {
         RemoveOverlay();
     }
