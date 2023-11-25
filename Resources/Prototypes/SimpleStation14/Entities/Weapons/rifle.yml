@@ -31,14 +31,14 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineCaselessRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeCaselessRifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeCaselessRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
