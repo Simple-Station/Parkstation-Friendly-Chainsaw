@@ -1,4 +1,25 @@
 - type: stationGoal
+  id: Area
+
+- type: stationGoal
+  id: Artifacts
+
+- type: stationGoal
+  id: BureaucraticError
+
+- type: stationGoal
+  id: Combat
+
+- type: stationGoal
+  id: Labor
+
+- type: stationGoal
+  id: Lectures
+
+- type: stationGoal
+  id: Museum
+
+- type: stationGoal
   id: Shuttle
 
 - type: stationGoal
@@ -8,37 +29,13 @@
   id: SolarPanels
 
 - type: stationGoal
-  id: Artifacts
-
-- type: stationGoal
   id: Storage
-
-- type: stationGoal
-  id: Zoo
 
 - type: stationGoal
   id: Xeno
 
 - type: stationGoal
-  id: Area
-
-- type: stationGoal
-  id: BureaucraticError
-
-- type: stationGoal
-  id: Museum
-
-- type: stationGoal
-  id: Combat
-
-- type: stationGoal
-  id: Artifacts
-
-- type: stationGoal
-  id: Labor
-
-- type: stationGoal
-  id: Lectures
+  id: Zoo
 
 
 
