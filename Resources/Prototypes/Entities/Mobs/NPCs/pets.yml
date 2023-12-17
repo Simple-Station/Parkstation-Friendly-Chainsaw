@@ -285,6 +285,8 @@
     tags:
     - CannotSuicide
     - VimPilot
+  - type: RandomBark
+    barkMultiplier: 1.3
 
 - type: entity
   name: Paperwork
@@ -382,6 +384,8 @@
     tags:
     - CannotSuicide
     - VimPilot
+  - type: RandomBark
+    barkMultiplier: 1.1
 
 - type: entity
   name: Morty
