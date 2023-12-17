@@ -9,7 +9,8 @@ public sealed class RandomBarkSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly EntityManager _entities = default!;
+    [Dependency] private readonly EntityManager _entity = default!;
+
 
     public override void Initialize()
     {
@@ -18,7 +19,8 @@ public sealed class RandomBarkSystem : EntitySystem
         SubscribeLocalEvent<RandomBarkComponent, ComponentInit>(OnInit);
     }
 
-    public void OnInit(EntityUid uid, RandomBarkComponent barker, ComponentInit args)
+
+    private void OnInit(EntityUid uid, RandomBarkComponent barker, ComponentInit args)
     {
         barker.BarkAccumulator = _random.NextFloat(barker.MinTime, barker.MaxTime)*barker.BarkMultiplier;
     }
@@ -27,18 +29,19 @@ public sealed class RandomBarkSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        while (EntityQueryEnumerator<RandomBarkComponent>().MoveNext(out var uid, out var barker))
+        var query = EntityQueryEnumerator<RandomBarkComponent>();
+        while (query.MoveNext(out var uid, out var barker))
         {
             barker.BarkAccumulator -= frameTime;
             if (barker.BarkAccumulator > 0)
                 continue;
 
-            barker.BarkAccumulator = _random.NextFloat(barker.MinTime, barker.MaxTime)*barker.BarkMultiplier;
-            if (_entities.TryGetComponent<MindContainerComponent>(uid, out var actComp) &&
+            barker.BarkAccumulator = _random.NextFloat(barker.MinTime, barker.MaxTime) * barker.BarkMultiplier;
+            if (_entity.TryGetComponent<MindContainerComponent>(uid, out var actComp) &&
                 actComp.HasMind)
                 continue;
 
-            _chat.TrySendInGameICMessage(uid, _random.Pick(barker.Barks), InGameICChatType.Speak, barker.Chatlog ? ChatTransmitRange.Normal : ChatTransmitRange.HideChat);
+            _chat.TrySendInGameICMessage(uid, _random.Pick(barker.Barks), InGameICChatType.Speak, barker.ChatLog ? ChatTransmitRange.Normal : ChatTransmitRange.HideChat);
         }
     }
 }
