@@ -150,7 +150,7 @@ station-goal-singularity=
     The design requirements are:
     1. The structure must be located at a significant distance from the station.
     2. The structure must be protected from meteorites and space debris.
-    3. The containment field must be able to prevent the loss of a class 4 singularity.
+    3. The containment field must be able to prevent the loss of a class 3 singularity.
 
 station-goal-solar-panels=
     Dear station Command, the purpose of your shift is to organize a backup power system.
