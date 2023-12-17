@@ -4,6 +4,7 @@
   text: "/ServerInfo/Guidebook/SpaceStation14.xml"
   children:
   - Controls
+  - GettingStarted # Parkstation-guidebook
   - Jobs
   - Survival
   - Chemicals
