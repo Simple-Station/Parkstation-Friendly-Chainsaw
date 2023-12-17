@@ -158,7 +158,7 @@ public sealed partial class SalvageSystem
                 // Parkstation-ExpeditionMusic Start
                 if (_prototypeManager.TryIndex<SoundCollectionPrototype>(comp.Sound, out var sound))
                     comp.Stream = _audio.PlayGlobal(new SoundPathSpecifier(_random.Pick(sound.PickFiles), AudioParams.Default.WithVolume(-6)),
-                        Filter.BroadcastMap(Comp<MapComponent>(uid).MapId), true);
+                        Filter.BroadcastMap(Comp<MapComponent>(uid).MapId), true).Value.Entity;
                 // Parkstation-ExpeditionMusic End
                 comp.Stage = ExpeditionStage.MusicCountdown;
                 Dirty(uid, comp);
