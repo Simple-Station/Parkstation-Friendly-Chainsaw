@@ -754,9 +754,6 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Puller
-  - type: ReplacementAccent
-    accent: monkey
-  - type: RandomBark
 
 - type: entity
   name: kangaroo
