@@ -43,6 +43,7 @@ namespace Content.Server.Corvax.StationGoal
             {
                 var options = IoCManager.Resolve<IPrototypeManager>()
                     .EnumeratePrototypes<StationGoalPrototype>()
+                    .OrderBy(p => p.ID)
                     .Select(p => new CompletionOption(p.ID));
 
                 return CompletionResult.FromHintOptions(options, Loc.GetString("send-station-goal-command-arg-id"));

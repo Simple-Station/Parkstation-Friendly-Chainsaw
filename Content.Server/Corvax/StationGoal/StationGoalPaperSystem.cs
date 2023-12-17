@@ -1,9 +1,9 @@
 using System.Data;
 using System.Text.RegularExpressions;
+using Content.Server.Corvax.GameTicking;
 using Content.Server.Fax;
 using Content.Server.Station.Systems;
 using Content.Shared.Corvax.CCCVars;
-using Content.Shared.GameTicking;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Configuration;
@@ -13,9 +13,9 @@ using Robust.Shared.Random;
 namespace Content.Server.Corvax.StationGoal;
 
 /// <summary>
-///     System to spawn paper with station goal.
+///     System for station goals
 /// </summary>
-public sealed partial class StationGoalPaperSystem : EntitySystem
+public sealed class StationGoalPaperSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -27,6 +27,7 @@ public sealed partial class StationGoalPaperSystem : EntitySystem
 
     private const string RandomPrototype = "StationGoals";
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -34,12 +35,11 @@ public sealed partial class StationGoalPaperSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
     }
 
+
     private void OnRoundStarted(RoundStartedEvent ev)
     {
-        if (_config.GetCVar(CCCVars.StationGoalsEnabled) != true)
-            return;
-
-        SendRandomGoal();
+        if (_config.GetCVar(CCCVars.StationGoalsEnabled))
+            SendRandomGoal();
     }
 
     /// <summary>
@@ -51,7 +51,10 @@ public sealed partial class StationGoalPaperSystem : EntitySystem
     {
         // Get the random station goal list
         if (!_prototype.TryIndex<WeightedRandomPrototype>(RandomPrototype, out var goals))
+        {
+            Log.Error($"StationGoalPaperSystem: Random station goal prototype '{RandomPrototype}' not found");
             return false;
+        }
 
         // Get a random goal
         var goal = RecursiveRandom(goals);
@@ -65,14 +68,10 @@ public sealed partial class StationGoalPaperSystem : EntitySystem
         var goal = random.Pick(_random);
 
         if (_prototype.TryIndex<StationGoalPrototype>(goal, out var goalPrototype))
-        {
             return goalPrototype;
-        }
 
         if (_prototype.TryIndex<WeightedRandomPrototype>(goal, out var goalRandom))
-        {
             return RecursiveRandom(goalRandom);
-        }
 
         throw new Exception($"StationGoalPaperSystem: Random station goal could not be found from origin prototype {RandomPrototype}");
     }
@@ -88,10 +87,8 @@ public sealed partial class StationGoalPaperSystem : EntitySystem
 
         while (enumerator.MoveNext(out var uid, out var fax))
         {
-            if (!fax.ReceiveStationGoal)
-                continue;
-
-            if (!TryComp<MetaDataComponent>(_station.GetOwningStation(uid), out var meta))
+            if (!fax.ReceiveStationGoal ||
+                !TryComp<MetaDataComponent>(_station.GetOwningStation(uid), out var meta))
                 continue;
 
             var stationId = StationIdRegex.Match(meta.EntityName).Groups[1].Value;

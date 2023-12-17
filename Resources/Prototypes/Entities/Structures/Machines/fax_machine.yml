@@ -99,10 +99,10 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCaptain
-  name: captain long range fax machine
+  name: command long range fax machine # Parkstation-Oligarchy
   suffix: NukeCodes
   components:
     - type: FaxMachine
-      name: "Captain's Office"
+      name: "Command" # Parkstation-Oligarchy
       receiveNukeCodes: true
       receiveStationGoal: true # Corvax-StationGoal
