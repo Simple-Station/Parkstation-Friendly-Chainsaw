@@ -5,7 +5,7 @@
   startingGear: CourierGear
   playTimeTracker: JobMailCarrier
   icon: "JobIconMailCarrier"
-  supervisors: job-supervisors-qm
+  supervisors: job-supervisors-css
   access:
   - Cargo
   - Maintenance

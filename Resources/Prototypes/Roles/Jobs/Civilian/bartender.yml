@@ -9,7 +9,7 @@
       time: 3600 #DeltaV
   startingGear: BartenderGear
   icon: "JobIconBartender"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-css
   access:
   - Service
   - Maintenance

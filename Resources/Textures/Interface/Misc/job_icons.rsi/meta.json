@@ -51,6 +51,9 @@
             "name": "ChiefMedicalOfficer"
         },
         {
+            "name": "ChiefServiceSupervisor"
+        },
+        {
             "name": "Roboticist"
         },
         {

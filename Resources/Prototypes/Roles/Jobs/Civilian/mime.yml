@@ -8,14 +8,14 @@
       time: 7200 # DeltaV - 2 hours
   startingGear: MimeGear
   icon: "JobIconMime"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-css
   access:
   - Theatre
   - Maintenance
   special:
   - !type:AddComponentSpecial
     components:
-    - type: Psionic # Nyano - Summary: Makes the mime psionic. 
+    - type: Psionic # Nyano - Summary: Makes the mime psionic.
     - type: MimePowers
 
 - type: startingGear
