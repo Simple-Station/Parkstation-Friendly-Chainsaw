@@ -14,8 +14,8 @@
     - type: Body
       prototype: Shadowkin
       requiredLegs: 2
-    - type: DiseaseCarrier
-      diseaseResist: 0.1
+    # - type: DiseaseCarrier
+      # diseaseResist: 0.1
     - type: Flammable
       damage:
         types:

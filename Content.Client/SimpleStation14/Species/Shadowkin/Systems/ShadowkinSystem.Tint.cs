@@ -31,8 +31,8 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShadowkinComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ShadowkinComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
@@ -53,12 +53,12 @@ public sealed class ShadowkinTintSystem : EntitySystem
         _overlay.RemoveOverlay(_tintOverlay);
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShadowkinComponent component)// , PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, ShadowkinComponent component, LocalPlayerAttachedEvent args)
     {
         _overlay.AddOverlay(_tintOverlay);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShadowkinComponent component)// , PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, ShadowkinComponent component, LocalPlayerDetachedEvent args)
     {
         _overlay.RemoveOverlay(_tintOverlay);
     }
