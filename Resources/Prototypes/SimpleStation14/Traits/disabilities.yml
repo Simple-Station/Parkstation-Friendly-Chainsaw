@@ -6,3 +6,14 @@
   components:
     - type: Nearsighted
 
+- type: trait
+  id: ShadowkinBlackeye
+  name: Blackeye
+  description: You lose your special Shadowkin powers, in return for some points.
+  cost: 5
+  category: Negative
+  whitelist:
+    species:
+      - Shadowkin
+  components:
+    - type: ShadowkinBlackeyeTrait
