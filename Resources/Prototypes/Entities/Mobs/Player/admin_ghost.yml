@@ -81,17 +81,6 @@
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
-  - type: Sprite
-    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-    netsync: false
-    noRot: true
-    drawdepth: Ghosts
-    sprite: SimpleStation14/Mobs/Ghosts/ghost_admin.rsi
-    state: animated
-    color: "#888888"
-    layers:
-      - state: animated
-        shader: unshaded
 
 - type: entity
   id: ActionAGhostShowSolar
