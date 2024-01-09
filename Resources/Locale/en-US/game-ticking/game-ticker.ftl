@@ -32,6 +32,7 @@ player-first-join-message = Player {$name} joined for the first time.
 
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
+cryo-departure-announcement = {$character} ({$job}) has gone into Cryogenic Storage.
 
 latejoin-arrival-announcement = {$character} ({$job}) has arrived at the station!
 latejoin-arrival-sender = Station
