@@ -20,10 +20,7 @@ namespace Content.Server.Administration.Commands.Cryostasis
     public sealed class CryostasisCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _entities = default!;
-        [Dependency] private static readonly IEntitySystemManager _entitysys = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-
-        private readonly SharedRoleSystem _roleSystem = _entitysys.GetEntitySystem<SharedRoleSystem>();
 
         public string Command => "cryostasis";
         public string Description => "Deletes you and opens up a new job slot. Do this in a secure area or put your belongings in a secure area. MISUSE WILL BE MODERATED";
@@ -54,6 +51,7 @@ namespace Content.Server.Administration.Commands.Cryostasis
             }
 
             // Check if player has a job (unemployed people are not allowed to go into cryogenics).
+            var _roleSystem = _entities.System<SharedRoleSystem>();
             if (!_roleSystem.MindHasRole<JobComponent>(mindId))
             {
                 shell.WriteLine("You do not have a job, you are not accessible by Nanotrasen, therefore unable to cryo.");
@@ -152,7 +150,7 @@ namespace Content.Server.Administration.Commands.Cryostasis
             // TODO: check that this works when multiple stations ever get loaded regularly at the same time, both with jobs.
             // Find the first station (very likely the one with the jobs)
             EntityUid? station = null;
-            station = EntitySystem.Get<StationSystem>().GetOwningStation(mindId);
+            station = EntitySystem.Get<StationSystem>().GetStations()[0];
 
             // Send a cryostasis announcement to the station, if any.
             if (station != null)
