@@ -2,7 +2,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 
-namespace Content.Server.CosmaticDrift.CryoSleep;
+namespace Content.Server.CryoSleep;
 [RegisterComponent]
 public sealed partial class CryoSleepComponent : Component
 {

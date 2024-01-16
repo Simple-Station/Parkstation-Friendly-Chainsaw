@@ -1,8 +1,8 @@
 ﻿using Content.Server.EUI;
-using Content.Shared.CosmaticDrift.CryoSleep;
+using Content.Shared.CryoSleep;
 using Content.Shared.Eui;
 
-namespace Content.Server.CosmaticDrift.CryoSleep;
+namespace Content.Server.CryoSleep;
 
 public sealed class CryoSleepEui : BaseEui
 {

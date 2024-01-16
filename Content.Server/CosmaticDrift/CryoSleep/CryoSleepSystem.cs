@@ -24,7 +24,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 
-namespace Content.Server.CosmaticDrift.CryoSleep;
+namespace Content.Server.CryoSleep;
 
 public sealed class CryoSleepSystem : EntitySystem
 {

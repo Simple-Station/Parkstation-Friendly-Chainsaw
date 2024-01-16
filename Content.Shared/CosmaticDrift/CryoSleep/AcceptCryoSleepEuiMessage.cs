@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Eui;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.CosmaticDrift.CryoSleep;
+namespace Content.Shared.CryoSleep;
 
 [Serializable, NetSerializable]
 public enum AcceptCryoUiButton

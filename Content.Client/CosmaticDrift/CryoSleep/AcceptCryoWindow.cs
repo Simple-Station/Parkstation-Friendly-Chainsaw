@@ -3,7 +3,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
-namespace Content.Client.CosmaticDrift.CryoSleep;
+namespace Content.Client.CryoSleep;
 public sealed class AcceptCryoWindow : DefaultWindow
 {
     public readonly Button DenyButton;
