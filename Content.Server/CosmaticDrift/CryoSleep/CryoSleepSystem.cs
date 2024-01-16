@@ -21,8 +21,10 @@ using Content.Shared.Roles.Jobs;
 using Content.Shared.StationRecords;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 
 namespace Content.Server.CryoSleep;
 
@@ -72,6 +74,9 @@ public sealed class CryoSleepSystem : EntitySystem
 
     public bool RespawnUser(EntityUid? toInsert, CryoSleepComponent component, bool force)
     {
+        // Play the cryosleep pod opening sound effect.
+        SoundSystem.Play("/Audio/SimpleStation14/Effects/cryosleepopen.ogg", Filter.Pvs(component.Owner), component.Owner, AudioParams.Default.WithVolume(5f));
+
         if (toInsert == null)
             return false;
 
@@ -112,6 +117,9 @@ public sealed class CryoSleepSystem : EntitySystem
 
         if (body == null)
             return;
+
+        // Play the cryostasis sound effect.
+        SoundSystem.Play("/Audio/SimpleStation14/Effects/cryostasis.ogg", Filter.Pvs(body.Value), body.Value, AudioParams.Default.WithVolume(5f));
 
         // Remove the record. Hopefully.
         foreach (var item in _inventory.GetHandOrInventoryEntities(body.Value))
