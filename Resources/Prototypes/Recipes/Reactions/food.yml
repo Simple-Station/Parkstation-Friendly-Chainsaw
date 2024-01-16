@@ -169,23 +169,21 @@
     - !type:CreateEntityReactionEffect
       entity: FoodMeatMeatball
 
-# Parkstation-ThatsNotHowYouMakeChocolate Start
-# - type: reaction
-#   id: CreateChocolate
-#   impact: Low
-#   quantized: true
-#   conserveEnergy: false
-#   reactants:
-#     CocoaPowder:
-#       amount: 4
-#     Milk:
-#       amount: 2
-#     Sugar:
-#       amount: 2
-#   effects:
-#     - !type:CreateEntityReactionEffect
-#       entity: FoodSnackChocolateBar
-# Parkstation-ThatsNotHowYouMakeChocolate End
+- type: reaction
+  id: CreateChocolate
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    CocoaPowder:
+      amount: 4
+    Milk:
+      amount: 2
+    Sugar:
+      amount: 2
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: FoodSnackChocolateBar
 
 # Condiments
 
