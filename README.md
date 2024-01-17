@@ -1,54 +1,43 @@
-# Parkstation
+<p align="center"> <img alt="Space Station 14 Delta-V Logo" width="128" height="128" src="https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Textures/Logo/logo.png" /></p>
+<!---<p align="center"> <img alt="Space Station 14 Delta-V Banner" width="512" height="126" src="https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Textures/Logo/banner.png" /></p>-->
 
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/changelog.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/yaml-linter.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate-rgas.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate_mapfiles.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/build-test-debug.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/build-test-release.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/test-packaging.yml/badge.svg)
+Delta-V is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14), embracing a mixture of classic SS13 chaos and experimentation only possible with the new engine.
+
+Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), a homegrown engine written in C#.
+
+### Delta-V is a continuation of the [Nyanotrasen](https://www.nyanotrasen.moe/) fork. Any work done in a non-base namespace may contain incorrect attributes due to rewrites and recommitting.
 
 ## Links
 
-[Discord](https://discord.gg/49KeKwXc8g) | [Steam](https://store.steampowered.com/app/2585480/Space_Station_Multiverse/) | [Standalone](https://spacestationmultiverse.com/downloads/)
+#### DeltaV
+[Website](https://delta-v.org/) | [Wiki](https://wiki.delta-v.org/view/Main_Page) | [Discord](https://go.delta-v.org/AtDxv)
+
+#### Space Station 14
+
+[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
+
+## Documentation/Wiki
+
+The [docs site](https://docs.spacestation14.io/) has documentation on SS14s content, engine, game design and more. It has lots of resources for new contributors to the project.
 
 ## Contributing
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/orgs/Park-Station/projects/1/views/1) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
+We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/DeltaV-Station/Delta-v/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
+
+We are currently accepting translations of the game on our main repository. If you would like to translate the game into another language check the #localization channel in our [Discord](https://go.delta-v.org/AtDxv)
 
 ## Building
 
-Refer to [the Space Wizards'](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) guide on setting up a development environment for general information, but keep in mind that Parkstation is a distant fork of Space Wizards' SS14 and not everything applies. We provide some scripts for making the job easier.
+1. Clone this repo.
+2. Run `RUN_THIS.py` to init submodules and download the engine.
+3. Compile the solution.
 
-### Build dependencies
-
-> - Git
-> - .NET SDK 7.0 or higher
-> - python 3.7 or higher
-
-
-### Windows
-
-> 1. Clone this repository.
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal.
-> 3. Run the `Scripts/bat/run1buildDebug.bat`
-> 4. Run the `Scripts/bat/run2configDev.bat` if you need other configurations run other config scripts.
-> 5. Run both the `Scripts/bat/run3server.bat` and `Scripts/bat/run4client.bat`
-> 6. Connect to localhost and play.
-
-### Linux
-
-> 1. Clone this repository.
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal.
-> 3. Run the `Scripts/sh/run1buildDebug.sh`
-> 4. Run the `Scripts/sh/run2configDev.sh` if you need other configurations run other config scripts.
-> 5. Run both the `Scripts/sh/run3server.bat` and `scripts/sh/run4client.sh`
-> 6. Connect to localhost and play.
+[More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 
 ## License
 
-All code for the content repository is licensed under [MIT](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE.TXT).
+All code for the content repository is licensed under [MIT](https://github.com/DeltaV-Station/Delta-v/blob/master/LICENSE.TXT).
 
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/DeltaV-Station/Delta-v/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
 Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
