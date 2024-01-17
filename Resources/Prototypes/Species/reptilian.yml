@@ -41,7 +41,7 @@
     FacialHair:
       points: 0
       required: false
-    Wings: # Parkstation-WideUseMarkings
+    Wings: # Parkstation-Wings
       points: 1
       required: false
     Tail:
