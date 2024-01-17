@@ -15,19 +15,19 @@
   id: MobSkeletonSprites
   sprites:
     # Parkstation-WideUseMarkings-Start
-    Head: MobHumanHead
+    Head: MobSkeletonHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
-    Chest: MobHumanTorso
+    Chest: MobSkeletonTorso
     Eyes: MobHumanoidEyes
-    LArm: MobHumanLArm
-    RArm: MobHumanRArm
-    LHand: MobHumanLHand
-    RHand: MobHumanRHand
-    LLeg: MobHumanLLeg
-    RLeg: MobHumanRLeg
-    LFoot: MobHumanLFoot
-    RFoot: MobHumanRFoot
+    LArm: MobSkeletonLArm
+    RArm: MobSkeletonRArm
+    LHand: MobSkeletonLHand
+    RHand: MobSkeletonRHand
+    LLeg: MobSkeletonLLeg
+    RLeg: MobSkeletonRLeg
+    LFoot: MobSkeletonLFoot
+    RFoot: MobSkeletonRFoot
     Tail: MobHumanoidAnyMarking
     Wings: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
