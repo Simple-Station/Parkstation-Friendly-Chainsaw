@@ -15,7 +15,8 @@
   supervisors: job-supervisors-css
   access:
   - Service
-  - Brig
+  - Lawyer
+  #- Brig #Delta V: Removed Brig Access
   - Maintenance
 
 - type: startingGear

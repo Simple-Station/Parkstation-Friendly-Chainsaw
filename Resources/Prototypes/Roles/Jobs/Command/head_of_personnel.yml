@@ -5,20 +5,18 @@
   playTimeTracker: JobHeadOfPersonnel
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobChef
-      time: 14400 # DeltaV - 4 hours
-    - !type:RoleTimeRequirement
-      role: JobBartender
-      time: 14400 # DeltaV - 4 hours
-    - !type:RoleTimeRequirement
-      role: JobJanitor
-      time: 14400 # DeltaV - 4 hours
-    - !type:DepartmentTimeRequirement # DeltaV - Civilian dept time requirement
-      department: Civilian
-      time: 72000 # 20 hours
-    - !type:OverallPlaytimeRequirement # DeltaV - Playtime requirement
-      time: 90000 # 25 hours
+    # Parkstation-Playtime
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 3600 # 1 hour
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 3600 # 1 hour
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 3600 # 1 hour
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24 hours
   weight: 10 # DeltaV - Changed HoP weight from 20 to 10 due to them not being more important than other Heads
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
@@ -47,10 +45,18 @@
 #  - Detective
 #  - Salvage
 #  - Security # NoooOoOo!! My HoPcurity!1
-#  - Brig
+#  - Brig # Lawyer access # Delta V: Removed
+  - Lawyer
 #  - Cargo
 #  - Atmospherics
 #  - Medical
+  - Boxer # DeltaV - Add Boxer access
+  - Clown # DeltaV - Add Clown access
+  - Library # DeltaV - Add Library access
+  - Mime # DeltaV - Add Mime access
+  - Musician # DeltaV - Add Musician access
+  - Reporter # DeltaV - Add Reporter access
+  - Zookeeper # DeltaV - Add Zookeeper access
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -71,6 +77,7 @@
     head: ClothingHeadHatHopcap
     id: HoPPDA
     ears: ClothingHeadsetHoP # DeltaV - HoP is now a service role, replaces their all channels headset.
+    gloves: ClothingHandsGlovesHop
     belt: BoxFolderClipboard
   innerClothingSkirt: ClothingUniformJumpskirtHoP
   satchel: ClothingBackpackSatchelHOPFilled

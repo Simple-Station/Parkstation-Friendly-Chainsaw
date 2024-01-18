@@ -19,6 +19,8 @@
     Head: MobDionaHead
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Chest: MobDionaTorso
     Eyes: MobDionaEyes
     LArm: MobDionaLArm

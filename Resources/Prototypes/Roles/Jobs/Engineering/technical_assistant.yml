@@ -3,6 +3,7 @@
   name: job-name-technical-assistant
   description: job-description-technical-assistant
   playTimeTracker: JobTechnicalAssistant
+  setPreference: false # Parkstation-Playtime
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Engineering
   requirements:
   - !type:OverallPlaytimeRequirement # DeltaV - to prevent griefers from taking the role.
@@ -23,7 +24,6 @@
 - type: startingGear
   id: TechnicalAssistantGear
   equipment:
-    head: ClothingHeadHatWelding
     jumpsuit: ClothingUniformJumpsuitColorYellow
     back: ClothingBackpackEngineeringFilled
     shoes: ClothingShoesBootsWork
