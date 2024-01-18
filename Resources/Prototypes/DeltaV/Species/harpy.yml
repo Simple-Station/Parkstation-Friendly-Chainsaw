@@ -32,6 +32,6 @@
       points: 2
       required: false
     Arms:
-      points: 4 # Parkstation-WideUseMarkings
+      points: 1
       required: false
       defaultMarkings: [ HarpyWingDefault ]
