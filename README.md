@@ -1,6 +1,5 @@
 # Parkstation
 
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/changelog.yml/badge.svg)
 ![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/yaml-linter.yml/badge.svg)
 ![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate-rgas.yml/badge.svg)
 ![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate_mapfiles.yml/badge.svg)
@@ -18,7 +17,7 @@ We are happy to accept contributions from anybody. Get in Discord if you want to
 
 ## Building
 
-Refer to [the Space Wizards'](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) guide on setting up a development environment for general information, but keep in mind that Parkstation is a distant fork of Space Wizards' SS14 and not everything applies. We provide some scripts for making the job easier.
+Refer to [the Space Wizards' guide](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) on setting up a development environment for general information, but keep in mind that Parkstation is a distant fork of Space Wizards' SS14 and not everything applies. We provide some scripts for making the job easier.
 
 ### Build dependencies
 
