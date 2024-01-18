@@ -67,6 +67,8 @@
       - id: TechnicalAssistantPDA
       - id: AtmosPDA
       - id: SeniorEngineerPDA
+      - id: SalvagePDA # Parkstation - Salvage in engineering
+        amount: 2
 
 - type: entity
   name: logistics PDA box
@@ -78,7 +80,7 @@
     contents:
       - id: CargoPDA
         amount: 2
-      - id: SalvagePDA
-        amount: 2
+      #- id: SalvagePDA # Parkstation - Salvage no more in logistics.
+      #  amount: 2
       - id: MailCarrierPDA
         amount: 2

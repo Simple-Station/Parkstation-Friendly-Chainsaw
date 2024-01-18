@@ -207,7 +207,7 @@
     layers:
     - state: default
     - state: idshaftminer
-  - type: PresetIdCard
+  - type: PresetIdCard # notin this just incase.
     job: SalvageSpecialist
 
 - type: entity

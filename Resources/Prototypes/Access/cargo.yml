@@ -14,7 +14,7 @@
   id: Cargo
   tags:
   - Quartermaster
-  - Salvage
+  - Salvage # Parkstation now in engineering but we just keep it here.
   - Cargo
   - Mail # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
   - Orders # Delta V - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml

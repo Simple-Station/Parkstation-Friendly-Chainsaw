@@ -6,15 +6,15 @@
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Logistics # DeltaV - Logistics Department replacing Cargo
+      department: Engineering # DeltaV - Logistics Department replacing Cargo # ParkStation - Engineering is now their home.
       time: 21600 #DeltaV 6 hrs
   #  - !type:OverallPlaytimeRequirement #DeltaV
   #    time: 36000 #10 hrs
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
-  supervisors: job-supervisors-qm
+  supervisors: job-supervisors-ce # Parkstation - CE is now the head instead of QM
   access:
-  - Cargo
+  - Engineering # ParkStation - Engineering instead of Cargo
   - Salvage
   - Maintenance
   - External
@@ -26,6 +26,6 @@
     back: ClothingBackpackSalvageFilled
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-    ears: ClothingHeadsetCargo
+    ears: ClothingHeadsetEngineering # Parkstation - Engineering instead of Cargo headset, NOTE THAT THE MAGNET NEEDS TO BE CHANGED ASWELL TO APPEAR IN ENGINEERING RADIO
   satchel: ClothingBackpackSatchelSalvageFilled
   duffelbag: ClothingBackpackDuffelSalvageFilled

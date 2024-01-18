@@ -64,7 +64,7 @@
     - Common
     - Science
   - type: AccessReader
-    access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
+    access: [["Engineering"], ["Salvage"], ["Command"], ["Research"]] # needs to change from cargo to Engineering - Parkstation
   - type: Inventory
     templateId: borgTall
 
