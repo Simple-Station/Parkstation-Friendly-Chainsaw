@@ -4,17 +4,18 @@
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
   requirements:
+    # Parkstation-Playtime
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 36000 # DeltaV - 10 hours
-#    - !type:RoleTimeRequirement # DeltaV - No Station Engineer time requirement
-#      role: JobStationEngineer
-#      time: 21600 #6 hrs
+      time: 21600 # 6 hours
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 7200 # 2 hours
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 90000 # DeltaV - 25 hours
-#    - !type:OverallPlaytimeRequirement
-#      time: 72000 # DeltaV - 20 hours
+      time: 36000 # 10 hours
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24 hours
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
