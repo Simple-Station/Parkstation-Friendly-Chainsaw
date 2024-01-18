@@ -1,11 +1,8 @@
 cd ..\..\
 
-dotnet restore
-dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
-
 mkdir Scripts\logs
 
 del Scripts\logs\Content.Tests.log
-dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 > Scripts\logs\Content.Tests.log
+dotnet test Content.Tests/Content.Tests.csproj -c DebugOpt -- NUnit.ConsoleOut=0 > Scripts\logs\Content.Tests.log
 
 pause
