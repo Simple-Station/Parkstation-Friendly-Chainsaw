@@ -3,6 +3,7 @@
   name: job-name-mantis
   description: job-description-mantis
   playTimeTracker: JobForensicMantis
+  setPreference: false # Parkstation-Playtime
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000

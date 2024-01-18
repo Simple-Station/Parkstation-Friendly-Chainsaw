@@ -5,11 +5,12 @@
   playTimeTracker: JobResearchDirector
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
+    # Parkstation-Playtime
     - !type:DepartmentTimeRequirement
-      department: Epistemics # DeltaV - Epistemics Department replacing Science
-      time: 54000 # DeltaV - 15 hours
+      department: Epistemics
+      time: 18000 # 5 hours
     - !type:OverallPlaytimeRequirement
-      time: 72000 # DeltaV - 20 hours
+      time: 86400 # 24 hours
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
