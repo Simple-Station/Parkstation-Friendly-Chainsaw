@@ -1,12 +1,5 @@
 # Parkstation
 
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/yaml-linter.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate-rgas.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/validate_mapfiles.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/build-test-debug.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/build-test-release.yml/badge.svg)
-![GithubAction](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/actions/workflows/test-packaging.yml/badge.svg)
-
 ## Links
 
 [Discord](https://discord.gg/49KeKwXc8g) | [Steam](https://store.steampowered.com/app/2585480/Space_Station_Multiverse/) | [Standalone](https://spacestationmultiverse.com/downloads/)
