@@ -9,7 +9,7 @@
       role: JobAtmosphericTechnician
       time: 21600 # 6 hours
     - !type:RoleTimeRequirement
-      role: JobSalvageTechnician
+      role: JobSalvageSpecialist
       time: 7200 # 2 hours
     - !type:DepartmentTimeRequirement
       department: Engineering
