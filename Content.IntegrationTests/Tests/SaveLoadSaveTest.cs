@@ -89,7 +89,7 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
-        private const string TestMap = "Maps/pebble.yml";
+        private const string TestMap = "Maps/Test/dev_map.yml";
 
         /// <summary>
         ///     Loads the default map, runs it for 5 ticks, then assert that it did not change.
@@ -106,7 +106,7 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            // Load pebble.yml as uninitialized map, and save it to ensure it's up to date.
+            // Load TestMap as uninitialized map, and save it to ensure it's up to date.
             server.Post(() =>
             {
                 mapId = mapManager.CreateMap();

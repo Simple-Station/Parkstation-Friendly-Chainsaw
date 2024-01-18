@@ -16,10 +16,10 @@
   canBeAntag: false
   access:
   - Security
+  #- Brig # Delta V: Removed
   - Armory
   - Maintenance
   - Service
-  - Brig
   - External
   - Detective
   special:
@@ -33,7 +33,7 @@
     jumpsuit: ClothingUniformJumpsuitWarden
     back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
     ears: ClothingHeadsetSecurity
