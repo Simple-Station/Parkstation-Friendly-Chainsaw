@@ -37,3 +37,9 @@ Entries:
       message: Changed most playtime requirements
   id: 5
   time: '2024-01-18T08:09:49.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: Animals will no longer be a silent, soulless shell
+  id: 6
+  time: '2024-01-18T08:52:58.0000000+00:00'
