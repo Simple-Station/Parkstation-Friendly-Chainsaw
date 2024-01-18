@@ -14,6 +14,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Research.Prototypes;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -127,7 +128,7 @@ public sealed class OracleSystem : EntitySystem
 
         EntityManager.SpawnEntity("ResearchDisk5000", Transform(args.User).Coordinates);
 
-        DispenseLiquidReward(uid);
+        DispenseLiquidReward(uid, component);
 
         var i = _random.Next(1, 4);
 
@@ -152,7 +153,7 @@ public sealed class OracleSystem : EntitySystem
         return false;
     }
 
-    private void DispenseLiquidReward(EntityUid uid)
+    private void DispenseLiquidReward(EntityUid uid, OracleComponent component)
     {
         if (!_solutionSystem.TryGetSolution(uid, OracleComponent.SolutionName, out var fountainSol))
             return;
@@ -170,7 +171,7 @@ public sealed class OracleSystem : EntitySystem
         if (_random.Prob(0.2f))
             reagent = _random.Pick(allReagents);
         else
-            reagent = _random.Pick(OracleComponent.RewardReagents);
+            reagent = _random.Pick(component.RewardReagents);
 
         sol.AddReagent(reagent, amount);
 

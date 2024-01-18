@@ -16,7 +16,12 @@
   #- Saltern
   #- Packed
 # DeltaV
-  - Pebble
-  - Edge
-  - Tortuga
-  - Arena
+  #- Arena
+  #- Asterisk
+  #- Edge
+  #- Pebble
+  #- Shoukou
+  #- Tortuga
+  #- TheHive
+# Parkstation
+  - Dev # Until we get Arborum

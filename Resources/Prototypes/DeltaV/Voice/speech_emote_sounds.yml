@@ -28,8 +28,6 @@
       collection: HarpyGrowls
     Purr:
       collection: HarpyPurrs
-    Boom:
-      collection: HarpyBooms
     Ring:
       collection: HarpyRings
     HonkHarpy:
@@ -76,6 +74,8 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    Sigh:
+      collection: MaleSigh
     Growl:
       collection: VulpkaninGrowls
     Snarl:
@@ -102,6 +102,8 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
+    Sigh:
+      collection: FemaleSigh
     Growl:
       collection: VulpkaninGrowls
     Snarl:

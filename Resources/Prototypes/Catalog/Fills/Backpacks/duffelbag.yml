@@ -14,21 +14,21 @@
       - id: Scalpel
 
 - type: entity
-  id: ClothingBackpackDuffelCBURN
-  parent: ClothingBackpackDuffel
-  name: CBURN duffel bag
-  description: A duffel bag containing a variety of biological containment equipment.
+  id: ClothingBackpackDuffelCBURNFilled
+  parent: ClothingBackpackDuffelCBURN
+  suffix: Filled
   components:
   - type: StorageFill
     contents:
-      - id: WeaponShotgunDoubleBarreled
-      - id: BoxShotgunIncendiary
-        amount: 2
-      - id: GrenadeFlashBang
-        amount: 2
-      - id: PillAmbuzolPlus
-      - id: PillAmbuzol
-        amount: 4
+    - id: BoxSurvivalEngineering
+    - id: WeaponShotgunDoubleBarreled
+    - id: BoxShotgunIncendiary
+      amount: 2
+    - id: GrenadeFlashBang
+      amount: 2
+    - id: PillAmbuzolPlus
+    - id: PillAmbuzol
+      amount: 4
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -44,6 +44,8 @@
       - id: Cautery
       - id: Retractor
       - id: ScalpelAdvanced
+      - id: ClothingHandsGlovesNitrile
+      - id: EmergencyRollerBedSpawnFolded
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -221,27 +223,27 @@
   name: syndicate C-4 bundle
   description: "Contains a lot of C-4 charges."
   components:
-    - type: StorageFill
-      contents:
-        - id: C4
-          amount: 8
+  - type: StorageFill
+    contents:
+      - id: C4
+        amount: 8
 
 - type: entity
   parent: ClothingBackpackChameleon
   id: ClothingBackpackChameleonFill
   suffix: Fill, Chameleon
   components:
-    - type: StorageFill
-      contents:
-        - id: ClothingUniformJumpsuitChameleon
-        - id: ClothingOuterChameleon
-        - id: ClothingNeckChameleon
-        - id: ClothingMaskGasChameleon
-        - id: ClothingHeadHatChameleon
-        - id: ClothingHandsChameleon
-        - id: ClothingEyesChameleon
-        - id: ClothingHeadsetChameleon
-        - id: ClothingShoesChameleon
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitChameleon
+      - id: ClothingOuterChameleon
+      - id: ClothingNeckChameleon
+      - id: ClothingMaskGasChameleon
+      - id: ClothingHeadHatChameleon
+      - id: ClothingHandsChameleon
+      - id: ClothingEyesChameleon
+      - id: ClothingHeadsetChameleon
+      - id: ClothingShoesChameleon
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -255,6 +257,7 @@
       - id: ClothingOuterHardsuitSyndicate
       - id: ClothingMaskGasSyndicate
       - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -292,8 +295,8 @@
     contents:
       - id: BoxSurvivalSyndicate
       - id: WeaponPistolViper
-      - id: PinpointerNuclear
-      - id: MicroBombImplanter
+      - id: PinpointerSyndicateNuclear
+      - id: DeathAcidifierImplanter
 
 
 - type: entity
@@ -304,15 +307,16 @@
   components:
   - type: StorageFill
     contents:
+      - id: SyndiHypo
       - id: BoxSurvivalSyndicate
       - id: SawAdvanced
       - id: Cautery
       - id: CombatKnife
       - id: WeaponPistolViper
-      - id: PinpointerNuclear
+      - id: PinpointerSyndicateNuclear
       - id: HandheldHealthAnalyzer
       - id: CombatMedipen
-      - id: MicroBombImplanter
+      - id: DeathAcidifierImplanter
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -326,6 +330,6 @@
       - id: Defibrillator
       - id: CombatMedipen
         amount: 3
-      - id: ClothingHandsGlovesLatex
+      - id: ClothingHandsGlovesNitrile
       - id: SyringeTranexamicAcid
       - id: SyringeHyronalin

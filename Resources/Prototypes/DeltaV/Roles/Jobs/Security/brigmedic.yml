@@ -3,6 +3,7 @@
   name: job-name-brigmedic
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
+  setPreference: false # Parkstation-Playtime
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
@@ -10,33 +11,36 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 18000 # 4 hrs
-  startingGear: BrigmedicGearDeltaV
+  startingGear: CorpsmanGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
   - Medical
   - Security
-  - Brig
+  #- Brig #Delta V: Removed brig access
   - Maintenance
   - External
+  extendedAccess:
+  - Chemistry
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 
 - type: startingGear
-  id: BrigmedicGearDeltaV # see Prototypes/Roles/Jobs/Fun/misc_startinggear.yml for "BrigmedicGear"
+  id: CorpsmanGear # see Prototypes/Roles/Jobs/Fun/misc_startinggear.yml for "BrigmedicGear"
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSecBlue
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
     outerClothing: ClothingOuterArmorPlateCarrier
     back: ClothingBackpackBrigmedicDeltaVFilled
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
-    head: ClothingHeadHatBeretSecurity
-    id: BrigmedicPDA
+    head: ClothingHeadHatBeretCorpsman
+    id: CorpsmanPDA
     ears: ClothingHeadsetBrigmedic
-    belt: ClothingBeltMedicalFilled
-  innerClothingSkirt: ClothingUniformJumpskirtSecBlue
+    belt: ClothingBeltCorpsmanWebbingFilled
+    pocket1: WeaponPistolMk58Nonlethal
+  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
   satchel: ClothingBackpackSatchelBrigmedicDeltaVFilled
   duffelbag: ClothingBackpackDuffelBrigmedicDeltaVFilled
