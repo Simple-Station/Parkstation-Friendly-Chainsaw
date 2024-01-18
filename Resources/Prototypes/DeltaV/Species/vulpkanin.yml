@@ -23,6 +23,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Eyes: MobHumanoidEyes
     LArm: MobVulpkaninLArm
     RArm: MobVulpkaninRArm
@@ -50,10 +51,10 @@
       points: 1
       required: false
     Legs:
-      points: 1
+      points: 2 # Parkstation-WideUseMarkings
       required: false
     Arms:
-      points: 1
+      points: 4 # Parkstation-WideUseMarkings
       required: false
     Snout:
       points: 1

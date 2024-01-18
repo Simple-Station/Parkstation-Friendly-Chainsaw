@@ -24,6 +24,14 @@
     RLeg: MobSkeletonRLeg
     LFoot: MobSkeletonLFoot
     RFoot: MobSkeletonRFoot
+    # Parkstation-WideUseMarkings-Start
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    # Parkstation-WideUseMarkings-End
 
 - type: humanoidBaseSprite
   id: MobSkeletonHead
