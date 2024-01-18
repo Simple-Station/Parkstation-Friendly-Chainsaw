@@ -21,3 +21,13 @@ Entries:
       message: Added chocolate milk
   id: 3
   time: '2023-10-29T23:36:15.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: Added wings marking layer
+    - type: Tweak
+      message: Moved wings from the tail layer to wings
+    - type: Add
+      message: Added way too many markings to list here
+  id: 4
+  time: '2024-01-18T07:00:43.0000000+00:00'
