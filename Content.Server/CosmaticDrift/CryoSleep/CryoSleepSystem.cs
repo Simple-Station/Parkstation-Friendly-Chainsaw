@@ -20,11 +20,13 @@ using Content.Shared.PDA;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.StationRecords;
 using Content.Shared.Verbs;
+using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
-using Robust.Shared.Player;
+using Robust.Shared.Physics;
 
 namespace Content.Server.CryoSleep;
 
@@ -43,6 +45,8 @@ public sealed class CryoSleepSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
 
     public override void Initialize()
     {
@@ -75,7 +79,7 @@ public sealed class CryoSleepSystem : EntitySystem
     public bool RespawnUser(EntityUid? toInsert, CryoSleepComponent component, bool force)
     {
         // Play the cryosleep pod opening sound effect.
-        SoundSystem.Play("/Audio/SimpleStation14/Effects/cryosleepopen.ogg", Filter.Pvs(component.Owner), component.Owner, AudioParams.Default.WithVolume(5f));
+        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryosleepopen.ogg", component.Owner, AudioParams.Default.WithVolume(5f));
 
         if (toInsert == null)
             return false;
@@ -118,8 +122,8 @@ public sealed class CryoSleepSystem : EntitySystem
         if (body == null)
             return;
 
-        // Play the cryostasis sound effect.
-        SoundSystem.Play("/Audio/SimpleStation14/Effects/cryostasis.ogg", Filter.Pvs(body.Value), body.Value, AudioParams.Default.WithVolume(5f));
+        // Play the cryostasis sound effect. Need to use coordinates since the body gets deleted.
+        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", Transform(body.Value).Coordinates, AudioParams.Default.WithVolume(5f));
 
         // Remove the record. Hopefully.
         foreach (var item in _inventory.GetHandOrInventoryEntities(body.Value))
