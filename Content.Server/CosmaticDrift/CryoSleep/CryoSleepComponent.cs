@@ -25,4 +25,6 @@ public sealed partial class CryoSleepComponent : Component
     /// </summary>
     [DataField("initialSleepDurationRange")]
     public Vector2 InitialSleepDurationRange = new (5, 10);
+
+    public CryoSleepEui eui = default!;
 }

@@ -101,7 +101,8 @@ public sealed class CryoSleepSystem : EntitySystem
 
         if (success && mindComp?.Session != null)
         {
-            _euiManager.OpenEui(new CryoSleepEui(mind, this), mindComp.Session);
+            component.eui = new CryoSleepEui(mind, this);
+            _euiManager.OpenEui(component.eui, mindComp.Session);
         }
 
         return success;
@@ -191,6 +192,8 @@ public sealed class CryoSleepSystem : EntitySystem
 
         component.BodyContainer.Remove(toEject.Value);
         _climb.ForciblySetClimbing(toEject.Value, pod);
+
+        _euiManager.CloseEui(component.eui);
 
         return true;
     }
