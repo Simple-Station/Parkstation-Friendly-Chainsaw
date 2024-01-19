@@ -363,13 +363,13 @@
       "name": "locked"
     },
     {
-      "name": "lostandfound"
+      "name": "lost_and_found"
     },
     {
-      "name": "lostandfound_door"
+      "name": "lost_and_found_door"
     },
     {
-      "name": "lostandfound_open"
+      "name": "lost_and_found_open"
     },
     {
       "name": "med"

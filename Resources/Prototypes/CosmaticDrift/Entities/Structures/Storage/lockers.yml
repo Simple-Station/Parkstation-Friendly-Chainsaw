@@ -3,13 +3,13 @@
   id: LockerLostAndFound
   name: lost and found locker
   components:
-  - type: LostAndFound
-  - type: EntityStorage
-    capacity: 999 # Supposed to fit a lot.
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: lostandfound
-    stateDoorOpen: lostandfound_open
-    stateDoorClosed: lostandfound_door
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    - type: LostAndFound
+    - type: EntityStorage
+      capacity: 999 # Supposed to fit a lot.
+    - type: Appearance
+    - type: EntityStorageVisuals
+      stateBaseClosed: lost_and_found
+      stateDoorOpen: lost_and_found_open
+      stateDoorClosed: lost_and_found_door
+    - type: AccessReader
+      access: [["HeadOfPersonnel"]]
