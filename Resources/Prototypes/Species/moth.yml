@@ -21,6 +21,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Eyes: MobMothEyes
     LArm: MobMothLArm
     RArm: MobMothRArm
@@ -47,7 +48,10 @@
     FacialHair:
       points: 0
       required: false
-    Tail:
+    Tail: # Parkstation-WideUseMarkings
+      points: 1
+      required: false
+    Wings: # Parkstation-Wings
       points: 1
       required: true
       defaultMarkings: [ MothWingsDefault ]
@@ -71,7 +75,7 @@
       points: 2
       required: false
     Arms:
-      points: 2
+      points: 4 # Parkstation-WideUseMarkings
       required: false
 
 - type: humanoidBaseSprite
