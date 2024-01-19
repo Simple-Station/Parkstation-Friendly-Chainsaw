@@ -20,13 +20,11 @@ using Content.Shared.PDA;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.StationRecords;
 using Content.Shared.Verbs;
-using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
-using Robust.Shared.Physics;
 
 namespace Content.Server.CryoSleep;
 
@@ -53,6 +51,7 @@ public sealed class CryoSleepSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CryoSleepComponent, ComponentInit>(ComponentInit);
+
         SubscribeLocalEvent<CryoSleepComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs);
         SubscribeLocalEvent<CryoSleepComponent, DestructionEventArgs>((e, c, _) => EjectBody(e, c));
         SubscribeLocalEvent<CryoSleepComponent, DragDropTargetEvent>(OnDragDrop);
@@ -62,6 +61,7 @@ public sealed class CryoSleepSystem : EntitySystem
     {
         component.BodyContainer = _container.EnsureContainer<ContainerSlot>(uid, "body_container");
     }
+
 
     private bool InsertBody(EntityUid uid, EntityUid? toInsert, CryoSleepComponent component)
     {
@@ -79,7 +79,7 @@ public sealed class CryoSleepSystem : EntitySystem
     public bool RespawnUser(EntityUid? toInsert, CryoSleepComponent component, bool force)
     {
         // Play the cryosleep pod opening sound effect.
-        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryosleepopen.ogg", component.Owner, AudioParams.Default.WithVolume(5f));
+        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryosleep_open.ogg", component.Owner, AudioParams.Default.WithVolume(6f));
 
         if (toInsert == null)
             return false;
@@ -106,6 +106,7 @@ public sealed class CryoSleepSystem : EntitySystem
 
         return success;
     }
+
     public void CryoStoreBody(EntityUid mindId)
     {
         if (!_sharedJobSystem.MindTryGetJob(mindId, out _, out var prototype))
@@ -123,7 +124,7 @@ public sealed class CryoSleepSystem : EntitySystem
             return;
 
         // Play the cryostasis sound effect. Need to use coordinates since the body gets deleted.
-        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", Transform(body.Value).Coordinates, AudioParams.Default.WithVolume(5f));
+        _audioSystem.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", Transform(body.Value).Coordinates, AudioParams.Default.WithVolume(6f));
 
         // Remove the record. Hopefully.
         foreach (var item in _inventory.GetHandOrInventoryEntities(body.Value))
