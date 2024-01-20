@@ -13,7 +13,6 @@ public sealed class AcceptCryoWindow : DefaultWindow
 
     public AcceptCryoWindow()
     {
-
         Title = Loc.GetString("accept-cryo-window-title");
 
         AcceptButton = new Button() {Text = Loc.GetString("accept-cryo-window-accept-button")};
