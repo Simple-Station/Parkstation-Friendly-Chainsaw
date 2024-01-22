@@ -196,6 +196,10 @@ ghost-role-information-behonker-description = You are an antagonist, bring death
 ghost-role-information-Death-Squad-name = Death Squad Operative
 ghost-role-information-Death-Squad-description = One of Nanotrasen's top internal affairs agents. Await orders from CentComm or an official.
 
+ghost-role-information-Shiva-name = Shiva
+ghost-role-information-Shiva-description = Shiva, the stations first defender. Help the Head of Security in their work
+ghost-role-information-Shiva-rules = Protect security staff and the crew from danger. Stay with Security staff or around the Security department, try to disable criminals and not kill them if the situation allows for it.
+
 ghost-role-information-Cak-name = Cak
 ghost-role-information-Cak-description = You are the chef's favorite child. You're a living cake cat.
 ghost-role-information-Cak-rules = You are a living edible sweet cat. Your task is to find your place in this world where everything wants to eat you.
@@ -204,6 +208,6 @@ ghost-role-information-BreadDog-name = BreadDog
 ghost-role-information-BreadDog-description = You are the chef's favorite child. You're a living bread dog.
 ghost-role-information-BreadDog-rules = You're an edible dog made of bread. Your task is to find your place in this world where everything wants to eat you.
 
-ghost-role-information-Shiva-name = Shiva
-ghost-role-information-Shiva-description = Shiva, the stations first defender. Help the Head of Security in their work
-ghost-role-information-Shiva-rules = Protect security staff and the crew from danger. Stay with Security staff or around the Security department, try to disable criminals and not kill them if the situation allows for it.
+ghost-role-information-Shiva-name = Geoff
+ghost-role-information-Shiva-description = Geoff, the stations best friend. Help the Head of Security in their work.
+ghost-role-information-Shiva-rules = Bring joy to the Security crew and remove any fear of spiders from everyone else.

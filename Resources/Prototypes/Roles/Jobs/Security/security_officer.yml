@@ -4,9 +4,12 @@
   description: job-description-security
   playTimeTracker: JobSecurityOfficer
   requirements:
+    # Parkstation-Playtime
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 14400 # DeltaV - 4 hours
+      time: 3600 # 1 hour
+    - !type:OverallPlaytimeRequirement
+      time: 14400 # 4 hours
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
