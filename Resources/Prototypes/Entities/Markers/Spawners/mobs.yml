@@ -365,7 +365,7 @@
       - MobAlexander
 
 - type: entity
-  name: Shiva Spawner
+  name: Geoff Spawner
   id: SpawnMobShiva
   parent: MarkerBase
   components:
