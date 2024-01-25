@@ -8,37 +8,37 @@
   #  - !type:RoleTimeRequirement #DeltaV
   #    role: JobCargoTechnician
   #    time: 21600 #6 hrs
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 10800 #3 hrs
-    - !type:RoleTimeRequirement # DeltaV - Courier role time requirement
-      role: JobMailCarrier
-      time: 7200 # 2 hours
-    - !type:DepartmentTimeRequirement
-      department: Logistics # DeltaV - Logistics Department replacing Cargo
-      time: 43200 #DeltaV 12 hours
-    - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs
-  weight: 10
+    #- !type:RoleTimeRequirement   #Parkstation - No longer has these requirements from here.
+    #  role: JobSalvageSpecialist
+    #  time: 10800 #3 hrs
+    #- !type:RoleTimeRequirement # DeltaV - Courier role time requirement
+    #  role: JobMailCarrier
+    #  time: 7200 # 2 hours
+    #- !type:DepartmentTimeRequirement
+    #  department: Logistics # DeltaV - Logistics Department replacing Cargo
+    #  time: 43200 #DeltaV 12 hours
+    #- !type:OverallPlaytimeRequirement
+    #  time: 144000 #40 hrs     # Parkstation - No longer has these requirements till here.
+  # weight: 10   # Parkstation - No longer command.
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Cargo
-  - Salvage
+  #- Salvage # Parkstation - Salvage is now engineering
   - Mail # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
   - Quartermaster
   - Maintenance
-  - Command
+  #- Command # Parkstation - Quartermaster isnt a head anymore.
   - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
   - External # DeltaV - for promoting salvage specialists
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  #special: # Parkstation - No longer command.
+  #- !type:AddImplantSpecial
+  #  implants: [ MindShieldImplant ]
+  #- !type:AddComponentSpecial
+  #  components:
+  #    - type: CommandStaff
 
 - type: startingGear
   id: QuartermasterGear
@@ -48,7 +48,7 @@
     back: ClothingBackpackQuartermasterFilled
     shoes: ClothingShoesColorBrown
     id: QuartermasterPDA
-    ears: ClothingHeadsetQM
+    ears: ClothingHeadsetService #ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
   innerClothingSkirt: ClothingUniformJumpskirtQM

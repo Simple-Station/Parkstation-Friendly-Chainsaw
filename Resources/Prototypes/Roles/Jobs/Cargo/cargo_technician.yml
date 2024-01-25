@@ -6,12 +6,12 @@
   antagAdvantage: 2 # DeltaV - Reduced TC: External Access
   startingGear: CargoTechGear
   icon: "JobIconCargoTechnician"
-  supervisors: job-supervisors-qm # keep this in mind that it needs to service head.
+  supervisors: job-supervisors-qm
   access:
   - Cargo
   - Maintenance
-  #extendedAccess:
-  #- Salvage # Parkstation - Salvage is now in engineering.
+  extendedAccess:
+  - Salvage
   - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
 
 - type: startingGear
@@ -22,7 +22,7 @@
     back: ClothingBackpackCargoFilled
     shoes: ClothingShoesColorBlack
     id: CargoPDA
-    ears: ClothingHeadsetCargo # Parkstation = This needs to be service because cargo no more.
+    ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
   innerClothingSkirt: ClothingUniformJumpskirtCargo
   satchel: ClothingBackpackSatchelCargoFilled

@@ -1,11 +1,11 @@
-- type: department # Parkstation - logistics is in civilian, keepin this as its causin fatal error due to it not seein the department.
+- type: department # Parkstation - logistics is in civilian, keepin this as its causin fatal error due to it not seein the department and i gotta figure it out
   id: Logistics # DeltaV - Logistics Department replacing Cargo
   description: department-Cargo-description
   color: "#A46106"
   roles:
   - CargoTechnician
-#  - Quartermaster
-#  - SalvageSpecialist # Going to need to change that
+  - Quartermaster
+  - SalvageSpecialist # Going to need to change that
   - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
 
 - type: department
@@ -24,6 +24,7 @@
   - MailCarrier # Parkstation - civilian job
   - CargoTechnician # Parkstation - civilian job
   - ChiefServiceSupervisor # Parkstation-CSS
+  - Quartermaster # Parkstation - the cargo man.
   - Janitor
   - Lawyer
   - Librarian
@@ -42,7 +43,7 @@
   description: department-Command-description
   color: "#334E6D"
   roles:
-  #- Captain # Parkstation - No more, replaced by HoP pretty much
+  - Captain # Parkstation - keepin this for Death to handle it.
   - CentralCommandOfficial
   - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer
