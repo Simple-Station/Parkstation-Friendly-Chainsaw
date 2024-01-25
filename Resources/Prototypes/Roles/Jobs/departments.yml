@@ -20,9 +20,10 @@
   # - Chaplain # DeltaV - Move Chaplain into Epistemics
   - Chef
   - Clown
-  #- HeadOfPersonnel # Parkstation - Replaced by different command in place of service head
+  #- HeadOfPersonnel # Parkstation - Replaced by ChiefServiceSupervisor as service command.
   - MailCarrier # Parkstation - civilian job
   - CargoTechnician # Parkstation - civilian job
+  - ChiefServiceSupervisor # Parkstation-CSS
   - Janitor
   - Lawyer
   - Librarian
@@ -43,6 +44,7 @@
   roles:
   #- Captain # Parkstation - No more, replaced by HoP pretty much
   - CentralCommandOfficial
+  - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel

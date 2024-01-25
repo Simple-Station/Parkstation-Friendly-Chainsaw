@@ -41,3 +41,5 @@
     belt: ClothingBeltMantis
     # pocket2: ForensicScanner # DeltaV - Mantis is no longer a Detective
   innerClothingSkirt: ClothingUniformSkirtMantis
+  satchel: ClothingBackpackSatchelMantisFilled
+  duffelbag: ClothingBackpackDuffelMantisFilled
