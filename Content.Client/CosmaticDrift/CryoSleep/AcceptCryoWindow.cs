@@ -13,11 +13,10 @@ public sealed class AcceptCryoWindow : DefaultWindow
 
     public AcceptCryoWindow()
     {
-
         Title = Loc.GetString("accept-cryo-window-title");
 
-        AcceptButton = new Button() {Text = Loc.GetString("accept-cryo-window-accept-button")};
-        DenyButton = new Button() { Text = Loc.GetString("accept-cryo-window-deny-button")};
+        AcceptButton = new Button() { Text = Loc.GetString("accept-cryo-window-accept-button") };
+        DenyButton = new Button() { Text = Loc.GetString("accept-cryo-window-deny-button") };
 
         // This one holds the buttons
         ButtonBox = new BoxContainer()
