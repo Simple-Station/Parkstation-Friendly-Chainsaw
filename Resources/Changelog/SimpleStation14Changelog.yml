@@ -43,3 +43,25 @@ Entries:
       message: Animals will no longer be a silent, soulless shell
   id: 6
   time: '2024-01-18T08:52:58.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Renamed Shiva to Geoff
+  id: 7
+  time: '2024-01-18T09:53:54.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        The station's crew hivemind has decided to slow down their movement and
+        enjoy The Park instead of sprinting everywhere
+  id: 8
+  time: '2024-01-18T10:25:15.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        Your friendly plant people have realized the immense weight of their
+        roots and have slown down their movement a significant amount!
+  id: 9
+  time: '2024-01-18T10:46:50.0000000+00:00'
