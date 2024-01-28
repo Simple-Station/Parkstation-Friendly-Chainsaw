@@ -102,6 +102,43 @@ public sealed class WaggingSystem : EntitySystem
                 humanoid: humanoid);
         }
 
+        // Parkstation-TailWag Start
+        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Wings, out markings))
+        {
+            for (var idx = 0; idx < markings.Count; idx++)
+            {
+                var currentMarkingId = markings[idx].MarkingId;
+                string newMarkingId;
+
+                if (wagging.Wagging)
+                {
+                    newMarkingId = $"{currentMarkingId}{wagging.Suffix}";
+                }
+                else
+                {
+                    if (currentMarkingId.EndsWith(wagging.Suffix))
+                    {
+                        newMarkingId = currentMarkingId[..^wagging.Suffix.Length];
+                    }
+                    else
+                    {
+                        newMarkingId = currentMarkingId;
+                        Log.Warning($"Unable to revert wagging for {currentMarkingId}");
+                    }
+                }
+
+                if (!_prototype.HasIndex<MarkingPrototype>(newMarkingId))
+                {
+                    Log.Warning($"{ToPrettyString(uid)} tried toggling wagging but {newMarkingId} marking doesn't exist");
+                    continue;
+                }
+
+                _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Wings, idx, newMarkingId,
+                    humanoid: humanoid);
+            }
+        }
+        // Parkstation-TailWag End
+
         var emoteText = Loc.GetString(wagging.Wagging ? "wagging-emote-start" : "wagging-emote-stop", ("ent", uid));
         _chat.TrySendInGameICMessage(uid, emoteText, InGameICChatType.Emote, ChatTransmitRange.Normal); // Ok while emotes dont have radial menu
 

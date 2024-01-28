@@ -6,6 +6,14 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
       state: spines_aqua
+- type: marking
+  id: SpinesAquaAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
+      state: spines_aqua_wagging
 
 - type: marking
   id: SpinesLong
@@ -15,6 +23,14 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
       state: spines_long
+- type: marking
+  id: SpinesLongAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
+      state: spines_long_wagging
 
 - type: marking
   id: SpinesLongmeme
@@ -24,6 +40,14 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
       state: spines_longmeme
+- type: marking
+  id: SpinesLongmemeAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
+      state: spines_longmeme_wagging
 
 - type: marking
   id: SpinesShort
@@ -33,6 +57,14 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
       state: spines_short
+- type: marking
+  id: SpinesShortAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
+      state: spines_short_wagging
 
 - type: marking
   id: SpinesShortmeme
@@ -42,49 +74,11 @@
   sprites:
     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
       state: spines_shortmeme
-
-# TODO Add spine wagging
-# - type: marking
-#   id: SpinesWagAqua
-#   bodyPart: Wings
-#   markingCategory: Wings
-#   speciesRestriction: [Reptilian]
-#   sprites:
-#     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
-#       state: spineswag_aqua
-
-# - type: marking
-#   id: SpinesWagShort
-#   bodyPart: Wings
-#   markingCategory: Wings
-#   speciesRestriction: [Reptilian]
-#   sprites:
-#     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
-#       state: spineswag_short
-
-# - type: marking
-#   id: SpinesWagShortmeme
-#   bodyPart: Wings
-#   markingCategory: Wings
-#   speciesRestriction: [Reptilian]
-#   sprites:
-#     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
-#       state: spineswag_shortmeme
-
-# - type: marking
-#   id: SpinesWagLongmeme
-#   bodyPart: Wings
-#   markingCategory: Wings
-#   speciesRestriction: [Reptilian]
-#   sprites:
-#     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
-#       state: spineswag_longmeme
-
-# - type: marking
-#   id: SpinesWagLong
-#   bodyPart: Wings
-#   markingCategory: Wings
-#   speciesRestriction: [Reptilian]
-#   sprites:
-#     - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
-#       state: spineswag_long
+- type: marking
+  id: SpinesShortmemeAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: SimpleStation14/Mobs/Customization/reptilian.rsi
+      state: spines_shortmeme_wagging
