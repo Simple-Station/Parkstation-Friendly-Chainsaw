@@ -4,47 +4,47 @@
   id: WeaponRifleG11
   description: A unique rifle with an clock-like internals and a top fed magazine. Uses .20 rifle ammo. #switch to caseless when you have the time
   components:
-  - type: Sprite
-    sprite: SimpleStation14\weapons\G11.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: SimpleStation14\weapons\G11.rsi
-  - type: Gun
-    fireRate: 10
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-    selectedMode: Burst
-    availableModes:
-    - Burst
-    - FullAuto
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineCaselessRifle
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineCaselessRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeCaselessRifle
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeCaselessRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
+    - type: Sprite
+      sprite: SimpleStation14\weapons\G11.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: SimpleStation14\weapons\G11.rsi
+    - type: Gun
+      fireRate: 10
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+      selectedMode: Burst
+      availableModes:
+      - Burst
+      - FullAuto
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazineCaselessRifle
+          insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazineCaselessRifle
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgeCaselessRifle
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgeCaselessRifle
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+        gun_chamber: !type:ContainerSlot
+    - type: MagazineVisuals
+      magState: mag
+      steps: 1
+      zeroVisible: true
+    - type: Appearance
