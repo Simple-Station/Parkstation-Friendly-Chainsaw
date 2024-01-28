@@ -43,6 +43,9 @@
       whitelist:
         components:
           - Paper
+      blacklist:
+        tags:
+          - PaperSlip # DeltaV - Prevent the faxing of paper slips.
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -67,8 +70,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCentcom
-  name: centcom long range fax machine
-  suffix: Centcom
+  name: CentCom long range fax machine
+  suffix: CentCom
   components:
   - type: Sprite
     layers:
@@ -93,15 +96,18 @@
   - type: FaxMachine
     name: "ERR*?*%!"
     responsePings: false
-    emagged: true
     notifyAdmins: true
+  - type: Emagged
 
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCaptain
-  name: captain long range fax machine
+  name: command long range fax machine # Parkstation-Oligarchy
   suffix: NukeCodes
   components:
     - type: FaxMachine
-      name: "Captain's Office"
+      name: "Command" # Parkstation-Oligarchy
       receiveNukeCodes: true
+      receiveStationGoal: true # Corvax-StationGoal
+    - type: StealTarget
+      stealGroup: FaxMachineCaptain

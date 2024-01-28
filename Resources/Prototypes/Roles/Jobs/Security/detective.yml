@@ -3,6 +3,7 @@
   name: job-name-detective
   description: job-description-detective
   playTimeTracker: JobDetective
+  setPreference: false # Parkstation-Playtime
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
@@ -13,7 +14,7 @@
   canBeAntag: false
   access:
   - Security
-  - Brig
+  #- Brig # Delta V: Removed
   - Maintenance
   - Service
   - Detective

@@ -8,10 +8,11 @@
       time: 3600 # 1 hr
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-css
   access:
   - Service
   - Maintenance
+  - Library # DeltaV - Add Library access
 
 - type: startingGear
   id: LibrarianGear

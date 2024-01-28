@@ -18,10 +18,11 @@ using Content.Shared.Xenoarchaeology.XenoArtifacts;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Psionics.Glimmer; //Nyano - Summary:. 
+using Content.Shared.Psionics.Glimmer; //Nyano - Summary:.
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
@@ -52,8 +53,6 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         SubscribeLocalEvent<ActiveArtifactAnalyzerComponent, ComponentShutdown>(OnAnalyzeEnd);
         SubscribeLocalEvent<ActiveArtifactAnalyzerComponent, PowerChangedEvent>(OnPowerChanged);
 
-        SubscribeLocalEvent<ArtifactAnalyzerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-        SubscribeLocalEvent<ArtifactAnalyzerComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<ArtifactAnalyzerComponent, ItemPlacedEvent>(OnItemPlaced);
         SubscribeLocalEvent<ArtifactAnalyzerComponent, ItemRemovedEvent>(OnItemRemoved);
 
@@ -80,10 +79,10 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var query = EntityQueryEnumerator<ActiveArtifactAnalyzerComponent, ArtifactAnalyzerComponent>();
         while (query.MoveNext(out var uid, out var active, out var scan))
         {
-            if (scan.Console != null)
-                UpdateUserInterface(scan.Console.Value);
+            if (active.AnalysisPaused)
+                continue;
 
-            if (_timing.CurTime - active.StartTime < scan.AnalysisDuration * scan.AnalysisDurationMulitplier)
+            if (_timing.CurTime - active.StartTime < scan.AnalysisDuration - active.AccumulatedRunTime)
                 continue;
 
             FinishScan(uid, scan, active);
@@ -192,15 +191,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         EntityUid? artifact = null;
         FormattedMessage? msg = null;
-        var totalTime = TimeSpan.Zero;
+        TimeSpan? totalTime = null;
         var canScan = false;
         var canPrint = false;
         var points = 0;
-        if (component.AnalyzerEntity != null && TryComp<ArtifactAnalyzerComponent>(component.AnalyzerEntity, out var analyzer))
+        if (TryComp<ArtifactAnalyzerComponent>(component.AnalyzerEntity, out var analyzer))
         {
             artifact = analyzer.LastAnalyzedArtifact;
             msg = GetArtifactScanMessage(analyzer);
-            totalTime = analyzer.AnalysisDuration * analyzer.AnalysisDurationMulitplier;
+            totalTime = analyzer.AnalysisDuration;
             if (TryComp<ItemPlacerComponent>(component.AnalyzerEntity, out var placer))
                 canScan = placer.PlacedEntities.Any();
             canPrint = analyzer.ReadyToPrint;
@@ -213,10 +212,11 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var serverConnected = TryComp<ResearchClientComponent>(uid, out var client) && client.ConnectedToServer;
 
         var scanning = TryComp<ActiveArtifactAnalyzerComponent>(component.AnalyzerEntity, out var active);
-        var remaining = active != null ? _timing.CurTime - active.StartTime : TimeSpan.Zero;
+        var paused = active != null ? active.AnalysisPaused : false;
+
 
         var state = new AnalysisConsoleScanUpdateState(GetNetEntity(artifact), analyzerConnected, serverConnected,
-            canScan, canPrint, msg, scanning, remaining, totalTime, points);
+            canScan, canPrint, msg, scanning, paused, active?.StartTime, active?.AccumulatedRunTime, totalTime, points);
 
         var bui = _ui.GetUi(uid, ArtifactAnalzyerUiKey.Key);
         _ui.SetUiState(bui, state);
@@ -253,10 +253,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         var activeComp = EnsureComp<ActiveArtifactAnalyzerComponent>(component.AnalyzerEntity.Value);
         activeComp.StartTime = _timing.CurTime;
+        activeComp.AccumulatedRunTime = TimeSpan.Zero;
         activeComp.Artifact = ent.Value;
+
+        if (TryComp<ApcPowerReceiverComponent>(component.AnalyzerEntity.Value, out var powa))
+            activeComp.AnalysisPaused = !powa.Powered;
 
         var activeArtifact = EnsureComp<ActiveScannedArtifactComponent>(ent.Value);
         activeArtifact.Scanner = component.AnalyzerEntity.Value;
+        UpdateUserInterface(uid, component);
     }
 
     private void OnPrintButton(EntityUid uid, AnalysisConsoleComponent component, AnalysisConsolePrintButtonPressedMessage args)
@@ -427,23 +432,31 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
             UpdateUserInterface(component.Console.Value);
     }
 
-    private void OnRefreshParts(EntityUid uid, ArtifactAnalyzerComponent component, RefreshPartsEvent args)
+    [PublicAPI]
+    public void PauseScan(EntityUid uid, ArtifactAnalyzerComponent? component = null, ActiveArtifactAnalyzerComponent? active = null)
     {
-        var analysisRating = args.PartRatings[component.MachinePartAnalysisDuration];
+        if (!Resolve(uid, ref component, ref active) || active.AnalysisPaused)
+            return;
 
-        component.AnalysisDurationMulitplier = MathF.Pow(component.PartRatingAnalysisDurationMultiplier, analysisRating - 1);
+        active.AnalysisPaused = true;
+        // As we pause, we store what was already completed.
+        active.AccumulatedRunTime = (_timing.CurTime - active.StartTime) + active.AccumulatedRunTime;
 
-        // Nyano - Summary - Begin modified code block: tie artifacts to glimmer.
-        var extractRating = args.PartRatings[component.MachinePartExtractRatio];
-
-        component.ExtractRatio = (400 + (int) (extractRating * component.PartRatingExtractRatioMultiplier));
-        // Nyano - End modified code block.
+        if (Exists(component.Console))
+            UpdateUserInterface(component.Console.Value);
     }
 
-    private void OnUpgradeExamine(EntityUid uid, ArtifactAnalyzerComponent component, UpgradeExamineEvent args)
+    [PublicAPI]
+    public void ResumeScan(EntityUid uid, ArtifactAnalyzerComponent? component = null, ActiveArtifactAnalyzerComponent? active = null)
     {
-        args.AddPercentageUpgrade("analyzer-artifact-component-upgrade-analysis", component.AnalysisDurationMulitplier);
-        args.AddNumberUpgrade("analyzer-artifact-component-upgrade-sacrifice", component.ExtractRatio - 550);
+        if (!Resolve(uid, ref component, ref active) || !active.AnalysisPaused)
+            return;
+
+        active.StartTime = _timing.CurTime;
+        active.AnalysisPaused = false;
+
+        if (Exists(component.Console))
+            UpdateUserInterface(component.Console.Value);
     }
 
     private void OnItemPlaced(EntityUid uid, ArtifactAnalyzerComponent component, ref ItemPlacedEvent args)
@@ -454,9 +467,14 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
     private void OnItemRemoved(EntityUid uid, ArtifactAnalyzerComponent component, ref ItemRemovedEvent args)
     {
+        // Scanners shouldn't give permanent remove vision to an artifact, and the scanned artifact doesn't have any
+        // component to track analyzers that have scanned it for removal if the artifact gets deleted.
+        // So we always clear this on removal.
+        component.LastAnalyzedArtifact = null;
+
         // cancel the scan if the artifact moves off the analyzer
         CancelScan(args.OtherEntity);
-        if (component.Console != null && Exists(component.Console))
+        if (Exists(component.Console))
             UpdateUserInterface(component.Console.Value);
     }
 
@@ -476,10 +494,16 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         _ambientSound.SetAmbience(uid, false);
     }
 
-    private void OnPowerChanged(EntityUid uid, ActiveArtifactAnalyzerComponent component, ref PowerChangedEvent args)
+    private void OnPowerChanged(EntityUid uid, ActiveArtifactAnalyzerComponent active, ref PowerChangedEvent args)
     {
         if (!args.Powered)
-            CancelScan(component.Artifact);
+        {
+            PauseScan(uid, null, active);
+        }
+        else
+        {
+            ResumeScan(uid, null, active);
+        }
     }
 }
 

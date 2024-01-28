@@ -22,8 +22,8 @@ namespace Content.Shared.Movement.Components
         public const float DefaultFriction = 20f;
         public const float DefaultFrictionNoInput = 20f;
 
-        public const float DefaultBaseWalkSpeed = 2.5f;
-        public const float DefaultBaseSprintSpeed = 4.5f;
+        public const float DefaultBaseWalkSpeed = 3f;
+        public const float DefaultBaseSprintSpeed = 5f;
 
         [AutoNetworkedField, ViewVariables]
         public float WalkSpeedModifier = 1.0f;
@@ -87,19 +87,19 @@ namespace Content.Shared.Movement.Components
         /// <summary>
         /// The acceleration applied to mobs when moving.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
         public float Acceleration = DefaultAcceleration;
 
         /// <summary>
         /// The negative velocity applied for friction.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
         public float Friction = DefaultFriction;
 
         /// <summary>
         /// The negative velocity applied for friction.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
         public float? FrictionNoInput;
 
         [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]

@@ -1,7 +1,7 @@
 - type: species
   id: Arachnid
   name: species-name-arachnid
-  roundStart: true
+  roundStart: false # Parkstation
   prototype: MobArachnid
   sprites: MobArachnidSprites
   defaultSkinTone: "#385878"
@@ -23,6 +23,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Eyes: MobArachnidEyes
     LArm: MobArachnidLArm
     RArm: MobArachnidRArm
@@ -49,10 +50,13 @@
     FacialHair:
       points: 0
       required: false
-    Tail:
+    Wings: # Parkstation-Wings
       points: 1
       required: true
       defaultMarkings: [ ArachnidAppendagesDefault ]
+    Tail:
+      points: 1
+      required: false
     HeadTop:
       points: 1
       required: false
@@ -62,6 +66,12 @@
       defaultMarkings: [ ArachnidCheliceraeDownwards ]
     Chest:
       points: 1
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
       required: false
 
 - type: humanoidBaseSprite

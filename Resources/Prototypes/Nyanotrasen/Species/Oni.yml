@@ -1,7 +1,7 @@
 - type: species
   id: Oni
   name: species-name-oni
-  roundStart: true
+  roundStart: false # Parkstation - Maybe
   prototype: MobOni
   dollPrototype: MobOniDummy
   markingLimits: MobOniMarkingLimits
@@ -32,5 +32,5 @@
       points: 2
       required: false
     Arms:
-      points: 2
+      points: 4 # Parkstation-WideUseMarkings
       required: false

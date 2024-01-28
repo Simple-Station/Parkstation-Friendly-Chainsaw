@@ -65,13 +65,13 @@ public sealed class TileSystem : EntitySystem
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tile.TypeId];
 
-        if (!tileDef.CanCrowbar && !(pryPlating && tileDef.CanAxe))
+        if (!tileDef.CanCrowbar)
             return false;
 
         return DeconstructTile(tileRef);
     }
-
-    public bool CutTile(TileRef tileRef)
+    // Delta V
+    public bool DigTile(TileRef tileRef)
     {
         var tile = tileRef.Tile;
 
@@ -80,12 +80,12 @@ public sealed class TileSystem : EntitySystem
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tile.TypeId];
 
-        if (!tileDef.CanWirecutter)
+        if (!tileDef.CanShovel)
             return false;
 
         return DeconstructTile(tileRef);
     }
-
+    // Delta V
     public bool ReplaceTile(TileRef tileref, ContentTileDefinition replacementTile)
     {
         if (!TryComp<MapGridComponent>(tileref.GridUid, out var grid))
@@ -112,7 +112,7 @@ public sealed class TileSystem : EntitySystem
         return true;
     }
 
-    private bool DeconstructTile(TileRef tileRef)
+    public bool DeconstructTile(TileRef tileRef)
     {
         if (tileRef.Tile.IsEmpty)
             return false;
