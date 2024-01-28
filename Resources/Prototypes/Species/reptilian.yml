@@ -34,6 +34,7 @@
 
 - type: markingPoints
   id: MobReptilianMarkingLimits
+  onlyWhitelisted: true
   points:
     Hair:
       points: 0
@@ -53,16 +54,19 @@
       required: true
       defaultMarkings: [ LizardSnoutRound ]
     HeadTop:
-      points: 2 # Parkstation-WideUseMarkings
-      required: false
-    Chest: # Parkstation-WideUseMarkings
-      points: 3
-      required: false
-    Legs: # Parkstation-WideUseMarkings
       points: 2
       required: false
-    Arms: # Parkstation-WideUseMarkings
-      points: 4
+    HeadSide:
+      points: 1
+      required: false
+    Chest:
+      points: 2 # Parkstation-WideUseMarkings
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 4 # Parkstation-WideUseMarkings
       required: false
 
 - type: humanoidBaseSprite
