@@ -33,6 +33,7 @@
 - type: accessGroup
   id: Service
   tags:
+  - ChiefServiceSupervisor # Parkstation-CSS
   - HeadOfPersonnel
   - Bar
   - Kitchen

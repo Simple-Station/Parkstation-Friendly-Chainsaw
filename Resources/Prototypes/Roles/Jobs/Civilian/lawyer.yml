@@ -12,11 +12,10 @@
       time: 14400 # 4 hours
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-css
   access:
   - Service
   - Lawyer
-  #- Brig #Delta V: Removed Brig Access
   - Maintenance
 
 - type: startingGear

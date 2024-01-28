@@ -8,7 +8,9 @@
   - ChiefMedicalOfficer
   - HeadOfSecurity
   - ResearchDirector
+  - ChiefServiceSupervisor # Parkstation-CSS
   - Command
+  - Cryogenics
   - Security
   - Detective
   - Armory

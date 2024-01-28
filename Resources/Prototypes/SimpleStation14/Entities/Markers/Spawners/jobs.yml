@@ -1,0 +1,11 @@
+- type: entity
+  id: SpawnPointChiefServiceSupervisor
+  parent: SpawnPointJobBase
+  name: chief service supervisor
+  components:
+  - type: SpawnPoint
+    job_id: ChiefServiceSupervisor
+  - type: Sprite
+    layers:
+      - state: green
+      - state: css
