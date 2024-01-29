@@ -4,6 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
@@ -35,6 +36,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] protected readonly StationSystem StationSystem = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
     protected ISawmill Sawmill = default!;
 
@@ -56,11 +58,8 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
         if (stationEvent.StartAnnouncement != null)
-        {
-            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: Color.Gold);
-        }
+            _announcer.SendAnnouncement(args.RuleId, Filter.Broadcast(), Loc.GetString(stationEvent.StartAnnouncement), colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
 
-        Audio.PlayGlobal(stationEvent.StartAudio, Filter.Broadcast(), true);
         stationEvent.StartTime = _timing.CurTime + stationEvent.StartDelay;
     }
 
@@ -95,11 +94,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
         if (stationEvent.EndAnnouncement != null)
-        {
-            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: Color.Gold);
-        }
-
-        Audio.PlayGlobal(stationEvent.EndAudio, Filter.Broadcast(), true);
+            _announcer.SendAnnouncement(args.RuleId.ToLower() + "complete", Filter.Broadcast(), Loc.GetString(stationEvent.EndAnnouncement ?? ""), colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
     }
 
     /// <summary>

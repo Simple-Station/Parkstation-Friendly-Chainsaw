@@ -1,12 +1,17 @@
 ﻿using System.Linq;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
+using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
 {
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
+
     protected override void Started(EntityUid uid, RandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         HashSet<EntityUid> stationsToNotify = new();
@@ -54,15 +59,13 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
         }
         foreach (var station in stationsToNotify)
         {
-            ChatSystem.DispatchStationAnnouncement(
-                station,
+            _announcer.SendAnnouncement(args.RuleId,
+                StationSystem.GetInStation(EntityManager.GetComponent<StationDataComponent>(station)),
                 Loc.GetString("station-event-random-sentience-announcement",
                     ("kind1", kind1), ("kind2", kind2), ("kind3", kind3), ("amount", groupList.Count),
                     ("data", Loc.GetString($"random-sentience-event-data-{RobustRandom.Next(1, 6)}")),
                     ("strength", Loc.GetString($"random-sentience-event-strength-{RobustRandom.Next(1, 8)}"))),
-                playDefaultSound: false,
-                colorOverride: Color.Gold
-            );
+                colorOverride: Color.Gold);
         }
     }
 }

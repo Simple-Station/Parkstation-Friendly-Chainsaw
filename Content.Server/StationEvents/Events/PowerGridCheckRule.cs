@@ -54,13 +54,15 @@ namespace Content.Server.StationEvents.Events
                 }
             }
 
-            // Can't use the default EndAudio
-            component.AnnounceCancelToken?.Cancel();
-            component.AnnounceCancelToken = new CancellationTokenSource();
-            Timer.Spawn(3000, () =>
-            {
-                Audio.PlayGlobal("/Audio/Announcements/power_on.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-4f));
-            }, component.AnnounceCancelToken.Token);
+            // Parkstation-RandomAnnouncers Start
+            // // Can't use the default EndAudio
+            // component.AnnounceCancelToken?.Cancel();
+            // component.AnnounceCancelToken = new CancellationTokenSource();
+            // Timer.Spawn(3000, () =>
+            // {
+            //     Audio.PlayGlobal("/Audio/Announcements/power_on.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-4f));
+            // }, component.AnnounceCancelToken.Token);
+            // Parkstation-RandomAnnouncers End
             component.Unpowered.Clear();
         }
 
