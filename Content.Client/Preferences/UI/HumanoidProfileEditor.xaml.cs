@@ -523,7 +523,12 @@ namespace Content.Client.Preferences.UI
             _jobCategories.Clear();
             var firstCategory = true;
 
-            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
+            var departments = _prototypeManager.EnumeratePrototypes<DepartmentPrototype>()
+                .OrderByDescending(department => department.Weight)
+                .ThenBy(department => Loc.GetString($"department-{department.ID}"))
+                .ToList();
+
+            foreach (var department in departments)
             {
                 var departmentName = Loc.GetString($"department-{department.ID}");
 
@@ -567,8 +572,11 @@ namespace Content.Client.Preferences.UI
                     _jobList.AddChild(category);
                 }
 
-                var jobs = department.Roles.Select(o => _prototypeManager.Index<JobPrototype>(o)).Where(o => o.SetPreference).ToList();
-                jobs.Sort((x, y) => -string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCultureIgnoreCase));
+                var jobs = department.Roles.Select(jobId => _prototypeManager.Index<JobPrototype>(jobId))
+                    .Where(job => job.SetPreference)
+                    .OrderByDescending(job => job.Weight)
+                    .ThenBy(job => job.LocalizedName)
+                    .ToList();
 
                 foreach (var job in jobs)
                 {
@@ -581,6 +589,7 @@ namespace Content.Client.Preferences.UI
 
                     category.AddChild(selector);
                     _jobPriorities.Add(selector);
+                    EnsureJobRequirementsValid(); // DeltaV
 
                     selector.PriorityChanged += priority =>
                     {
@@ -605,6 +614,33 @@ namespace Content.Client.Preferences.UI
 
                 }
             }
+
+            if (Profile is not null)
+            {
+                UpdateJobPriorities();
+            }
+        }
+
+        /// <summary>
+        /// DeltaV - Make sure that no invalid job priorities get through.
+        /// </summary>
+        private void EnsureJobRequirementsValid()
+        {
+            var changed = false;
+            foreach (var selector in _jobPriorities)
+            {
+                if (_requirements.IsAllowed(selector.Proto, out var _) || selector.Priority == JobPriority.Never)
+                    continue;
+
+                selector.Priority = JobPriority.Never;
+                Profile = Profile?.WithJobPriority(selector.Proto.ID, JobPriority.Never);
+                changed = true;
+            }
+            if (!changed)
+                return;
+
+            _needUpdatePreview = true;
+            Save();
         }
 
         private void OnFlavorTextChange(string content)
@@ -729,6 +765,7 @@ namespace Content.Client.Preferences.UI
             CharacterSlot = _preferencesManager.Preferences.SelectedCharacterIndex;
 
             UpdateControls();
+            EnsureJobRequirementsValid(); // DeltaV
             _needUpdatePreview = true;
         }
 

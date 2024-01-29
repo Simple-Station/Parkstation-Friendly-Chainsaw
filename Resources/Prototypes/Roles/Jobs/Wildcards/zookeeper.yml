@@ -3,6 +3,7 @@
   name: job-name-zookeeper
   description: job-description-zookeeper
   playTimeTracker: JobZookeeper
+  setPreference: false # Parkstation-Playtime
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 7200 #DeltaV 2 hours
@@ -12,6 +13,7 @@
   access:
   - Service
   - Maintenance
+  - Zookeeper # DeltaV - Add Zookeeper access
 
 - type: startingGear
   id: ZookeeperGear

@@ -10,22 +10,23 @@
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
   canBeAntag: true # DeltaV - Can be antagonist
+  antagAdvantage: 1 # DeltaV - Reduced TC: Accesses
   access:
   - Service
   - Maintenance
-  - Bar
-  - Kitchen
   extendedAccess:
   - Hydroponics
+  - Bar # DeltaV - moved to extended access
+  - Kitchen # DeltaV - moved to extended access
 
 - type: startingGear
   id: ServiceWorkerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitBartender
+    jumpsuit: ClothingUniformJumpsuitColorDarkGreen # DeltaV
     back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtBartender
+  innerClothingSkirt: ClothingUniformJumpskirtColorDarkGreen # DeltaV
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

@@ -3,6 +3,7 @@
   name: job-name-mantis
   description: job-description-mantis
   playTimeTracker: JobForensicMantis
+  setPreference: false # Parkstation-Playtime
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000
@@ -40,3 +41,5 @@
     belt: ClothingBeltMantis
     # pocket2: ForensicScanner # DeltaV - Mantis is no longer a Detective
   innerClothingSkirt: ClothingUniformSkirtMantis
+  satchel: ClothingBackpackSatchelMantisFilled
+  duffelbag: ClothingBackpackDuffelMantisFilled

@@ -13,7 +13,7 @@ using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Mind;
@@ -21,6 +21,7 @@ namespace Content.Shared.Mind;
 public abstract class SharedMindSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly SharedPlayerSystem _player = default!;
@@ -146,16 +147,21 @@ public abstract class SharedMindSystem : EntitySystem
         if (!mindContainer.ShowExamineInfo || !args.IsInDetailsRange)
             return;
 
+        // TODO predict we can't right now because session stuff isnt networked
+        if (_net.IsClient)
+            return;
+
         var dead = _mobState.IsDead(uid);
+        var hasUserId = CompOrNull<MindComponent>(mindContainer.Mind)?.UserId;
         var hasSession = CompOrNull<MindComponent>(mindContainer.Mind)?.Session;
 
-        if (dead && !mindContainer.HasMind)
+        if (dead && hasUserId == null)
             args.PushMarkup($"[color=mediumpurple]{Loc.GetString("comp-mind-examined-dead-and-irrecoverable", ("ent", uid))}[/color]");
         else if (dead && hasSession == null)
             args.PushMarkup($"[color=yellow]{Loc.GetString("comp-mind-examined-dead-and-ssd", ("ent", uid))}[/color]");
         else if (dead)
             args.PushMarkup($"[color=red]{Loc.GetString("comp-mind-examined-dead", ("ent", uid))}[/color]");
-        else if (!mindContainer.HasMind)
+        else if (hasUserId == null)
             args.PushMarkup($"[color=mediumpurple]{Loc.GetString("comp-mind-examined-catatonic", ("ent", uid))}[/color]");
         else if (hasSession == null)
             args.PushMarkup($"[color=yellow]{Loc.GetString("comp-mind-examined-ssd", ("ent", uid))}[/color]");
@@ -409,11 +415,11 @@ public abstract class SharedMindSystem : EntitySystem
     }
 
     public bool TryGetMind(
-        PlayerData player,
+        ContentPlayerData contentPlayer,
         out EntityUid mindId,
         [NotNullWhen(true)] out MindComponent? mind)
     {
-        mindId = player.Mind ?? default;
+        mindId = contentPlayer.Mind ?? default;
         return TryComp(mindId, out mind);
     }
 

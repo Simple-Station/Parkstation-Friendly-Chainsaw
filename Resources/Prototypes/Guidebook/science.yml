@@ -7,7 +7,9 @@
   - AnomalousResearch
   - Xenoarchaeology
   - Robotics
-  - MachineUpgrading
+  - Psionics # Nyanotrasen - Psionics guidebook
+  # - AltarsGolemancy # When it's added # Nyanotrasen - Golemancy guidebook
+  - ReverseEngineering # Nyanotrasen - Reverse Engineering guidebook
 
 - type: guideEntry
   id: Technologies
@@ -45,6 +47,8 @@
   id: Robotics
   name: guide-entry-robotics
   text: "/ServerInfo/Guidebook/Science/Robotics.xml"
+  children:
+  - Cyborgs
 
 - type: guideEntry
   id: ArtifactReports
@@ -57,6 +61,6 @@
   text: "/ServerInfo/Guidebook/Science/TraversalDistorter.xml"
 
 - type: guideEntry
-  id: MachineUpgrading
-  name: guide-entry-machine-upgrading
-  text: "/ServerInfo/Guidebook/Science/MachineUpgrading.xml"
+  id: Cyborgs
+  name: guide-entry-cyborgs
+  text: "/ServerInfo/Guidebook/Science/Cyborgs.xml"

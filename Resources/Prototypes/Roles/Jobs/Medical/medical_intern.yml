@@ -3,6 +3,7 @@
   name: job-name-intern
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
+  setPreference: false # Parkstation-Playtime
   requirements:
     # - !type:DepartmentTimeRequirement # DeltaV - Removes time limit
     #   department: Medical
