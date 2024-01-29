@@ -594,8 +594,13 @@ namespace Content.Server.GameTicking
 
             var proto = _robustRandom.Pick(options);
 
-            if (proto.Message != null) // Parkstation-RandomAnnouncer
-                _announcer.SendAnnouncement("welcome", Filter.Broadcast(), Loc.GetString(proto.Message));
+            // Parkstation-RandomAnnouncer Start
+            if (proto.Message != null)
+                _announcer.SendAnnouncementMessage("welcome", Loc.GetString(proto.Message));
+
+            if (proto.Sound != null)
+                _announcer.SendAnnouncementAudio("welcome", Filter.Broadcast());
+            // Parkstation-RandomAnnouncer End
         }
 
         private async void SendRoundStartedDiscordMessage()
