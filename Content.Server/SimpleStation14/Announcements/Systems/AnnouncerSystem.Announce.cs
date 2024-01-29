@@ -87,7 +87,7 @@ public sealed partial class AnnouncerSystem
     /// <param name="station">Station ID to send the announcement to</param>
     public void SendAnnouncementMessage(string announcementId, string message, string? sender = null, Color? colorOverride = null, EntityUid? station = null)
     {
-        sender ??= Announcer.Name;
+        sender ??= Loc.GetString($"announcer-name-{Announcer.ID}");
 
         // If the announcement has a message override, use that instead of the message parameter
         if (GetAnnouncementMessage(announcementId) is { } announcementMessage)

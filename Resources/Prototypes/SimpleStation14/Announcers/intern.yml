@@ -1,6 +1,5 @@
 - type: announcer
   id: Intern
-  name: Central Command
   basePath: /Audio/SimpleStation14/Announcements/Intern
   baseAudioParams:
     volume: -4

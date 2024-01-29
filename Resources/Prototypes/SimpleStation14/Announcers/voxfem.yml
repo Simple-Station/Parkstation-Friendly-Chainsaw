@@ -1,6 +1,5 @@
 - type: announcer
   id: VoxFem
-  name: Automated
   basePath: /Audio/SimpleStation14/Announcements/VoxFem
   announcementPaths:
     # Communications console

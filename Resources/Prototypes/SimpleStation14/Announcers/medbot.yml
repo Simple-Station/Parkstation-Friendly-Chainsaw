@@ -1,6 +1,5 @@
 - type: announcer
   id: MedBot
-  name: Automated
   basePath: /Audio/SimpleStation14/Announcements/MedBot
   announcementPaths:
     # Communications console

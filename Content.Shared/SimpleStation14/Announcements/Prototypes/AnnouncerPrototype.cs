@@ -12,10 +12,6 @@ public sealed class AnnouncerPrototype : IPrototype
     [IdDataField]
     public string ID { get; } = default!;
 
-    /// <remarks>Not localized due to globalization</remarks>
-    [DataField("name")]
-    public string Name { get; } = default!;
-
     /// <summary>
     ///     A prefix to add to all announcement paths unless told not to by <see cref="AnnouncementData.IgnoreBasePath"/>
     /// </summary>
