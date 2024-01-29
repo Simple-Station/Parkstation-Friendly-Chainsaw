@@ -21,6 +21,7 @@ public sealed partial class AnnouncerSystem : EntitySystem
     /// <summary>
     ///     The currently selected announcer
     /// </summary>
+    [Access(typeof(AnnouncerSystem))]
     public AnnouncerPrototype Announcer { get; set; } = default!;
 
 

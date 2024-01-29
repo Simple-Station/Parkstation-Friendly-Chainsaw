@@ -22,6 +22,7 @@ public sealed partial class AnnouncerSystem
     /// <summary>
     ///     Picks a random announcer
     /// </summary>
+    /// <remarks>Probably not very useful for any other system</remarks>
     public AnnouncerPrototype PickAnnouncer()
     {
         return _random.Pick(_prototypeManager.EnumeratePrototypes<AnnouncerPrototype>()
