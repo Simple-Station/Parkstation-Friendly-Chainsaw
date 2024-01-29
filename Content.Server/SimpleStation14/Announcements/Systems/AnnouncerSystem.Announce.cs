@@ -97,8 +97,7 @@ public sealed partial class AnnouncerSystem
         if (station == null)
             _chatSystem.DispatchGlobalAnnouncement(message, sender, false, colorOverride: colorOverride);
         else
-            _chatSystem.DispatchStationAnnouncement(station.Value, message, sender, false,
-                colorOverride: colorOverride);
+            _chatSystem.DispatchStationAnnouncement(station.Value, message, sender, false, colorOverride: colorOverride);
     }
 
     /// <summary>
