@@ -283,7 +283,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             if (TryComp<TransformComponent>(targetGrid.Value, out var targetXform))
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
-                _announcer.SendAnnouncementMessage("shuttledock", Loc.GetString("emergency-shuttle-docked", ("time", $"{_consoleAccumulator:0}"), ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncer
+                _announcer.SendAnnouncementMessage("shuttledock", Loc.GetString("emergency-shuttle-docked", ("time", $"{_consoleAccumulator:0}"), ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
             }
 
             // shuttle timers
@@ -304,18 +304,18 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             }
 
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} docked with stations");
-            _announcer.SendAnnouncementAudio("shuttledock", Filter.Broadcast()); // Parkstation-RandomAnnouncer
+            _announcer.SendAnnouncementAudio("shuttledock", Filter.Broadcast()); // Parkstation-RandomAnnouncers
         }
         else
         {
             if (TryComp<TransformComponent>(targetGrid.Value, out var targetXform))
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
-                _announcer.SendAnnouncementMessage("shuttlenearby", Loc.GetString("emergency-shuttle-nearby", ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncer
+                _announcer.SendAnnouncementMessage("shuttlenearby", Loc.GetString("emergency-shuttle-nearby", ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
             }
 
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} unable to find a valid docking port for {ToPrettyString(stationUid)}");
-            _announcer.SendAnnouncementAudio("shuttlenearby", Filter.Broadcast()); // Parkstation-RandomAnnouncer
+            _announcer.SendAnnouncementAudio("shuttlenearby", Filter.Broadcast()); // Parkstation-RandomAnnouncers
         }
     }
 

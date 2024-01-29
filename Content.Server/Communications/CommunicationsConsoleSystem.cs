@@ -44,7 +44,7 @@ namespace Content.Server.Communications
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AnnouncerSystem _announcer = default!; // Parkstation-RandomAnnouncer
+        [Dependency] private readonly AnnouncerSystem _announcer = default!; // Parkstation-RandomAnnouncers
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -282,14 +282,14 @@ namespace Content.Server.Communications
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
             if (comp.Global)
             {
-                _announcer.SendAnnouncement("announce", Filter.Broadcast(), msg, title, comp.Color); // Parkstation-RandomAnnouncer
+                _announcer.SendAnnouncement("announce", Filter.Broadcast(), msg, title, comp.Color); // Parkstation-RandomAnnouncers
 
                 if (message.Session.AttachedEntity != null)
                     _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Session.AttachedEntity.Value):player} has sent the following global announcement: {msg}");
 
                 return;
             }
-            if (TryComp<StationDataComponent>(_stationSystem.GetOwningStation(uid), out var stationData)) // Parkstation-RandomAnnouncer
+            if (TryComp<StationDataComponent>(_stationSystem.GetOwningStation(uid), out var stationData)) // Parkstation-RandomAnnouncers
                 _announcer.SendAnnouncement("announce", _stationSystem.GetInStation(stationData), msg, title, comp.Color);
 
             if (message.Session.AttachedEntity != null)
