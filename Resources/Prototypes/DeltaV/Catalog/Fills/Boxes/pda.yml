@@ -59,7 +59,6 @@
       - id: EngineerPDA
         amount: 3
       - id: AtmosPDA
-      - id: SeniorEngineerPDA
       - id: SalvagePDA # Parkstation - Salvage in engineering
         amount: 2
 

@@ -22,8 +22,8 @@
   # weight: 10   # Parkstation - No longer command.
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  supervisors: job-supervisors-captain
-  canBeAntag: false
+  supervisors: job-supervisors-css
+  #canBeAntag: false
   access:
   - Cargo
   #- Salvage # Parkstation - Salvage is now engineering
@@ -48,7 +48,7 @@
     back: ClothingBackpackQuartermasterFilled
     shoes: ClothingShoesColorBrown
     id: QuartermasterPDA
-    ears: ClothingHeadsetService #ClothingHeadsetQM
+    ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
   innerClothingSkirt: ClothingUniformJumpskirtQM

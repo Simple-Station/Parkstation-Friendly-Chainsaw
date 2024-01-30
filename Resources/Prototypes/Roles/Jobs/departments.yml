@@ -3,10 +3,10 @@
   description: department-Cargo-description
   color: "#A46106"
   roles:
-  - CargoTechnician
-  - Quartermaster
-  - SalvageSpecialist # Going to need to change that
-  - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
+  #- CargoTechnician
+  #- Quartermaster
+  #- SalvageSpecialist # Going to need to change that
+  #- MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
 
 - type: department
   id: Civilian
@@ -23,7 +23,6 @@
   - Clown
   #- HeadOfPersonnel # Parkstation - Replaced by ChiefServiceSupervisor as service command.
   - MailCarrier # Parkstation - civilian job
-  - CargoTechnician # Parkstation - civilian job
   - ChiefServiceSupervisor # Parkstation-CSS
   - Quartermaster # Parkstation - the cargo man.
   - Janitor
