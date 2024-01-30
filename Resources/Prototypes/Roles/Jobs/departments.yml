@@ -12,6 +12,7 @@
   id: Civilian
   description: department-Civilian-description
   color: "#9FED58"
+  weight: -10
   roles:
   - Bartender
   - Borg
@@ -52,6 +53,9 @@
   - HeadOfSecurity
   - ResearchDirector
   #- Quartermaster # Parkstation - No more, cargo becomes part of service
+  primary: false
+  weight: 100
+
 
 - type: department
   id: Engineering
@@ -82,6 +86,7 @@
   id: Security
   description: department-Security-description
   color: "#DE3A3A"
+  weight: 20
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -108,6 +113,7 @@
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
+  weight: 10
   roles:
   - Boxer
   - Reporter
@@ -117,3 +123,4 @@
   - Gladiator # Nyanotrasen - Gladiator, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/gladiator.yml
   - Prisoner # Nyanotrasen - Prisoner, see Resrouces/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/prisoner.yml
   - Brigmedic # DeltaV - Corpsman, see Resources/Prototypes/DeltaV/Roles/Jobs/Security/brigmedic.yml
+  primary: false

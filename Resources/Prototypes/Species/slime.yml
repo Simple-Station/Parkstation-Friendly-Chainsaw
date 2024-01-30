@@ -41,11 +41,11 @@
     FacialHair:
       points: 1
       required: false
-    Chest: # Parkstation-WideUseMarkings
+    Chest:
       points: 1
       required: false
     Legs:
-      points: 2 # Parkstation-WideUseMarkings
+      points: 2
       required: false
     Arms:
       points: 4
