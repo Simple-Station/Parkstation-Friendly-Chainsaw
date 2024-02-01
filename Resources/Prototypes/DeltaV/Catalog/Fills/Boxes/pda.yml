@@ -59,7 +59,7 @@
       - id: EngineerPDA
         amount: 2
       - id: AtmosPDA
-      - id: SalvagePDA # Parkstation - Salvage in engineering
+      - id: SalvagePDA # Parkstation-EngineeringSalvagers
 
 - type: entity
   name: logistics PDA box
