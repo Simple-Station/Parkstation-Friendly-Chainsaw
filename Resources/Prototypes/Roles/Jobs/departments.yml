@@ -1,12 +1,12 @@
-- type: department # Parkstation - logistics is in civilian, keepin this as its causin fatal error due to it not seein the department and i gotta figure it out
+- type: department # Parkstation - logistics is in civilian, deletin this gives big error.
   id: Logistics # DeltaV - Logistics Department replacing Cargo
   description: department-Cargo-description
   color: "#A46106"
   roles:
   #- CargoTechnician
-  #- Quartermaster
+  - Quartermaster
   #- SalvageSpecialist # Going to need to change that
-  #- MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
+  - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
 
 - type: department
   id: Civilian
@@ -54,7 +54,6 @@
   #- Quartermaster # Parkstation - No more, cargo becomes part of service
   primary: false
   weight: 100
-
 
 - type: department
   id: Engineering

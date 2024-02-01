@@ -57,10 +57,9 @@
   - type: StorageFill
     contents:
       - id: EngineerPDA
-        amount: 3
+        amount: 2
       - id: AtmosPDA
       - id: SalvagePDA # Parkstation - Salvage in engineering
-        amount: 2
 
 - type: entity
   name: logistics PDA box

@@ -26,6 +26,6 @@
     back: ClothingBackpackSalvageFilled
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-    ears: ClothingHeadsetEngineering # Parkstation - Engineering instead of Cargo headset, NOTE THAT THE MAGNET NEEDS TO BE CHANGED ASWELL TO APPEAR IN ENGINEERING RADIO
+    ears: ClothingHeadsetCargo
   satchel: ClothingBackpackSatchelSalvageFilled
   duffelbag: ClothingBackpackDuffelSalvageFilled
