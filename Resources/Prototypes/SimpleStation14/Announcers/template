@@ -1,0 +1,146 @@
+# This should be getting auto detected as YML if you're using VSCode
+# If it's not, you can probably manually set the language mode to YML somehow
+# Or just change the filename to `template.yml` temporarily
+# The game will complain if I name it template.yaml to not load it
+#
+# This file contains instructions for everything you can do with the announcer system
+# This also contains every "needed" announcement for any new announcers
+
+- type: announcer
+  id: Announcer # Localized as "announcer-<id>-name" in chat
+  basePath: /Audio/Codebase/Announcements/Announcer # Where to start looking for audio files
+  baseAudioParams: # Default audio parameters for all announcements, all options explained later
+    volume: -7 # if this example is really loud, lower it to match the others' volume
+  announcementPaths: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
+    # Template
+    - id: template # Lowercase of the event ID, add "-complete" to the end for post-event announcements (endings)
+      ignoreBasePath: false # If true, it will ignore the basePath and use the path as is
+      path: template.ogg # Path to the file relative to basePath/, named with snake_case except for "-complete"
+      collection: AnnouncerTemplateAnnouncements # Collection of audios to randomly use for this, will ignore path if set - Ignores basePath automatically!
+      message: announcer-announcement-template # Localization key for the announcement message to use instead of the default one
+      audioParams: # Overrides baseAudioParams entirely for this specific announcement, numbers are all floats
+        attenuation: LinearDistanceClamped # See AudioParams.cs for info - default is here
+        volume: 3 # We don't want announcement volumes to vary too much - default is here
+        pitch: 1 # Default is here
+        #busName: ? # I have no idea, look at AudioParams.cs for more info
+        #maxDistance: 20 # Does nothing for this - default is here
+        #rolloffFactor: 1 # Does nothing for this - default is here
+        #referenceDistance: 1 # Does nothing for this, equivalent to a minimum distance - default is here
+        loop: false # DO NOT use this for announcements - default is here
+        playOffsetSeconds: 0 # How many seconds into the audio to start from - default is here
+        variation: 0 # Probably wouldn't sound very good unless very low, 0.15 or less is normally used - default is here
+
+    # Communications
+    - id: announce
+      path: announce.ogg
+    - id: attention
+      path: attention.ogg
+    - id: commandreport
+      path: command_report.ogg
+
+    # Alert levels
+    - id: alertgreen
+      path: alert_green.ogg
+    - id: alertblue
+      path: alert_blue.ogg
+    - id: alertviolet
+      path: alert_violet.ogg
+    - id: alertwhite
+      path: alert_white.ogg
+    - id: alertyellow
+      path: alert_yellow.ogg
+    - id: alertred
+      path: alert_red.ogg
+    - id: alertgamma
+      path: alert_gamma.ogg
+    - id: alertdelta
+      path: alert_delta.ogg
+    - id: alertepsilon
+      path: alert_epsilon.ogg
+
+    # Events
+    ## Wizard's Den
+    ### Mid-Round Antagonists
+    - id: deathmatch
+      path: death_match.ogg
+    ### Events
+    - id: anomalyspawn
+      path: anomaly.ogg
+    - id: bluespaceartifact
+      path: bluespace_artifact.ogg
+    - id: bluespacelocker
+      path: bluespace_locker.ogg
+    - id: breakerflip
+      path: breaker_flip.ogg
+    - id: bureaucraticerror
+      path: bureaucratic_error.ogg
+    - id: clericalerror
+      path: clerical_error.ogg
+    - id: dragonspawn
+      path: dragon_spawn.ogg
+    - id: revenantspawn
+      path: revenant_spawn.ogg
+    - id: gasleak
+      path: gas_leak.ogg
+    - id: gasleak-complete
+      path: gas_leak-complete.ogg
+    - id: kudzugrowth
+      path: kudzu_growth.ogg
+    - id: meteorswarm
+      path: meteors.ogg
+    - id: meteorswarm-complete
+      path: meteors-complete.ogg
+    - id: mousemigration
+      path: mouse_migration.ogg
+    - id: cockroachmigration
+      path: cockroach_migration.ogg
+    - id: powergridcheck
+      path: power_grid_check.ogg
+    - id: powergridcheck-complete
+      path: power_grid_check-complete.ogg
+    - id: randomsentience
+      path: random_sentience.ogg
+    - id: solarflare
+      path: solar_flare.ogg
+    - id: solarflare-complete
+      path: solar_flare-complete.ogg
+    - id: ventclog
+      path: vent_clog.ogg
+    - id: ventclog-complete
+      path: vent_clog-complete.ogg
+    - id: ventcritters
+      path: vent_critters.ogg
+    - id: slimesspawn
+      path: slimes_spawn.ogg
+    - id: spiderspawn
+      path: spider_spawn.ogg
+    - id: immovablerodspawn
+      path: immovable_rod_spawn.ogg
+    - id: ionstorm
+      path: ion_storm.ogg
+    ## Delta-V
+    - id: xenovents
+      path: xeno_vents.ogg
+    ## NyanoTrasen
+    - id: noosphericstorm
+      path: noospheric_storm.ogg
+    ## Parkstation
+    ### Nothing yet
+
+    # Shuttle
+    - id: shuttlecalled
+      path: shuttle_called.ogg
+    - id: shuttlerecalled
+      path: shuttle_recalled.ogg
+    - id: shuttledock
+      path: shuttle_dock.ogg
+    - id: shuttlenearby
+      path: shuttle_nearby.ogg
+    - id: shuttlealmostlaunching
+      path: shuttle_almost_launching.ogg
+    - id: shuttlegoodluck
+      path: shuttle_good_luck.ogg
+
+    # Fallback # REQUIRED
+    - id: fallback
+      path: fallback.ogg
