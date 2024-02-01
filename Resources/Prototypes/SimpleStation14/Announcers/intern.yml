@@ -2,7 +2,7 @@
   id: Intern
   basePath: /Audio/SimpleStation14/Announcements/Intern
   baseAudioParams:
-    volume: -4
+    volume: -7
   announcementPaths:
     # Communications console
     - id: announce
