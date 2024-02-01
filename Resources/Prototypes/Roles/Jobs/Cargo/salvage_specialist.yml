@@ -12,7 +12,7 @@
   #    time: 36000 #10 hrs
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
-  supervisors: job-supervisors-ce # Parkstation - CE is now the head instead of QM
+  supervisors: job-supervisors-ce # Parkstation-EngineeringSalvagers
   access:
   - Engineering # ParkStation-EngineeringSalvagers
   - Salvage
