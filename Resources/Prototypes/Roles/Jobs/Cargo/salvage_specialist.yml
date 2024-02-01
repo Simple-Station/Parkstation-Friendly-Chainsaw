@@ -14,7 +14,7 @@
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-ce # Parkstation - CE is now the head instead of QM
   access:
-  - Engineering # ParkStation - Engineering instead of Cargo
+  - Engineering # ParkStation-EngineeringSalvagers
   - Salvage
   - Maintenance
   - External
