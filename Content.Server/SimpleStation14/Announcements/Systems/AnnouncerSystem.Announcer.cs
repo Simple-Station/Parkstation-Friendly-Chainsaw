@@ -11,7 +11,7 @@ public sealed partial class AnnouncerSystem
 {
     private void OnRoundRestarting(RoundRestartCleanupEvent ev)
     {
-        var announcer = _configManager.GetCVar(SimpleStationCCVars.Announcer);
+        var announcer = _config.GetCVar(SimpleStationCCVars.Announcer);
         if (string.IsNullOrEmpty(announcer))
             SetAnnouncer(PickAnnouncer());
         else
@@ -25,8 +25,8 @@ public sealed partial class AnnouncerSystem
     /// <remarks>Probably not very useful for any other system</remarks>
     public AnnouncerPrototype PickAnnouncer()
     {
-        return _random.Pick(_prototypeManager.EnumeratePrototypes<AnnouncerPrototype>()
-            .Where(x => !_configManager.GetCVar(SimpleStationCCVars.AnnouncerBlacklist).Contains(x.ID))
+        return _random.Pick(_proto.EnumeratePrototypes<AnnouncerPrototype>()
+            .Where(x => !_config.GetCVar(SimpleStationCCVars.AnnouncerBlacklist).Contains(x.ID))
             .ToArray());
     }
 
@@ -37,7 +37,7 @@ public sealed partial class AnnouncerSystem
     /// <param name="announcerId">ID of the announcer to choose</param>
     public void SetAnnouncer(string announcerId)
     {
-        if (!_prototypeManager.TryIndex<AnnouncerPrototype>(announcerId, out var announcer))
+        if (!_proto.TryIndex<AnnouncerPrototype>(announcerId, out var announcer))
             DebugTools.Assert("Set announcer does not exist, attempting to use previously set one.");
         else
             Announcer = announcer;

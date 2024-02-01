@@ -16,4 +16,10 @@ public sealed class SimpleStationCCVars
     /// </summary>
     public static readonly CVarDef<List<string>> AnnouncerBlacklist =
         CVarDef.Create("announcer.blacklist", new List<string>(), CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Changes how loud the announcers are for the client
+    /// </summary>
+    public static readonly CVarDef<float> AnnouncerVolume =
+        CVarDef.Create("announcer.volume", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

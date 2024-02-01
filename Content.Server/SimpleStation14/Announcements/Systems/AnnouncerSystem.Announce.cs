@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared.SimpleStation14.Announcements.Prototypes;
+using Content.Shared.SimpleStation14.Announcements.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 
@@ -7,49 +7,6 @@ namespace Content.Server.SimpleStation14.Announcements.Systems;
 
 public sealed partial class AnnouncerSystem
 {
-    /// <summary>
-    ///     Gets an announcement path from the announcer
-    /// </summary>
-    /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
-    /// <param name="announcerId">ID of the announcer to use instead of the current one</param>
-    private string GetAnnouncementPath(string announcementId, string? announcerId = null)
-    {
-        var announcer = announcerId != null ? _prototypeManager.Index<AnnouncerPrototype>(announcerId) : Announcer;
-
-        // Get the announcement data from the announcer
-        // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID.ToLower() == "fallback");
-
-        // If the greedy announcementType wants to do the job of announcer, ignore the base path and just return the path
-        if (announcementType.IgnoreBasePath)
-            return announcementType.Path!;
-        // If the announcementType has a collection, get the sound from the collection
-        if (announcementType.Collection != null)
-            return _audioSystem.GetSound(new SoundCollectionSpecifier(announcementType.Collection));
-        // If nothing is overriding the base paths, return the base path + the announcement file path
-        return $"{announcer.BasePath}/{announcementType.Path}";
-    }
-
-    /// <summary>
-    ///     Gets audio params from the announcer
-    /// </summary>
-    /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
-    /// <param name="announcerId">ID of the announcer to use instead of the current one</param>
-    private AudioParams? GetAudioParams(string announcementId, string? announcerId = null)
-    {
-        // Fetch the announcer prototype if a different one is specified
-        var announcer = announcerId != null && announcerId != Announcer.ID ? _prototypeManager.Index<AnnouncerPrototype>(announcerId) : Announcer;
-
-        // Get the announcement data from the announcer
-        // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID == "fallback");
-
-        // Return the announcer.BaseAudioParams if the announcementType doesn't have an override
-        return announcementType.AudioParams ?? announcer.BaseAudioParams ?? null; // For some reason the formatter doesn't warn me about "?? null" being redundant
-    }
-
     /// <summary>
     ///     Gets an announcement message from the announcer
     /// </summary>
@@ -73,8 +30,14 @@ public sealed partial class AnnouncerSystem
     /// <param name="filter">Who hears the announcement audio</param>
     public void SendAnnouncementAudio(string announcementId, Filter filter)
     {
-        var announcement = GetAnnouncementPath(announcementId.ToLower());
-        _audioSystem.PlayGlobal(announcement, filter, true, GetAudioParams(announcementId.ToLower()));
+        var ev = new AnnouncementSendEvent(
+            Announcer.ID,
+            announcementId,
+            filter.Recipients.ToList().ConvertAll(p => p.UserId), // I hate this but IEnumerable isn't serializable, and then ICommonSession wasn't, so you get the User ID
+            _announcer.GetAudioParams(announcementId, Announcer) ?? AudioParams.Default
+        );
+
+        RaiseNetworkEvent(ev);
     }
 
     /// <summary>
@@ -95,9 +58,9 @@ public sealed partial class AnnouncerSystem
 
         // If there is a station, send the announcement to the station, otherwise send it to everyone
         if (station == null)
-            _chatSystem.DispatchGlobalAnnouncement(message, sender, false, colorOverride: colorOverride);
+            _chat.DispatchGlobalAnnouncement(message, sender, false, colorOverride: colorOverride);
         else
-            _chatSystem.DispatchStationAnnouncement(station.Value, message, sender, false, colorOverride: colorOverride);
+            _chat.DispatchStationAnnouncement(station.Value, message, sender, false, colorOverride: colorOverride);
     }
 
     /// <summary>
