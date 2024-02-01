@@ -37,7 +37,7 @@
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
-    - Supply  # Parkstation - Engineering instead of Supply - No idea why changing this doesnt change the radio it talks in. Hardcoded maybe?
+    - Engineering  # Parkstation-EngineeringSalvagers
   - type: SalvageMagnet
   - type: ApcPowerReceiver
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
