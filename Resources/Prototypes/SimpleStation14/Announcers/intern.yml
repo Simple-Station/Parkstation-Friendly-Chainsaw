@@ -64,8 +64,8 @@
     #   path: shuttleleft.ogg
     # - id: shuttleauthrevoked
     #   path: shuttleauthrevoked.ogg
-    # - id: shuttleauthaddded
-    #   path: shuttleauthaddded.ogg
+    # - id: shuttleauthadded
+    #   path: shuttleauthadded.ogg
     # New AI
     - id: newai
       path: newai.ogg # This is the same as the MedBot announcer
