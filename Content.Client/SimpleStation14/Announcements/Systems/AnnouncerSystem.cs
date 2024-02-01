@@ -1,3 +1,4 @@
+using Content.Client.Audio;
 using Content.Shared.SimpleStation14.Announcements.Events;
 using Content.Shared.SimpleStation14.Announcements.Systems;
 using Content.Shared.SimpleStation14.CCVar;
@@ -25,6 +26,8 @@ public sealed class AnnouncerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        AnnouncerVolume = _config.GetCVar(SimpleStationCCVars.AnnouncerVolume) * 100f / ContentAudioSystem.AnnouncerMultiplier;
 
         SubscribeNetworkEvent<AnnouncementSendEvent>(OnAnnouncementReceived);
         _config.OnValueChanged(SimpleStationCCVars.AnnouncerVolume, OnAnnouncerVolumeChanged);

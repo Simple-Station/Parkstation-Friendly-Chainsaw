@@ -21,5 +21,5 @@ public sealed class SimpleStationCCVars
     ///     Changes how loud the announcers are for the client
     /// </summary>
     public static readonly CVarDef<float> AnnouncerVolume =
-        CVarDef.Create("announcer.volume", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("announcer.volume", 0.5f, CVar.ARCHIVE | CVar.CLIENTONLY);
 }
