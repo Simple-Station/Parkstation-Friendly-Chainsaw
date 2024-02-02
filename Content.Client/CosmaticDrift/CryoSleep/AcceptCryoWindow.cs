@@ -23,14 +23,14 @@ public sealed class AcceptCryoWindow : DefaultWindow
         {
             Orientation = LayoutOrientation.Horizontal,
             Align = AlignMode.Center,
-            Children = {AcceptButton, (new Control() { MinSize = new Vector2i(20, 0) }), DenyButton}
+            Children = { AcceptButton, (new Control() { MinSize = new Vector2i(20, 0) }), DenyButton }
         };
 
         // This one holds the button container
         InnerBox = new BoxContainer()
         {
             Orientation = LayoutOrientation.Vertical,
-            Children = {(new Label() {Text = Loc.GetString("accept-cryo-window-prompt-text-part")}), ButtonBox}
+            Children = { (new Label() { Text = Loc.GetString("accept-cryo-window-prompt-text-part") }), ButtonBox }
         };
 
         // Put it all together
