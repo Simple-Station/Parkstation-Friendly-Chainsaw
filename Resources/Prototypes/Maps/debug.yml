@@ -28,7 +28,7 @@
           mapNameTemplate: "Dev"
         - type: StationJobs
           overflowJobs:
-          - Captain
+          - HeadOfPersonnel
           availableJobs:
             Captain: [ -1, -1 ]
 
