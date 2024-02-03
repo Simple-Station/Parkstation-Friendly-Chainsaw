@@ -3,6 +3,7 @@
   name: job-name-captain
   description: job-description-captain
   playTimeTracker: JobCaptain
+  setPreference: false # Parkstation-Playtime
   requirements:
     #- !type:DepartmentTimeRequirement
     #  department: Logistics # DeltaV - Logistics Department replacing Cargo
