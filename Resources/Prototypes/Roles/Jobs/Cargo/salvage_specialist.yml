@@ -6,7 +6,7 @@
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Engineering # DeltaV - Logistics Department replacing Cargo # ParkStation - Engineering is now their home.
+      department: Engineering # ParkStation-EngineeringSalvagers
       time: 21600 #DeltaV 6 hrs
   #  - !type:OverallPlaytimeRequirement #DeltaV
   #    time: 36000 #10 hrs
