@@ -65,3 +65,13 @@ Entries:
         roots and have slown down their movement a significant amount!
   id: 9
   time: '2024-01-18T10:46:50.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Space has suddenly become less dense (objects don't slow down in space)
+    - type: Remove
+      message: Moths are unable to move in space
+    - type: Tweak
+      message: Moths have way better control in zero gravity environments
+  id: 10
+  time: '2024-02-04T05:49:01.0000000+00:00'
