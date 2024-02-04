@@ -10,7 +10,7 @@
   access:
   - Cargo
   - Maintenance
-#  extendedAccess: Parkstation - Oligarchy
+#  extendedAccess: Parkstation - CargoServicing
   - Salvage
   - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
 
