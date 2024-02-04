@@ -24,7 +24,7 @@
   #- HeadOfPersonnel # Parkstation - Replaced by ChiefServiceSupervisor as service command.
   - MailCarrier # Parkstation - civilian job
   - ChiefServiceSupervisor # Parkstation-CSS
-  - Quartermaster # Parkstation - the cargo man.
+  - CargoTechnician # Parkstation - the cargo man.
   - Janitor
   - Lawyer
   - Librarian
@@ -43,7 +43,7 @@
   description: department-Command-description
   color: "#334E6D"
   roles:
-  #- Captain # Parkstation - Oligarthy
+  #- Captain # Parkstation - Oligarchy
   - CentralCommandOfficial
   - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer
@@ -51,7 +51,7 @@
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
-  #- Quartermaster # Parkstation - No more, cargo becomes part of service
+  #- Quartermaster # Parkstation - Oligarchy
   primary: false
   weight: 100
 
