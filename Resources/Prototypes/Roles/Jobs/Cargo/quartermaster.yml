@@ -18,11 +18,11 @@
     #  department: Logistics # DeltaV - Logistics Department replacing Cargo
     #  time: 43200 #DeltaV 12 hours
     - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs 
-   weight: 10
+      time: 144000 #40 hrs
+  weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  supervisors: job-supervisors-css
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Cargo
