@@ -43,7 +43,7 @@
   description: department-Command-description
   color: "#334E6D"
   roles:
-  - Captain # Parkstation - keepin this for Death to handle it.
+  #- Captain # Parkstation - Oligarthy
   - CentralCommandOfficial
   - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer

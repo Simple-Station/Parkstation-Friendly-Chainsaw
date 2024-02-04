@@ -14,7 +14,7 @@
   startingGear: CSSGear
   icon: "JobIconCSS"
   requireAdminNotify: true
-  supervisors: job-supervisors-cc
+  supervisors: job-supervisors-cc # ParkStation - Oligarchy
   canBeAntag: false
   antagAdvantage: 6
   access:
