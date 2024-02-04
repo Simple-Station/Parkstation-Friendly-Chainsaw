@@ -8,7 +8,7 @@
   #  - !type:RoleTimeRequirement #DeltaV
   #    role: JobCargoTechnician
   #    time: 21600 #6 hrs
-    #- !type:RoleTimeRequirement   #Parkstation - No longer has these requirements from here.
+    #- !type:RoleTimeRequirement   #Parkstation - QM doesn't have command role requirements.
     #  role: JobSalvageSpecialist
     #  time: 10800 #3 hrs
     #- !type:RoleTimeRequirement # DeltaV - Courier role time requirement
@@ -18,7 +18,7 @@
     #  department: Logistics # DeltaV - Logistics Department replacing Cargo
     #  time: 43200 #DeltaV 12 hours
     #- !type:OverallPlaytimeRequirement
-    #  time: 144000 #40 hrs     # Parkstation - No longer has these requirements till here.
+    #  time: 144000 #40 hrs 
   # weight: 10   # Parkstation - No longer command.
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
