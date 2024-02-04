@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSalvage
+  name: Salvage headset # DeltaV - Logistics Department replacing Cargo
+  description: A headset used by salvage specialists.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEngineering
+      - EncryptionKeyCargo
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/cargo.rsi
