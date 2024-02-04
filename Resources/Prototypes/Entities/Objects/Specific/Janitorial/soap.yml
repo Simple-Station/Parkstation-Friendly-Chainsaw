@@ -26,7 +26,7 @@
     launchForwardsMultiplier: 0.25 # Parkstation-BetterSoap
   - type: StepTrigger
     intersectRatio: 0.2
-    requiredTriggerSpeed: 4.5 # Parkstation-BetterSoap
+    requiredTriggeredSpeed: 4.5 # Parkstation-BetterSoap
   - type: CollisionWake
     enabled: false
   - type: Physics
