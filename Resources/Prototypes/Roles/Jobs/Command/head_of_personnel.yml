@@ -32,23 +32,23 @@
   - Janitor
   - Theatre
   - Kitchen
-  - Chapel
+  #- Chapel
   - Hydroponics
   - External
   # I mean they'll give themselves the rest of the access levels *anyways*.
   # As of 15/03/23 they can't do that so here's MOST of the rest of the access levels.
   # Head level access that isn't their own was deliberately left out, get AA from the captain instead.
-  # Delta V - fuck all of this HoP is a service role, # Parkstation - NU UH
-  - Chemistry
+  # Parkstation - Oligarthy
+  #- Chemistry
   - Engineering
   - Research
-  - Detective
-  - Salvage
+  #- Detective
+  #- Salvage
   - Security # NoooOoOo!! My HoPcurity!1
 #  - Brig
   - Lawyer
   - Cargo
-  - Atmospherics
+  #- Atmospherics
   - Medical
   - Boxer # DeltaV - Add Boxer access
   - Clown # DeltaV - Add Clown access
