@@ -3,6 +3,7 @@
   name: job-name-guard
   description: job-description-guard
   playTimeTracker: JobPrisonGuard
+  setPreference: false # Parkstation-Freedom
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000
