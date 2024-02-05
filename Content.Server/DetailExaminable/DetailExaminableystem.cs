@@ -1,4 +1,4 @@
-﻿// Parkstation-CharacterInformation-Start
+﻿// Parkstation-CharacterInformation-Start - This was moved to the Shared namespace
 // using Content.Shared.Examine;
 // using Content.Shared.IdentityManagement;
 // using Content.Shared.Verbs;
@@ -44,4 +44,3 @@
 //     }
 // }
 // Parkstation-CharacterInformation-End
-// (This was moved to shared)

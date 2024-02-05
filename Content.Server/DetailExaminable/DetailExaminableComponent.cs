@@ -1,4 +1,4 @@
-﻿// Parkstation-CharacterInformation-Start
+﻿// Parkstation-CharacterInformation-Start - This was moved to the Shared namespace
 // namespace Content.Server.DetailExaminable
 // {
 //     [RegisterComponent]
@@ -9,4 +9,3 @@
 //     }
 // }
 // Parkstation-CharacterInformation-End
-// (This was moved to shared)

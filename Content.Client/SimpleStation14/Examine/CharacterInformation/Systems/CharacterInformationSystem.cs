@@ -104,6 +104,7 @@ public sealed class CharacterInformationSystem : EntitySystem
     /// </summary>
     /// <param name="idUid">Entity to check</param>
     /// <returns>ID card component if they have one on the entity</returns>
+    /// <remarks>This function should not exist</remarks>
     private IdCardComponent? GetId(EntityUid? idUid)
     {
         // PDA
@@ -121,6 +122,7 @@ public sealed class CharacterInformationSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The entity to attempt information retrieval from</param>
     /// <returns>Name, Job Title</returns>
+    /// <remarks>This function should not exist</remarks>
     private (string, string) GetNameAndJob(EntityUid uid)
     {
         string? name = null;
