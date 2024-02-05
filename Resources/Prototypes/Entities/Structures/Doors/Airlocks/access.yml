@@ -584,7 +584,7 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
-
+    
 - type: entity
   parent: AirlockChemistryGlass
   id: AirlockChemistryGlassLocked

@@ -108,7 +108,7 @@
   - ResearchAssistant
   - Chaplain # DeltaV - Move Chaplain into Epistemics
   - ForensicMantis # Nyanotrasen - ForensicMantis, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Epistemics/forensicmantis.yml
-
+# Parkstation-Oligarchy Start
 #- type: department
 #  id: Specific
 #  description: department-Specific-description
@@ -124,3 +124,4 @@
 #  - Prisoner # Nyanotrasen - Prisoner, see Resrouces/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/prisoner.yml
 #  - Brigmedic # DeltaV - Corpsman, see Resources/Prototypes/DeltaV/Roles/Jobs/Security/brigmedic.yml
 #  primary: false
+# Parkstation-Oligarchy End
