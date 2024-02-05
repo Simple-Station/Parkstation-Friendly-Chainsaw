@@ -21,7 +21,7 @@ namespace Content.Shared.Movement.Components
         // Parkstation-AcceleratingMovement Start
         public const float DefaultAcceleration = 8f;
         public const float DefaultFriction = 8f;
-        public const float DefaultFrictionNoInput = 8f;
+        public const float DefaultFrictionNoInput = 14f;
         // Parkstation-AcceleratingMovement End
 
         public const float DefaultBaseWalkSpeed = 3f;
@@ -102,7 +102,7 @@ namespace Content.Shared.Movement.Components
         /// The negative velocity applied for friction.
         /// </summary>
         [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
-        public float? FrictionNoInput;
+        public float? FrictionNoInput = DefaultFrictionNoInput; // Parkstation-AcceleratingMovement
 
         [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
         public float BaseWalkSpeed { get; set; } = DefaultBaseWalkSpeed;
