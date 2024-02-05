@@ -26,6 +26,6 @@
     back: ClothingBackpackSalvageFilled
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-    ears: ClothingHeadsetSalvage # Parkstation-EngineeringSalvagers
+    ears: ClothingHeadsetEngineering # Parkstation-EngineeringSalvagers
   satchel: ClothingBackpackSatchelSalvageFilled
   duffelbag: ClothingBackpackDuffelSalvageFilled

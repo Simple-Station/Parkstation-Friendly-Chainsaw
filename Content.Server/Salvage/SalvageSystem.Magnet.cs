@@ -14,7 +14,7 @@ namespace Content.Server.Salvage;
 public sealed partial class SalvageSystem
 {
     [ValidatePrototypeId<RadioChannelPrototype>]
-    private const string MagnetChannel = "Engineering";
+    private const string MagnetChannel = "Engineering"; // ParkStation - Supply to Engineering for EngineeringSalvage
 
     private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery;
 
@@ -177,12 +177,12 @@ public sealed partial class SalvageSystem
             // Fuck with the seed to mix wrecks and asteroids.
             seed = (int) (seed / 10f) * 10;
 
-
+            
             if (i >= data.Comp.OfferCount / 2)
             {
                 seed++;
             }
-
+            
 
             data.Comp.Offered.Add(seed);
         }
