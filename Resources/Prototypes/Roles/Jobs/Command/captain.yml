@@ -4,8 +4,8 @@
   description: job-description-captain
   playTimeTracker: JobCaptain
   requirements:
-    #- !type:DepartmentTimeRequirement
-    #  department: Logistics # DeltaV - Logistics Department replacing Cargo
+    #- !type:DepartmentTimeRequirement # Parkstation-CargoService
+    #  department: Cargo
     #  time: 18000 # DeltaV - 5 hours
     - !type:DepartmentTimeRequirement
       department: Engineering

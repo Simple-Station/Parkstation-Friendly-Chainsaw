@@ -20,7 +20,7 @@
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   requireAdminNotify: true
-  supervisors: job-supervisors-cc # ParkStation - Oligarchy
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Maintenance

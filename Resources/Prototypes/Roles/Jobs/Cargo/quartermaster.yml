@@ -4,18 +4,19 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
+  setPreference: false # Parkstation-CargoService
   requirements:
-    - !type:RoleTimeRequirement #DeltaV
-      role: JobCargoTechnician
-      time: 21600 #6 hrs
+  #  - !type:RoleTimeRequirement #DeltaV
+  #    role: JobCargoTechnician
+  #    time: 21600 #6 hrs
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
       time: 10800 #3 hrs
     - !type:RoleTimeRequirement # DeltaV - Courier role time requirement
       role: JobMailCarrier
       time: 7200 # 2 hours
-    #- !type:DepartmentTimeRequirement # Parkstation - Logistical Destruction
-    #  department: Logistics # DeltaV - Logistics Department replacing Cargo
+    # - !type:DepartmentTimeRequirement # Parkstation-CargoService
+    #  department: Cargo
     #  time: 43200 #DeltaV 12 hours
     - !type:OverallPlaytimeRequirement
       time: 144000 #40 hrs

@@ -10,8 +10,8 @@
   access:
   - Cargo
   - Maintenance
-#  extendedAccess: Parkstation - CargoServicing
-  - Salvage
+  # extendedAccess: # Parkstation-CargoService
+  # - Salvage # Parkstation-CargoService
   - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
 
 - type: startingGear

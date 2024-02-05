@@ -1,12 +1,14 @@
-#- type: department # Parkstation - logistics is in civilian, deletin this gives big error.
-#  id: Logistics # DeltaV - Logistics Department replacing Cargo
-#  description: department-Cargo-description
-#  color: "#A46106"
-#  roles:
-  #- CargoTechnician
-#  - Quartermaster
-  #- SalvageSpecialist # Going to need to change that
-#  - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
+# Parkstation-CargoService Start
+# - type: department
+#   id: Cargo
+#   description: department-Cargo-description
+#   color: "#A46106"
+#   roles:
+#   - CargoTechnician
+#   - Quartermaster
+#   - SalvageSpecialist
+#   - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
+# Parkstation-CargoService End
 
 - type: department
   id: Civilian
@@ -21,10 +23,10 @@
   # - Chaplain # DeltaV - Move Chaplain into Epistemics
   - Chef
   - Clown
-  #- HeadOfPersonnel # Parkstation - Replaced by ChiefServiceSupervisor as service command.
-  - MailCarrier # Parkstation - civilian job
+  # - HeadOfPersonnel # Parkstation-CSS
   - ChiefServiceSupervisor # Parkstation-CSS
-  - CargoTechnician # Parkstation - the cargo man.
+  - CargoTechnician # Parkstation-CargoService
+  - MailCarrier # Parkstation-CargoService
   - Janitor
   - Lawyer
   - Librarian
@@ -43,7 +45,7 @@
   description: department-Command-description
   color: "#334E6D"
   roles:
-  #- Captain # Parkstation - Oligarchy
+  # - Captain # Parkstation-Oligarchy
   - CentralCommandOfficial
   - ChiefServiceSupervisor # Parkstation-CSS
   - ChiefEngineer
@@ -51,7 +53,7 @@
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
-  #- Quartermaster # Parkstation - Oligarchy
+  # - Quartermaster # Parkstation-CargoService
   primary: false
   weight: 100
 
@@ -65,7 +67,7 @@
   - SeniorEngineer
   - StationEngineer
   - TechnicalAssistant
-  - SalvageSpecialist # Parkstation - salvage in engi
+  - SalvageSpecialist # Parkstation-EngineeringSalvagers
 
 - type: department
   id: Medical

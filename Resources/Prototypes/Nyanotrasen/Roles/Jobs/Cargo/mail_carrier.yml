@@ -11,7 +11,7 @@
   - Maintenance
   - Mail
   - Service # Parkstation
-  
+
 - type: startingGear
   id: MailCarrierGear
   equipment:
