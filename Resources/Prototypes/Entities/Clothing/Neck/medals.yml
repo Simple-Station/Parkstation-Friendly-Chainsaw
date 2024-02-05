@@ -26,8 +26,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCargomedal
-  name: logistics medal # DeltaV - Logistics Department replacing Cargo
-  description: Whether it's for superior accountancy, courageous salvage work, or just being a friendly technician - this medal is to be assigned only for the best work in the logistics department. # DeltaV - Logistics Department replacing Cargo. Updated description for flavour
+  name: cargo medal
+  description: Whether it's for superior accountancy, courageous salvage work, or just being a friendly technician - this medal is to be assigned only for the best work in the cargo department.
   components:
   - type: Sprite
     sprite: DeltaV/Clothing/Neck/Medals/cargomedal.rsi # DeltaV - resprite

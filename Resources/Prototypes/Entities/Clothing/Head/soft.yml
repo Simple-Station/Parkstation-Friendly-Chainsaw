@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCargosoft
-  name: logistics cap # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in Logistics colours." # DeltaV - Logistics Department replacing Cargo
+  name: cargo cap
+  description: "It's a baseball hat painted in Cargo colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/cargosoft.rsi
@@ -39,8 +39,8 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCargosoftFlipped
-  name: logistics cap flipped # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in Logistics colours. Flipped." # DeltaV - Logistics Department replacing Cargo
+  name: cargo cap flipped
+  description: "It's a baseball hat painted in Cargo colors. Flipped."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
@@ -50,8 +50,8 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoft
-  name: logistics officer's cap # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in the Logistics Officer's colors."
+  name: cargo technician's cap
+  description: "It's a baseball hat painted in the Cargo Technician's colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft.rsi
@@ -61,8 +61,8 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoftFlipped
-  name: logistics officer's cap flipped # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in the Logistics Officer's colors. Flipped."
+  name: cargo technician's cap flipped
+  description: "It's a baseball hat painted in the Cargo Technician's colors. Flipped."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft_flipped.rsi

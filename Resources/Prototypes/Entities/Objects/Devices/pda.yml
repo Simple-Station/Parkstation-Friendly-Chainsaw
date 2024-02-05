@@ -334,10 +334,10 @@
     state: pda-chaplain
 
 - type: entity
-  name: logistics officer PDA # DeltaV - Logistics Department replacing Cargo
+  name: cargo technician PDA
   parent: BasePDA
   id: QuartermasterPDA
-  description: PDA for the guy that directs logistics. # DeltaV - Logistics Department replacing Cargo
+  description: PDA for the guy that directs cargo.
   components:
   - type: Pda
     id: QuartermasterIDCard
@@ -351,8 +351,8 @@
 - type: entity
   parent: BasePDA
   id: CargoPDA
-  name: logistics PDA # DeltaV - Logistics Department replacing Cargo
-  description: PDA for the guys that order the pizzas. # DeltaV - Logistics Department replacing Cargo
+  name: cargo PDA
+  description: PDA for the guys that order the pizzas.
   components:
   - type: Pda
     id: CargoIDCard
