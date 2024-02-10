@@ -485,7 +485,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitQMTurtleneck
-  name: cargo technician's turtleneck
+  name: quartermaster's turtleneck
   description: A sharp turtleneck made for the hardy work environment of supply.
   components:
     - type: Sprite
