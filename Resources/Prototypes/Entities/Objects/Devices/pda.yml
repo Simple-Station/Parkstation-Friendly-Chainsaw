@@ -334,7 +334,7 @@
     state: pda-chaplain
 
 - type: entity
-  name: cargo technician PDA
+  name: quartermaster PDA
   parent: BasePDA
   id: QuartermasterPDA
   description: PDA for the guy that directs cargo.
