@@ -10,7 +10,7 @@
   - Cargo
   - Maintenance
   - Mail
-  - Service # Parkstation
+  - Service # Parkstation-CargoService
 
 - type: startingGear
   id: MailCarrierGear
