@@ -83,11 +83,19 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
 
+    // Parkstation-HeightSlider Start
     /// <summary>
     ///     The height of this humanoid.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Height = 1f; // Parkstation-HeightSlider
+    public float Height = 1f;
+
+    /// <summary>
+    ///     The width of this humanoid.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float Width = 1f;
+    // Parkstation-HeightSlider End
 }
 
 [DataDefinition]

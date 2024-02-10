@@ -211,6 +211,7 @@ namespace Content.Server.Database
                 profile.FlavorText,
                 profile.Species,
                 profile.Height, // Parkstation-HeightSlider
+                profile.Width, // Parkstation-HeightSlider
                 profile.Age,
                 sex,
                 gender,
@@ -251,6 +252,7 @@ namespace Content.Server.Database
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
             profile.Height = humanoid.Height; // Parkstation-HeightSlider
+            profile.Width = humanoid.Width; // Parkstation-HeightSlider
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
