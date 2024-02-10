@@ -285,7 +285,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtQM
-  name: cargo technician's jumpskirt
+  name: quartermaster's jumpskirt
   description: 'What can brown do for you?'
   components:
   - type: Sprite
