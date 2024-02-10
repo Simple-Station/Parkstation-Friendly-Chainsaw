@@ -65,8 +65,8 @@
 - type: entity
   parent: ClothingHeadsetCargo
   id: ClothingHeadsetQM
-  name: cargo technician's headset
-  description: A headset used by the cargo technician.
+  name: quartermaster's headset
+  description: A headset used by the QuarterMaster.
   components:
   - type: ContainerFill
     containers:
