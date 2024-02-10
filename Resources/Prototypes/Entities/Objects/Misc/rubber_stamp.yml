@@ -159,7 +159,7 @@
     state: stamp-mime
 
 - type: entity
-  name: cargo technician's rubber stamp
+  name: quartermaster's rubber stamp
   parent: RubberStampBase
   id: RubberStampQm
   suffix: DO NOT MAP
