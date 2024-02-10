@@ -50,8 +50,8 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoft
-  name: cargo technician's cap
-  description: "It's a baseball hat painted in the Cargo Technician's colors."
+  name: quartermaster's cap
+  description: "It's a baseball hat painted in the QuarterMaster's colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft.rsi
