@@ -337,7 +337,7 @@
   name: quartermaster PDA
   parent: BasePDA
   id: QuartermasterPDA
-  description: PDA for the guy that directs cargo.
+  description: PDA for the guy that directs Cargo.
   components:
   - type: Pda
     id: QuartermasterIDCard
