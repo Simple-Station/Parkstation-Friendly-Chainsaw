@@ -22,7 +22,7 @@
 - type: entity
   id: LockerQuarterMaster
   parent: LockerBaseSecure
-  name: cargo technician's locker
+  name: quartermaster's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
