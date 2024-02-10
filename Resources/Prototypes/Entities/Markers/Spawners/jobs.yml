@@ -41,7 +41,7 @@
 - type: entity
   id: SpawnPointQuartermaster
   parent: SpawnPointJobBase
-  name: cargo technician
+  name: quartermaster
   components:
   - type: SpawnPoint
     job_id: Quartermaster
