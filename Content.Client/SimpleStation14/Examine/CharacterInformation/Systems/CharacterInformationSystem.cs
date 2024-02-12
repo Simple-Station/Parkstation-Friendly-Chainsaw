@@ -5,7 +5,7 @@ using Content.Shared.SimpleStation14.Examine.CharacterInformation.Components;
 using Content.Client.SimpleStation14.Examine.CharacterInformation.UI;
 using Content.Shared.Access.Components;
 using Content.Shared.CCVar;
-using Content.Shared.DetailExaminable;
+using Content.Shared.SimpleStation14.DetailExaminable;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
@@ -104,7 +104,7 @@ public sealed class CharacterInformationSystem : EntitySystem
     /// </summary>
     /// <param name="idUid">Entity to check</param>
     /// <returns>ID card component if they have one on the entity</returns>
-    /// <remarks>This function should not exist</remarks>
+    /// <remarks>This function should not exist</remarks> // TODO Remove this function
     private IdCardComponent? GetId(EntityUid? idUid)
     {
         // PDA

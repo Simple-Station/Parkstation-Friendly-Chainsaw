@@ -1,7 +1,6 @@
-// Parkstation-CharacterInformation-Start
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.DetailExaminable
+namespace Content.Shared.SimpleStation14.DetailExaminable
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class DetailExaminableComponent : Component
@@ -12,4 +11,3 @@ namespace Content.Shared.DetailExaminable
         public string Content = "";
     }
 }
-// Parkstation-CharacterInformation-End
