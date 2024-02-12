@@ -156,8 +156,8 @@
     layers:
     - state: syndie-soaplet
   - type: Slippery
-    paralyzeTime: 2 # Parkstation-BetterSoap
-    launchForwardsMultiplier: 1 # Parkstation-BetterSoap
+    paralyzeTime: 5
+    launchForwardsMultiplier: 2.5
   - type: StepTrigger
     intersectRatio: 0.04
   - type: Item
@@ -223,7 +223,7 @@
   - type: SolutionContainerVisuals
     fillBaseName: omega-
   - type: Slippery
-    paralyzeTime: 5 # Parkstation-BetterSoap
+    paralyzeTime: 7
     launchForwardsMultiplier: 3
   - type: Item
     heldPrefix: omega
