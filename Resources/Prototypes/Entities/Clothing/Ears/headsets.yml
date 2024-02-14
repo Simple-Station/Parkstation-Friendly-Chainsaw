@@ -66,7 +66,7 @@
   parent: ClothingHeadsetCargo
   id: ClothingHeadsetQM
   name: quartermaster's headset
-  description: A headset used by the QuarterMaster.
+  description: A headset used by the Quartermaster.
   components:
   - type: ContainerFill
     containers:

@@ -51,7 +51,7 @@
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoft
   name: quartermaster's cap
-  description: "It's a baseball hat painted in the QuarterMaster's colors."
+  description: "It's a baseball hat painted in the Quartermaster's colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft.rsi
@@ -62,7 +62,7 @@
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoftFlipped
   name: quartermaster's cap flipped
-  description: "It's a baseball hat painted in the QuarterMaster's colors. Flipped."
+  description: "It's a baseball hat painted in the Quartermaster's colors. Flipped."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft_flipped.rsi
