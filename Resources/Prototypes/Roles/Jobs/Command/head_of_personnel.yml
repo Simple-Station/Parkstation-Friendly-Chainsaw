@@ -33,12 +33,13 @@
   - Janitor
   - Theatre
   - Kitchen
-  # - Chapel # Parkstation-Epistemics
+#  - Chapel # Parkstation-Epistemics
   - Hydroponics
   - External
   # I mean they'll give themselves the rest of the access levels *anyways*.
   # As of 15/03/23 they can't do that so here's MOST of the rest of the access levels.
   # Head level access that isn't their own was deliberately left out, get AA from the captain instead.
+  # Delta V - fuck all of this HoP is a service role
 #  - Chemistry
 #  - Engineering
 #  - Research
@@ -47,9 +48,9 @@
 #  - Security # NoooOoOo!! My HoPcurity!1
 #  - Brig
   - Lawyer
-  #- Cargo
-  # - Atmospherics
-  #- Medical
+#  - Cargo
+#  - Atmospherics
+#  - Medical
   # Parkstation-Oligarchy Start
   # - Boxer # DeltaV - Add Boxer access
   # - Clown # DeltaV - Add Clown access
