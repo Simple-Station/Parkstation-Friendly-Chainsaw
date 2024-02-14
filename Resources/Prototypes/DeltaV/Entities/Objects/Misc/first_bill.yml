@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: SpaceCashLuckyBill
-  name: quartermaster's lucky bill
+  name: Cargo technician's lucky bill
   description: The first bill ever earned by the Cargo Technician from trading. A small chip is embedded in it.
   components:
     - type: Sprite
