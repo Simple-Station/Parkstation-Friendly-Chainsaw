@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingHanbok
+  description: A traditional Korean dress
+  components:
+  - type: Sprite
+    sprite: Caldera\Clothing\Hanbok.rsi
+  - type: Clothing
+    sprite: Caldera\Clothing\Hanbok.rsi
