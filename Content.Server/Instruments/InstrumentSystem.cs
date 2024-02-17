@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Interaction;
 using Content.Server.Popups;
+using Content.Server.SimpleStation14.EndOfRoundStats.Instruments;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
 using Content.Shared.Instruments;
@@ -30,6 +31,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly InteractionSystem _interactions = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private const float MaxInstrumentBandRange = 10f;
 
@@ -116,6 +118,8 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
         instrument.Playing = true;
         Dirty(uid, instrument);
+
+        instrument.TimeStartedPlaying = _gameTiming.CurTime; // Parkstation-EndOfRoundStats
     }
 
     private void OnMidiStop(InstrumentStopMidiEvent msg, EntitySessionEventArgs args)
@@ -286,6 +290,18 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             RaiseNetworkEvent(new InstrumentMidiEventEvent(netUid, new[]{RobustMidiEvent.SystemReset(0)}));
 
             RaiseNetworkEvent(new InstrumentStopMidiEvent(netUid));
+
+            // Parkstation-EndOfRoundStats-Start
+            if (instrument.TimeStartedPlaying != null && instrument.InstrumentPlayer != null)
+            {
+                var username = instrument.InstrumentPlayer.Name;
+                var entity = instrument.InstrumentPlayer.AttachedEntity;
+                var name = entity != null ? MetaData((EntityUid) entity).EntityName : "Unknown";
+
+                RaiseLocalEvent(new InstrumentPlayedStatEvent(name, (TimeSpan) (_gameTiming.CurTime - instrument.TimeStartedPlaying), username));
+            }
+            instrument.TimeStartedPlaying = null;
+            // Parkstation-EndOfRoundStats-End
         }
 
         instrument.Playing = false;
