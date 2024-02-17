@@ -15,8 +15,8 @@ public sealed partial class AnnouncerSystem
     {
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = Announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            Announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+        var announcementType = Announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+            Announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcementType.MessageOverride if it exists, otherwise return null
         return announcementType.MessageOverride != null ? Loc.GetString(announcementType.MessageOverride) : null;

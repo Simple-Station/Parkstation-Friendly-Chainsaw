@@ -6,7 +6,7 @@ namespace Content.IntegrationTests.Tests.SimpleStation14.Announcers;
 
 [TestFixture]
 [TestOf(typeof(AnnouncerPrototype))]
-public sealed class AnnouncerPrototypeTest
+public sealed partial class AnnouncerPrototypeTests
 {
     [Test]
     public async Task TestAnnouncerFallbacks()
@@ -20,7 +20,7 @@ public sealed class AnnouncerPrototypeTest
         {
             foreach (var announcer in prototype.EnumeratePrototypes<AnnouncerPrototype>())
             {
-                Assert.That(announcer.AnnouncementPaths.Any(a => a.ID.ToLower() == "fallback"),
+                Assert.That(announcer.Announcements.Any(a => a.ID.ToLower() == "fallback"),
                     Is.True,
                     $"Announcer \"{announcer.ID}\" does not have a fallback announcement");
             }

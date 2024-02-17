@@ -3,7 +3,7 @@
   basePath: /Audio/SimpleStation14/Announcements/NEIL
   baseAudioParams:
     volume: -3
-  announcementPaths:
+  announcements:
     # Communications console
     - id: announce
       path: announce.ogg

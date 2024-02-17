@@ -1,7 +1,7 @@
 - type: announcer
   id: MedBot
   basePath: /Audio/SimpleStation14/Announcements/MedBot
-  announcementPaths:
+  announcements:
     # Communications console
     - id: announce
       path: announce.ogg

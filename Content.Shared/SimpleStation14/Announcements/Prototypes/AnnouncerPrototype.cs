@@ -25,8 +25,8 @@ public sealed class AnnouncerPrototype : IPrototype
     [DataField("baseAudioParams")]
     public AudioParams? BaseAudioParams { get; }
 
-    [DataField("announcementPaths")]
-    public AnnouncementData[] AnnouncementPaths { get; } = default!;
+    [DataField("announcements")]
+    public AnnouncementData[] Announcements { get; } = default!;
 }
 
 /// <summary>

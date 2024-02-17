@@ -24,8 +24,8 @@ public sealed class SharedAnnouncerSystem : EntitySystem
 
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID.ToLower() == "fallback");
+        var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+            announcer.Announcements.First(a => a.ID.ToLower() == "fallback");
 
         // If the greedy announcementType wants to do the job of announcer, ignore the base path and just return the path
         if (announcementType.IgnoreBasePath)
@@ -46,8 +46,8 @@ public sealed class SharedAnnouncerSystem : EntitySystem
     {
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID.ToLower() == "fallback");
+        var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+            announcer.Announcements.First(a => a.ID.ToLower() == "fallback");
 
         // If the greedy announcementType wants to do the job of announcer, ignore the base path and just return the path
         if (announcementType.IgnoreBasePath)
@@ -72,8 +72,8 @@ public sealed class SharedAnnouncerSystem : EntitySystem
 
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+        var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+            announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcer.BaseAudioParams if the announcementType doesn't have an override
         return announcementType.AudioParams ?? announcer.BaseAudioParams ?? null; // For some reason the formatter doesn't warn me about "?? null" being redundant, so it stays
@@ -88,8 +88,8 @@ public sealed class SharedAnnouncerSystem : EntitySystem
     {
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-            announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+        var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+            announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcer.BaseAudioParams if the announcementType doesn't have an override
         return announcementType.AudioParams ?? announcer.BaseAudioParams;
@@ -108,8 +108,8 @@ public sealed class SharedAnnouncerSystem : EntitySystem
 
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
-        var announcementType = announcer.AnnouncementPaths.FirstOrDefault(a => a.ID == announcementId) ??
-                               announcer.AnnouncementPaths.First(a => a.ID == "fallback");
+        var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
+                               announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcementType.MessageOverride if it exists, otherwise return null
         return announcementType.MessageOverride != null ? Loc.GetString(announcementType.MessageOverride) : null;

@@ -1,7 +1,7 @@
 - type: announcer
   id: VoxFem
   basePath: /Audio/SimpleStation14/Announcements/VoxFem
-  announcementPaths:
+  announcements:
     # Communications console
     - id: announce
       path: announce.ogg

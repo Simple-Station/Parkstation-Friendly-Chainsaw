@@ -11,7 +11,7 @@
   basePath: /Audio/Codebase/Announcements/Announcer # Where to start looking for audio files
   baseAudioParams: # Default audio parameters for all announcements, all options explained later
     volume: -7 # if this example is really loud, lower it to match the others' volume
-  announcementPaths: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
+  announcements: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
     # Template
     - id: template # Lowercase of the event ID, add "-complete" to the end for post-event announcements (endings)
       ignoreBasePath: false # If true, it will ignore the basePath and use the path as is
