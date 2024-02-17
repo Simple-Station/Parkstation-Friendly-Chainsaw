@@ -7,6 +7,14 @@
   markingLimits: MobFelinidMarkingLimits
   dollPrototype: MobFelinidDummy
   skinColoration: HumanToned
+  # Parkstation-HeightSlider Start
+  minHeight: 0.65
+  defaultHeight: 0.8
+  maxHeight: 1.1
+  minWidth: 0.6
+  defaultWidth: 0.8
+  maxWidth: 1.15
+  # Parkstation-HeightSlider End
 
 - type: markingPoints
   id: MobFelinidMarkingLimits

@@ -1,5 +1,7 @@
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using System.Text.RegularExpressions;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
@@ -75,6 +77,8 @@ namespace Content.Client.Preferences.UI
         private SingleMarkingPicker _hairPicker => CHairStylePicker;
         private SingleMarkingPicker _facialHairPicker => CFacialHairPicker;
         private EyeColorPicker _eyesPicker => CEyeColorPicker;
+        private Slider _heightSlider => CHeightSlider; // Parkstation-HeightSlider
+        private Slider _widthSlider => CWidthSlider; // Parkstation-HeightSlider
 
         private TabContainer _tabContainer => CTabContainer;
         private BoxContainer _jobList => CJobList;
@@ -190,6 +194,64 @@ namespace Content.Client.Preferences.UI
             };
 
             #endregion Species
+
+            // Parkstation-HeightSlider Start
+            #region Height
+
+            var prototype = _speciesList.Find(x => x.ID == Profile?.Species) ?? _speciesList.First();
+
+
+            _heightSlider.MinValue = prototype.MinHeight;
+            _heightSlider.MaxValue = prototype.MaxHeight;
+            _heightSlider.Value = Profile?.Height ?? prototype.DefaultHeight;
+            CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", _heightSlider.Value));
+
+            _heightSlider.OnValueChanged += args =>
+            {
+                if (Profile is null)
+                    return;
+
+                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First(); // Just in case
+
+                var value = Math.Clamp(args.Value, prototype.MinHeight, prototype.MaxHeight);
+                var height = value.ToString(CultureInfo.InvariantCulture);
+                CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", height.Length > 4 ? height[..4] : height));
+                SetProfileHeight(value);
+            };
+
+            CHeightReset.OnPressed += _ =>
+            {
+                _heightSlider.Value = prototype.DefaultHeight;
+                SetProfileHeight(prototype.DefaultHeight);
+            };
+
+
+            _widthSlider.MinValue = prototype.MinWidth;
+            _widthSlider.MaxValue = prototype.MaxWidth;
+            _widthSlider.Value = Profile?.Width ?? prototype.DefaultWidth;
+            CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", _widthSlider.Value));
+
+            _widthSlider.OnValueChanged += args =>
+            {
+                if (Profile is null)
+                    return;
+
+                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First(); // Just in case
+
+                var value = Math.Clamp(args.Value, prototype.MinWidth, prototype.MaxWidth);
+                var width = value.ToString(CultureInfo.InvariantCulture);
+                CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", width.Length > 4 ? width[..4] : width));
+                SetProfileWidth(value);
+            };
+
+            CWidthReset.OnPressed += _ =>
+            {
+                _widthSlider.Value = prototype.DefaultWidth;
+                SetProfileWidth(prototype.DefaultWidth);
+            };
+
+            #endregion Height
+            // Parkstation-HeightSlider End
 
             #region Skin
 
@@ -808,6 +870,8 @@ namespace Content.Client.Preferences.UI
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             CMarkings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             UpdateSexControls(); // update sex for new species
+            UpdateHeightControls(); // Parkstation-HeightSlider - Changing species provides inaccurate sliders
+            UpdateWidthControls(); // Parkstation-HeightSlider - Changing species provides inaccurate sliders
             RebuildSpriteView(); // they might have different inv so we need a new dummy
             IsDirty = true;
             _needUpdatePreview = true;
@@ -830,6 +894,20 @@ namespace Content.Client.Preferences.UI
             Profile = Profile?.WithBackpackPreference(newBackpack);
             IsDirty = true;
         }
+
+        // Parkstation-HeightSlider Start
+        private void SetProfileHeight(float height)
+        {
+            Profile = Profile?.WithHeight(height);
+            IsDirty = true;
+        }
+
+        private void SetProfileWidth(float width)
+        {
+            Profile = Profile?.WithWidth(width);
+            IsDirty = true;
+        }
+        // Parkstation-HeightSlider End
 
         public void Save()
         {
@@ -1006,6 +1084,38 @@ namespace Content.Client.Preferences.UI
             _backpackButton.SelectId((int) Profile.Backpack);
         }
 
+        // Parkstation-HeightSlider Start
+        private void UpdateHeightControls()
+        {
+            if (Profile == null)
+                return;
+
+            var species = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
+
+            _heightSlider.MinValue = species.MinHeight;
+            _heightSlider.Value = Profile.Height;
+            _heightSlider.MaxValue = species.MaxHeight;
+
+            var height = Profile.Height.ToString(CultureInfo.InvariantCulture);
+            CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", height.Length > 4 ? height[..4] : height));
+        }
+
+        private void UpdateWidthControls()
+        {
+            if (Profile == null)
+                return;
+
+            var species = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
+
+            _widthSlider.MinValue = species.MinWidth;
+            _widthSlider.Value = Profile.Width;
+            _widthSlider.MaxValue = species.MaxWidth;
+
+            var width = Profile.Width.ToString(CultureInfo.InvariantCulture);
+            CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", width.Length > 4 ? width[..4] : width));
+        }
+        // Parkstation-HeightSlider End
+
         private void UpdateHairPickers()
         {
             if (Profile == null)
@@ -1156,6 +1266,8 @@ namespace Content.Client.Preferences.UI
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
+            UpdateHeightControls();
+            UpdateWidthControls();
 
             _preferenceUnavailableButton.SelectId((int) Profile.PreferenceUnavailable);
         }
