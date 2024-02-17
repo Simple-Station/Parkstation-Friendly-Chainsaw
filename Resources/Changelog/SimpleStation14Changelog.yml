@@ -75,3 +75,11 @@ Entries:
       message: Moths have way better control in zero gravity environments
   id: 10
   time: '2024-02-04T05:49:01.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        The crew have suddenly lost some strength in their legs and can't stop
+        or start moving instantly
+  id: 11
+  time: '2024-02-17T22:53:49.0000000+00:00'
