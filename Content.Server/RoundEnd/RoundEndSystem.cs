@@ -312,9 +312,12 @@ namespace Content.Server.RoundEnd
                     // Check is shuttle called or not. We should only dispatch announcement if it's already called
                     if (IsRoundEndRequested())
                     {
-                        _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(textAnnounce),
+                        _announcer.SendAnnouncement("shuttlecalled", // Parkstation-RandomAnnouncers
+                            Filter.Broadcast(),
+                            Loc.GetString(textAnnounce),
                             Loc.GetString(sender),
-                            colorOverride: Color.Gold);
+                            Color.Gold
+                        );
                     }
                     else
                     {

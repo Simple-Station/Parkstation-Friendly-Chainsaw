@@ -3,6 +3,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Examine;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Systems;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
@@ -31,6 +32,7 @@ namespace Content.Server.PowerSink
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _station = default!;
+        [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
         public override void Initialize()
         {
@@ -133,12 +135,7 @@ namespace Content.Server.PowerSink
             if (station == null)
                 return;
 
-            _chat.DispatchStationAnnouncement(
-                station.Value,
-                Loc.GetString("powersink-immiment-explosion-announcement"),
-                playDefaultSound: true,
-                colorOverride: Color.Yellow
-            );
+            _announcer.SendAnnouncement("powersinkexplosion", _station.GetInOwningStation(station.Value), Loc.GetString("powersink-immiment-explosion-announcement"), colorOverride: Color.Yellow, station: station.Value); // Parkstation-RandomAnnouncers
         }
     }
 }

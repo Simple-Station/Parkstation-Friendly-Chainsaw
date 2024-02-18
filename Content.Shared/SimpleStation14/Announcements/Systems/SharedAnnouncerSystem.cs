@@ -17,10 +17,10 @@ public sealed class SharedAnnouncerSystem : EntitySystem
     /// </summary>
     /// <param name="announcementId">ID of the announcement from the announcer to get information for</param>
     /// <param name="announcerId">ID of the announcer to use instead of the current one</param>
-    public string? GetAnnouncementPath(string announcementId, string announcerId)
+    public string GetAnnouncementPath(string announcementId, string announcerId)
     {
         if (!_proto.TryIndex<AnnouncerPrototype>(announcerId, out var announcer))
-            return null;
+            return "";
 
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found

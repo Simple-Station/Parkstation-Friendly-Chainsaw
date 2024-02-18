@@ -10,16 +10,15 @@
   id: Announcer # Localized as "announcer-<id>-name" in chat
   basePath: /Audio/Codebase/Announcements/Announcer # Where to start looking for audio files
   baseAudioParams: # Default audio parameters for all announcements, all options explained later
-    volume: -7 # if this example is really loud, lower it to match the others' volume
+    volume: -7 # If this announcer is really loud, lower it to match the others' volume
   announcements: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
     # Template
     - id: template # Lowercase of the event ID, add "-complete" to the end for post-event announcements (endings)
       ignoreBasePath: false # If true, it will ignore the basePath and use the path as is
       path: template.ogg # Path to the file relative to basePath/, named with snake_case except for "-complete"
       collection: AnnouncerTemplateAnnouncements # Collection of audios to randomly use for this, will ignore path if set - Ignores basePath automatically!
-      message: announcer-announcement-template # Localization key for the announcement message to use instead of the default one
+      message: announcer-announcement-template # Localization key for the announcement message to use instead of the default one - NOTE this does not pass through previous loc args yet
       audioParams: # Overrides baseAudioParams entirely for this specific announcement, numbers are all floats
-        attenuation: LinearDistanceClamped # See AudioParams.cs for info - default is here
         volume: 3 # We don't want announcement volumes to vary too much - default is here
         pitch: 1 # Default is here
         playOffsetSeconds: 0 # How many seconds into the audio to start from - default is here
@@ -36,6 +35,12 @@
       path: spawn_announce.ogg
     - id: war # Nuclear Operative declaration of war
       path: war.ogg
+    - id: nukecodes # The station has been send nuclear activation codes
+      path: nuke_codes.ogg # Or command_report.ogg if you want
+    - id: nukearm # The nuke is active and ticking
+      path: nuke_arm.ogg
+    - id: nukedisarm # The nuke has been disarmed
+      path: nuke_disarm.ogg
 
     # Alert levels
     - id: alertgreen # Everything is fine
@@ -62,6 +67,8 @@
     ### Mid-Round Antagonists
     - id: deathmatch # Everyone is going to kill each other
       path: death_match.ogg
+    - id: powersinkexplosion # A power sink is about to overcharge and explode
+      path: powersink_explosion.ogg
     ### Events
     - id: anomalyspawn # An anomaly has spawned in a random place
       path: anomaly.ogg
@@ -77,6 +84,8 @@
       path: clerical_error.ogg
     - id: dragonspawn # A dragon has spawned in a random place
       path: dragon_spawn.ogg
+    - id: carprift # A dragon's carp rift is active
+      path: carp_rift.ogg
     - id: revenantspawn # A revenant has spawned (by a prober?)
       path: revenant_spawn.ogg
     - id: gasleak # A random gas is coming out of a random vent

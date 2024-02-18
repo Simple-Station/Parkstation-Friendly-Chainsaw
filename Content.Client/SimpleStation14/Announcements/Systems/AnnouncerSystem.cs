@@ -54,7 +54,7 @@ public sealed class AnnouncerSystem : EntitySystem
         if (!ev.Recipients.Contains(_player.LocalSession!.UserId))
             return;
 
-        var resource = _cache.GetResource<AudioResource>(_announcer.GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId)!);
+        var resource = _cache.GetResource<AudioResource>(_announcer.GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId));
         var source = _audioManager.CreateAudioSource(resource);
 
         if (source != null)
