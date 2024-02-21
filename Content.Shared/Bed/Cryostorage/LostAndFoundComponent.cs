@@ -1,0 +1,85 @@
+﻿using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
+
+namespace Content.Shared.Bed.Cryostorage;
+
+/// <summary>
+/// This is used for a container which holds the items lost
+/// when a player enters cryostorage.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
+public sealed partial class LostAndFoundComponent : Component
+{
+    /// <summary>
+    /// A list of players who have actively entered cryostorage.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public List<EntityUid> StoredPlayers = new();
+
+}
+
+[Serializable, NetSerializable]
+public record struct CryostorageContainedPlayerData()
+{
+    /// <summary>
+    /// The player's IC name
+    /// </summary>
+    public string PlayerName = string.Empty;
+
+    /// <summary>
+    /// The player's entity
+    /// </summary>
+    public NetEntity PlayerEnt = NetEntity.Invalid;
+
+    /// <summary>
+    /// A dictionary relating a slot definition name to the name of the item inside of it.
+    /// </summary>
+    public Dictionary<string, string> ItemSlots = new();
+
+    /// <summary>
+    /// A dictionary relating a hand ID to the hand name and the name of the item being held.
+    /// </summary>
+    public Dictionary<string, string> HeldItems = new();
+}
+
+[Serializable, NetSerializable]
+public sealed class CryostorageBuiState : BoundUserInterfaceState
+{
+    public List<CryostorageContainedPlayerData> PlayerData;
+
+    public CryostorageBuiState(List<CryostorageContainedPlayerData> playerData)
+    {
+        PlayerData = playerData;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class CryostorageRemoveItemBuiMessage : BoundUserInterfaceMessage
+{
+    public NetEntity StoredEntity;
+
+    public string Key;
+
+    public RemovalType Type;
+
+    public enum RemovalType : byte
+    {
+        Hand,
+        Inventory
+    }
+
+    public CryostorageRemoveItemBuiMessage(NetEntity storedEntity, string key, RemovalType type)
+    {
+        StoredEntity = storedEntity;
+        Key = key;
+        Type = type;
+    }
+}
+
+[Serializable, NetSerializable]
+public enum CryostorageUIKey : byte
+{
+    Key
+}
