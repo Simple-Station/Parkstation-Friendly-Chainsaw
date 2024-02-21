@@ -42,9 +42,6 @@ namespace Content.Server.GameTicking
 #endif
 
         [ViewVariables]
-        private TimeSpan _roundStartTimeSpan;
-
-        [ViewVariables]
         private bool _startingRound;
 
         [ViewVariables]
@@ -164,6 +161,8 @@ namespace Content.Server.GameTicking
 
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
+            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), "Station map");
+
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
 
@@ -246,7 +245,7 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            _roundStartTimeSpan = _gameTiming.CurTime;
+            RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
             ReqWindowAttentionAll();
             UpdateLateJoinStatus();
@@ -362,7 +361,9 @@ namespace Content.Server.GameTicking
                     playerIcName = icName;
 
                 if (TryGetEntity(mind.OriginalOwnedEntity, out var entity))
-                    _pvsOverride.AddGlobalOverride(entity.Value, recursive: true);
+                {
+                    _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
+                }
 
                 var roles = _roles.MindGetAllRoles(mindId);
 
@@ -386,10 +387,10 @@ namespace Content.Server.GameTicking
 
             // This ordering mechanism isn't great (no ordering of minds) but functions
             var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
+            var sound = _audio.GetSound(new SoundCollectionSpecifier("RoundEnd"));
 
             RaiseNetworkEvent(new RoundEndMessageEvent(gamemodeTitle, roundEndText, roundDuration, RoundId,
-                listOfPlayerInfoFinal.Length, listOfPlayerInfoFinal, LobbySong,
-                new SoundCollectionSpecifier("RoundEnd").GetSound()));
+                listOfPlayerInfoFinal.Length, listOfPlayerInfoFinal, LobbySong, sound));
             RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration)); // Corvax-RoundFlow
         }
 
@@ -505,29 +506,9 @@ namespace Content.Server.GameTicking
             RaiseLocalEvent(ev);
 
             // So clients' entity systems can clean up too...
-            RaiseNetworkEvent(ev, Filter.Broadcast());
+            RaiseNetworkEvent(ev);
 
-            // Delete all entities.
-            foreach (var entity in EntityManager.GetEntities().ToArray())
-            {
-#if EXCEPTION_TOLERANCE
-                try
-                {
-#endif
-                // TODO: Maybe something less naive here?
-                // FIXME: Actually, definitely.
-                if (!Deleted(entity) && !Terminating(entity))
-                    EntityManager.DeleteEntity(entity);
-#if EXCEPTION_TOLERANCE
-                }
-                catch (Exception e)
-                {
-                    _sawmill.Error($"Caught exception while trying to delete entity {ToPrettyString(entity)}, this might corrupt the game state...");
-                    _runtimeLog.LogException(e, nameof(GameTicker));
-                    continue;
-                }
-#endif
-            }
+            EntityManager.FlushEntities();
 
             _mapManager.Restart();
 
@@ -545,7 +526,7 @@ namespace Content.Server.GameTicking
             _playerGameStatuses.Clear();
             foreach (var session in _playerManager.Sessions)
             {
-                _playerGameStatuses[session.UserId] = LobbyEnabled ?  PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
+                _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             }
         }
 
@@ -560,7 +541,7 @@ namespace Content.Server.GameTicking
 
             RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
 
-            _chatManager.DispatchServerAnnouncement(Loc.GetString("game-ticker-delay-start", ("seconds",time.TotalSeconds)));
+            _chatManager.DispatchServerAnnouncement(Loc.GetString("game-ticker-delay-start", ("seconds", time.TotalSeconds)));
 
             return true;
         }
@@ -594,7 +575,7 @@ namespace Content.Server.GameTicking
 
         public TimeSpan RoundDuration()
         {
-            return _gameTiming.CurTime.Subtract(_roundStartTimeSpan);
+            return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
         }
 
         private void AnnounceRound()
@@ -612,7 +593,7 @@ namespace Content.Server.GameTicking
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playSound: true);
 
             if (proto.Sound != null)
-                SoundSystem.Play(proto.Sound.GetSound(), Filter.Broadcast());
+                _audio.PlayGlobal(proto.Sound, Filter.Broadcast(), true);
         }
 
         private async void SendRoundStartedDiscordMessage()

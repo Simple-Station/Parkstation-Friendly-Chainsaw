@@ -5,12 +5,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingNeckCloakQm
       - id: BoxFolderQmClipboard
-      - id: ClothingHeadsetCargo
-      - id: ClothingUniformJumpsuitQMTurtleneck
-      - id: ClothingUniformJumpskirtQMTurtleneck
-      - id: ClothingHandsGlovesColorBrown
       - id: CargoRequestComputerCircuitboard
       - id: CargoShuttleComputerCircuitboard
       - id: CargoShuttleConsoleCircuitboard
@@ -24,6 +19,8 @@
       - id: BoxEncryptionKeyCargo
       - id: SpaceCashLuckyBill # DeltaV - LO steal objective, see Resources/Prototypes/DeltaV/Entities/Objects/Misc/first_bill.yml
       - id: BoxPDACargo # Delta-V
+      - id: QuartermasterIDCard # Delta-V
+      - id: ClothingShoesBootsWinterLogisticsOfficer #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerCaptainFilledHardsuit
@@ -35,10 +32,7 @@
       - id: ClothingOuterArmorCaptainCarapace
       - id: NukeDisk
       - id: PinpointerNuclear
-      - id: CaptainIDCard
-      - id: ClothingHeadHatCaptain
-      - id: ClothingHandsGlovesInspection # DeltaV - ClothingHandsGlovesCaptain replaced in favour of inspection gloves
-      - id: ClothingHandsGlovesCaptain
+#     - id: CaptainIDCard # DeltaV - Replaced by the spare ID system
       - id: ClothingOuterHardsuitCap
       - id: ClothingMaskGasCaptain
       - id: WeaponDisabler
@@ -51,17 +45,14 @@
         prob: 0.25
       - id: ClothingBeltSheathFilled
       - id: DoorRemoteCommand
-      - id: ClothingNeckCloakCapFormal
-      - id: ClothingUniformJumpsuitCapFormal
-      - id: ClothingUniformJumpskirtCapFormalDress
       - id: RubberStampCaptain
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
-      - id: ClothingHeadHatCapcap
       - id: ClothingHeadHatBeretCap # Nyanotrasen - Captain's Beret
       - id: ClothingShoesLeather # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
+      - id: ClothingShoesBootsWinterCap #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerCaptainFilled
@@ -73,10 +64,7 @@
       - id: ClothingOuterArmorCaptainCarapace
       - id: NukeDisk
       - id: PinpointerNuclear
-      - id: CaptainIDCard
-      - id: ClothingHeadHatCaptain
-      - id: ClothingNeckCloakCap
-      - id: ClothingHandsGlovesInspection # DeltaV - ClothingHandsGlovesCaptain replaced in favour of inspection gloves
+#     - id: CaptainIDCard # DeltaV - Replaced by the spare ID system
       - id: WeaponDisabler
       - id: CommsComputerCircuitboard
       - id: ClothingHeadsetAltCommand
@@ -87,17 +75,14 @@
         prob: 0.25
       - id: ClothingBeltSheathFilled
       - id: DoorRemoteCommand
-      - id: ClothingNeckCloakCapFormal
-      - id: ClothingUniformJumpsuitCapFormal
-      - id: ClothingUniformJumpskirtCapFormalDress
       - id: RubberStampCaptain
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
-      - id: ClothingHeadHatCapcap
       - id: ClothingHeadHatBeretCap # Nyanotrasen - Captain's Beret
       - id: ClothingShoesLeather # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
+      - id: ClothingShoesBootsWinterCap #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -106,8 +91,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingNeckCloakHop
-      - id: ClothingHeadHatHopcap
       - id: HoPIDCard
       - id: ClothingHeadsetAltService # DeltaV - HoP is now a service role, replaces their all channels headset.
       - id: BoxPDA
@@ -115,7 +98,7 @@
       - id: BoxHeadset
       - id: IDComputerCircuitboard
       - id: WeaponDisabler
-      - id: ClothingOuterWinterHoP
+      - id: ClothingOuterCoatHoPArmored # DeltaV
       - id: ClothingOuterArmorDuraVest # DeltaV - replaced HoP's armoured coat with a standard stabproof, pending HoPcoat resprite
       - id: ClothingOuterCoatHoPFormal # DeltaV - formal jacket
       - id: CigarGoldCase
@@ -137,7 +120,7 @@
       - id: ClothingUniformJumpsuitBoatswain # DeltaV - Add turtleneck for HoP.
       - id: ClothingShoesBootsLaceup # DeltaV - add fancy shoes for HoP and cap
       - id: ClothingShoesMiscWhite # DeltaV - add fancy shoes for HoP and cap
-      - id: ClothingOuterHardsuitHoP # Parkstation-HoPSuit
+      - id: ClothingShoesBootsWinterHeadOfPersonel #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -148,14 +131,10 @@
     contents:
       - id: ClothingOuterHardsuitEngineeringWhite
       - id: ClothingMaskBreath
-      - id: ClothingUniformJumpsuitChiefEngineerTurtle
-      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: OxygenTankFilled
       - id: NitrogenTankFilled
-      - id: ClothingNeckCloakCe
       - id: ClothingEyesGlassesMeson
       - id: ClothingBeltChiefEngineerFilled
-      - id: ClothingHeadHatBeretEngineering
       - id: ClothingShoesBootsMagAdv
       - id: ClothingHandsGlovesColorYellow
       - id: CigarCase
@@ -167,6 +146,10 @@
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
       - id: BoxPDAEngineering # Delta-V
+      - id: RCD
+      - id: RCDAmmo
+      - id: CEIDCard # Delta-V
+      - id: ClothingShoesBootsWinterChiefEngineer #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -175,13 +158,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingNeckCloakCe
       - id: ClothingEyesGlassesMeson
       - id: ClothingBeltChiefEngineerFilled
-      - id: ClothingHeadHatBeretEngineering
       - id: ClothingHandsGlovesColorYellow
-      - id: ClothingUniformJumpsuitChiefEngineerTurtle
-      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: CigarCase
         prob: 0.15
       - id: DoorRemoteEngineering
@@ -190,6 +169,10 @@
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
       - id: BoxPDAEngineering # Delta-V
+      - id: CEIDCard # Delta-V
+      - id: ClothingShoesBootsWinterChiefEngineer #Delta V: Add departmental winter boots
+      - id: RCD
+      - id: RCDAmmo
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
@@ -200,7 +183,7 @@
     contents:
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
+      - id: ClothingEyesHudMedical
       - id: ClothingHeadsetAltMedical
       - id: ClothingCloakCmo
       - id: ClothingBackpackDuffelSurgeryFilled
@@ -216,6 +199,8 @@
       - id: BoxEncryptionKeyMedical
       - id: BoxPDAMedical # Delta-V
       - id: ClothingBeltMilitaryWebbingCMO # DeltaV - add webbing for CMO. ON THIS STATION, IT'S DRIP OR [die], CAPTAIN!
+      - id: CMOIDCard # Delta-V
+      - id: ClothingShoesBootsWinterChiefMedicalOfficer #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -226,13 +211,10 @@
     contents:
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
+      - id: ClothingEyesHudMedical
       - id: ClothingHeadsetAltMedical
-      - id: ClothingCloakCmo
       - id: ClothingBackpackDuffelSurgeryFilled
-      - id: ClothingOuterCoatLabCmo
       - id: ClothingMaskSterile
-      - id: ClothingHeadHatBeretCmo
       - id: Hypospray
       - id: HandheldCrewMonitor
       - id: DoorRemoteMedical
@@ -241,6 +223,8 @@
       - id: BoxEncryptionKeyMedical
       - id: BoxPDAMedical # Delta-V
       - id: ClothingBeltMilitaryWebbingCMO # DeltaV - add webbing for CMO. ON THIS STATION, IT'S DRIP OR [die], CAPTAIN!
+      - id: CMOIDCard # Delta-V
+      - id: ClothingShoesBootsWinterChiefMedicalOfficer #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
@@ -252,18 +236,17 @@
       - id: ResearchComputerCircuitboard
       - id: ProtolatheMachineCircuitboard
       - id: CircuitImprinterMachineCircuitboard
-      - id: ClothingNeckCloakMystagogue # DeltaV - ClothingNeckCloakRd replaced in favour of Velta variant
       - id: ClothingHeadsetMedicalScience
       - id: ClothingOuterHardsuitRd
       - id: HandTeleporter
       - id: DoorRemoteResearch
-      - id: ClothingHeadHatBeretRND
-      - id: ClothingHandsGlovesColorPurple
       - id: ClothingBeltUtilityFilled
       - id: RubberStampRd
-      - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
       - id: BoxPDAScience # Delta-V
+      - id: RDIDCard # Delta-V
+      - id: ClothingShoesBootsWinterMystagogue #Delta V: Add departmental winter boots
+      - id: EncryptionKeyBinary
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -275,17 +258,16 @@
       - id: ResearchComputerCircuitboard
       - id: ProtolatheMachineCircuitboard
       - id: CircuitImprinterMachineCircuitboard
-      - id: ClothingNeckCloakMystagogue # DeltaV - ClothingNeckCloakRd replaced in favour of Velta variant
       - id: ClothingHeadsetMedicalScience
       - id: HandTeleporter
       - id: DoorRemoteResearch
-      - id: ClothingHeadHatBeretRND
-      - id: ClothingHandsGlovesColorPurple
       - id: ClothingBeltUtilityFilled
       - id: RubberStampRd
-      - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
       - id: BoxPDAScience # Delta-V
+      - id: RDIDCard # Delta-V
+      - id: ClothingShoesBootsWinterMystagogue #Delta V: Add departmental winter boots
+      - id: EncryptionKeyBinary
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit
@@ -296,23 +278,16 @@
     contents:
       - id: ClothingEyesHudSecurity
       - id: WeaponDisabler
-      - id: ClothingHeadHatBeretHoS
-      - id: ClothingHeadHatHoshat
-      - id: ClothingNeckCloakHos
       - id: ClothingOuterCoatHoSTrench
-      - id: ClothingUniformJumpskirtHoSAlt
-      - id: ClothingUniformJumpsuitHoSAlt
       - id: ClothingOuterHardsuitCombatHoS # DeltaV - ClothingOuterHardsuitSecurityRed replaced in favour of head of security's advanced combat hardsuit.
       - id: ClothingMaskGasSwat
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
-      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesSunglasses
       - id: ClothingShoesBootsJack
       - id: CigarGoldCase
         prob: 0.50
       - id: DoorRemoteSecurity
-      - id: ClothingUniformJumpskirtHosFormal
-      - id: ClothingUniformJumpsuitHosFormal
       - id: RubberStampHos
       - id: SecurityTechFabCircuitboard
       - id: JetpackSecurityFilled
@@ -320,6 +295,9 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: BoxPDASecurity # Delta-V
+      - id: WeaponEnergyGunMultiphase # DeltaV - HoS Energy Gun
+      - id: HoSIDCard # Delta-V
+      - id: ClothingShoesBootsWinterHeadOfSecurity #Delta V: Add departmental winter boots
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -330,24 +308,36 @@
     contents:
       - id: ClothingEyesHudSecurity
       - id: WeaponDisabler
-      - id: ClothingHeadHatBeretHoS
-      - id: ClothingHeadHatHoshat
-      - id: ClothingNeckCloakHos
       - id: ClothingOuterCoatHoSTrench
-      - id: ClothingUniformJumpskirtHoSAlt
-      - id: ClothingUniformJumpsuitHoSAlt
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
-      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesSunglasses
       - id: ClothingShoesBootsJack
       - id: CigarGoldCase
         prob: 0.50
       - id: DoorRemoteSecurity
-      - id: ClothingUniformJumpskirtHosFormal
-      - id: ClothingUniformJumpsuitHosFormal
       - id: RubberStampHos
       - id: SecurityTechFabCircuitboard
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: BoxPDASecurity # Delta-V
+      - id: WeaponEnergyGunMultiphase # DeltaV - HoS Energy Gun
+      - id: HoSIDCard # Delta-V
+      - id: ClothingShoesBootsWinterHeadOfSecurity #Delta V: Add departmental winter boots
+
+- type: entity
+  id: LockerFreezerVaultFilled
+  suffix: Vault, Locked
+  parent: LockerFreezerBase
+  components:
+  - type: AccessReader
+    access: [ [ "Command" ] ]
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverDeckard
+    - id: ClothingOuterHardsuitBasic
+    - id: JetpackBlue
+    - id: SpaceCash1000
+    - id: BeachBall
+    - id: BikeHorn

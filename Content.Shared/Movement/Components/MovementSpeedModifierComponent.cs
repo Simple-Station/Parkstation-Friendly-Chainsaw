@@ -14,16 +14,18 @@ namespace Content.Shared.Movement.Components
         // Weightless
         public const float DefaultMinimumFrictionSpeed = 0.005f;
         public const float DefaultWeightlessFriction = 1f;
-        public const float DefaultWeightlessFrictionNoInput = 0.2f;
+        public const float DefaultWeightlessFrictionNoInput = 0f; // Parkstation-FrictionlessSpace
         public const float DefaultWeightlessModifier = 0.7f;
         public const float DefaultWeightlessAcceleration = 1f;
 
-        public const float DefaultAcceleration = 20f;
-        public const float DefaultFriction = 20f;
-        public const float DefaultFrictionNoInput = 20f;
+        // Parkstation-AcceleratingMovement Start
+        public const float DefaultAcceleration = 8f;
+        public const float DefaultFriction = 8f;
+        public const float DefaultFrictionNoInput = 14f;
+        // Parkstation-AcceleratingMovement End
 
-        public const float DefaultBaseWalkSpeed = 2.5f;
-        public const float DefaultBaseSprintSpeed = 4.5f;
+        public const float DefaultBaseWalkSpeed = 3f;
+        public const float DefaultBaseSprintSpeed = 5f;
 
         [AutoNetworkedField, ViewVariables]
         public float WalkSpeedModifier = 1.0f;
@@ -87,20 +89,20 @@ namespace Content.Shared.Movement.Components
         /// <summary>
         /// The acceleration applied to mobs when moving.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
         public float Acceleration = DefaultAcceleration;
 
         /// <summary>
         /// The negative velocity applied for friction.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
         public float Friction = DefaultFriction;
 
         /// <summary>
         /// The negative velocity applied for friction.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float? FrictionNoInput;
+        [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
+        public float? FrictionNoInput = DefaultFrictionNoInput; // Parkstation-AcceleratingMovement
 
         [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
         public float BaseWalkSpeed { get; set; } = DefaultBaseWalkSpeed;

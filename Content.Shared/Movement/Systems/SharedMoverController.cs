@@ -12,15 +12,18 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.StepTrigger.Components; // Delta V-NoShoesSilentFootstepsComponent
 
 namespace Content.Shared.Movement.Systems
 {
@@ -44,6 +47,7 @@ namespace Content.Shared.Movement.Systems
         [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
         [Dependency] private   readonly SharedTransformSystem _transform = default!;
         [Dependency] private   readonly TagSystem _tags = default!;
+        [Dependency] private   readonly IEntityManager _entities = default!; // Delta V-NoShoesSilentFootstepsComponent
 
         protected EntityQuery<InputMoverComponent> MoverQuery;
         protected EntityQuery<MobMoverComponent> MobMoverQuery;
@@ -189,8 +193,8 @@ namespace Content.Shared.Movement.Systems
 
             // Don't bother getting the tiledef here if we're weightless or in-air
             // since no tile-based modifiers should be applying in that situation
-            if (_mapManager.TryFindGridAt(xform.MapPosition, out var grid, out var gridComp)
-                && _mapSystem.TryGetTileRef(grid, gridComp, xform.Coordinates, out var tile)
+            if (TryComp(xform.GridUid, out MapGridComponent? gridComp)
+                && _mapSystem.TryGetTileRef(xform.GridUid.Value, gridComp, xform.Coordinates, out var tile)
                 && !(weightless || physicsComponent.BodyStatus == BodyStatus.InAir))
             {
                 tileDef = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId];
@@ -441,6 +445,14 @@ namespace Content.Shared.Movement.Systems
                 sound = moverModifier.FootstepSoundCollection;
                 return true;
             }
+            
+            // If got the component in yml and no shoes = no sound. Delta V
+            if (_entities.TryGetComponent(uid, out NoShoesSilentFootstepsComponent? _) &
+                !_inventory.TryGetSlotEntity(uid, "shoes", out var _))
+            {
+                return false;
+            }
+            // Delta V NoShoesSilentFootsteps till here.
 
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
                 TryComp<FootstepModifierComponent>(shoes, out var modifier))

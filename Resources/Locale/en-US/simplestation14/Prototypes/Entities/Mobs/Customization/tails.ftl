@@ -1,4 +1,4 @@
-﻿marking-TailAxolotl=Axolotl
+marking-TailAxolotl=Axolotl
 marking-TailDatashark=Datashark
 marking-TailEasternDragon=Eastern Dragon
 marking-TailFennec=Fennec

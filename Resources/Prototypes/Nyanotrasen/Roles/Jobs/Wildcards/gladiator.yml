@@ -4,15 +4,16 @@
   description: job-description-gladiator
   playTimeTracker: JobGladiator
   startingGear: NyanoGladiatorGear
-#  alwaysUseSpawner: true
+  alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconGladiator"
   supervisors: job-supervisors-security
   setPreference: true
 #  whitelistRequired: true
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600
   special:
   - !type:AddComponentSpecial
     components:

@@ -11,6 +11,7 @@
           state: icon-super
     - type: RandomSpawner
       rarePrototypes:
+        - ClothingUniformJumpsuitFamilyGuy
         - CigarGold
         - ClothingNeckCloakHerald
         - ClothingHeadHelmetTemplar
@@ -18,7 +19,16 @@
         - ClothingNeckCloakAdmin
         - ClothingNeckCloakBoat # DeltaV - adds boat cloak to maints spawner. Makes more sense than admin cloak o.o
         - ClothingNeckCloakMoth
+        - ClothingNeckCloakVoid
         - ClothingNeckCloakGoliathCloak
+        - ClothingNeckCloakAce
+        - ClothingNeckCloakAro
+        - ClothingNeckCloakBi
+        - ClothingNeckCloakIntersex
+        - ClothingNeckCloakLesbian
+        - ClothingNeckCloakGay
+        - ClothingNeckCloakEnby
+        - ClothingNeckCloakPan
         - ToySkeleton
         - Basketball
         - Football
@@ -53,6 +63,8 @@
         - ClothingShoesCult
         - ClothingUniformJumpsuitAncient
         - ClothingUniformJumpsuitPirate
+        - ClothingShoesBootsCowboyFancy
+        - ClothingHeadHatCowboyBountyHunter
       rareChance: 0.01
       prototypes:
         - Lighter
@@ -96,6 +108,7 @@
         - ClothingNeckTieRed
         - ClothingOuterCoatGentle
         - ClothingOuterCoatJensen
+        - ClothingEyesGlassesJensen
         - ClothingOuterCoatLab
         - ClothingOuterCoatPirate
         - ClothingOuterHoodieBlack
@@ -105,12 +118,14 @@
         - ClothingOuterFlannelGreen
         - ClothingOuterVestHazard
         - ClothingShoesBootsJack
+        - ClothingShoesHighheelBoots
         - ClothingShoesBootsLaceup
         - ClothingShoesLeather
         - ClothingShoesBootsSalvage
         - ClothingShoesBootsWork
         - ClothingShoesTourist
         - ClothingUniformJumpsuitLoungewear
+        - ClothingHeadHatCowboyRed
       chance: 0.6
       offset: 0.0
 
@@ -137,10 +152,13 @@
       rareChance: 0.08
       prototypes:
         - FlashlightLantern
-        - YellowOxygenTankFilled
+        - OxygenTankFilled
         - DoubleEmergencyOxygenTankFilled
         - ToolboxEmergencyFilled
+        - ToolboxArtisticFilled
         - NitrogenTankFilled
+        - DoubleEmergencyNitrogenTankFilled
+        - EmergencyFunnyOxygenTankFilled
         - ToolboxElectricalFilled
         - ToolboxMechanicalFilled
         - ClothingBeltUtility
@@ -184,6 +202,7 @@
         - CableHVStack10
         - CableMVStack10
         - CableApcStack10
+        - PetCarrier
       chance: 0.6
       offset: 0.0
 
@@ -210,8 +229,10 @@
       rareChance: 0.05
       prototypes:
         - FlashlightLantern
-        - YellowOxygenTankFilled
+        - OxygenTankFilled
         - DoubleEmergencyOxygenTankFilled
+        - NitrogenTankFilled
+        - DoubleEmergencyNitrogenTankFilled
         - Lighter
         - Matchbox
         - Crowbar

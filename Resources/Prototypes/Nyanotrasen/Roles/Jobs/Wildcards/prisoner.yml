@@ -4,14 +4,15 @@
   description: job-description-prisoner
   playTimeTracker: JobPrisoner
   startingGear: PrisonerGear
-#  alwaysUseSpawner: true
+  alwaysUseSpawner: true
   canBeAntag: false
 #  whitelistRequired: true
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-security
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600
 
 - type: startingGear
   id: PrisonerGear

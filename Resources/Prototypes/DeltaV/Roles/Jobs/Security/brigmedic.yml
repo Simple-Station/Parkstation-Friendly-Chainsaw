@@ -3,6 +3,7 @@
   name: job-name-brigmedic
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
+  setPreference: false # Parkstation-Playtime
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
@@ -17,9 +18,11 @@
   access:
   - Medical
   - Security
-  - Brig
+  #- Brig #Delta V: Removed brig access
   - Maintenance
   - External
+  extendedAccess:
+  - Chemistry
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

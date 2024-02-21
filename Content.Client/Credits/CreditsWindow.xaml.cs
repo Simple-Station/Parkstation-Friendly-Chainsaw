@@ -11,6 +11,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
+using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Localization;
 using Robust.Shared.Maths;
@@ -23,14 +24,14 @@ namespace Content.Client.Credits
     [GenerateTypedNameReferences]
     public sealed partial class CreditsWindow : DefaultWindow
     {
-        [Dependency] private readonly IResourceCache _resourceManager = default!;
+        [Dependency] private readonly IResourceManager _resourceManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         private static readonly Dictionary<string, int> PatronTierPriority = new()
         {
-            ["Nuclear Operative"] = 1,
-            ["Syndicate Agent"] = 2,
-            ["Revolutionary"] = 3
+            ["Central Commander"] = 1,
+            ["Captain"] = 2,
+            ["Assistant"] = 3
         };
 
         public CreditsWindow()
@@ -49,7 +50,7 @@ namespace Content.Client.Credits
 
         private void PopulateLicenses(BoxContainer licensesContainer)
         {
-            foreach (var entry in CreditsManager.GetLicenses().OrderBy(p => p.Name))
+            foreach (var entry in CreditsManager.GetLicenses(_resourceManager).OrderBy(p => p.Name))
             {
                 licensesContainer.AddChild(new Label {StyleClasses = {StyleBase.StyleClassLabelHeading}, Text = entry.Name});
 

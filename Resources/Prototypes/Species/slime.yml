@@ -13,8 +13,8 @@
   id: MobSlimeSprites
   sprites:
     Head: MobSlimeHead
-    Hair: MobSlimeMarkingFollowSkin
-    FacialHair: MobSlimeMarkingFollowSkin
+    Hair: MobSlimeMarking # Parkstation-WideUseMarkings
+    FacialHair: MobSlimeMarking # Parkstation-WideUseMarkings
     Chest: MobSlimeTorso
     Eyes: MobHumanoidEyes
     LArm: MobSlimeLArm
@@ -25,6 +25,12 @@
     RLeg: MobSlimeRLeg
     LFoot: MobSlimeLFoot
     RFoot: MobSlimeRFoot
+    # Parkstation-FixSlimeMarkings-Start
+    Tail: MobSlimeMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    HeadTop: MobSlimeMarking
+    Snout: MobSlimeMarking
+    # Parkstation-FixSlimeMarkings-End
 
 - type: markingPoints
   id: MobSlimeMarkingLimits
@@ -35,17 +41,36 @@
     FacialHair:
       points: 1
       required: false
+    Chest:
+      points: 1
+      required: false
     Legs:
       points: 2
       required: false
     Arms:
       points: 4
       required: false
+    Tail: # Parkstation-WideUseMarkings
+      points: 1
+      required: false
+    Wings: # Parkstation-Wings
+      points: 1
+      required: false
+    HeadTop: # Parkstation-WideUseMarkings
+      points: 1
+      required: false
+    Snout: # Parkstation-WideUseMarkings
+      points: 1
+      required: false
+
+- type: humanoidBaseSprite # Parkstation-FixSlimeMarkings
+  id: MobSlimeMarking
+  layerAlpha: 0.68
 
 - type: humanoidBaseSprite
   id: MobSlimeMarkingFollowSkin
   markingsMatchSkin: true
-  layerAlpha: 0.5
+  layerAlpha: 0.68 # Parkstation-FixSlimeMarkings
 
 - type: humanoidBaseSprite
   id: MobSlimeHead

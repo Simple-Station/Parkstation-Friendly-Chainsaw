@@ -1,1 +1,1 @@
-﻿marking-EyesShadowkin=Shadowkin
+marking-EyesShadowkin=Shadowkin
