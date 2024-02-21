@@ -1,7 +1,5 @@
 ﻿using System.Numerics;
 using Content.Server.Mind;
-using Content.Shared.Mind.Components;
-using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Examine;

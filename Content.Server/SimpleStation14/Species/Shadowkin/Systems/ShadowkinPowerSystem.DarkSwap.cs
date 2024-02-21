@@ -3,7 +3,6 @@ using Content.Server.Magic;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.SimpleStation14.Species.Shadowkin.Components;
-using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Cuffs.Components;

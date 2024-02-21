@@ -1,9 +1,9 @@
 ﻿using Content.Server.SimpleStation14.Species.Shadowkin.Components;
-using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;

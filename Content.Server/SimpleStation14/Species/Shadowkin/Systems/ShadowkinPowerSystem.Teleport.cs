@@ -1,12 +1,12 @@
 ﻿using Content.Server.Magic;
 using Content.Server.Pulling;
 using Content.Server.SimpleStation14.Species.Shadowkin.Components;
-using Content.Server.SimpleStation14.Species.Shadowkin.Events;
 using Content.Shared.Actions;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Pulling.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -66,7 +66,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         var transform = Transform(args.Performer);
         if (transform.MapID != args.Target.GetMapId(EntityManager))
             return;
-
+        
         SharedPullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
         if (_entity.TryGetComponent<SharedPullerComponent>(args.Performer, out var puller) &&
             puller.Pulling != null &&

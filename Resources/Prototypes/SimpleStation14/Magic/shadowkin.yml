@@ -7,13 +7,13 @@
     useDelay: 5
     range: 32
     itemIconStyle: NoItem
-    checkCanAccess: true
-    repeat: true
-    priority: -20
     icon:
       sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
       state: teleport
-    serverEvent: !type:ShadowkinTeleportEvent
+    checkCanAccess: true
+    repeat: true
+    priority: -20
+    event: !type:ShadowkinTeleportEvent
       powerCost: 40
       staminaCost: 20
       speech: action-description-shadowkin-teleport
@@ -30,7 +30,7 @@
     icon:
       sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
       state: darkswap
-    serverEvent: !type:ShadowkinDarkSwapEvent
+    event: !type:ShadowkinDarkSwapEvent
       powerCostOn: 60
       powerCostOff: 45
       staminaCostOn: 25
@@ -50,4 +50,4 @@
       sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
       state: rest
     checkCanInteract: false
-    serverEvent: !type:ShadowkinRestEvent
+    event: !type:ShadowkinRestEvent
