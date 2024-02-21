@@ -10,24 +10,25 @@
     layers:
     - state: icon
       map: ["base"]
+  - type: ActivatableUI
+    key: enum.CryostorageUIKey.Key
   - type: UserInterface
     interfaces:
     - key: enum.CryostorageUIKey.Key
       type: CryostorageBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CryostorageUIKey.Key
+  # - type: ApcPowerReceiver
+  #   powerLoad: 200
   - type: AccessReader
     breakOnEmag: false
     access: [["HeadOfPersonnel"]]
   - type: InteractionOutline
   - type: LostAndFound
-  - type: ApcPowerReceiver
   - type: Physics
     bodyType: Static
   - type: PointLight
     color: "#35A3E6"
-    radius: 1.1
-    energy: 1.5
+    radius: 1.2
+    energy: 1.6
     castShadows: false
   - type: ContainerContainer
     containers:
