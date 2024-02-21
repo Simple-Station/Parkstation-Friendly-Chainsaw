@@ -121,8 +121,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         // play the cryostasis sound effect; need to use coordinates since the body gets deleted
         _audio.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", Transform(ent).Coordinates, AudioParams.Default.WithVolume(6f));
 
-        EnsurePausedMap();
-        if (PausedMap == null)
+        _lostAndFound.EnsurePausedMap();
+        if (_lostAndFound.PausedMap == null)
         {
             Log.Error("CryoSleep map was unexpectedly null");
             return;
@@ -136,7 +136,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             }
         }
         comp.AllowReEnteringBody = false;
-        _transform.SetParent(ent, PausedMap.Value);
+        _transform.SetParent(ent, _lostAndFound.PausedMap.Value);
 
         // try to get the lost and found and add the player to it
         var query = EntityQueryEnumerator<LostAndFoundComponent>();
@@ -156,7 +156,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
     {
         var (uid, comp) = entity;
-        if (!CryoSleepRejoiningEnabled || !IsInPausedMap(uid))
+        if (!CryoSleepRejoiningEnabled || !_lostAndFound.IsInPausedMap(uid))
             return;
 
         // how did you destroy these? they're indestructible.

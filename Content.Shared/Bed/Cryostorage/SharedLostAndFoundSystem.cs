@@ -1,4 +1,7 @@
 ﻿using Content.Shared.Administration.Logs;
+using Content.Shared.GameTicking;
+using Robust.Shared.Containers;
+using Robust.Shared.Map;
 
 namespace Content.Shared.Bed.Cryostorage;
 
@@ -8,13 +11,17 @@ namespace Content.Shared.Bed.Cryostorage;
 public abstract class SharedLostAndFoundSystem : EntitySystem
 {
     [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
 
-    protected EntityUid? PausedMap { get; private set; }
+    public EntityUid? PausedMap { get; private set; }
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<LostAndFoundComponent, ComponentShutdown>(OnShutdownContainer);
+        SubscribeLocalEvent<LostAndFoundComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     private void OnShutdownContainer(Entity<LostAndFoundComponent> ent, ref ComponentShutdown args)
@@ -39,5 +46,36 @@ public abstract class SharedLostAndFoundSystem : EntitySystem
         comp ??= Transform(entity);
 
         return comp.MapUid != null && comp.MapUid == PausedMap;
+    }
+
+    private void OnRemovedContained(Entity<LostAndFoundComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    {
+        var (uid, comp) = ent;
+        if (!IsInPausedMap(uid))
+            RemCompDeferred(ent, comp);
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent _)
+    {
+        DeletePausedMap();
+    }
+
+    private void DeletePausedMap()
+    {
+        if (PausedMap == null || !Exists(PausedMap))
+            return;
+
+        EntityManager.DeleteEntity(PausedMap.Value);
+        PausedMap = null;
+    }
+
+    public void EnsurePausedMap()
+    {
+        if (PausedMap != null && Exists(PausedMap))
+            return;
+
+        var map = _mapManager.CreateMap();
+        _mapManager.SetMapPaused(map, true);
+        PausedMap = _mapManager.GetMapEntityId(map);
     }
 }

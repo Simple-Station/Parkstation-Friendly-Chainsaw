@@ -1,14 +1,12 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.DragDrop;
-using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Bed.Cryostorage;
@@ -21,12 +19,9 @@ public abstract class SharedCryostorageSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly SharedMindSystem Mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-
-    protected EntityUid? PausedMap { get; private set; }
 
     protected bool CryoSleepRejoiningEnabled;
 
@@ -38,11 +33,9 @@ public abstract class SharedCryostorageSystem : EntitySystem
         SubscribeLocalEvent<CryostorageComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
         SubscribeLocalEvent<CryostorageComponent, CanDropTargetEvent>(OnCanDropTarget);
 
-        SubscribeLocalEvent<CryostorageContainedComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
         SubscribeLocalEvent<CryostorageContainedComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<CryostorageContainedComponent, ComponentShutdown>(OnShutdownContained);
 
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         _configuration.OnValueChanged(CCVars.GameCryoSleepRejoining, OnCvarChanged, true);
     }
@@ -122,12 +115,6 @@ public abstract class SharedCryostorageSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnRemovedContained(Entity<CryostorageContainedComponent> ent, ref EntGotRemovedFromContainerMessage args)
-    {
-        var (uid, comp) = ent;
-        if (!IsInPausedMap(uid))
-            RemCompDeferred(ent, comp);
-    }
 
     private void OnUnpaused(Entity<CryostorageContainedComponent> ent, ref EntityUnpausedEvent args)
     {
@@ -147,37 +134,5 @@ public abstract class SharedCryostorageSystem : EntitySystem
 
         ent.Comp.Cryostorage = null;
         Dirty(ent, comp);
-    }
-
-    private void OnRoundRestart(RoundRestartCleanupEvent _)
-    {
-        DeletePausedMap();
-    }
-
-    private void DeletePausedMap()
-    {
-        if (PausedMap == null || !Exists(PausedMap))
-            return;
-
-        EntityManager.DeleteEntity(PausedMap.Value);
-        PausedMap = null;
-    }
-
-    protected void EnsurePausedMap()
-    {
-        if (PausedMap != null && Exists(PausedMap))
-            return;
-
-        var map = _mapManager.CreateMap();
-        _mapManager.SetMapPaused(map, true);
-        PausedMap = _mapManager.GetMapEntityId(map);
-    }
-
-    public bool IsInPausedMap(Entity<TransformComponent?> entity)
-    {
-        var (_, comp) = entity;
-        comp ??= Transform(entity);
-
-        return comp.MapUid != null && comp.MapUid == PausedMap;
     }
 }
