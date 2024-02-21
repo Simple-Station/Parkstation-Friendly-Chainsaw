@@ -1,11 +1,11 @@
 ﻿using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Content.Client.SimpleStation14.Overlays;
 using Content.Client.SimpleStation14.Overlays.Shaders;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Robust.Client.GameObjects;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Robust.Shared.Player;
 
 namespace Content.Client.SimpleStation14.Species.Shadowkin.Systems;
 

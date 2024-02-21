@@ -15,7 +15,7 @@ using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Audio.Systems;
 
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
@@ -30,7 +30,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
 
