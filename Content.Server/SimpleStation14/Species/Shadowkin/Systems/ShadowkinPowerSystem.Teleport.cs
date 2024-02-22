@@ -25,7 +25,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly MagicSystem _magic = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
-    private const string ActionShadowkinTeleportId = "ActionShadowkinTeleport";
+    private const string ShadowkinTeleportActionId = "ShadowkinTeleportAction";
 
     public override void Initialize()
     {
@@ -40,13 +40,12 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
     private void Startup(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentStartup args)
     {
-        var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
-        _actions.AddAction(uid, ref componentActionShadowkinTeleport, ActionShadowkinTeleportId);
+        _actions.AddAction(uid, ref component.ShadowkinTeleportActionEntity, ShadowkinTeleportActionId);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ActionShadowkinTeleport);
+        _actions.RemoveAction(uid, component.ShadowkinTeleportActionEntity);
     }
 
 

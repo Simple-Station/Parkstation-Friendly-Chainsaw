@@ -35,7 +35,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly NpcFactionSystem _factions = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
-    private const string ActionShadowkinDarkSwapId = "ActionShadowkinDarkSwap";
+    private const string ShadowkinDarkSwapActionId = "ShadowkinDarkSwapAction";
 
     public override void Initialize()
     {
@@ -53,13 +53,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void Startup(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentStartup args)
     {
-        var componentActionShadowkinDarkSwap = component.ActionShadowkinDarkSwap;
-        _actions.AddAction(uid, ref componentActionShadowkinDarkSwap, ActionShadowkinDarkSwapId);
+        _actions.AddAction(uid, ref component.ShadowkinDarkSwapActionEntity, ShadowkinDarkSwapActionId, uid);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ActionShadowkinDarkSwap);
+        _actions.RemoveAction(uid, component.ShadowkinDarkSwapActionEntity);
     }
 
 

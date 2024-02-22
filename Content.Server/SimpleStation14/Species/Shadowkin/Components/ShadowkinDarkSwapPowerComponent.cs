@@ -1,4 +1,6 @@
 ﻿using Content.Server.NPC.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Components;
@@ -17,5 +19,6 @@ public sealed partial class ShadowkinDarkSwapPowerComponent : Component
     [DataField("factions", customTypeSerializer: typeof(PrototypeIdListSerializer<NpcFactionPrototype>))]
     public List<string> AddedFactions = new() { "ShadowkinDarkFriendly" };
 
-    public EntityUid? ActionShadowkinDarkSwap { get; set; }
+    [DataField("shadowkinDarkSwapActionEntity")]
+    public EntityUid? ShadowkinDarkSwapActionEntity;
 }

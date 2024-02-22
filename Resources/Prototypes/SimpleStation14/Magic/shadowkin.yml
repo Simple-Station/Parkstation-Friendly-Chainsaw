@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: ActionShadowkinTeleport
+  id: ShadowkinTeleportAction
   name: action-name-shadowkin-teleport
   description: action-description-shadowkin-teleport
   components:
@@ -19,7 +19,7 @@
       speech: action-description-shadowkin-teleport
 
 - type: entity
-  id: ActionShadowkinDarkSwap
+  id: ShadowkinDarkSwapAction
   name: action-name-shadowkin-darkswap
   description: action-description-shadowkin-darkswap
   components:
@@ -38,7 +38,7 @@
       speech: action-description-shadowkin-darkswap
 
 - type: entity
-  id: ActionShadowkinRest
+  id: ShadowkinRestAction
   name: action-name-shadowkin-rest
   description: action-description-shadowkin-rest
   components:

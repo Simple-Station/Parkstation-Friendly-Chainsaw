@@ -15,7 +15,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
-    private const string ActionShadowkinRestId = "ActionShadowkinRest";
+    private const string ShadowkinRestActionId = "ShadowkinRestAction";
 
     public override void Initialize()
     {
@@ -30,13 +30,12 @@ public sealed class ShadowkinRestSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinRestPowerComponent component, ComponentStartup args)
     {
-        var componentActionShadowkinRest = component.ActionShadowkinRest;
-        _actions.AddAction(uid, ref componentActionShadowkinRest, ActionShadowkinRestId);
+        _actions.AddAction(uid, ref component.ShadowkinRestActionEntity, ShadowkinRestActionId);
     }
 
     private void OnShutdown(EntityUid uid, ShadowkinRestPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ActionShadowkinRest);
+        _actions.RemoveAction(uid, component.ShadowkinRestActionEntity);
     }
 
     private void Rest(EntityUid uid, ShadowkinRestPowerComponent component, ShadowkinRestEvent args)
