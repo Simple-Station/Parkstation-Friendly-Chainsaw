@@ -2,6 +2,7 @@
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
 using System.Threading.Tasks;
+using Robust.Shared.Utility;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
 
@@ -71,7 +72,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.ErrorS("ShadowkinPowerSystem", "Tried to update alert of entity without shadowkin component.");
+            DebugTools.Assert("Tried to update alert of entity without shadowkin component.");
             return;
         }
 
@@ -116,7 +117,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to update power level of entity without shadowkin component.");
+            DebugTools.Assert("Tried to update power level of entity without shadowkin component.");
             return;
         }
 
@@ -157,7 +158,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to add to power level of entity without shadowkin component.");
+            DebugTools.Assert("Tried to add to power level of entity without shadowkin component.");
             return;
         }
 
@@ -181,7 +182,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to set power level of entity without shadowkin component.");
+            DebugTools.Assert("Tried to set power level of entity without shadowkin component.");
             return;
         }
 
@@ -218,7 +219,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to blackeye entity without shadowkin component.");
+            DebugTools.Assert("Tried to blackeye entity without shadowkin component.");
             return;
         }
 
@@ -256,7 +257,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to add multiplier to entity without shadowkin component.");
+            DebugTools.Assert("Tried to add multiplier to entity without shadowkin component.");
             return;
         }
 
