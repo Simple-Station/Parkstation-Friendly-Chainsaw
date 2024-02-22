@@ -9,7 +9,7 @@ namespace Content.Server.SimpleStation14.Speech.EntitySystems
     {
         [Dependency] private readonly IRobustRandom _random = default!;
 
-        private static readonly Regex mRegex = new(@"[adgjmps]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex mRegex = new(@"[adgjmpsv]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex aRegex = new(@"[behknqtwy]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex rRegex = new(@"[cfiloruxz]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 

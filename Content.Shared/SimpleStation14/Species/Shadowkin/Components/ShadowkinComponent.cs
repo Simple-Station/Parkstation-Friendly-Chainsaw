@@ -30,7 +30,7 @@ public sealed partial class ShadowkinComponent : Component
     public float MinPowerMin = 15f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MinPowerMax = 60f;
+    public float MinPowerMax = 40f;
     #endregion
 
 
