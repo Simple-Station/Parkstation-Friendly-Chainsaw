@@ -7,6 +7,7 @@ using Content.Shared.Actions;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Eye;
 using Content.Shared.Ghost;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Content.Shared.SimpleStation14.Species.Shadowkin.Events;
@@ -24,6 +25,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly ShadowkinDarkenSystem _darken = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
@@ -188,7 +190,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         component.DarkenedLights.Clear();
     }
 
-    // Commented out eye and ghost stuff until ported
     public void SetVisibility(EntityUid uid, bool set)
     {
         // We require the visibility component for this to work
@@ -197,12 +198,13 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (set) // Invisible
         {
             // Allow the entity to see DarkSwapped entities
-            /*if (_entity.TryGetComponent(uid, out EyeComponent? eye))
-                eye.VisibilityMask |= (uint) VisibilityFlags.DarkSwapInvisibility;*/
+            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
+                // eye.VisibilityMask |= (int) VisibilityFlags.DarkSwapInvisibility;
 
             // Make other entities unable to see the entity unless also DarkSwapped
-            // _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
-            // _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+            _visibility.AddLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
+            _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
 
             // If not a ghost, add a stealth shader to the entity
@@ -212,12 +214,13 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         else // Visible
         {
             // Remove the ability to see DarkSwapped entities
-            /*if (_entity.TryGetComponent(uid, out EyeComponent? eye))
-                eye.VisibilityMask &= ~(uint) VisibilityFlags.DarkSwapInvisibility;*/
+            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.DarkSwapInvisibility, eye);
+                // eye.VisibilityMask &= ~(int) VisibilityFlags.DarkSwapInvisibility;
 
             // Make other entities able to see the entity again
-            // _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
-            // _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+            _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
+            _visibility.AddLayer(uid, (ushort) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity

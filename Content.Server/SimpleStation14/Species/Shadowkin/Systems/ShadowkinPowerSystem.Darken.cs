@@ -42,14 +42,13 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
             if (!shadowkin.Darken)
                 continue;
 
-            var transform = Transform(uid);
-
             // Cooldown
             shadowkin.DarkenAccumulator -= frameTime;
             if (shadowkin.DarkenAccumulator > 0f)
                 continue;
             shadowkin.DarkenAccumulator += shadowkin.DarkenRate;
 
+            var transform = Transform(uid);
 
             var darkened = new List<EntityUid>();
             // Get all lights in range
