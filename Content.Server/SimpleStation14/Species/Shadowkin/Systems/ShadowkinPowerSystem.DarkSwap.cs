@@ -15,7 +15,7 @@ using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.SimpleStation14.Species.Shadowkin.Systems;
 
@@ -32,6 +32,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string ActionShadowkinDarkSwapId = "ActionShadowkinDarkSwap";
 
     public override void Initialize()
     {
@@ -50,7 +52,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     private void Startup(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentStartup args)
     {
         var componentActionShadowkinDarkSwap = component.ActionShadowkinDarkSwap;
-        _actions.AddAction(uid, ref componentActionShadowkinDarkSwap, "ActionShadowkinDarkSwap");
+        _actions.AddAction(uid, ref componentActionShadowkinDarkSwap, ActionShadowkinDarkSwapId);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)

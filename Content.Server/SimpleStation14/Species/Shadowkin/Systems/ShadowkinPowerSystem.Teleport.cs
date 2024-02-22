@@ -22,9 +22,10 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string ActionShadowkinTeleportId = "ActionShadowkinTeleport";
 
     public override void Initialize()
     {
@@ -40,7 +41,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     private void Startup(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentStartup args)
     {
         var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
-        _actions.AddAction(uid, ref componentActionShadowkinTeleport, "ActionShadowkinTeleport");
+        _actions.AddAction(uid, ref componentActionShadowkinTeleport, ActionShadowkinTeleportId);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
