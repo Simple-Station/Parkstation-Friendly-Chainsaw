@@ -138,15 +138,6 @@
       state: succubus
 
 - type: marking
-  id: TailTentacle
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [nHuman, Oni]
-  sprites:
-    - sprite: SimpleStation14/Mobs/Customization/tails32x32.rsi
-      state: tentacle
-
-- type: marking
   id: TailShadowkin
   bodyPart: Tail
   markingCategory: Tail

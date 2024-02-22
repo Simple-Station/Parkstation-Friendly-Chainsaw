@@ -110,10 +110,6 @@
         {
             "name": "succubus",
             "directions": 4
-        },
-        {
-            "name": "tentacle",
-            "directions": 4
         }
     ]
 }

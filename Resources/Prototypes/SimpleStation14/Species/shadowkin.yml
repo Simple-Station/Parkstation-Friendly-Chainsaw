@@ -24,11 +24,13 @@
   id: MobShadowkinSprites
   sprites:
     Head: MobShadowkinHead
-    Snout: MobShadowkinAnyMarkingFollowSkin
-    HeadTop: MobShadowkinAnyMarkingFollowSkin
-    HeadSide: MobShadowkinAnyMarkingFollowSkin
-    Wings: MobShadowkinAnyMarkingFollowSkin
-    Tail: MobShadowkinAnyMarkingFollowSkin
+    Hair: MobShadowkinAnyMarking
+    FacialHair: MobShadowkinAnyMarking
+    Snout: MobShadowkinAnyMarking
+    HeadTop: MobShadowkinAnyMarking
+    HeadSide: MobShadowkinAnyMarking
+    Wings: MobShadowkinAnyMarking
+    Tail: MobShadowkinAnyMarking
     Chest: MobShadowkinTorso
     Eyes: MobShadowkinEyes
     LArm: MobShadowkinLArm
