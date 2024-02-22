@@ -84,9 +84,6 @@ public sealed class ShadowkinTintSystem : EntitySystem
         // Eye color
         comp.TintColor = new Vector3(layer.Color.R, layer.Color.G, layer.Color.B);
 
-        // intensity = min + (power / max)
-        // intensity = intensity / 3
-        // intensity = clamp intensity min, max
         const float min = 0.45f;
         const float max = 0.75f;
         // TODO This math doesn't match the comments, figure out which is correct

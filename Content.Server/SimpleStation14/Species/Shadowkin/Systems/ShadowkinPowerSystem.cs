@@ -29,8 +29,8 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
 
-    /// <param name="powerLevel">The current power level.</param>
-    /// <returns>The name of the power level.</returns>
+    /// <param name="powerLevel">The current power level</param>
+    /// <returns>The name of the power level</returns>
     public string GetLevelName(float powerLevel)
     {
         // Placeholders
@@ -55,11 +55,11 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
     /// <summary>
-    ///    Sets the alert level of a shadowkin.
+    ///    Sets the alert level of a shadowkin
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
+    /// <param name="uid">The entity uid</param>
     /// <param name="enabled">Enable the alert or not</param>
-    /// <param name="powerLevel">The current power level.</param>
+    /// <param name="powerLevel">The current power level</param>
     public void UpdateAlert(EntityUid uid, bool enabled, float? powerLevel = null)
     {
         if (!enabled || powerLevel == null)
@@ -86,10 +86,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
 
     /// <summary>
-    ///     Tries to update the power level of a shadowkin based on an amount of seconds.
+    ///     Tries to update the power level of a shadowkin based on an amount of seconds
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="frameTime">The time since the last update in seconds.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="frameTime">The time since the last update in seconds</param>
     public bool TryUpdatePowerLevel(EntityUid uid, float frameTime)
     {
         // Check if the entity has a shadowkin component
@@ -107,10 +107,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Updates the power level of a shadowkin based on an amount of seconds.
+    ///     Updates the power level of a shadowkin based on an amount of seconds
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="frameTime">The time since the last update in seconds.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="frameTime">The time since the last update in seconds</param>
     public void UpdatePowerLevel(EntityUid uid, float frameTime)
     {
         // Get shadowkin component
@@ -123,7 +123,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Calculate new power level (P = P + t * G * M)
         var newPowerLevel = component.PowerLevel + frameTime * component.PowerLevelGain * component.PowerLevelGainMultiplier;
 
-        // Clamp power level using clamp function
         newPowerLevel = Math.Clamp(newPowerLevel, component.PowerLevelMin, component.PowerLevelMax);
 
         // Set the new power level
@@ -132,10 +131,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
 
     /// <summary>
-    ///     Tries to add to the power level of a shadowkin.
+    ///     Tries to add to the power level of a shadowkin
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="amount">The amount to add to the power level.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="amount">The amount to add to the power level</param>
     public bool TryAddPowerLevel(EntityUid uid, float amount)
     {
         // Check if the entity has a shadowkin component
@@ -149,10 +148,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Adds to the power level of a shadowkin.
+    ///     Adds to the power level of a shadowkin
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="amount">The amount to add to the power level.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="amount">The amount to add to the power level</param>
     public void AddPowerLevel(EntityUid uid, float amount)
     {
         // Get shadowkin component
@@ -165,7 +164,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get new power level
         var newPowerLevel = component.PowerLevel + amount;
 
-        // Clamp power level using clamp function
         newPowerLevel = Math.Clamp(newPowerLevel, component.PowerLevelMin, component.PowerLevelMax);
 
         // Set the new power level
@@ -174,10 +172,10 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
 
     /// <summary>
-    ///     Sets the power level of a shadowkin.
+    ///     Sets the power level of a shadowkin
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="newPowerLevel">The new power level.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="newPowerLevel">The new power level</param>
     public void SetPowerLevel(EntityUid uid, float newPowerLevel)
     {
         // Get shadowkin component
@@ -187,7 +185,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
             return;
         }
 
-        // Clamp power level using clamp function
         newPowerLevel = Math.Clamp(newPowerLevel, component.PowerLevelMin, component.PowerLevelMax);
 
         // Set the new power level
@@ -196,7 +193,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
 
     /// <summary>
-    ///     Tries to blackeye a shadowkin.
+    ///     Tries to blackeye a shadowkin
     /// </summary>
     public bool TryBlackeye(EntityUid uid)
     {
@@ -212,7 +209,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Blackeyes a shadowkin.
+    ///     Blackeyes a shadowkin
     /// </summary>
     public void Blackeye(EntityUid uid)
     {
@@ -232,11 +229,11 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
 
     /// <summary>
-    ///     Tries to add a power multiplier.
+    ///     Tries to add a power multiplier
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="multiplier">The multiplier to add.</param>
-    /// <param name="time">The time in seconds to wait before removing the multiplier.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="multiplier">The multiplier to add</param>
+    /// <param name="time">The time in seconds to wait before removing the multiplier</param>
     public bool TryAddMultiplier(EntityUid uid, float multiplier, float? time = null)
     {
         if (!_entity.HasComponent<ShadowkinComponent>(uid) ||
@@ -249,11 +246,11 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Adds a power multiplier.
+    ///     Adds a power multiplier
     /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="multiplier">The multiplier to add.</param>
-    /// <param name="time">The time in seconds to wait before removing the multiplier.</param>
+    /// <param name="uid">The entity uid</param>
+    /// <param name="multiplier">The multiplier to add</param>
+    /// <param name="time">The time in seconds to wait before removing the multiplier</param>
     public void AddMultiplier(EntityUid uid, float multiplier, float? time = null)
     {
         // Get shadowkin component

@@ -41,13 +41,11 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     {
         var componentActionShadowkinTeleport = component.ActionShadowkinTeleport;
         _actions.AddAction(uid, ref componentActionShadowkinTeleport, "ActionShadowkinTeleport");
-        // // _actions.AddAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")), null);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, component.ActionShadowkinTeleport);
-        // // _actions.RemoveAction(uid, new WorldTargetAction(_prototype.Index<WorldTargetActionPrototype>("ShadowkinTeleport")));
     }
 
 
@@ -66,7 +64,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         var transform = Transform(args.Performer);
         if (transform.MapID != args.Target.GetMapId(EntityManager))
             return;
-        
+
         SharedPullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
         if (_entity.TryGetComponent<SharedPullerComponent>(args.Performer, out var puller) &&
             puller.Pulling != null &&
