@@ -79,43 +79,15 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         var hasComp = _entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Performer);
 
-        SetDarkened(
-            performer,
-            !hasComp,
-            !hasComp,
-            !hasComp,
-            true,
-            args.StaminaCostOn,
-            args.PowerCostOn,
-            args.SoundOn,
-            args.VolumeOn,
-            args.StaminaCostOff,
-            args.PowerCostOff,
-            args.SoundOff,
-            args.VolumeOff,
-            args
-        );
+        if (hasComp)
+            Darkened(performer, args.StaminaCostOff, args.PowerCostOff, args.SoundOff, args.VolumeOff, args);
+        else
+            UnDarkened(performer, args.StaminaCostOn, args.PowerCostOn, args.SoundOn, args.VolumeOn, args);
 
         _magic.Speak(args, false);
     }
 
-
-    public void SetDarkened(
-        NetEntity performer,
-        bool addComp,
-        bool invisible,
-        bool pacify,
-        bool darken,
-        float staminaCostOn,
-        float powerCostOn,
-        SoundSpecifier soundOn,
-        float volumeOn,
-        float staminaCostOff,
-        float powerCostOff,
-        SoundSpecifier soundOff,
-        float volumeOff,
-        ShadowkinDarkSwapEvent? args
-    )
+    public void Darkened(NetEntity performer, float staminaCostOff, float powerCostOff, SoundSpecifier soundOff, float volumeOff, ShadowkinDarkSwapEvent? args)
     {
         var performerUid = _entity.GetEntity(performer);
 
@@ -124,35 +96,42 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        if (addComp)
-        {
-            var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(performerUid);
-            comp.Invisible = invisible;
-            comp.Pacify = pacify;
-            comp.Darken = darken;
+        _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(performerUid);
+        RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, false));
 
-            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, true));
+        _audio.PlayPvs(soundOff, performerUid, AudioParams.Default.WithVolume(volumeOff));
 
-            _audio.PlayPvs(soundOn, performerUid, AudioParams.Default.WithVolume(volumeOn));
-
-            _power.TryAddPowerLevel(performerUid, -powerCostOn);
-            _stamina.TakeStaminaDamage(performerUid, staminaCostOn);
-        }
-        else
-        {
-            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(performerUid);
-            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, false));
-
-            _audio.PlayPvs(soundOff, performerUid, AudioParams.Default.WithVolume(volumeOff));
-
-            _power.TryAddPowerLevel(performerUid, -powerCostOff);
-            _stamina.TakeStaminaDamage(performerUid, staminaCostOff);
-        }
+        _power.TryAddPowerLevel(performerUid, -powerCostOff);
+        _stamina.TakeStaminaDamage(performerUid, staminaCostOff);
 
         if (args != null)
             args.Handled = true;
     }
 
+    public void UnDarkened(NetEntity performer, float staminaCostOn, float powerCostOn, SoundSpecifier soundOn, float volumeOn, ShadowkinDarkSwapEvent? args)
+    {
+        var performerUid = _entity.GetEntity(performer);
+
+        var ev = new ShadowkinDarkSwapAttemptEvent(performerUid);
+        RaiseLocalEvent(ev);
+        if (ev.Cancelled)
+            return;
+
+        var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(performerUid);
+        comp.Invisible = true;
+        comp.Pacify = true;
+        comp.Darken = true;
+
+        RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, true));
+
+        _audio.PlayPvs(soundOn, performerUid, AudioParams.Default.WithVolume(volumeOn));
+
+        _power.TryAddPowerLevel(performerUid, -powerCostOn);
+        _stamina.TakeStaminaDamage(performerUid, staminaCostOn);
+
+        if (args != null)
+            args.Handled = true;
+    }
 
     private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
