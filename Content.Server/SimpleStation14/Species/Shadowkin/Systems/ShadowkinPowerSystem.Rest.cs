@@ -59,9 +59,8 @@ public sealed class ShadowkinRestSystem : EntitySystem
             // Sleepy time
             _entity.EnsureComponent<ForcedSleepingComponent>(args.Performer);
             // No waking up normally (it would do nothing)
-            // Not sure what needs to be done here with the refactor
-            // _actions.RemoveAction(args.Performer, component.WakeAction);  // ??
-            // _actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
+            if (_entity.TryGetComponent<SleepingComponent>(uid, out var sleepingComponent))
+                _actions.RemoveAction(args.Performer, sleepingComponent.WakeAction);
 
             _power.TryAddMultiplier(args.Performer, 1.5f);
             // No action cooldown
