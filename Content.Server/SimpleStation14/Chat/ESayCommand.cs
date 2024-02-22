@@ -1,8 +1,8 @@
 ﻿using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
-using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 
 namespace Content.Server.SimpleStation14.Chat.Commands;
 
@@ -18,7 +18,7 @@ internal sealed class ESayCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        /*if (shell.Player is not IPlayerSession player)
+        if (shell.Player is not ICommonSession player)
         {
             shell.WriteError("This command cannot be run from the server.");
             return;
@@ -31,7 +31,7 @@ internal sealed class ESayCommand : IConsoleCommand
         {
             shell.WriteError("You don't have an entity!");
             return;
-        }*/
+        }
 
         if (args.Length < 1)
             return;
@@ -40,6 +40,6 @@ internal sealed class ESayCommand : IConsoleCommand
         if (string.IsNullOrEmpty(message))
             return;
 
-        // EntitySystem.Get<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Empathy, false, false, shell, player, checkRadioPrefix: false);
+        EntitySystem.Get<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Empathy, false, false, shell, player, checkRadioPrefix: false);
     }
 }
