@@ -37,6 +37,13 @@
       damage:
         types:
           Blunt: 0.35 # per second, scales with pressure and other constants.
+    - type: Respirator # this is a temporary fix, shadowkin should not be BaseMobHuman nor MobRespirator
+      maxSaturation: 5.0
+      minSaturation: 5.0 # shadowkin never lose saturation, so they basically don't breath
+      cycleDelay: 0.0 # this should set all multipliers in the respirator system to zero
+      damage:
+        types:
+          Asphyxiation: 0 # just in case, no airloss damage from respirator component, recovery rate is unchanged
     - type: Bloodstream
       bloodlossDamage:
         types:
@@ -119,7 +126,8 @@
       interactSuccessString: petting-success-soft-floofy
       interactSuccessSound: /Audio/Effects/thudswoosh.ogg
       messagePerceivedByOthers: petting-success-soft-floofy-others
-    # - type: PotentialPsionic # They've their own abilities.
+    - type: PotentialPsionic
+      chance: 0.0 # They have their own abilities.
     - type: MovementSpeedModifier
       baseWalkSpeed : 4.5
       baseSprintSpeed : 2.7
