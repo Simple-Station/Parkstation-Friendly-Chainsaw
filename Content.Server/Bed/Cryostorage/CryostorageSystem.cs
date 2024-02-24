@@ -6,6 +6,7 @@ using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
+using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -24,6 +25,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
@@ -118,8 +120,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
-        // play the cryostasis sound effect; need to use coordinates since the body gets deleted
-        _audio.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", Transform(ent).Coordinates, AudioParams.Default.WithVolume(6f));
+        _audio.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", cryostorageEnt.Value, AudioParams.Default.WithVolume(6f));
 
         _lostAndFound.EnsurePausedMap();
         if (_lostAndFound.PausedMap == null)
@@ -147,10 +148,28 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             lostAndFoundComp.StoredPlayers.Add(ent);
             Dirty(ent, comp);
             _lostAndFound.UpdateCryostorageUIState((storage, lostAndFoundComp));
-
+        }
+        else // if there is no lost and found, just drop the items instead of deleting them
+        {
+            DropItems(ent, cryostorageEnt.Value);
         }
 
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
+    }
+
+    private void DropItems(EntityUid uid, EntityUid cryopod)
+    {
+        if (!_inventory.TryGetSlots(uid, out var slotDefinitions))
+            return;
+
+        foreach (var slot in slotDefinitions)
+        {
+            if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var item))
+                continue;
+
+            _inventory.TryUnequip(uid, slot.Name, true, true);
+            _transform.SetCoordinates(uid, Transform(cryopod).Coordinates);
+        }
     }
 
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
