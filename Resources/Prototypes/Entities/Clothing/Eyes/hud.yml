@@ -12,6 +12,8 @@
     damageContainers:
     - Inorganic
     - Silicon
+  - type: DropOnSlip
+    chance: 25
 
 - type: entity
   parent: ClothingEyesBase
@@ -32,6 +34,8 @@
   - type: Tag
     tags:
     - HudMedical
+  - type: DropOnSlip
+    chance: 25
 
 - type: entity
   parent: ClothingEyesBase
@@ -47,6 +51,8 @@
   - type: Tag
     tags:
     - HudSecurity
+  - type: DropOnSlip
+    chance: 25
 
 - type: entity
   parent: ClothingEyesBase
