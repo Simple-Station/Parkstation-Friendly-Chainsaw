@@ -39,6 +39,15 @@ public sealed partial class CuffableComponent : Component
     /// </summary>
     [DataField("canStillInteract"), ViewVariables(VVAccess.ReadWrite)]
     public bool CanStillInteract = true;
+
+    // Parkstation-EndOfRoundStats-Start
+    /// <summary>
+    ///     When this entity was cuffed, if currently cuffed.
+    ///     Used for end of round stats.
+    /// </summary>
+    [DataField("cuffedTime")]
+    public TimeSpan? CuffedTime { get; set; }
+    // Parkstation-EndOfRoundStats-End
 }
 
 [Serializable, NetSerializable]

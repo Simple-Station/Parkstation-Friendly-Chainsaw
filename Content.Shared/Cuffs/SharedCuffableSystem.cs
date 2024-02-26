@@ -36,6 +36,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing; // Parkstation-EndOfRoundStats
+using Content.Shared.SimpleStation14.EndOfRoundStats.CuffedTime; // Parkstation-EndOfRoundStats
 
 namespace Content.Shared.Cuffs
 {
@@ -58,6 +60,7 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly SharedInteractionSystem _interaction = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!; // Parkstation-EndOfRoundStats
 
         public override void Initialize()
         {
@@ -451,6 +454,12 @@ namespace Content.Shared.Cuffs
 
             _container.Insert(handcuff, component.Container);
             UpdateHeldItems(target, handcuff, component);
+
+            // Parkstation-EndOfRoundStats-Start
+            if (_net.IsServer)
+                component.CuffedTime = _gameTiming.CurTime;
+            // Parkstation-EndOfRoundStats-End
+
             return true;
         }
 
@@ -637,6 +646,14 @@ namespace Content.Shared.Cuffs
             _audio.PlayPredicted(cuff.EndUncuffSound, target, user);
 
             _container.Remove(cuffsToRemove, cuffable.Container);
+
+            // Parkstation-EndOfRoundStats-Start
+            if (_net.IsServer && cuffable.CuffedTime != null)
+            {
+                RaiseLocalEvent(target, new CuffedTimeStatEvent(_gameTiming.CurTime - cuffable.CuffedTime.Value));
+                cuffable.CuffedTime = null;
+            }
+            // Parkstation-EndOfRoundStats-End
 
             if (_net.IsServer)
             {

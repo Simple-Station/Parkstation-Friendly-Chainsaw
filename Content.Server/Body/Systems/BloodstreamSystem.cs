@@ -21,6 +21,7 @@ using Content.Shared.Speech.EntitySystems;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server.SimpleStation14.EndOfRoundStats.BloodLost;
 
 namespace Content.Server.Body.Systems;
 
@@ -92,6 +93,8 @@ public sealed class BloodstreamSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var totalBloodLost = 0f; // Parkstation-EndOfRoundStats
+
         var query = EntityQueryEnumerator<BloodstreamComponent>();
         while (query.MoveNext(out var uid, out var bloodstream))
         {
@@ -119,6 +122,8 @@ public sealed class BloodstreamSystem : EntitySystem
                 TryModifyBloodLevel(uid, (-bloodstream.BleedAmount), bloodstream);
                 // Bleed rate is reduced by the bleed reduction amount in the bloodstream component.
                 TryModifyBleedAmount(uid, -bloodstream.BleedReductionAmount, bloodstream);
+
+                totalBloodLost += bloodstream.BleedAmount / 20; // Parkstation-EndOfRoundStats
             }
 
             // deal bloodloss damage if their blood level is below a threshold.
@@ -151,6 +156,8 @@ public sealed class BloodstreamSystem : EntitySystem
                 bloodstream.StatusTime = 0;
             }
         }
+
+        RaiseLocalEvent(new BloodLostStatEvent(totalBloodLost)); // Parkstation-EndOfRoundStats
     }
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)

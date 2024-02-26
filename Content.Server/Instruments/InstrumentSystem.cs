@@ -1,3 +1,4 @@
+using Content.Server.SimpleStation14.EndOfRoundStats.Instruments; // Parkstation-EndOfRoundStats
 using Content.Server.Administration;
 using Content.Server.Interaction;
 using Content.Server.Popups;
@@ -116,6 +117,8 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
         instrument.Playing = true;
         Dirty(uid, instrument);
+
+        instrument.TimeStartedPlaying = _timing.CurTime; // Parkstation-EndOfRoundStats
     }
 
     private void OnMidiStop(InstrumentStopMidiEvent msg, EntitySessionEventArgs args)
@@ -129,6 +132,18 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             return;
 
         Clean(uid, instrument);
+
+        // Parkstation-EndOfRoundStats-Start
+        if (instrument.TimeStartedPlaying != null && instrument.InstrumentPlayer != null)
+        {
+            var username = instrument.InstrumentPlayer.Name;
+            var entity = instrument.InstrumentPlayer.AttachedEntity;
+            var name = entity != null ? MetaData((EntityUid) entity).EntityName : "Unknown";
+
+            RaiseLocalEvent(new InstrumentPlayedStatEvent(name, (TimeSpan) (_timing.CurTime - instrument.TimeStartedPlaying), username));
+        }
+        instrument.TimeStartedPlaying = null;
+        // Parkstation-EndOfRoundStats-End
     }
 
     private void OnMidiSetMaster(InstrumentSetMasterEvent msg, EntitySessionEventArgs args)

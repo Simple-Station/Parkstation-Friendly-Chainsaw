@@ -1,5 +1,6 @@
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
+using Content.Server.SimpleStation14.EndOfRoundStats.MopUsed; // Parkstation-EndOfRoundStats
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -310,6 +311,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
         _solutionContainerSystem.AddSolution(puddle.Solution.Value, absorberSplit);
         _solutionContainerSystem.AddSolution(absorberSoln, puddleSplit);
+
+        RaiseLocalEvent(new MopUsedStatEvent(user, puddleSplit.Volume)); // Parkstation-EndOfRoundStats
 
         _audio.PlayPvs(absorber.PickupSound, target);
         if (useDelay != null)
