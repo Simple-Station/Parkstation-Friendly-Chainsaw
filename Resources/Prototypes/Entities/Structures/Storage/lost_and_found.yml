@@ -10,6 +10,8 @@
     layers:
     - state: icon
       map: ["base"]
+    - state: screen
+      map: ["computerLayerScreen"]
   - type: ActivatableUI
     key: enum.CryostorageUIKey.Key
   - type: UserInterface
@@ -26,9 +28,9 @@
   - type: Physics
     bodyType: Static
   - type: PointLight
-    color: "#35A3E6"
+    color: "#3ABD45"
     radius: 1.2
-    energy: 1.6
+    energy: 2.0
     castShadows: false
   - type: ContainerContainer
     containers:
