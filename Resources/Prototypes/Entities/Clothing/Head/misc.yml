@@ -193,7 +193,7 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
-
+    
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatDogEars

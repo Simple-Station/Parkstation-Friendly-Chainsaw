@@ -22,11 +22,12 @@ public sealed class DropOnSlipSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
-    private static readonly float PocketDropChance = 10f;
-    private static readonly float PocketThrowChance = 5f;
+    public const float PocketDropChance = 10f;
+    public const float PocketThrowChance = 5f;
 
-    private static readonly float ClumsyDropChance = 5f;
-    private static readonly float ClumsyThrowChance = 90f;
+    public const float ClumsyDropChance = 5f;
+    public const float ClumsyThrowChance = 90f;
+
 
     public override void Initialize()
     {
@@ -46,7 +47,7 @@ public sealed class DropOnSlipSystem : EntitySystem
             if (!_invSystem.TryGetSlotEntity(entity, slot.Name, out var item))
                 continue;
 
-            // A check for DropOnSlipComponent.
+            // Check for DropOnSlipComponent
             if (slot.Name != "pocket1" && slot.Name != "pocket2" && EntityManager.TryGetComponent<DropOnSlipComponent>(item, out var dropComp) && _random.NextFloat(0, 100) < dropComp.Chance)
             {
                 var popupString = Loc.GetString("system-drop-on-slip-text-component", ("name", entity), ("item", item));
@@ -55,7 +56,7 @@ public sealed class DropOnSlipSystem : EntitySystem
                 continue;
             }
 
-            // A check for any items in pockets.
+            // Check for any items in pockets
             if (slot.Name == "pocket1" | slot.Name == "pocket2" && _random.NextFloat(0, 100) < PocketDropChance)
             {
                 var popupString = Loc.GetString("system-drop-on-slip-text-pocket", ("name", entity), ("item", item));
@@ -64,7 +65,7 @@ public sealed class DropOnSlipSystem : EntitySystem
                 continue;
             }
 
-            // A check for ClumsyComponent.
+            // Check for ClumsyComponent
             if (slot.Name != "jumpsuit" && _random.NextFloat(0, 100) < ClumsyDropChance && HasComp<ClumsyComponent>(entity))
             {
                 var popupString = Loc.GetString("system-drop-on-slip-text-clumsy", ("name", entity), ("item", item));
