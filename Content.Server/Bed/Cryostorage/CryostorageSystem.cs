@@ -1,11 +1,17 @@
+using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.Hands.Systems;
+using Content.Server.Popups;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.UserInterface;
+using Content.Shared.Access.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
+using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Robust.Server.Containers;
@@ -25,20 +31,26 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly LostAndFoundSystem _lostAndFound = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<LostAndFoundComponent, BeforeActivatableUIOpenEvent>(OnBeforeUIOpened);
+        SubscribeLocalEvent<LostAndFoundComponent, CryostorageRemoveItemBuiMessage>(OnRemoveItemBuiMessage);
 
         SubscribeLocalEvent<CryostorageContainedComponent, PlayerSpawnCompleteEvent>(OnPlayerSpawned);
         SubscribeLocalEvent<CryostorageContainedComponent, MindRemovedMessage>(OnMindRemoved);
@@ -51,6 +63,63 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         base.Shutdown();
 
         _playerManager.PlayerStatusChanged -= PlayerStatusChanged;
+    }
+
+        private void OnBeforeUIOpened(Entity<LostAndFoundComponent> ent, ref BeforeActivatableUIOpenEvent args)
+    {
+        UpdateCryostorageUIState(ent);
+    }
+
+    private void OnRemoveItemBuiMessage(Entity<LostAndFoundComponent> ent, ref CryostorageRemoveItemBuiMessage args)
+    {
+        Log.Debug("on remove item bui message");
+
+        var (_, comp) = ent;
+        if (args.Session.AttachedEntity is not { } attachedEntity)
+            return;
+
+        var cryoContained = GetEntity(args.StoredEntity);
+
+        if (!comp.StoredPlayers.Contains(cryoContained) || !IsInPausedMap(cryoContained))
+            return;
+
+        if (!HasComp<HandsComponent>(attachedEntity))
+            return;
+
+        if (!_accessReader.IsAllowed(attachedEntity, ent))
+        {
+            _popup.PopupEntity(Loc.GetString("cryostorage-popup-access-denied"), attachedEntity, attachedEntity);
+            return;
+        }
+
+        EntityUid? entity = null;
+        if (args.Type == CryostorageRemoveItemBuiMessage.RemovalType.Hand)
+        {
+            if (_hands.TryGetHand(cryoContained, args.Key, out var hand))
+                entity = hand.HeldEntity;
+        }
+        else
+        {
+            if (_inventory.TryGetSlotContainer(cryoContained, args.Key, out var slot, out _))
+                entity = slot.ContainedEntity;
+        }
+
+        if (entity == null)
+            return;
+
+        AdminLog.Add(LogType.Action, LogImpact.High,
+            $"{ToPrettyString(attachedEntity):player} removed item {ToPrettyString(entity)} from cryostorage-contained player " +
+            $"{ToPrettyString(cryoContained):player}, stored in cryostorage {ToPrettyString(ent)}");
+        _container.TryRemoveFromContainer(entity.Value);
+        _transform.SetCoordinates(entity.Value, Transform(attachedEntity).Coordinates);
+        _hands.PickupOrDrop(attachedEntity, entity.Value);
+        UpdateCryostorageUIState(ent);
+    }
+
+    public void UpdateCryostorageUIState(Entity<LostAndFoundComponent> ent)
+    {
+        var state = new CryostorageBuiState(GetAllContainedData(ent).ToList());
+        _ui.TrySetUiState(ent, CryostorageUIKey.Key, state);
     }
 
     private void OnPlayerSpawned(Entity<CryostorageContainedComponent> ent, ref PlayerSpawnCompleteEvent args)
@@ -120,10 +189,10 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
-        _audio.PlayPvs("/Audio/SimpleStation14/Effects/cryostasis.ogg", cryostorageEnt.Value, AudioParams.Default.WithVolume(6f));
+        _audio.PlayPvs(cryostorageComponent.RemoveSound, cryostorageEnt.Value, AudioParams.Default.WithVolume(6f));
 
-        _lostAndFound.EnsurePausedMap();
-        if (_lostAndFound.PausedMap == null)
+        EnsurePausedMap();
+        if (PausedMap == null)
         {
             Log.Error("CryoSleep map was unexpectedly null");
             return;
@@ -137,7 +206,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             }
         }
         comp.AllowReEnteringBody = false;
-        _transform.SetParent(ent, _lostAndFound.PausedMap.Value);
+        _transform.SetParent(ent, PausedMap.Value);
 
         // try to get the lost and found and add the player to it
         var query = EntityQueryEnumerator<LostAndFoundComponent>();
@@ -147,7 +216,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         {
             lostAndFoundComp.StoredPlayers.Add(ent);
             Dirty(ent, comp);
-            _lostAndFound.UpdateCryostorageUIState((storage, lostAndFoundComp));
+            UpdateCryostorageUIState((storage, lostAndFoundComp));
         }
         else // if there is no lost and found, just drop the items instead of deleting them
         {
@@ -175,7 +244,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
     {
         var (uid, comp) = entity;
-        if (!CryoSleepRejoiningEnabled || !_lostAndFound.IsInPausedMap(uid))
+        if (!CryoSleepRejoiningEnabled || !IsInPausedMap(uid))
             return;
 
         // how did you destroy these? they're indestructible.
@@ -205,7 +274,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         if (TryComp<LostAndFoundComponent>(storage, out var lostAndFoundComp))
         {
             lostAndFoundComp.StoredPlayers.Remove(uid);
-            _lostAndFound.UpdateCryostorageUIState((storage, lostAndFoundComp));
+            UpdateCryostorageUIState((storage, lostAndFoundComp));
         }
 
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(entity):player} re-entered the game from cryostorage {ToPrettyString(cryostorage)}");
@@ -228,6 +297,36 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, uid, false, actor.PlayerSession.Channel);
     }
 
+    private IEnumerable<CryostorageContainedPlayerData> GetAllContainedData(Entity<LostAndFoundComponent> ent)
+    {
+        foreach (var contained in ent.Comp.StoredPlayers)
+        {
+            yield return GetContainedData(contained);
+        }
+    }
+
+    private CryostorageContainedPlayerData GetContainedData(EntityUid uid)
+    {
+        var data = new CryostorageContainedPlayerData();
+        data.PlayerName = Name(uid);
+        data.PlayerEnt = GetNetEntity(uid);
+
+        var enumerator = _inventory.GetSlotEnumerator(uid);
+        while (enumerator.NextItem(out var item, out var slotDef))
+        {
+            data.ItemSlots.Add(slotDef.Name, Name(item));
+        }
+
+        foreach (var hand in _hands.EnumerateHands(uid))
+        {
+            if (hand.HeldEntity == null)
+                continue;
+
+            data.HeldItems.Add(hand.Name, Name(hand.HeldEntity.Value));
+        }
+
+        return data;
+    }
 
     public override void Update(float frameTime)
     {
