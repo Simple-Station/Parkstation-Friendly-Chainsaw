@@ -86,7 +86,6 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
         const float min = 0.45f;
         const float max = 0.75f;
-        // TODO This math doesn't match the comments, figure out which is correct
         comp.TintIntensity = Math.Clamp(min + (comp.PowerLevel / comp.PowerLevelMax) / 3, min, max);
 
         UpdateShader(comp.TintColor, comp.TintIntensity);
