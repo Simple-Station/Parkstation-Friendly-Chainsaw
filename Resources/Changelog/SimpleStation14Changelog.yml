@@ -91,3 +91,9 @@ Entries:
         of emotes)
   id: 12
   time: '2024-03-10T08:11:11.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Material sprites are no longer very large
+  id: 13
+  time: '2024-03-10T08:59:05.0000000+00:00'
