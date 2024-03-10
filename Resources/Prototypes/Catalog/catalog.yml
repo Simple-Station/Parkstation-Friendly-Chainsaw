@@ -28,7 +28,7 @@
   id: DebugListing4
   name: debug name 4
   description: debug desc 4
-  productAction: ActionSleep
+  productAction: ActionScream
   categories:
     - Debug
   cost:
