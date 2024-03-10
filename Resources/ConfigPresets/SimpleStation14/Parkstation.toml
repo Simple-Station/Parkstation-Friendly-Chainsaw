@@ -8,8 +8,6 @@ lobbyduration = 180
 role_timers = true
 fallbackpreset = "extended"
 map_pool = "ParkMapPool"
-panic_bunker.enabled = false
-admin_panic.enabled = false
 # loadouts_enabled = true
 # loadouts_points = 14
 
@@ -41,8 +39,7 @@ players_per_traitor = 8
 starting_balance = 16
 
 [zombie]
-min_players = 9
-players_per_infected = 5
+min_players = 10
 
 
 [mapping]
@@ -102,8 +99,8 @@ discord = "https://discord.gg/49KeKwXc8g"
 github = "https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw"
 patreon = "https://www.patreon.com/simple14"
 
-[admin]
-new_player_join_sound = true
+# [admin]
+# new_player_join_sound = true
 
 
 [build]
