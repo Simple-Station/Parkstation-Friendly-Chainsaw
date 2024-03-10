@@ -39,8 +39,7 @@ players_per_traitor = 8
 starting_balance = 16
 
 [zombie]
-min_players = 9
-players_per_infected = 5
+min_players = 10
 
 
 [mapping]
