@@ -31,9 +31,9 @@ id = "parkstation"
 [rules]
 time = 120
 
-# [events]
-# ramping_average_end_time = 120.0
-# ramping_average_chaos = 7.0
+[events]
+ramping_average_end_time = 120.0
+ramping_average_chaos = 7.0
 
 [traitor]
 min_players = 2
