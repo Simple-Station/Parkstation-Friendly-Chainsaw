@@ -83,3 +83,17 @@ Entries:
         or start moving instantly
   id: 11
   time: '2024-02-17T22:53:49.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Remove
+      message: >-
+        I have a mouth but must not scream (removed the scream action in favor
+        of emotes)
+  id: 12
+  time: '2024-03-10T08:11:11.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Material sprites are no longer very large
+  id: 13
+  time: '2024-03-10T08:59:05.0000000+00:00'
