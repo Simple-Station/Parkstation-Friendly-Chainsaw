@@ -1,11 +1,13 @@
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Ninja.Systems;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Shared.Communications;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -21,6 +23,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     // TODO: remove when generic check event is used
     [Dependency] private readonly NinjaGlovesSystem _gloves = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
     public override void Initialize()
     {
@@ -79,7 +82,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     public void CallInThreat(NinjaHackingThreatPrototype ninjaHackingThreat)
     {
         _gameTicker.StartGameRule(ninjaHackingThreat.Rule, out _);
-        _chat.DispatchGlobalAnnouncement(Loc.GetString(ninjaHackingThreat.Announcement), playSound: true, colorOverride: Color.Red);
+        _announcer.SendAnnouncement("ninjahacking", Filter.Broadcast(), Loc.GetString(ninjaHackingThreat.Announcement), colorOverride: Color.Red); // Parkstation-RandomAnnouncers
     }
 }
 

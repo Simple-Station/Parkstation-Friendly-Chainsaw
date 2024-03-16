@@ -1,0 +1,25 @@
+using Robust.Shared.Configuration;
+
+namespace Content.Shared.SimpleStation14.CCVar;
+
+[CVarDefs]
+public sealed class SimpleStationCCVars
+{
+    /// <summary>
+    ///     Optionally force set an announcer
+    /// </summary>
+    public static readonly CVarDef<string> Announcer =
+        CVarDef.Create("announcer.announcer", "", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Optionally blacklist announcers
+    /// </summary>
+    public static readonly CVarDef<List<string>> AnnouncerBlacklist =
+        CVarDef.Create("announcer.blacklist", new List<string>(), CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Changes how loud the announcers are for the client
+    /// </summary>
+    public static readonly CVarDef<float> AnnouncerVolume =
+        CVarDef.Create("announcer.volume", 0.5f, CVar.ARCHIVE | CVar.CLIENTONLY);
+}

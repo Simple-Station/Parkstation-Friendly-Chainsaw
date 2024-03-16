@@ -8,6 +8,7 @@ using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
@@ -49,6 +50,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
     public override void Initialize()
     {
@@ -128,7 +130,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
                 comp.ShuttleCalled = true;
                 foreach (var station in _station.GetStations())
                 {
-                    _chat.DispatchStationAnnouncement(station, Loc.GetString("zombie-shuttle-call"), colorOverride: Color.Crimson);
+                    _announcer.SendAnnouncement("shuttlecalled", _station.GetInOwningStation(station), Loc.GetString("zombie-shuttle-call"), colorOverride: Color.Crimson); // Parkstation-RandomAnnouncers
                 }
                 _roundEnd.RequestRoundEnd(null, false);
             }

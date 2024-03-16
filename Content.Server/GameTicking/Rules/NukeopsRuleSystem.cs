@@ -23,6 +23,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -86,6 +87,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly WarDeclaratorSystem _warDeclarator = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
 
     [ValidatePrototypeId<CurrencyPrototype>]
@@ -211,7 +213,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         var nukieRule = comps.Value.Item1;
         nukieRule.WarDeclaredTime = _gameTiming.CurTime;
-        _chat.DispatchGlobalAnnouncement(msg, title, announcementSound: announcementSound, colorOverride: colorOverride);
+        _announcer.SendAnnouncement("war", Filter.Broadcast(), msg, title, colorOverride); // Parkstation-RandomAnnouncers
         DistributeExtraTC(nukieRule);
         _warDeclarator.RefreshAllUI(comps.Value.Item1, comps.Value.Item2);
     }

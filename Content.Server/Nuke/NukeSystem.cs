@@ -4,6 +4,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Containers.ItemSlots;
@@ -40,6 +41,7 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
     /// <summary>
     ///     Used to calculate when the nuke song should start playing for maximum kino with the nuke sfx
@@ -455,7 +457,7 @@ public sealed class NukeSystem : EntitySystem
         var announcement = Loc.GetString("nuke-component-announcement-armed",
             ("time", (int) component.RemainingTime), ("position", posText));
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Red);
+        _announcer.SendAnnouncementMessage("nukearm", announcement, sender, Color.Red, stationUid ?? uid); // Parkstation-RandomAnnouncers
 
         _sound.PlayGlobalOnStation(uid, _audio.GetSound(component.ArmSound));
 
@@ -493,7 +495,7 @@ public sealed class NukeSystem : EntitySystem
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-unarmed");
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchStationAnnouncement(uid, announcement, sender, false);
+        _announcer.SendAnnouncementMessage("nukedisarm", announcement, sender, station: stationUid ?? uid); // Parkstation-RandomAnnouncers
 
         component.PlayedNukeSong = false;
         _sound.PlayGlobalOnStation(uid, _audio.GetSound(component.DisarmSound));
@@ -604,4 +606,3 @@ public sealed class NukeDisarmSuccessEvent : EntityEventArgs
 {
 
 }
-

@@ -2,9 +2,11 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.Chat.Systems;
 using Content.Server.Fax;
 using Content.Server.Paper;
+using Content.Server.SimpleStation14.Announcements.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Paper;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -17,6 +19,7 @@ namespace Content.Server.Nuke
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly PaperSystem _paper = default!;
         [Dependency] private readonly FaxSystem _faxSystem = default!;
+        [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
         public override void Initialize()
         {
@@ -79,7 +82,7 @@ namespace Content.Server.Nuke
             if (wasSent)
             {
                 var msg = Loc.GetString("nuke-component-announcement-send-codes");
-                _chatSystem.DispatchStationAnnouncement(station, msg, colorOverride: Color.Red);
+                _announcer.SendAnnouncement("nukecodes", Filter.Broadcast(), msg, colorOverride: Color.Red); // Parkstation-AnnouncerSystem
             }
 
             return wasSent;
