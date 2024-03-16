@@ -174,7 +174,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretLogi
-  name: logistics beret
+  name: cargo beret
   description: For the intellectual and studious accountant. Definitely not a revolutionary symbol.
   components:
   - type: Sprite

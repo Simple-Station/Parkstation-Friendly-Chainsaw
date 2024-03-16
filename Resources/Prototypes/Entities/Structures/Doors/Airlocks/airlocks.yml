@@ -27,12 +27,12 @@
 - type: entity
   parent: Airlock
   id: AirlockCargo
-  suffix: Logistics # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/cargo.rsi
-  - type: PaintableAirlock
-    department: Logistics
+  #- type: PaintableAirlock
+  #  department: Cargo
 
 - type: entity
   parent: Airlock
@@ -209,12 +209,12 @@
 - type: entity
   parent: AirlockGlass
   id: AirlockCargoGlass
-  suffix: Logistics # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
-  - type: PaintableAirlock
-    department: Logistics
+  #- type: PaintableAirlock
+  #  department: Cargo
 
 - type: entity
   parent: AirlockGlass

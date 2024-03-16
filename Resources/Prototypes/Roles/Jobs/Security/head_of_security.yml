@@ -18,7 +18,7 @@
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - HeadOfSecurity

@@ -1,6 +1,6 @@
 ﻿- type: stealTargetGroup
   id: SpaceCashLuckyBill
-  name: logistics officer's lucky bill
+  name: quartermaster's lucky bill
   sprite:
     sprite: DeltaV/Objects/Misc/first_bill.rsi
     state: icon
