@@ -11,6 +11,7 @@
       - sprite: Objects/Materials/Shards/crystal.rsi
         state: shard1
         map: [ "enum.DamageStateVisualLayers.Base" ]
+    scale: 0.65, 0.65 # Parkstation-SmallerMaterials
   - type: RandomSprite
     available:
       - enum.DamageStateVisualLayers.Base:

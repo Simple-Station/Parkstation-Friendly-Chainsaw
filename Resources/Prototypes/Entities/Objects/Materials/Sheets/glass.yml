@@ -7,6 +7,7 @@
   components:
   - type: Sprite
     sprite: Objects/Materials/Sheets/glass.rsi
+    scale: 0.65, 0.65 # Parkstation-SmallerMaterials
   - type: Item
     sprite: Objects/Materials/Sheets/glass.rsi
     size: Normal
@@ -197,6 +198,7 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+        
 - type: entity
   parent: SheetGlassBase
   id: SheetPGlass
