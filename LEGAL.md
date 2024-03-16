@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Legal Info
+=======
+﻿# Legal Info
+>>>>>>> 42e9a271ff3925ecfeaf493f8fffef7332f526a2
 
 ## Copyright
 
