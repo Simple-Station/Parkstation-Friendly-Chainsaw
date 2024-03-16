@@ -2,7 +2,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Shared.SimpleStation14.Physics;
+namespace Content.Shared.Parkstation.Physics;
 
 public sealed class FrictionRemoverSystem : EntitySystem
 {
