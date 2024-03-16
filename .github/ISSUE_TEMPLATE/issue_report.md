@@ -38,7 +38,7 @@ Why might this not be happening? / Possible solutions  (if you know)
 1. Open game
 2. Game opens
 
-# Screenshots
+# Media
 <!--
 If applicable, add screenshots to help explain your problem
 A video of the reproduction would also be useful

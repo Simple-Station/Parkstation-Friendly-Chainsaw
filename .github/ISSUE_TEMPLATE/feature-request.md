@@ -19,7 +19,7 @@ Explain your request in as much detail as you can
 
 I want Goldfish crackers
 
-# Screenshots
+# Media
 <!--
 If applicable, add images or even a video to help explain your suggestion
 -->
