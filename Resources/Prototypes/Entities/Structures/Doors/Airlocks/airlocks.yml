@@ -31,8 +31,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/cargo.rsi
-  #- type: PaintableAirlock
-  #  department: Cargo
+  - type: PaintableAirlock
+    department: Cargo
 
 - type: entity
   parent: Airlock
@@ -213,8 +213,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
-  #- type: PaintableAirlock
-  #  department: Cargo
+  - type: PaintableAirlock
+    department: Cargo
 
 - type: entity
   parent: AirlockGlass
