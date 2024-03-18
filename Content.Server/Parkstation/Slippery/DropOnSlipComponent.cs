@@ -1,4 +1,4 @@
-﻿namespace Content.Server.SimpleStation14.Slippery;
+﻿namespace Content.Server.Parkstation.Slippery;
 
 /// <summary>
 ///     Uses provided chance to try and drop the item when slipped, if equipped.

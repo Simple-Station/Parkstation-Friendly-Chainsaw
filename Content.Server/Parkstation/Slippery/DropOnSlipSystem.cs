@@ -1,17 +1,17 @@
 ﻿using System.Numerics;
+using Content.Server.Popups;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
-using Robust.Shared.Random;
-using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
-using Content.Shared.Interaction.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Components;
 using Content.Shared.Throwing;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
 
-namespace Content.Server.SimpleStation14.Slippery;
+namespace Content.Server.Parkstation.Slippery;
 
 public sealed class DropOnSlipSystem : EntitySystem
 {
@@ -48,7 +48,7 @@ public sealed class DropOnSlipSystem : EntitySystem
                 continue;
 
             // Check for DropOnSlipComponent
-            if (slot.Name != "pocket1" && slot.Name != "pocket2" && EntityManager.TryGetComponent<DropOnSlipComponent>(item, out var dropComp) && _random.NextFloat(0, 100) < dropComp.Chance)
+            if (slot.Name != "pocket1" && slot.Name != "pocket2" && EntityManager.TryGetComponent<Parkstation.Slippery.DropOnSlipComponent>(item, out var dropComp) && _random.NextFloat(0, 100) < dropComp.Chance)
             {
                 var popupString = Loc.GetString("system-drop-on-slip-text-component", ("name", entity), ("item", item));
 
