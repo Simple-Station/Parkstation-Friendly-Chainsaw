@@ -12,7 +12,7 @@ namespace Content.Shared.Parkstation.Species.Shadowkin.Events;
 public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent, ISpeakSpell
 {
     [DataField("sound")]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/SimpleStation14/Effects/Shadowkin/Powers/teleport.ogg");
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Parkstation/Effects/Shadowkin/Powers/teleport.ogg");
 
     [DataField("volume")]
     public float Volume = 5f;
@@ -35,13 +35,13 @@ public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent, ISp
 public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakSpell
 {
     [DataField("soundOn")]
-    public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/SimpleStation14/Effects/Shadowkin/Powers/darkswapon.ogg");
+    public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/Parkstation/Effects/Shadowkin/Powers/darkswapon.ogg");
 
     [DataField("volumeOn")]
     public float VolumeOn = 5f;
 
     [DataField("soundOff")]
-    public SoundSpecifier SoundOff = new SoundPathSpecifier("/Audio/SimpleStation14/Effects/Shadowkin/Powers/darkswapoff.ogg");
+    public SoundSpecifier SoundOff = new SoundPathSpecifier("/Audio/Parkstation/Effects/Shadowkin/Powers/darkswapoff.ogg");
 
     [DataField("volumeOff")]
     public float VolumeOff = 5f;

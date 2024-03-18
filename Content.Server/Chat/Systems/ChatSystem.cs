@@ -60,7 +60,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SimpleStationChatSystem _simpleStationChatSystem = default!; // Parkstation-EmpathyChat
+    [Dependency] private readonly ParkstationChatSystem _parkstationChatSystem = default!; // Parkstation-EmpathyChat
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
@@ -286,7 +286,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 break;
             // Parkstation-EmpathyChat
             case InGameICChatType.Empathy:
-                _simpleStationChatSystem.SendEmpathyChat(source, message, range == ChatTransmitRange.HideChat);
+                _parkstationChatSystem.SendEmpathyChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
         }
     }

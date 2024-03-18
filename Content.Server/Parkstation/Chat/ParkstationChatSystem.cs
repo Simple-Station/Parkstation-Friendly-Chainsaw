@@ -15,7 +15,7 @@ namespace Content.Server.Parkstation.Chat
     /// <summary>
     ///     Extensions for Parkstation's chat stuff
     /// </summary>
-    public sealed class SimpleStationChatSystem : EntitySystem
+    public sealed class ParkstationChatSystem : EntitySystem
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
