@@ -9,7 +9,7 @@
     - type: Hunger
     - type: Thirst
     - type: Icon
-      sprite: SimpleStation14/Mobs/Species/shadowkin.rsi
+      sprite: Parkstation/Mobs/Species/shadowkin.rsi
       state: full
     - type: Body
       prototype: Shadowkin

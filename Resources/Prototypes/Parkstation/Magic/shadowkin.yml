@@ -8,7 +8,7 @@
     range: 32
     itemIconStyle: NoItem
     icon:
-      sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
       state: teleport
     checkCanAccess: true
     repeat: true
@@ -28,7 +28,7 @@
     itemIconStyle: NoItem
     priority: -21
     icon:
-      sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
       state: darkswap
     event: !type:ShadowkinDarkSwapEvent
       powerCostOn: 60
@@ -47,7 +47,7 @@
     itemIconStyle: NoItem
     priority: -22
     icon:
-      sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
       state: rest
     checkCanInteract: false
     event: !type:ShadowkinRestEvent

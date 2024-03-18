@@ -1,9 +1,9 @@
 ﻿- type: shader
   id: ColorTint
   kind: source
-  path: "/Textures/SimpleStation14/Shaders/color_tint.swsl"
+  path: "/Textures/Parkstation/Shaders/color_tint.swsl"
 
 - type: shader
   id: Ethereal
   kind: source
-  path: "/Textures/SimpleStation14/Shaders/ethereal.swsl"
+  path: "/Textures/Parkstation/Shaders/ethereal.swsl"
