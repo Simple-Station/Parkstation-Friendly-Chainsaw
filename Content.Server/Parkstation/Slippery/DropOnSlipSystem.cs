@@ -18,15 +18,15 @@ public sealed class DropOnSlipSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly InventorySystem _invSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
-    public const float PocketDropChance = 10f;
-    public const float PocketThrowChance = 5f;
+    public float PocketDropChance = 10f;
+    public float PocketThrowChance = 5f;
 
-    public const float ClumsyDropChance = 5f;
-    public const float ClumsyThrowChance = 90f;
+    public float ClumsyDropChance = 5f;
+    public float ClumsyThrowChance = 90f;
 
 
     public override void Initialize()
@@ -39,12 +39,12 @@ public sealed class DropOnSlipSystem : EntitySystem
 
     private void HandleSlip(EntityUid entity, InventoryComponent invComp, ParkSlipEvent args)
     {
-        if (!_invSystem.TryGetSlots(entity, out var slotDefinitions))
+        if (!_inventory.TryGetSlots(entity, out var slotDefinitions))
             return;
 
         foreach (var slot in slotDefinitions)
         {
-            if (!_invSystem.TryGetSlotEntity(entity, slot.Name, out var item))
+            if (!_inventory.TryGetSlotEntity(entity, slot.Name, out var item))
                 continue;
 
             // Check for DropOnSlipComponent
@@ -78,7 +78,7 @@ public sealed class DropOnSlipSystem : EntitySystem
 
     private void Drop(EntityUid entity, EntityUid item, string slot, string popupString)
     {
-        if (!_invSystem.TryUnequip(entity, slot, false, true))
+        if (!_inventory.TryUnequip(entity, slot, false, true))
             return;
 
         EntityManager.TryGetComponent<PhysicsComponent>(entity, out var entPhysComp);
