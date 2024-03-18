@@ -14,7 +14,7 @@ using EmpathyChatComponent = Content.Shared.Parkstation.Species.Shadowkin.Compon
 namespace Content.Server.Parkstation.Chat
 {
     /// <summary>
-    /// Extensions for Parkstation's chat stuff
+    ///     Extensions for Parkstation's chat stuff
     /// </summary>
     public sealed class SimpleStationChatSystem : EntitySystem
     {

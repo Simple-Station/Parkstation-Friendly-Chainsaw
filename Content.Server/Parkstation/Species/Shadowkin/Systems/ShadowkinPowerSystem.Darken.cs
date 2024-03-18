@@ -78,6 +78,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
                 // Not a light we should affect
                 if (!_entity.TryGetComponent(light, out ShadowkinLightComponent? shadowkinLight))
                     continue;
+
                 // Not powered, undo changes
                 if (_entity.TryGetComponent(light, out PoweredLightComponent? powered) && !powered.On)
                 {
@@ -99,6 +100,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
                     shadowkin.DarkenedLights.Remove(light);
                     continue;
                 }
+
                 // 3% chance to remove the attached entity so it can become another Shadowkin's light
                 if (shadowkinLight.AttachedEntity == uid)
                 {
