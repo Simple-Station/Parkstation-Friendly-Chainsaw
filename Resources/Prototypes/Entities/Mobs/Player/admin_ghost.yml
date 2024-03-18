@@ -102,7 +102,7 @@
     netsync: false
     noRot: true
     drawdepth: Ghosts
-    sprite: SimpleStation14/Mobs/Ghosts/ghost_admin.rsi
+    sprite: Parkstation/Mobs/Ghosts/ghost_admin.rsi
     state: animated
     color: "#888888"
     layers:
