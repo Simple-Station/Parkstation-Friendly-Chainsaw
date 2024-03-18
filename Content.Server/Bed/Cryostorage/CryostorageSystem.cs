@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
-using Content.Server.Inventory;
 using Content.Server.Popups;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -13,11 +12,13 @@ using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
-using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -30,13 +31,13 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
@@ -48,8 +49,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CryostorageComponent, BeforeActivatableUIOpenEvent>(OnBeforeUIOpened);
-        SubscribeLocalEvent<CryostorageComponent, CryostorageRemoveItemBuiMessage>(OnRemoveItemBuiMessage);
+        SubscribeLocalEvent<LostAndFoundComponent, BeforeActivatableUIOpenEvent>(OnBeforeUIOpened);
+        SubscribeLocalEvent<LostAndFoundComponent, CryostorageRemoveItemBuiMessage>(OnRemoveItemBuiMessage);
 
         SubscribeLocalEvent<CryostorageContainedComponent, PlayerSpawnCompleteEvent>(OnPlayerSpawned);
         SubscribeLocalEvent<CryostorageContainedComponent, MindRemovedMessage>(OnMindRemoved);
@@ -64,13 +65,15 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         _playerManager.PlayerStatusChanged -= PlayerStatusChanged;
     }
 
-    private void OnBeforeUIOpened(Entity<CryostorageComponent> ent, ref BeforeActivatableUIOpenEvent args)
+        private void OnBeforeUIOpened(Entity<LostAndFoundComponent> ent, ref BeforeActivatableUIOpenEvent args)
     {
         UpdateCryostorageUIState(ent);
     }
 
-    private void OnRemoveItemBuiMessage(Entity<CryostorageComponent> ent, ref CryostorageRemoveItemBuiMessage args)
+    private void OnRemoveItemBuiMessage(Entity<LostAndFoundComponent> ent, ref CryostorageRemoveItemBuiMessage args)
     {
+        Log.Debug("on remove item bui message");
+
         var (_, comp) = ent;
         if (args.Session.AttachedEntity is not { } attachedEntity)
             return;
@@ -113,7 +116,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         UpdateCryostorageUIState(ent);
     }
 
-    private void UpdateCryostorageUIState(Entity<CryostorageComponent> ent)
+    public void UpdateCryostorageUIState(Entity<LostAndFoundComponent> ent)
     {
         var state = new CryostorageBuiState(GetAllContainedData(ent).ToList());
         _ui.TrySetUiState(ent, CryostorageUIKey.Key, state);
@@ -186,7 +189,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
-        _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
+        _audio.PlayPvs(cryostorageComponent.RemoveSound, cryostorageEnt.Value, AudioParams.Default.WithVolume(6f));
 
         EnsurePausedMap();
         if (PausedMap == null)
@@ -204,10 +207,38 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         }
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
-        cryostorageComponent.StoredPlayers.Add(ent);
-        Dirty(ent, comp);
-        UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
+
+        // try to get the lost and found and add the player to it
+        var query = EntityQueryEnumerator<LostAndFoundComponent>();
+        query.MoveNext(out var storage, out var lostAndFoundComponent);
+
+        if (TryComp<LostAndFoundComponent>(storage, out var lostAndFoundComp))
+        {
+            lostAndFoundComp.StoredPlayers.Add(ent);
+            Dirty(ent, comp);
+            UpdateCryostorageUIState((storage, lostAndFoundComp));
+        }
+        else // if there is no lost and found, just drop the items instead of deleting them
+        {
+            DropItems(ent, cryostorageEnt.Value);
+        }
+
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
+    }
+
+    private void DropItems(EntityUid uid, EntityUid cryopod)
+    {
+        if (!_inventory.TryGetSlots(uid, out var slotDefinitions))
+            return;
+
+        foreach (var slot in slotDefinitions)
+        {
+            if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var item))
+                continue;
+
+            _inventory.TryUnequip(uid, slot.Name, true, true);
+            _transform.SetCoordinates(uid, Transform(cryopod).Coordinates);
+        }
     }
 
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
@@ -235,9 +266,18 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         }
 
         comp.GracePeriodEndTime = null;
-        cryostorageComponent.StoredPlayers.Remove(uid);
+
+        // try to get the lost and found and remove the player from it
+        var query = EntityQueryEnumerator<LostAndFoundComponent>();
+        query.MoveNext(out var storage, out var lostAndFoundComponent);
+
+        if (TryComp<LostAndFoundComponent>(storage, out var lostAndFoundComp))
+        {
+            lostAndFoundComp.StoredPlayers.Remove(uid);
+            UpdateCryostorageUIState((storage, lostAndFoundComp));
+        }
+
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(entity):player} re-entered the game from cryostorage {ToPrettyString(cryostorage)}");
-        UpdateCryostorageUIState((cryostorage, cryostorageComponent));
     }
 
     protected override void OnInsertedContainer(Entity<CryostorageComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -257,7 +297,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, uid, false, actor.PlayerSession.Channel);
     }
 
-    private IEnumerable<CryostorageContainedPlayerData> GetAllContainedData(Entity<CryostorageComponent> ent)
+    private IEnumerable<CryostorageContainedPlayerData> GetAllContainedData(Entity<LostAndFoundComponent> ent)
     {
         foreach (var contained in ent.Comp.StoredPlayers)
         {
