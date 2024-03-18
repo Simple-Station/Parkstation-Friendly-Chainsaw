@@ -1,7 +1,6 @@
 ﻿using Content.Client.Chat.Managers;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Client.Player;
-using EmpathyChatComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.EmpathyChatComponent;
 
 namespace Content.Client.Parkstation.Chat
 {

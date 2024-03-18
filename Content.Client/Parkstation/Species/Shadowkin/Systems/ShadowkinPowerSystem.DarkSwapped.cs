@@ -1,10 +1,9 @@
 ﻿using Content.Client.Parkstation.Overlays.Shaders;
 using Content.Shared.Humanoid;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-using ShadowkinDarkSwappedComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinDarkSwappedComponent;
 
 namespace Content.Client.Parkstation.Species.Shadowkin.Systems;
 

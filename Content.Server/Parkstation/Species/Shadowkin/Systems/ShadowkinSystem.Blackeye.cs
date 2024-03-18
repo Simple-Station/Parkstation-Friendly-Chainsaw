@@ -8,10 +8,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
 using Content.Shared.Popups;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Robust.Shared.Prototypes;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
-using ShadowkinDarkSwappedComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinDarkSwappedComponent;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 

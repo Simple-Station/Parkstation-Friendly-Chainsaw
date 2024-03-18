@@ -2,9 +2,7 @@
 using Content.Shared.Alert;
 using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
 using Robust.Shared.Utility;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 

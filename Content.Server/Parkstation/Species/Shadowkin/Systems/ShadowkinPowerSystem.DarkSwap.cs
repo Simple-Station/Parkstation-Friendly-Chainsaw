@@ -10,15 +10,13 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
-using ShadowkinDarkSwappedComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinDarkSwappedComponent;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 

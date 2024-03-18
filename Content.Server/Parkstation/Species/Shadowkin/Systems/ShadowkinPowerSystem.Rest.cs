@@ -2,9 +2,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Shared.Prototypes;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 

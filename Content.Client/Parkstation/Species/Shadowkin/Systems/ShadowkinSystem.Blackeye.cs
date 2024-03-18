@@ -1,8 +1,7 @@
 ﻿using Content.Shared.Humanoid;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Client.GameObjects;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
 
 namespace Content.Client.Parkstation.Species.Shadowkin.Systems;
 
