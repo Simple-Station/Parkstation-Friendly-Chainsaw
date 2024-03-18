@@ -1,0 +1,84 @@
+- type: marking
+  id: SpinesAqua
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Reptilian]
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_aqua
+- type: marking
+  id: SpinesAquaAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_aqua_wagging
+
+- type: marking
+  id: SpinesLong
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Reptilian]
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_long
+- type: marking
+  id: SpinesLongAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_long_wagging
+
+- type: marking
+  id: SpinesLongmeme
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Reptilian]
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_longmeme
+- type: marking
+  id: SpinesLongmemeAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_longmeme_wagging
+
+- type: marking
+  id: SpinesShort
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Reptilian]
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_short
+- type: marking
+  id: SpinesShortAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_short_wagging
+
+- type: marking
+  id: SpinesShortmeme
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Reptilian]
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_shortmeme
+- type: marking
+  id: SpinesShortmemeAnimated
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: []
+  sprites:
+    - sprite: Parkstation/Mobs/Customization/reptilian.rsi
+      state: spines_shortmeme_wagging
