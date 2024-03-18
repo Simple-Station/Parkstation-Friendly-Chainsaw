@@ -8,6 +8,7 @@ using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Nyanotrasen.Chat;
+using Content.Server.Parkstation.Chat;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
@@ -37,7 +38,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Server.SimpleStation14.Chat;
 
 namespace Content.Server.Chat.Systems;
 

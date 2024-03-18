@@ -6,6 +6,7 @@
   - type: Sprite
     sprite: Objects/Materials/parts.rsi
     state: rods
+    scale: 0.65, 0.65 # Parkstation-SmallerMaterials
   - type: Item
     sprite: Objects/Materials/parts.rsi
   - type: Tag
