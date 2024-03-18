@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using Content.Server.Light.Components;
 using Content.Server.Parkstation.Species.Shadowkin.Components;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
-using ShadowkinDarkSwappedComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinDarkSwappedComponent;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 

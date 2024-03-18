@@ -6,10 +6,9 @@ using Content.Server.Chat.Systems;
 using Content.Server.Parkstation.Speech.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using EmpathyChatComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.EmpathyChatComponent;
 
 namespace Content.Server.Parkstation.Chat
 {

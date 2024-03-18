@@ -1,12 +1,11 @@
 ﻿using Content.Client.Parkstation.Overlays.Shaders;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
-using Content.Shared.SimpleStation14.Species.Shadowkin.Components;
+using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-using ShadowkinComponent = Content.Shared.Parkstation.Species.Shadowkin.Components.ShadowkinComponent;
 
 namespace Content.Client.Parkstation.Species.Shadowkin.Systems;
 
