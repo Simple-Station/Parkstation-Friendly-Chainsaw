@@ -1,0 +1,9 @@
+﻿- type: shader
+  id: ColorTint
+  kind: source
+  path: "/Textures/Parkstation/Shaders/color_tint.swsl"
+
+- type: shader
+  id: Ethereal
+  kind: source
+  path: "/Textures/Parkstation/Shaders/ethereal.swsl"

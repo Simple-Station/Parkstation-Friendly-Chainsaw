@@ -8,6 +8,7 @@ using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Nyanotrasen.Chat;
+using Content.Server.Parkstation.Chat;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
@@ -59,6 +60,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly ParkstationChatSystem _parkstationChatSystem = default!; // Parkstation-EmpathyChat
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
@@ -281,6 +283,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             //Nyano - Summary: case adds the telepathic chat sending ability.
             case InGameICChatType.Telepathic:
                 _nyanoChatSystem.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);
+                break;
+            // Parkstation-EmpathyChat
+            case InGameICChatType.Empathy:
+                _parkstationChatSystem.SendEmpathyChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
         }
     }
@@ -992,7 +998,8 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
-    Telepathic //Nyano - Summary: adds telepathic as a type of message users can receive.
+    Telepathic, //Nyano - Summary: adds telepathic as a type of message users can receive.
+    Empathy, // Parkstation-EmpathyChat
 }
 
 /// <summary>
