@@ -17,12 +17,13 @@ Any changes made to files belonging to our upstream should be properly marked in
 
 ## Building
 
-Refer to [the Space Wizards' guide](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) on setting up a development environment for general information, but keep in mind that Parkstation is a distant fork of Space Wizards' SS14 and not everything applies. We provide some scripts to make the job easier.
+Refer to [the Space Wizards' guide](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) on setting up a development environment for general information, but keep in mind that Parkstation is not the same and many things may not apply.
+We provide some scripts shown below to make the job easier.
 
 ### Build dependencies
 
 > - Git
-> - DOTNET SDK 7.0 or higher
+> - DOTNET SDK 8.0 or higher
 > - python 3.7 or higher
 
 
@@ -50,10 +51,13 @@ Refer to [the Space Wizards' guide](https://docs.spacestation14.com/en/general-d
 
 ## License
 
-Content contributed to this repository after commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the GNU Affero General Public License version 3.0 unless otherwise stated. See [LICENSE-AGPLv3](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-AGPLv3.txt).
+Content contributed to this repository after commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the GNU Affero General Public License version 3.0 unless otherwise stated.
+See [LICENSE-AGPLv3](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-AGPLv3.txt).
 
-Content contributed to this repository before commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the MIT license unless otherwise stated. See [LICENSE-MIT](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-MIT.txt).
+Content contributed to this repository before commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the MIT license unless otherwise stated.
+See [LICENSE-MIT](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-MIT.txt).
 
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file.
+[Example](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
 Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

@@ -2,7 +2,7 @@
 
 ## Copyright
 
-The Authors retain all copyright to their respective work here submitted.
+The Authors retain all copyright to their respective work submitted here.
 
 ## Code license
 
