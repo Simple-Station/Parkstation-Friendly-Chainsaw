@@ -1,6 +1,7 @@
 # Guide to Codebase Change Markers
 
-Whenever you change a file not owned by this codebase you need to clarify which portions have been changed. If the markers described below don't have a description for the file type you're working with, don't add a marker yet and ask a reviewer if you need one and how it should be done.
+Whenever you change a file not owned by this codebase you need to clarify which portions have been changed.
+If the markers described below don't have a description for the file type you're working with, don't add a marker yet and ask a reviewer if you need one and how it should be done.
 
 The following is the formatting for annotations per language type:
 

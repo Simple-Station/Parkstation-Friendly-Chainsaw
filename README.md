@@ -2,9 +2,16 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/Simple-Station/Parkstation-Friendly-Chainsaw/master/Resources/Textures/Logo/logo.png" width="1080px" /></p>
 
+
 ## Links
 
-[Discord](https://discord.gg/49KeKwXc8g) | [Steam](https://store.steampowered.com/app/2585480/Space_Station_Multiverse/) | [Standalone](https://spacestationmultiverse.com/downloads/)
+  [Website](https://simplestation.org)
+| [Discord](https://discord.gg/49KeKwXc8g)
+| [Steam (SSMV)](https://store.steampowered.com/app/2585480/Space_Station_Multiverse/)
+| [Standalone (SSMV)](https://spacestationmultiverse.com/downloads/)
+| [Steam (WizDen)](https://store.steampowered.com/app/1255460/Space_Station_14/)
+| [Standalone (WizDen)](https://spacestation14.io/about/nightlies/)
+
 
 ## Contributing
 
@@ -14,6 +21,7 @@ We are currently accepting translations of the game on our main repository. If y
 
 If you make any contributions, please make sure to read the markers section in [MARKERS](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/MARKERS.md)
 Any changes made to files belonging to our upstream should be properly marked in accordance to what is specified there.
+
 
 ## Building
 
@@ -49,15 +57,7 @@ We provide some scripts shown below to make the job easier.
 
 > I don't know anybody using MacOS to test this, but it's probably roughly the same steps as Linux.
 
+
 ## License
 
-Content contributed to this repository after commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the GNU Affero General Public License version 3.0 unless otherwise stated.
-See [LICENSE-AGPLv3](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-AGPLv3.txt).
-
-Content contributed to this repository before commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the MIT license unless otherwise stated.
-See [LICENSE-MIT](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LICENSE-MIT.txt).
-
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file.
-[Example](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
-
-Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+See the [LEGAL](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LEGAL.md) file for information.
