@@ -1,29 +1,4 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  #- Aspid
-  #- Bagel
-  #- Barratry
-  #- Box
-  #- Cluster
-  #- Core
-  #- Fland
-  #- Kettle
-  #- Marathon
-  #- Meta
-  #- Omega
-  #- Origin
-  #- Saltern
-  #- Packed
-# DeltaV
-  #- Arena
-  #- Asterisk
-  #- Edge
-  #- Hammurabi
-  #- Pebble
-  #- Shoukou
-  #- Tortuga
-  #- TheHive
-  #- Submarine
-# Parkstation
   - Dev # Until we get Arborum
