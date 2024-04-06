@@ -6,152 +6,152 @@
 # This file contains instructions for everything you can do with the announcer system
 # This also contains every "needed" announcement for any new announcers and descriptions for what they are
 #
-# Avoid renaming announcement audio files to keep consistency between announcers
+# Avoid renaming announcement audio files to keep consistency between announcers for workspace searching
 # Keep comments on specific announcements and follow this same formatting for every announcer
 # If you don't have an announcement audio, comment the announcemt type instead of deleting it
 
 - type: announcer
   id: Announcer # Localized as "announcer-<id>-name" in chat
   basePath: /Audio/Codebase/Announcements/Announcer # Where to start looking for audio files
-  baseAudioParams: # Default audio parameters for all announcements, all options explained later
-    volume: -7 # If this announcer is really loud, lower it to match the others' volume
-  announcements: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
-    # Template
+  baseAudioParams: # Default audio parameters for all announcements, all options explained in the template announcement
+    volume: -7 # If this announcer is really loud, lower it to match the others' volume #? Default is 3
+  announcements: # List of all announcements this announcer has audio for #! Comment out unused announcements, don't remove them
+    # Template, delete this in real announcer files
     - id: template # Lowercase of the event ID, add "Complete" to the end for post-event announcements (endings)
       ignoreBasePath: false # If true, it will ignore the basePath and use the path as is
       path: template.ogg # Path to the file relative to basePath/, named with snake_case except for "-complete"
-      collection: AnnouncerTemplateAnnouncements # Collection of audios to randomly use for this, will ignore path if set - Ignores basePath automatically!
-      message: announcer-announcement-template # Localization key for the announcement message to use instead of the default one - NOTE this does not pass through previous loc args yet
+      collection: AnnouncerTemplateAnnouncements # Collection of audios to randomly use for this, will ignore path if set #! Ignores basePath automatically
+      message: announcer-announcement-template # Localization key for the announcement message to use instead of the default one # NOTE this does not pass through previous loc args yet
       audioParams: # Overrides baseAudioParams entirely for this specific announcement, numbers are all floats
-        volume: 3 # We don't want announcement volumes to vary too much - default is here
-        pitch: 1 # Default is here
-        playOffsetSeconds: 0 # How many seconds into the audio to start from - default is here
-        variation: 0 # Probably wouldn't sound very good unless very low, 0.15 or less is normally used - default is here
+        volume: 3 # We don't want individual announcement volumes to vary too much, normalize them with this #? Default is 3
+        pitch: 1 #? Default is 1
+        playOffsetSeconds: 0 # How many seconds into the audio to start from #? Default is 0
+        variation: 0 # Probably wouldn't sound very good unless very low, 0.15 or less is normally used #? Default is 0
 
     # Communications
     - id: announce # Communications console
-      path: announce.ogg
-    - id: attention # Generic alert sound - should be different from fallback but it's very similarly used
-      path: attention.ogg
+      path: comms/announce.ogg
+    - id: attention # Generic alert sound # Should be different from fallback but it's very similar
+      path: comms/attention.ogg
     - id: commandreport # Station goal, Central Command messages, etc
-      path: command_report.ogg
-    - id: spawnannounce # Captain join (the system is annoyingly not modular)
-      path: spawn_announce.ogg
+      path: comms/command_report.ogg
+    - id: spawnannounce # Captain join # TODO That system is annoyingly not modular
+      path: comms/spawn_announce.ogg
     - id: war # Nuclear Operative declaration of war
-      path: war.ogg
+      path: comms/war.ogg
     - id: nukecodes # The station has been send nuclear activation codes
-      path: nuke_codes.ogg # Or command_report.ogg if you want
+      path: comms/nuke_codes.ogg # Or command_report.ogg if you want
     - id: nukearm # The nuke is active and ticking
-      path: nuke_arm.ogg
+      path: comms/nuke_arm.ogg
     - id: nukedisarm # The nuke has been disarmed
-      path: nuke_disarm.ogg
+      path: comms/nuke_disarm.ogg
 
     # Alert levels
     - id: alertgreen # Everything is fine
-      path: alert_green.ogg
+      path: alerts/green.ogg
     - id: alertblue # Something is amiss
-      path: alert_blue.ogg
+      path: alerts/blue.ogg
     - id: alertviolet # Viral infection or misc medical emergencies, listen to Medical
-      path: alert_violet.ogg
+      path: alerts/violet.ogg
     - id: alertwhite # Glimmer is too high, listen to Epistemics
-      path: alert_white.ogg
+      path: alerts/white.ogg
     - id: alertyellow # The station is being largely damaged, listen to Engineering
-      path: alert_yellow.ogg
+      path: alerts/yellow.ogg
     - id: alertred # Generic many things are bad, listen to Security
-      path: alert_red.ogg
+      path: alerts/red.ogg
     - id: alertgamma # There is a massive immediate threat to the station, listen to Central Command
-      path: alert_gamma.ogg
+      path: alerts/gamma.ogg
     - id: alertdelta # The station is being or about to be massively destroyed, run for your life
-      path: alert_delta.ogg
+      path: alerts/delta.ogg
     - id: alertepsilon # The station has been terminated, good luck survivors!
-      path: alert_epsilon.ogg
+      path: alerts/epsilon.ogg
 
     # Events
     ## Wizard's Den
     ### Mid-Round Antagonists
     - id: deathmatch # Everyone is going to kill each other
-      path: death_match.ogg
+      path: alerts/death_match.ogg
     - id: powersinkexplosion # A power sink is about to overcharge and explode
-      path: powersink_explosion.ogg
+      path: comms/powersink_explosion.ogg
     ### Events
     - id: anomalyspawn # An anomaly has spawned in a random place
-      path: anomaly.ogg
+      path: events/anomaly.ogg
     - id: bluespaceartifact # An artifact has spawned in a random place
-      path: bluespace_artifact.ogg
+      path: events/bluespace_artifact.ogg
     - id: bluespacelocker # Two random lockers now share inventories
-      path: bluespace_locker.ogg
+      path: events/bluespace_locker.ogg
     - id: breakerflip # A few random APCs have been disabled, ask Engineering to fix them
-      path: breaker_flip.ogg
+      path: events/breaker_flip.ogg
     - id: bureaucraticerror # Random jobs have been added, removed, or made infinite
-      path: bureaucratic_error.ogg
+      path: events/bureaucratic_error.ogg
     - id: clericalerror # Random crew are removed from the manifest
-      path: clerical_error.ogg
+      path: events/clerical_error.ogg
     - id: dragonspawn # A dragon has spawned in a random place
-      path: dragon_spawn.ogg
+      path: events/dragon_spawn.ogg
     - id: carprift # A dragon's carp rift is active
-      path: carp_rift.ogg
+      path: events/carp_rift.ogg
     - id: revenantspawn # A revenant has spawned (by a prober?)
-      path: revenant_spawn.ogg
+      path: events/revenant_spawn.ogg
     - id: gasleak # A random gas is coming out of a random vent
-      path: gas_leak.ogg
+      path: events/gas_leak.ogg
     - id: gasleakComplete # Gas has stopped coming out of a vent
-      path: gas_leak-complete.ogg
+      path: events/gas_leak-complete.ogg
     - id: kudzugrowth # Kudzu is growing in a random place
-      path: kudzu_growth.ogg
+      path: events/kudzu_growth.ogg
     - id: meteorswarm # Meteors are flying at the station, stay away from windows
-      path: meteors.ogg
+      path: events/meteors.ogg
     - id: meteorswarmComplete # Meteors have stopped flying at the station
-      path: meteors-complete.ogg
+      path: events/meteors-complete.ogg
     - id: mousemigration # Several mice have appeared in a random place
-      path: mouse_migration.ogg
+      path: events/mouse_migration.ogg
     - id: cockroachmigration # Several cockroaches have appeared in a random place
-      path: cockroach_migration.ogg
+      path: events/cockroach_migration.ogg
     - id: powergridcheck # The station's power is offline for some moments
-      path: power_grid_check.ogg
+      path: events/power_grid_check.ogg
     - id: powergridcheckComplete # The station's power is online again
-      path: power_grid_check-complete.ogg
+      path: events/power_grid_check-complete.ogg
     - id: randomsentience # A random few animals have become sentient
-      path: random_sentience.ogg
+      path: events/random_sentience.ogg
     - id: solarflare # A solar flare is nearby, may mess with comms and electronics
-      path: solar_flare.ogg
+      path: events/solar_flare.ogg
     - id: solarflareComplete # The solar flare has passed
-      path: solar_flare-complete.ogg
+      path: events/solar_flare-complete.ogg
     - id: ventclog # A random reagent is coming out of a scrubber
-      path: vent_clog.ogg
+      path: events/vent_clog.ogg
     - id: ventclogComplete # The reagent has stopped coming out of the scrubber
-      path: vent_clog-complete.ogg
+      path: events/vent_clog-complete.ogg
     - id: ventcritters # A species of animal are coming out of several vents
-      path: vent_critters.ogg
+      path: events/vent_critters.ogg
     - id: slimesspawn # Some simple slimes are appearing in vents
-      path: slimes_spawn.ogg
+      path: events/slimes_spawn.ogg
     - id: spiderspawn # Some simple spiders are appearing in vents
-      path: spider_spawn.ogg
+      path: events/spider_spawn.ogg
     - id: immovablerodspawn # The station is moving into an immovable rod, don't die or something, ask Engineering for help repairing it
-      path: immovable_rod_spawn.ogg
+      path: events/immovable_rod_spawn.ogg
     - id: ionstorm # AI-controlled equipment are now weird, check their laws
-      path: ion_storm.ogg
+      path: events/ion_storm.ogg
     ## Delta-V
     - id: xenovents # Xenomorphs are coming out of vents
-      path: xeno_vents.ogg
+      path: events/xeno_vents.ogg
     ## NyanoTrasen
     - id: noosphericstorm # A large amount of glimmer has joined the station and made people psionic
-      path: noospheric_storm.ogg
+      path: events/noospheric_storm.ogg
     ## Parkstation
     ### Nothing yet
 
     # Shuttle
     - id: shuttlecalled # The shuttle is on its way
-      path: shuttle_called.ogg
+      path: shuttle/called.ogg
     - id: shuttlerecalled # The shuttle is going back to Central Command
-      path: shuttle_recalled.ogg
+      path: shuttle/recalled.ogg
     - id: shuttledock # The shuttle has arrived at the station
-      path: shuttle_dock.ogg
+      path: shuttle/dock.ogg
     - id: shuttlenearby # The shuttle couldn't dock, it's at a specified location
-      path: shuttle_nearby.ogg
+      path: shuttle/nearby.ogg
     - id: shuttlealmostlaunching # The shuttle will leave to FTL in 10 seconds
-      path: shuttle_almost_launching.ogg
+      path: shuttle/almost_launching.ogg
     - id: shuttlegoodluck # The shuttle could not find its way to the station, good luck crew
-      path: shuttle_good_luck.ogg
+      path: shuttle/good_luck.ogg
 
     # Fallback # REQUIRED
     - id: fallback # Any announcement sent without a valid announcement on this announcer will use this
