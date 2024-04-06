@@ -1,4 +1,4 @@
-announcer-name-Intern=Central Command
-announcer-name-MedBot=Automated
-announcer-name-NEIL=N.E.I.L.
-announcer-name-VoxFem=Automated
+announcer-Intern-name=Central Command
+announcer-MedBot-name=Automated
+announcer-NEIL-name=N.E.I.L.
+announcer-VoxFem-name=Automated
