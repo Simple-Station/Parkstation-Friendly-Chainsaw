@@ -1,6 +1,6 @@
 - type: announcer
   id: VoxFem
-  basePath: /Audio/SimpleStation14/Announcements/VoxFem
+  basePath: /Audio/Parkstation/Announcements/VoxFem
   announcements:
     # Communications console
     - id: announce

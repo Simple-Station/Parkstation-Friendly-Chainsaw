@@ -1,6 +1,6 @@
 - type: announcer
   id: Intern
-  basePath: /Audio/SimpleStation14/Announcements/Intern
+  basePath: /Audio/Parkstation/Announcements/Intern
   baseAudioParams:
     volume: -7
   announcements:

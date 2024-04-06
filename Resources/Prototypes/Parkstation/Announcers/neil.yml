@@ -1,6 +1,6 @@
 - type: announcer
   id: NEIL
-  basePath: /Audio/SimpleStation14/Announcements/NEIL
+  basePath: /Audio/Parkstation/Announcements/NEIL
   baseAudioParams:
     volume: -3
   announcements:

@@ -1,6 +1,6 @@
 - type: announcer
   id: MedBot
-  basePath: /Audio/SimpleStation14/Announcements/MedBot
+  basePath: /Audio/Parkstation/Announcements/MedBot
   announcements:
     # Communications console
     - id: announce
