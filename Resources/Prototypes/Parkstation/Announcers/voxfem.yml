@@ -41,7 +41,7 @@
       path: outbreak7.ogg
     - id: powergridcheck
       path: poweroff.ogg
-    - id: powergridcheckcomplete
+    - id: powergridcheckComplete
       path: poweron.ogg
     - id: radiation
       path: radiation.ogg

@@ -17,7 +17,7 @@
     volume: -7 # If this announcer is really loud, lower it to match the others' volume
   announcements: # List of all announcements this announcer has audio for, comment out unused ones - don't remove them
     # Template
-    - id: template # Lowercase of the event ID, add "-complete" to the end for post-event announcements (endings)
+    - id: template # Lowercase of the event ID, add "Complete" to the end for post-event announcements (endings)
       ignoreBasePath: false # If true, it will ignore the basePath and use the path as is
       path: template.ogg # Path to the file relative to basePath/, named with snake_case except for "-complete"
       collection: AnnouncerTemplateAnnouncements # Collection of audios to randomly use for this, will ignore path if set - Ignores basePath automatically!
@@ -94,13 +94,13 @@
       path: revenant_spawn.ogg
     - id: gasleak # A random gas is coming out of a random vent
       path: gas_leak.ogg
-    - id: gasleak-complete # Gas has stopped coming out of a vent
+    - id: gasleakComplete # Gas has stopped coming out of a vent
       path: gas_leak-complete.ogg
     - id: kudzugrowth # Kudzu is growing in a random place
       path: kudzu_growth.ogg
     - id: meteorswarm # Meteors are flying at the station, stay away from windows
       path: meteors.ogg
-    - id: meteorswarm-complete # Meteors have stopped flying at the station
+    - id: meteorswarmComplete # Meteors have stopped flying at the station
       path: meteors-complete.ogg
     - id: mousemigration # Several mice have appeared in a random place
       path: mouse_migration.ogg
@@ -108,17 +108,17 @@
       path: cockroach_migration.ogg
     - id: powergridcheck # The station's power is offline for some moments
       path: power_grid_check.ogg
-    - id: powergridcheck-complete # The station's power is online again
+    - id: powergridcheckComplete # The station's power is online again
       path: power_grid_check-complete.ogg
     - id: randomsentience # A random few animals have become sentient
       path: random_sentience.ogg
     - id: solarflare # A solar flare is nearby, may mess with comms and electronics
       path: solar_flare.ogg
-    - id: solarflare-complete # The solar flare has passed
+    - id: solarflareComplete # The solar flare has passed
       path: solar_flare-complete.ogg
     - id: ventclog # A random reagent is coming out of a scrubber
       path: vent_clog.ogg
-    - id: ventclog-complete # The reagent has stopped coming out of the scrubber
+    - id: ventclogComplete # The reagent has stopped coming out of the scrubber
       path: vent_clog-complete.ogg
     - id: ventcritters # A species of animal are coming out of several vents
       path: vent_critters.ogg

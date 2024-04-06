@@ -43,7 +43,7 @@
       path: meteors.ogg
     - id: powergridcheck
       path: poweroff.ogg
-    - id: powergridcheckcomplete
+    - id: powergridcheckComplete
       path: poweron.ogg
     - id: radiation
       path: radiation.ogg
