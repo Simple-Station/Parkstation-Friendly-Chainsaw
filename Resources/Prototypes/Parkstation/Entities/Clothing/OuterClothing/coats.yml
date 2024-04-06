@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatCSS
+  name: css's suit jacket
+  description: A snazzy pinstripe jacket, fit for only the classiest of Heads.
+  components:
+    - type: Sprite
+      sprite: Parkstation/Clothing/OuterClothing/Coats/css_jacket.rsi
+    - type: Clothing
+      sprite: Parkstation/Clothing/OuterClothing/Coats/css_jacket.rsi
