@@ -56,6 +56,10 @@ public sealed partial class AnnouncerSystem
         if (GetAnnouncementMessage(announcementId) is { } announcementMessage)
             message = announcementMessage;
 
+        // Don't send nothing
+        if (string.IsNullOrEmpty(message))
+            return;
+
         // If there is a station, send the announcement to the station, otherwise send it to everyone
         if (station == null)
             _chat.DispatchGlobalAnnouncement(message, sender, false, colorOverride: colorOverride);
