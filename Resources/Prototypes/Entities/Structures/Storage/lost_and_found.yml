@@ -1,0 +1,37 @@
+﻿- type: entity
+  parent: BaseMachinePowered
+  id: LostAndFound
+  name: lost and found storage unit
+  description: A storage unit containing belongings of individuals in cryostorage.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/lost_and_found.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: screen
+      map: ["computerLayerScreen"]
+  - type: ActivatableUI
+    key: enum.CryostorageUIKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.CryostorageUIKey.Key
+      type: CryostorageBoundUserInterface
+  # - type: ApcPowerReceiver
+  #   powerLoad: 200
+  - type: AccessReader
+    breakOnEmag: false
+    access: [["HeadOfPersonnel"]]
+  - type: InteractionOutline
+  - type: LostAndFound
+  - type: Physics
+    bodyType: Static
+  - type: PointLight
+    color: "#3ABD45"
+    radius: 1.2
+    energy: 2.0
+    castShadows: false
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot

@@ -4,6 +4,8 @@ using Content.Shared.DragDrop;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -12,7 +14,7 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Bed.Cryostorage;
 
 /// <summary>
-/// This handles <see cref="CryostorageComponent"/>
+/// This handles <see cref="CryostorageComponent"/> and <see cref="LostAndFoundComponent"/>
 /// </summary>
 public abstract class SharedCryostorageSystem : EntitySystem
 {
@@ -22,8 +24,9 @@ public abstract class SharedCryostorageSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly SharedMindSystem Mind = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    protected EntityUid? PausedMap { get; private set; }
+    public EntityUid? PausedMap { get; private set; }
 
     protected bool CryoSleepRejoiningEnabled;
 
@@ -33,12 +36,13 @@ public abstract class SharedCryostorageSystem : EntitySystem
         SubscribeLocalEvent<CryostorageComponent, EntInsertedIntoContainerMessage>(OnInsertedContainer);
         SubscribeLocalEvent<CryostorageComponent, EntRemovedFromContainerMessage>(OnRemovedContainer);
         SubscribeLocalEvent<CryostorageComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
-        SubscribeLocalEvent<CryostorageComponent, ComponentShutdown>(OnShutdownContainer);
         SubscribeLocalEvent<CryostorageComponent, CanDropTargetEvent>(OnCanDropTarget);
 
-        SubscribeLocalEvent<CryostorageContainedComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
         SubscribeLocalEvent<CryostorageContainedComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<CryostorageContainedComponent, ComponentShutdown>(OnShutdownContained);
+
+        SubscribeLocalEvent<LostAndFoundComponent, ComponentShutdown>(OnShutdownContainer);
+        SubscribeLocalEvent<LostAndFoundComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
@@ -72,6 +76,12 @@ public abstract class SharedCryostorageSystem : EntitySystem
         containedComp.GracePeriodEndTime = Timing.CurTime + delay;
         containedComp.Cryostorage = ent;
         Dirty(args.Entity, containedComp);
+
+        // Play sound, checking for client-side prediction to avoid double audio
+        if (!Timing.InPrediction)
+            return;
+
+        _audio.PlayPvs(CryostorageComponent.EnterSound, ent, AudioParams.Default.WithVolume(6f));
     }
 
     private void OnRemovedContainer(Entity<CryostorageComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -102,7 +112,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         }
     }
 
-    private void OnShutdownContainer(Entity<CryostorageComponent> ent, ref ComponentShutdown args)
+    private void OnShutdownContainer(Entity<LostAndFoundComponent> ent, ref ComponentShutdown args)
     {
         var comp = ent.Comp;
         foreach (var stored in comp.StoredPlayers)
@@ -130,7 +140,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnRemovedContained(Entity<CryostorageContainedComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    private void OnRemovedContained(Entity<LostAndFoundComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
         var (uid, comp) = ent;
         if (!IsInPausedMap(uid))
@@ -148,7 +158,11 @@ public abstract class SharedCryostorageSystem : EntitySystem
     {
         var comp = ent.Comp;
 
-        CompOrNull<CryostorageComponent>(comp.Cryostorage)?.StoredPlayers.Remove(ent);
+        // Try to get the lost and found and remove the player from it
+        var query = EntityQueryEnumerator<LostAndFoundComponent>();
+        query.MoveNext(out var storage, out var lostAndFoundComponent);
+        CompOrNull<LostAndFoundComponent>(storage)?.StoredPlayers.Remove(ent);
+
         ent.Comp.Cryostorage = null;
         Dirty(ent, comp);
     }
@@ -167,7 +181,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         PausedMap = null;
     }
 
-    protected void EnsurePausedMap()
+    public void EnsurePausedMap()
     {
         if (PausedMap != null && Exists(PausedMap))
             return;
