@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Parkstation.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;

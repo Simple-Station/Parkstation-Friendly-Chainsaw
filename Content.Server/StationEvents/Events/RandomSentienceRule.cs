@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Parkstation.Announcements.Systems;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
 using Robust.Shared.Player;

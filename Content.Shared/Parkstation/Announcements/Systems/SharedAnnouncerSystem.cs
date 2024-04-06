@@ -1,10 +1,10 @@
 using System.Linq;
-using Content.Shared.SimpleStation14.Announcements.Prototypes;
+using Content.Shared.Parkstation.Announcements.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.SimpleStation14.Announcements.Systems;
+namespace Content.Shared.Parkstation.Announcements.Systems;
 
 public sealed class SharedAnnouncerSystem : EntitySystem
 {

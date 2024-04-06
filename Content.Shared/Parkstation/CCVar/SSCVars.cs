@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.SimpleStation14.CCVar;
+namespace Content.Shared.Parkstation.CCVar;
 
 [CVarDefs]
 public sealed class SimpleStationCCVars

@@ -1,5 +1,5 @@
 using Content.Server.Chat;
-using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Parkstation.Announcements.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Chat.Systems;

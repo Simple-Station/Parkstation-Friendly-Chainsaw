@@ -3,7 +3,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Examine;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Systems;
-using Content.Server.SimpleStation14.Announcements.Systems;
+using Content.Server.Parkstation.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;

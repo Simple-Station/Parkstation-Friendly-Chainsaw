@@ -1,13 +1,13 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.GameTicking;
-using Content.Shared.SimpleStation14.Announcements.Prototypes;
-using Content.Shared.SimpleStation14.Announcements.Systems;
-using Content.Shared.SimpleStation14.CCVar;
+using Content.Shared.Parkstation.Announcements.Prototypes;
+using Content.Shared.Parkstation.Announcements.Systems;
+using Content.Shared.Parkstation.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.SimpleStation14.Announcements.Systems;
+namespace Content.Server.Parkstation.Announcements.Systems;
 
 public sealed partial class AnnouncerSystem : EntitySystem
 {

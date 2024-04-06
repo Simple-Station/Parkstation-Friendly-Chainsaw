@@ -1,8 +1,8 @@
 using System.Linq;
-using Content.Shared.SimpleStation14.Announcements.Prototypes;
+using Content.Shared.Parkstation.Announcements.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests.SimpleStation14.Announcers;
+namespace Content.IntegrationTests.Tests.Parkstation.Announcers;
 
 [TestFixture]
 [TestOf(typeof(AnnouncerPrototype))]

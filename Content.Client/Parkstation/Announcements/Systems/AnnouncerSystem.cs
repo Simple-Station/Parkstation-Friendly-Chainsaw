@@ -1,7 +1,7 @@
 using Content.Client.Audio;
-using Content.Shared.SimpleStation14.Announcements.Events;
-using Content.Shared.SimpleStation14.Announcements.Systems;
-using Content.Shared.SimpleStation14.CCVar;
+using Content.Shared.Parkstation.Announcements.Events;
+using Content.Shared.Parkstation.Announcements.Systems;
+using Content.Shared.Parkstation.CCVar;
 using Robust.Client.Audio;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
@@ -9,7 +9,7 @@ using Robust.Shared.Audio.Sources;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 
-namespace Content.Client.SimpleStation14.Announcements.Systems;
+namespace Content.Client.Parkstation.Announcements.Systems;
 
 public sealed class AnnouncerSystem : EntitySystem
 {

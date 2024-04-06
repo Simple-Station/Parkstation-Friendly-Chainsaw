@@ -1,9 +1,9 @@
 using System.Linq;
-using Content.Shared.SimpleStation14.Announcements.Events;
+using Content.Shared.Parkstation.Announcements.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 
-namespace Content.Server.SimpleStation14.Announcements.Systems;
+namespace Content.Server.Parkstation.Announcements.Systems;
 
 public sealed partial class AnnouncerSystem
 {

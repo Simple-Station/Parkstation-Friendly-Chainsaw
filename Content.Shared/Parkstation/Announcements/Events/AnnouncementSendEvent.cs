@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.SimpleStation14.Announcements.Events;
+namespace Content.Shared.Parkstation.Announcements.Events;
 
 
 [Serializable, NetSerializable]
