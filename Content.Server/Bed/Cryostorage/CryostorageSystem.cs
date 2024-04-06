@@ -65,15 +65,13 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         _playerManager.PlayerStatusChanged -= PlayerStatusChanged;
     }
 
-        private void OnBeforeUIOpened(Entity<LostAndFoundComponent> ent, ref BeforeActivatableUIOpenEvent args)
+    private void OnBeforeUIOpened(Entity<LostAndFoundComponent> ent, ref BeforeActivatableUIOpenEvent args)
     {
         UpdateCryostorageUIState(ent);
     }
 
     private void OnRemoveItemBuiMessage(Entity<LostAndFoundComponent> ent, ref CryostorageRemoveItemBuiMessage args)
     {
-        Log.Debug("on remove item bui message");
-
         var (_, comp) = ent;
         if (args.Session.AttachedEntity is not { } attachedEntity)
             return;
@@ -208,7 +206,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
 
-        // try to get the lost and found and add the player to it
+        // Try to get the lost and found and add the player to it
         var query = EntityQueryEnumerator<LostAndFoundComponent>();
         query.MoveNext(out var storage, out var lostAndFoundComponent);
 
@@ -218,7 +216,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             Dirty(ent, comp);
             UpdateCryostorageUIState((storage, lostAndFoundComp));
         }
-        else // if there is no lost and found, just drop the items instead of deleting them
+        else // If there is no lost and found, just drop the items instead of deleting them
         {
             DropItems(ent, cryostorageEnt.Value);
         }
@@ -267,7 +265,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         comp.GracePeriodEndTime = null;
 
-        // try to get the lost and found and remove the player from it
+        // Try to get the lost and found and remove the player from it
         var query = EntityQueryEnumerator<LostAndFoundComponent>();
         query.MoveNext(out var storage, out var lostAndFoundComponent);
 

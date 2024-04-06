@@ -77,7 +77,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         containedComp.Cryostorage = ent;
         Dirty(args.Entity, containedComp);
 
-        // play sound, checking for client-side prediction to avoid double audio
+        // Play sound, checking for client-side prediction to avoid double audio
         if (!Timing.InPrediction)
             return;
 
@@ -158,7 +158,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
     {
         var comp = ent.Comp;
 
-        // try to get the lost and found and remove the player from it
+        // Try to get the lost and found and remove the player from it
         var query = EntityQueryEnumerator<LostAndFoundComponent>();
         query.MoveNext(out var storage, out var lostAndFoundComponent);
         CompOrNull<LostAndFoundComponent>(storage)?.StoredPlayers.Remove(ent);
