@@ -15,11 +15,19 @@
 
 ## Contributing
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help in Discord either!
+We are happy to accept contributions from anybody.
+Get in Discord if you want to help.
+We've got a [list of issues](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/issues) that need to be done and anybody can pick them up.
+Don't be afraid to ask for help in Discord either!
 
-We are currently accepting translations of the game on our main repository. If you would like to translate the game into another language check the #contribution-help channel in our Discord.
+Before making a PR here, consider if the feature is specific to us, or if it would generally improve the codebase.
+Broader changes should be made on our upstream, [Einstein Engines](https://github.com/Simple-Station/Einstein-Engines), where many of the same maintainers manage the code.
+If you're familiar with someone here, feel free to request a review from them in particular over there.
 
-If you make any contributions, please make sure to read the markers section in [MARKERS](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/MARKERS.md)
+[Einstein Engines](https://github.com/Simple-Station/Einstein-Engines) is also accepting translations.
+If you would like to translate the game into another language check the #contributor-general channel in their Discord.
+
+If you make any contributions, please make sure to read the markers section in [MARKERS](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/MARKERS.md).
 Any changes made to files belonging to our upstream should be properly marked in accordance to what is specified there.
 
 
@@ -28,12 +36,14 @@ Any changes made to files belonging to our upstream should be properly marked in
 Refer to [the Space Wizards' guide](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) on setting up a development environment for general information, but keep in mind that Parkstation is not the same and many things may not apply.
 We provide some scripts shown below to make the job easier.
 
-### Build dependencies
+### Build Dependencies
 
-> - Git
 > - DOTNET SDK 8.0 or higher
-> - python 3.7 or higher
 
+### Recommended Tools
+
+> - Git (needed)
+> - Python 3.7 or higher
 
 ### Windows
 
