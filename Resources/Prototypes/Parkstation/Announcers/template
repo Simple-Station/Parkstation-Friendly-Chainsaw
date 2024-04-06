@@ -5,6 +5,10 @@
 #
 # This file contains instructions for everything you can do with the announcer system
 # This also contains every "needed" announcement for any new announcers and descriptions for what they are
+#
+# Avoid renaming announcement audio files to keep consistency between announcers
+# Keep comments on specific announcements and follow this same formatting for every announcer
+# If you don't have an announcement audio, comment the announcemt type instead of deleting it
 
 - type: announcer
   id: Announcer # Localized as "announcer-<id>-name" in chat
