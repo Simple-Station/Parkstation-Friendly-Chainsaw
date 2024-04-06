@@ -71,7 +71,7 @@
     # New AI
     - id: newai
       ignoreBasePath: true
-      path: /Audio/SimpleStation14/Announcements/MedBot/newai.ogg
+      path: /Audio/Parkstation/Announcements/MedBot/newai.ogg
     # Start of the shift
     - id: welcome
       path: welcome.ogg
