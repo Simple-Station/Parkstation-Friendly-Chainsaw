@@ -208,7 +208,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     weight: 5
     duration: 50
@@ -387,6 +386,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 90 # DeltaV - was 50
     minimumPlayers: 15
     weight: 2.5 # DeltaV - was 5
