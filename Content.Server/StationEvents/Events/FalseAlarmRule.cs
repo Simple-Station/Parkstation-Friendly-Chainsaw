@@ -24,7 +24,7 @@ public sealed class FalseAlarmRule : StationEventSystem<FalseAlarmRuleComponent>
         var picked = RobustRandom.Pick(allEv);
 
         _announcer.SendAnnouncement(_announcer.GetAnnouncementId(picked.ID), Filter.Broadcast(),
-            Loc.GetString(_announcer.GetEventLocaleString(picked.ID)),
+            Loc.GetString(_announcer.GetEventLocaleString(_announcer.GetAnnouncementId(picked.ID))),
             colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
     }
 }

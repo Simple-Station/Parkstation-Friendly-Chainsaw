@@ -4,7 +4,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 12 # DeltaV - was 10
     startDelay: 30
     duration: 35
@@ -16,7 +15,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 5
     startDelay: 30
     duration: 35
@@ -28,7 +26,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 1
     reoccurrenceDelay: 5
     earliestStart: 1
@@ -41,7 +38,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 10
     duration: 1
     minimumPlayers: 15
@@ -88,7 +84,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 1 # DeltaV - was 5
     duration: 1
     earliestStart: 45
@@ -116,7 +111,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 7.5
     duration: 1
     earliestStart: 45
@@ -296,7 +290,6 @@
   components:
   - type: StationEvent
     startAnnouncement: true # Parkstation-RandomAnnouncers
-    endAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -310,7 +303,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 15
     minimumPlayers: 15
@@ -331,7 +323,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
@@ -352,7 +343,6 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15

@@ -74,7 +74,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         if (stationEvent.StartAnnouncement)
         {
             _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId), Filter.Broadcast(),
-                Loc.GetString(_announcer.GetEventLocaleString(args.RuleId)),
+                Loc.GetString(_announcer.GetEventLocaleString(_announcer.GetAnnouncementId(args.RuleId))),
                 colorOverride: Color.Gold);
         }
         // Parkstation-RandomAnnouncers-End
@@ -102,8 +102,8 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         // Parkstation-RandomAnnouncers-Start
         if (stationEvent.EndAnnouncement)
         {
-            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId, true),
-                Filter.Broadcast(), Loc.GetString(_announcer.GetEventLocaleString(args.RuleId + "Complete")),
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId, true), Filter.Broadcast(),
+                Loc.GetString(_announcer.GetEventLocaleString(_announcer.GetAnnouncementId(args.RuleId, true))),
                 colorOverride: Color.Gold);
         }
         // Parkstation-RandomAnnouncers-End

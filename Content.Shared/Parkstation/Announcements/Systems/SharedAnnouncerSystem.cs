@@ -138,7 +138,7 @@ public abstract class SharedAnnouncerSystem : EntitySystem
     /// <param name="localeBase">Format for the locale string, replaces "{}" with the converted ID</param>
     /// <remarks>The IDs use a hardcoded format, you can probably handle other formats yourself</remarks>
     /// <returns>Localized announcement</returns>
-    public string GetEventLocaleString(string eventId, string localeBase = "station-event{}-announcement")
+    public string GetEventLocaleString(string eventId, string localeBase = "station-event-{}-announcement")
     {
         // Replace capital letters with lowercase plus a hyphen before it
         var capsCapture = new Regex("([A-Z])");
