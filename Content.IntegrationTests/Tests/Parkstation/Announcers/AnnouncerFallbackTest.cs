@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Parkstation.Announcements.Prototypes;
 using Robust.Shared.Prototypes;
@@ -6,11 +7,13 @@ namespace Content.IntegrationTests.Tests.Parkstation.Announcers;
 
 [TestFixture]
 [TestOf(typeof(AnnouncerPrototype))]
-public sealed partial class AnnouncerPrototypeTests
+public sealed class AnnouncerPrototypeTests
 {
     [Test]
     public async Task TestAnnouncerFallbacks()
     {
+        // Checks if every announcer has a fallback announcement
+
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
@@ -18,12 +21,19 @@ public sealed partial class AnnouncerPrototypeTests
 
         await server.WaitAssertion(() =>
         {
+            var success = true;
+            var why = new List<string>();
+
             foreach (var announcer in prototype.EnumeratePrototypes<AnnouncerPrototype>())
             {
-                Assert.That(announcer.Announcements.Any(a => a.ID.ToLower() == "fallback"),
-                    Is.True,
-                    $"Announcer \"{announcer.ID}\" does not have a fallback announcement");
+                if (announcer.Announcements.All(a => a.ID.ToLower() != "fallback"))
+                {
+                    success = false;
+                    why.Add(announcer.ID);
+                }
             }
+
+            Assert.That(success, Is.True, $"The following announcers do not have a fallback announcement:\n  {string.Join("\n  ", why)}");
         });
 
         await pair.CleanReturnAsync();
