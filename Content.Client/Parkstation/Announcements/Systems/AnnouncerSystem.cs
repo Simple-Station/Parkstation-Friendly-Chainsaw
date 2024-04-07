@@ -51,12 +51,12 @@ public sealed class AnnouncerSystem : EntitySystem
 
     private void OnAnnouncementReceived(AnnouncementSendEvent ev)
     {
-        if (!ev.Recipients.Contains(_player.LocalSession!.UserId))
+        if (!ev.Recipients.Contains(_player.LocalSession!.UserId)
+            || !_cache.TryGetResource<AudioResource>(_announcer.GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId),
+                out var resource))
             return;
 
-        var resource = _cache.GetResource<AudioResource>(_announcer.GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId));
         var source = _audioManager.CreateAudioSource(resource);
-
         if (source != null)
         {
             source.Gain = AnnouncerVolume * SharedAudioSystem.VolumeToGain(ev.AudioParams.Volume);

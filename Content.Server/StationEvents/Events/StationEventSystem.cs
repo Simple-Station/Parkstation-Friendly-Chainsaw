@@ -56,9 +56,6 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
-        _announcer.SendAnnouncement(args.RuleId.ToLower(), Filter.Broadcast(), // Parkstation-RandomAnnouncers
-            Loc.GetString(stationEvent.StartAnnouncement ?? ""), colorOverride: Color.Gold);
-
         stationEvent.StartTime = _timing.CurTime + stationEvent.StartDelay;
     }
 
@@ -71,6 +68,12 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
             return;
 
         AdminLogManager.Add(LogType.EventStarted, LogImpact.High, $"Event started: {ToPrettyString(uid)}");
+
+        if (stationEvent.StartAnnouncement != null)
+        {
+            _announcer.SendAnnouncement(args.RuleId.ToLower(), Filter.Broadcast(), // Parkstation-RandomAnnouncers
+                Loc.GetString(stationEvent.StartAnnouncement ?? ""), colorOverride: Color.Gold);
+        }
 
         if (stationEvent.Duration != null)
         {
@@ -92,8 +95,11 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
-        _announcer.SendAnnouncement(args.RuleId.ToLower() + "Complete", // Parkstation-RandomAnnouncers
-            Filter.Broadcast(), Loc.GetString(stationEvent.EndAnnouncement ?? ""), colorOverride: Color.Gold);
+        if (stationEvent.EndAnnouncement != null)
+        {
+            _announcer.SendAnnouncement(args.RuleId.ToLower() + "Complete", // Parkstation-RandomAnnouncers
+                Filter.Broadcast(), Loc.GetString(stationEvent.EndAnnouncement ?? ""), colorOverride: Color.Gold);
+        }
     }
 
     /// <summary>
