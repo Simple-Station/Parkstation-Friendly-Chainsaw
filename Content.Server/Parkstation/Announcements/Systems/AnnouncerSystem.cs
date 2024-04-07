@@ -15,7 +15,6 @@ public sealed partial class AnnouncerSystem : SharedAnnouncerSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedAnnouncerSystem _announcer = default!;
 
     /// <summary>
     ///     The currently selected announcer

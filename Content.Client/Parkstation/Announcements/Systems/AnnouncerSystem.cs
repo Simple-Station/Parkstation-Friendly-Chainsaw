@@ -11,13 +11,12 @@ using Robust.Shared.Configuration;
 
 namespace Content.Client.Parkstation.Announcements.Systems;
 
-public sealed class AnnouncerSystem : EntitySystem
+public sealed class AnnouncerSystem : SharedAnnouncerSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IResourceCache _cache = default!;
     [Dependency] private readonly IAudioManager _audioManager = default!;
-    [Dependency] private readonly SharedAnnouncerSystem _announcer = default!;
 
     private IAudioSource? AnnouncerSource { get; set; }
     private float AnnouncerVolume { get; set; }
@@ -52,7 +51,7 @@ public sealed class AnnouncerSystem : EntitySystem
     private void OnAnnouncementReceived(AnnouncementSendEvent ev)
     {
         if (!ev.Recipients.Contains(_player.LocalSession!.UserId)
-            || !_cache.TryGetResource<AudioResource>(_announcer.GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId),
+            || !_cache.TryGetResource<AudioResource>(GetAnnouncementPath(ev.AnnouncementId, ev.AnnouncerId),
                 out var resource))
             return;
 

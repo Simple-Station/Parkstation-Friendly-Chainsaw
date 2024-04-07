@@ -34,7 +34,7 @@ public sealed partial class AnnouncerSystem
             Announcer.ID,
             announcementId,
             filter.Recipients.ToList().ConvertAll(p => p.UserId), // I hate this but IEnumerable isn't serializable, and then ICommonSession wasn't, so you get the User ID
-            _announcer.GetAudioParams(announcementId, Announcer) ?? AudioParams.Default
+            GetAudioParams(announcementId, Announcer) ?? AudioParams.Default
         );
 
         RaiseNetworkEvent(ev);
