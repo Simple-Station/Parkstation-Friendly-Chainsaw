@@ -9,6 +9,7 @@ using Content.Server.Parkstation.Announcements.Systems;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Parkstation.Announcements.Systems;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
@@ -591,7 +592,10 @@ namespace Content.Server.GameTicking
 
             var proto = _robustRandom.Pick(options);
 
-            _announcer.SendAnnouncement(proto.ID.ToLower(), Filter.Broadcast(), Loc.GetString(proto.Message ?? "game-ticker-welcome-to-the-station")); // Parkstation-RandomAnnouncers
+            // Parkstation-RandomAnnouncers-Start
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(proto.ID), Filter.Broadcast(),
+                Loc.GetString(proto.Message ?? "game-ticker-welcome-to-the-station"));
+            // Parkstation-RandomAnnouncers-End
         }
 
         private async void SendRoundStartedDiscordMessage()

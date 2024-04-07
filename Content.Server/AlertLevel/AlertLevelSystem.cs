@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Parkstation.Announcements.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
+using Content.Shared.Parkstation.Announcements.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -164,15 +165,13 @@ public sealed class AlertLevelSystem : EntitySystem
         // The full announcement to be spat out into chat.
         var announcementFull = Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
 
+        // Parkstation-RandomAnnouncers-Start
+        var alert = _announcer.GetAnnouncementId($"Alert{level}");
         if (playSound)
-        {
-            _announcer.SendAnnouncementAudio($"alert{level.ToLower()}", _stationSystem.GetInOwningStation(station)); // Parkstation-RandomAnnouncers
-        }
-
+            _announcer.SendAnnouncementAudio(alert, _stationSystem.GetInOwningStation(station));
         if (announce)
-        {
-            _announcer.SendAnnouncementMessage($"alert{level.ToLower()}", announcementFull, colorOverride: detail.Color);
-        }
+            _announcer.SendAnnouncementMessage(alert, announcementFull, colorOverride: detail.Color);
+        // Parkstation-RandomAnnouncers-End
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));
     }

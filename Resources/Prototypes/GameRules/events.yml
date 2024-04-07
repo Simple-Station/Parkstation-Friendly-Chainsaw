@@ -4,6 +4,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 12 # DeltaV - was 10
     startDelay: 30
     duration: 35
@@ -15,6 +16,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 5
     startDelay: 30
     duration: 35
@@ -26,6 +28,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 1
     reoccurrenceDelay: 5
     earliestStart: 1
@@ -38,6 +41,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 10
     duration: 1
     minimumPlayers: 15
@@ -49,7 +53,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-bureaucratic-error-announcement
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     minimumPlayers: 25
     weight: 5
     duration: 1
@@ -61,7 +65,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-clerical-error-announcement
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     minimumPlayers: 15
     weight: 5
     duration: 1
@@ -84,6 +88,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 1 # DeltaV - was 5
     duration: 1
     earliestStart: 45
@@ -111,6 +116,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 7.5
     duration: 1
     earliestStart: 45
@@ -124,6 +130,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    # startAnnouncement: true # Parkstation-RandomAnnouncers # Inherited from the event it copies
     weight: 15
     duration: 1
   - type: FalseAlarmRule
@@ -134,10 +141,8 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-gas-leak-start-announcement
-    startAudio:
-      path: /Audio/Announcements/gas_leak.ogg # DeltaV - custom announcer
-    endAnnouncement: station-event-gas-leak-end-announcement
+    startAnnouncement: true # Parkstation-RandomAnnouncers
+    endAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 10
     minimumPlayers: 5
     weight: 10
@@ -150,6 +155,7 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -163,15 +169,11 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
+    endAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 30
     weight: 7.5
     minimumPlayers: 10 #Enough to hopefully have at least one engineering guy
-    startAnnouncement: station-event-meteor-swarm-start-announcement
-    endAnnouncement: station-event-meteor-swarm-end-announcement
-    startAudio:
-      path: /Audio/Announcements/meteors.ogg
-      params:
-        volume: -4
     duration: null #ending is handled by MeteorSwarmRule
     startDelay: 30
   - type: MeteorSwarmRule
@@ -182,9 +184,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 30
     minimumPlayers: 35
@@ -208,9 +208,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     weight: 5
     duration: 50
@@ -227,9 +225,9 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
+    endAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 10
-    startAnnouncement: station-event-power-grid-check-start-announcement
-    endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
       path: /Audio/Announcements/power_off.ogg
       params:
@@ -245,6 +243,7 @@
 #   noSpawn: true
 #   components:
 #   - type: StationEvent
+#     startAnnouncement: true # Parkstation-RandomAnnouncers
 #     weight: 10
 #     duration: 1
 #     startAudio:
@@ -257,11 +256,9 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
+    endAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 10
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -299,9 +296,8 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-clog-start-announcement
-    startAudio:
-      path: /Audio/Announcements/ventclog.ogg # DeltaV - custom announcer
+    startAnnouncement: true # Parkstation-RandomAnnouncers
+    endAnnouncement: true # Parkstation-RandomAnnouncers
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -315,9 +311,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 15
     minimumPlayers: 15
@@ -338,9 +332,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
@@ -361,9 +353,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
@@ -375,23 +365,21 @@
       prob: 0.05
 
 # - type: entity # DeltaV - Prevent normal spawning of MobClownSpider
-#  id: SpiderClownSpawn
-#  parent: BaseGameRule
-#  noSpawn: true
-#  components:
-#  - type: StationEvent
-#    startAnnouncement: station-event-vent-creatures-start-announcement
-#    startAudio:
-#      path: /Audio/Announcements/attention.ogg
-#    startDelay: 10
-#    earliestStart: 20
-#    minimumPlayers: 15
-#    weight: 1
-#    duration: 60
-#  - type: VentCrittersRule
-#    entries:
-#    - id: MobClownSpider
-#      prob: 0.05
+#   id: SpiderClownSpawn
+#   parent: BaseGameRule
+#   noSpawn: true
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: true # Parkstation-RandomAnnouncers
+#     startDelay: 10
+#     earliestStart: 20
+#     minimumPlayers: 15
+#     weight: 1
+#     duration: 60
+#   - type: VentCrittersRule
+#     entries:
+#     - id: MobClownSpider
+#       prob: 0.05
 
 - type: entity
   id: ZombieOutbreak
@@ -439,20 +427,18 @@
     sounds:
       collection: Paracusia
 
-#- type: entity # DeltaV - Why does this exist??
-#  id: ImmovableRodSpawn
-#  parent: BaseGameRule
-#  noSpawn: true
-#  components:
+# - type: entity # DeltaV - Why does this exist??
+#   id: ImmovableRodSpawn
+#   parent: BaseGameRule
+#   noSpawn: true
+#   components:
 #  - type: StationEvent
-#    startAnnouncement: station-event-immovable-rod-start-announcement
-#    startAudio:
-#      path: /Audio/Announcements/attention.ogg
-#    weight: 5
-#    duration: 1
-#    earliestStart: 45
-#    minimumPlayers: 20
-#  - type: ImmovableRodRule
+#     startAnnouncement: true # Parkstation-RandomAnnouncers
+#     weight: 5
+#     duration: 1
+#     earliestStart: 45
+#     minimumPlayers: 20
+#   - type: ImmovableRodRule
 
 - type: entity
   noSpawn: true
@@ -460,6 +446,7 @@
   id: IonStorm
   components:
   - type: StationEvent
+    startAnnouncement: true # Parkstation-RandomAnnouncers
     weight: 10
     earliestStart: 20
     reoccurrenceDelay: 60

@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Parkstation.Announcements.Systems;
 
-public sealed partial class AnnouncerSystem : EntitySystem
+public sealed partial class AnnouncerSystem : SharedAnnouncerSystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

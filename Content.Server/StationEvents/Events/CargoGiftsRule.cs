@@ -23,7 +23,11 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
 
         var str = Loc.GetString(component.Announce,
             ("sender", Loc.GetString(component.Sender)), ("description", Loc.GetString(component.Description)), ("dest", Loc.GetString(component.Dest)));
-        _announcer.SendAnnouncement(args.RuleId, Filter.Broadcast(), str, colorOverride: Color.FromHex("#18abf5")); // Parkstation-RandomAnnouncers
+
+        // Parkstation-RandomAnnouncers-Start
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId), Filter.Broadcast(), str,
+            colorOverride: Color.FromHex("#18abf5"));
+        // Parkstation-RandomAnnouncers-End
     }
 
     /// <summary>

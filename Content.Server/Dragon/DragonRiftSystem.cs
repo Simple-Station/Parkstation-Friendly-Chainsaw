@@ -72,7 +72,7 @@ public sealed class DragonRiftSystem : EntitySystem
                 Dirty(comp);
 
                 var location = xform.LocalPosition;
-                _announcer.SendAnnouncement("carprift", Filter.Broadcast(), Loc.GetString("carp-rift-warning", ("location", location)), colorOverride: Color.Red); // Parkstation-RandomAnnouncers
+                _announcer.SendAnnouncement(_announcer.GetAnnouncementId("CarpRift"), Filter.Broadcast(), Loc.GetString("carp-rift-warning", ("location", location)), colorOverride: Color.Red); // Parkstation-RandomAnnouncers
                 _navMap.SetBeaconEnabled(uid, true);
             }
 

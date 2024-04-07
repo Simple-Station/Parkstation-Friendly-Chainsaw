@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Parkstation.Announcements.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Parkstation.Announcements.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -18,9 +20,11 @@ public sealed class FalseAlarmRule : StationEventSystem<FalseAlarmRuleComponent>
     {
         base.Started(uid, component, gameRule, args);
 
-        var allEv = _event.AllEvents().Select(p => p.Value).ToList();
+        var allEv = _event.AllEvents().Select(p => p.Key).ToList(); // Parkstation-RandomAnnouncers
         var picked = RobustRandom.Pick(allEv);
 
-        _announcer.SendAnnouncement(args.RuleId, Filter.Broadcast(), Loc.GetString(picked.StartAnnouncement ?? ""), colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId(picked.ID), Filter.Broadcast(),
+            Loc.GetString(_announcer.GetEventLocaleString(picked.ID)),
+            colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
     }
 }

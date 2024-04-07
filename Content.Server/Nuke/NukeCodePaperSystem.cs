@@ -82,7 +82,7 @@ namespace Content.Server.Nuke
             if (wasSent)
             {
                 var msg = Loc.GetString("nuke-component-announcement-send-codes");
-                _announcer.SendAnnouncement("nukecodes", Filter.Broadcast(), msg, colorOverride: Color.Red); // Parkstation-AnnouncerSystem
+                _announcer.SendAnnouncement(_announcer.GetAnnouncementId("NukeCodes"), Filter.Broadcast(), msg, colorOverride: Color.Red); // Parkstation-AnnouncerSystem
             }
 
             return wasSent;

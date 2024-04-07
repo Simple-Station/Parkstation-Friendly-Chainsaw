@@ -20,7 +20,11 @@ public sealed class BreakerFlipRule : StationEventSystem<BreakerFlipRuleComponen
         base.Added(uid, component, gameRule, args);
 
         var str = Loc.GetString("station-event-breaker-flip-announcement", ("data", Loc.GetString(Loc.GetString($"random-sentience-event-data-{RobustRandom.Next(1, 6)}"))));
-        _announcer.SendAnnouncement(args.RuleId.ToLower(), Filter.Broadcast(), str, colorOverride: Color.Gold); // Parkstation-RandomAnnouncers
+
+        // Parkstation-RandomAnnouncers-Start
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId), Filter.Broadcast(), str,
+            colorOverride: Color.Gold);
+        // Parkstation-RandomAnnouncers-End
     }
 
     protected override void Started(EntityUid uid, BreakerFlipRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

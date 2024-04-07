@@ -177,7 +177,7 @@ namespace Content.Server.RoundEnd
                 units = "eta-units-minutes";
             }
 
-            _announcer.SendAnnouncement("shuttlecalled", // Parkstation-RandomAnnouncers
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("ShuttleCalled"), // Parkstation-RandomAnnouncers
                 Filter.Broadcast(),
                 Loc.GetString(text,
                     ("time", time),
@@ -228,7 +228,7 @@ namespace Content.Server.RoundEnd
                 _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
             }
 
-            _announcer.SendAnnouncement("shuttlerecalled", // Parkstation-RandomAnnouncers
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("ShuttleRecalled"), // Parkstation-RandomAnnouncers
                 Filter.Broadcast(),
                 Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("Station"),
@@ -312,7 +312,7 @@ namespace Content.Server.RoundEnd
                     // Check is shuttle called or not. We should only dispatch announcement if it's already called
                     if (IsRoundEndRequested())
                     {
-                        _announcer.SendAnnouncement("shuttlecalled", // Parkstation-RandomAnnouncers
+                        _announcer.SendAnnouncement(_announcer.GetAnnouncementId("ShuttleCalled"), // Parkstation-RandomAnnouncers
                             Filter.Broadcast(),
                             Loc.GetString(textAnnounce),
                             Loc.GetString(sender),

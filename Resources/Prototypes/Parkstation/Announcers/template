@@ -33,125 +33,129 @@
       path: comms/announce.ogg
     - id: attention # Generic alert sound # Should be different from fallback but it's very similar
       path: comms/attention.ogg
-    - id: commandreport # Station goal, Central Command messages, etc
+    - id: commandReport # Station goal, Central Command messages, etc
       path: comms/command_report.ogg
-    - id: spawnannounce # Captain join # TODO That system is annoyingly not modular
+    - id: spawnAnnounce # Captain join # TODO That system is annoyingly not modular
       path: comms/spawn_announce.ogg
     - id: war # Nuclear Operative declaration of war
       path: comms/war.ogg
-    - id: nukecodes # The station has been send nuclear activation codes
+    - id: nukeCodes # The station has been send nuclear activation codes
       path: comms/nuke_codes.ogg # Or command_report.ogg if you want
-    - id: nukearm # The nuke is active and ticking
+    - id: nukeArm # The nuke is active and ticking
       path: comms/nuke_arm.ogg
-    - id: nukedisarm # The nuke has been disarmed
+    - id: nukeDisarm # The nuke has been disarmed
       path: comms/nuke_disarm.ogg
 
     # Alert levels
-    - id: alertgreen # Everything is fine
+    - id: alertGreen # Everything is fine
       path: alerts/green.ogg
-    - id: alertblue # Something is amiss
+    - id: alertBlue # Something is amiss
       path: alerts/blue.ogg
-    - id: alertviolet # Viral infection or misc medical emergencies, listen to Medical
+    - id: alertViolet # Viral infection or misc medical emergencies, listen to Medical
       path: alerts/violet.ogg
-    - id: alertwhite # Glimmer is too high, listen to Epistemics
+    - id: alertWhite # Glimmer is too high, listen to Epistemics
       path: alerts/white.ogg
-    - id: alertyellow # The station is being largely damaged, listen to Engineering
+    - id: alertYellow # The station is being largely damaged, listen to Engineering
       path: alerts/yellow.ogg
-    - id: alertred # Generic many things are bad, listen to Security
+    - id: alertRed # Generic many things are bad, listen to Security
       path: alerts/red.ogg
-    - id: alertgamma # There is a massive immediate threat to the station, listen to Central Command
+    - id: alertGamma # There is a massive immediate threat to the station, listen to Central Command
       path: alerts/gamma.ogg
-    - id: alertdelta # The station is being or about to be massively destroyed, run for your life
+    - id: alertDelta # The station is being or about to be massively destroyed, run for your life
       path: alerts/delta.ogg
-    - id: alertepsilon # The station has been terminated, good luck survivors!
+    - id: alertEpsilon # The station has been terminated, good luck survivors!
       path: alerts/epsilon.ogg
 
     # Events
     ## Wizard's Den
     ### Mid-Round Antagonists
-    - id: deathmatch # Everyone is going to kill each other
-      path: alerts/death_match.ogg
-    - id: powersinkexplosion # A power sink is about to overcharge and explode
+    - id: ninjaHacking # A Ninja is hacking something
+      path: comms/ninja_hacking.ogg
+    - id: powersinkExplosion # A power sink is about to overcharge and explode
       path: comms/powersink_explosion.ogg
     ### Events
-    - id: anomalyspawn # An anomaly has spawned in a random place
+    - id: anomalySpawn # An anomaly has spawned in a random place
       path: events/anomaly.ogg
-    - id: bluespaceartifact # An artifact has spawned in a random place
+    - id: bluespaceArtifact # An artifact has spawned in a random place
       path: events/bluespace_artifact.ogg
-    - id: bluespacelocker # Two random lockers now share inventories
+    - id: bluespaceLocker # Two random lockers now share inventories
       path: events/bluespace_locker.ogg
-    - id: breakerflip # A few random APCs have been disabled, ask Engineering to fix them
+    - id: breakerFlip # A few random APCs have been disabled, ask Engineering to fix them
       path: events/breaker_flip.ogg
-    - id: bureaucraticerror # Random jobs have been added, removed, or made infinite
+    - id: bureaucraticError # Random jobs have been added, removed, or made infinite
       path: events/bureaucratic_error.ogg
-    - id: clericalerror # Random crew are removed from the manifest
+    - id: clericalError # Random crew are removed from the manifest
       path: events/clerical_error.ogg
-    - id: dragonspawn # A dragon has spawned in a random place
-      path: events/dragon_spawn.ogg
-    - id: carprift # A dragon's carp rift is active
+    - id: carpRift # A dragon's carp rift is active
       path: events/carp_rift.ogg
-    - id: revenantspawn # A revenant has spawned (by a prober?)
+    - id: revenantSpawn # A revenant has spawned (by a prober?)
       path: events/revenant_spawn.ogg
-    - id: gasleak # A random gas is coming out of a random vent
+    - id: gasLeak # A random gas is coming out of a random vent
       path: events/gas_leak.ogg
-    - id: gasleakComplete # Gas has stopped coming out of a vent
+    - id: gasLeakComplete # Gas has stopped coming out of a vent
       path: events/gas_leak-complete.ogg
-    - id: kudzugrowth # Kudzu is growing in a random place
+    - id: kudzuGrowth # Kudzu is growing in a random place
       path: events/kudzu_growth.ogg
-    - id: meteorswarm # Meteors are flying at the station, stay away from windows
+    - id: meteorSwarm # Meteors are flying at the station, stay away from windows
       path: events/meteors.ogg
-    - id: meteorswarmComplete # Meteors have stopped flying at the station
+    - id: meteorSwarmComplete # Meteors have stopped flying at the station
       path: events/meteors-complete.ogg
-    - id: mousemigration # Several mice have appeared in a random place
+    - id: mouseMigration # Several mice have appeared in a random place
       path: events/mouse_migration.ogg
-    - id: cockroachmigration # Several cockroaches have appeared in a random place
+    - id: cockroachMigration # Several cockroaches have appeared in a random place
       path: events/cockroach_migration.ogg
-    - id: powergridcheck # The station's power is offline for some moments
+    - id: powerGridCheck # The station's power is offline for some moments
       path: events/power_grid_check.ogg
-    - id: powergridcheckComplete # The station's power is online again
+    - id: powerGridCheckComplete # The station's power is online again
       path: events/power_grid_check-complete.ogg
-    - id: randomsentience # A random few animals have become sentient
+    - id: randomSentience # A random few animals have become sentient
       path: events/random_sentience.ogg
-    - id: solarflare # A solar flare is nearby, may mess with comms and electronics
+    - id: solarFlare # A solar flare is nearby, may mess with comms and electronics
       path: events/solar_flare.ogg
-    - id: solarflareComplete # The solar flare has passed
+    - id: solarFlareComplete # The solar flare has passed
       path: events/solar_flare-complete.ogg
-    - id: ventclog # A random reagent is coming out of a scrubber
+    - id: ventClog # A random reagent is coming out of a scrubber
       path: events/vent_clog.ogg
-    - id: ventclogComplete # The reagent has stopped coming out of the scrubber
+    - id: ventClogComplete # The reagent has stopped coming out of the scrubber
       path: events/vent_clog-complete.ogg
-    - id: ventcritters # A species of animal are coming out of several vents
+    - id: ventCritters # A species of animal are coming out of several vents
       path: events/vent_critters.ogg
-    - id: slimesspawn # Some simple slimes are appearing in vents
+    - id: slimesSpawn # Some simple slimes are appearing in vents
       path: events/slimes_spawn.ogg
-    - id: spiderspawn # Some simple spiders are appearing in vents
+    - id: spiderSpawn # Some simple spiders are appearing in vents
       path: events/spider_spawn.ogg
-    - id: immovablerodspawn # The station is moving into an immovable rod, don't die or something, ask Engineering for help repairing it
+    - id: immovableRodSpawn # The station is moving into an immovable rod, don't die or something, ask Engineering for help repairing it
       path: events/immovable_rod_spawn.ogg
-    - id: ionstorm # AI-controlled equipment are now weird, check their laws
+    - id: ionStorm # AI-controlled equipment are now weird, check their laws
       path: events/ion_storm.ogg
     ## Delta-V
-    - id: xenovents # Xenomorphs are coming out of vents
+    - id: xenoVents # Xenomorphs are coming out of vents
       path: events/xeno_vents.ogg
     ## NyanoTrasen
-    - id: noosphericstorm # A large amount of glimmer has joined the station and made people psionic
+    - id: noosphericStorm # A large amount of glimmer has joined the station and made people psionic
       path: events/noospheric_storm.ogg
     ## Parkstation
     ### Nothing yet
 
     # Shuttle
-    - id: shuttlecalled # The shuttle is on its way
+    - id: shuttleCalled # The shuttle is on its way
       path: shuttle/called.ogg
-    - id: shuttlerecalled # The shuttle is going back to Central Command
+    - id: shuttleRecalled # The shuttle is going back to Central Command
       path: shuttle/recalled.ogg
-    - id: shuttledock # The shuttle has arrived at the station
+    - id: shuttleDock # The shuttle has arrived at the station
       path: shuttle/dock.ogg
-    - id: shuttlenearby # The shuttle couldn't dock, it's at a specified location
+    - id: shuttleNearby # The shuttle couldn't dock, it's at a specified location
       path: shuttle/nearby.ogg
-    - id: shuttlealmostlaunching # The shuttle will leave to FTL in 10 seconds
-      path: shuttle/almost_launching.ogg
-    - id: shuttlegoodluck # The shuttle could not find its way to the station, good luck crew
+    - id: shuttleGodLuck # The shuttle could not find its way to the station, good luck crew
       path: shuttle/good_luck.ogg
+    - id: shuttleAuthAdded # One of few have added their acceptance to early launching
+      path: shuttle/auth_added.ogg
+    - id: shuttleAuthRevoked # One of few have revoked their acceptance to early launching
+      path: shuttle/auth_revoked.ogg
+    - id: shuttleAlmostLaunching # The shuttle will leave to FTL in 10 seconds
+      path: shuttle/almost_launching.ogg
+    - id: shuttleLeft # The shuttle has left the station
+      path: shuttle/left.ogg
 
     # Fallback # REQUIRED
     - id: fallback # Any announcement sent without a valid announcement on this announcer will use this

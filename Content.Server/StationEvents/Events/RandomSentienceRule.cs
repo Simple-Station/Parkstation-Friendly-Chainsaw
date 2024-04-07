@@ -59,7 +59,7 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
         }
         foreach (var station in stationsToNotify)
         {
-            _announcer.SendAnnouncement(args.RuleId,
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId),
                 StationSystem.GetInStation(EntityManager.GetComponent<StationDataComponent>(station)),
                 Loc.GetString("station-event-random-sentience-announcement",
                     ("kind1", kind1), ("kind2", kind2), ("kind3", kind3), ("amount", groupList.Count),

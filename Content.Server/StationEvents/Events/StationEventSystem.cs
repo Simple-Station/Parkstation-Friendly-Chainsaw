@@ -9,6 +9,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
+using Content.Shared.Parkstation.Announcements.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
@@ -69,11 +70,14 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventStarted, LogImpact.High, $"Event started: {ToPrettyString(uid)}");
 
-        if (stationEvent.StartAnnouncement != null)
+        // Parkstation-RandomAnnouncers-Start
+        if (stationEvent.StartAnnouncement)
         {
-            _announcer.SendAnnouncement(args.RuleId.ToLower(), Filter.Broadcast(), // Parkstation-RandomAnnouncers
-                Loc.GetString(stationEvent.StartAnnouncement ?? ""), colorOverride: Color.Gold);
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId), Filter.Broadcast(),
+                Loc.GetString(_announcer.GetEventLocaleString(args.RuleId)),
+                colorOverride: Color.Gold);
         }
+        // Parkstation-RandomAnnouncers-End
 
         if (stationEvent.Duration != null)
         {
@@ -95,11 +99,14 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
-        if (stationEvent.EndAnnouncement != null)
+        // Parkstation-RandomAnnouncers-Start
+        if (stationEvent.EndAnnouncement)
         {
-            _announcer.SendAnnouncement(args.RuleId.ToLower() + "Complete", // Parkstation-RandomAnnouncers
-                Filter.Broadcast(), Loc.GetString(stationEvent.EndAnnouncement ?? ""), colorOverride: Color.Gold);
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId, true),
+                Filter.Broadcast(), Loc.GetString(_announcer.GetEventLocaleString(args.RuleId + "Complete")),
+                colorOverride: Color.Gold);
         }
+        // Parkstation-RandomAnnouncers-End
     }
 
     /// <summary>

@@ -16,7 +16,11 @@ public sealed class BluespaceArtifactRule : StationEventSystem<BluespaceArtifact
 
         var str = Loc.GetString("bluespace-artifact-event-announcement",
             ("sighting", Loc.GetString(RobustRandom.Pick(component.PossibleSighting))));
-        _announcer.SendAnnouncement(args.RuleId.ToLower(), Filter.Broadcast(), str, colorOverride: Color.FromHex("#18abf5")); // Parkstation-RandomAnnouncers
+
+        // Parkstation-RandomAnnouncers-Start
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId(args.RuleId), Filter.Broadcast(), str,
+            colorOverride: Color.FromHex("#18abf5"));
+        // Parkstation-RandomAnnouncers-End
     }
 
     protected override void Started(EntityUid uid, BluespaceArtifactRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

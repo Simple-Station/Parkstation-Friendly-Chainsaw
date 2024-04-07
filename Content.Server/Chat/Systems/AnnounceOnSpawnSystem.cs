@@ -20,6 +20,6 @@ public sealed class AnnounceOnSpawnSystem : EntitySystem
     {
         var message = Loc.GetString(comp.Message);
         var sender = comp.Sender != null ? Loc.GetString(comp.Sender) : "Central Command";
-        _announcer.SendAnnouncement("spawnannounce", Filter.Broadcast(), message, sender, comp.Color); // Parkstation-RandomAnnouncers
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId("SpawnAnnounceCaptain"), Filter.Broadcast(), message, sender, comp.Color); // Parkstation-RandomAnnouncers
     }
 }

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.RegularExpressions;
 using Content.Shared.Parkstation.Announcements.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -6,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Parkstation.Announcements.Systems;
 
-public sealed class SharedAnnouncerSystem : EntitySystem
+public abstract class SharedAnnouncerSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -59,6 +60,21 @@ public sealed class SharedAnnouncerSystem : EntitySystem
         return $"{announcer.BasePath}/{announcementType.Path}";
     }
 
+    /// <summary>
+    ///     Converts a prototype ID to a consistently used format for announcements
+    /// </summary>
+    public string GetAnnouncementId(string announcementId, bool ended = false)
+    {
+        // Replace the first letter with lowercase
+        var id = char.ToLowerInvariant(announcementId[0]) + announcementId[1..];
+
+        // If the event has ended, add "Complete" to the end
+        if (ended)
+            id += "Complete";
+
+        return id;
+    }
+
 
     /// <summary>
     ///     Gets audio params from the announcer
@@ -109,9 +125,26 @@ public sealed class SharedAnnouncerSystem : EntitySystem
         // Get the announcement data from the announcer
         // Will be the fallback if the data for the announcementId is not found
         var announcementType = announcer.Announcements.FirstOrDefault(a => a.ID == announcementId) ??
-                               announcer.Announcements.First(a => a.ID == "fallback");
+            announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcementType.MessageOverride if it exists, otherwise return null
         return announcementType.MessageOverride != null ? Loc.GetString(announcementType.MessageOverride) : null;
+    }
+
+    /// <summary>
+    ///     Gets an announcement message from an event ID
+    /// </summary>
+    /// <param name="eventId">ID of the event to convert</param>
+    /// <param name="localeBase">Format for the locale string, replaces "{}" with the converted ID</param>
+    /// <remarks>The IDs use a hardcoded format, you can probably handle other formats yourself</remarks>
+    /// <returns>Localized announcement</returns>
+    public string GetEventLocaleString(string eventId, string localeBase = "station-event{}-announcement")
+    {
+        // Replace capital letters with lowercase plus a hyphen before it
+        var capsCapture = new Regex("([A-Z])");
+        var id = capsCapture.Replace(eventId, "-$1").ToLower();
+
+        // Replace {} with the converted ID
+        return localeBase.Replace("{}", id);
     }
 }

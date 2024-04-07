@@ -457,7 +457,7 @@ public sealed class NukeSystem : EntitySystem
         var announcement = Loc.GetString("nuke-component-announcement-armed",
             ("time", (int) component.RemainingTime), ("position", posText));
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _announcer.SendAnnouncementMessage("nukearm", announcement, sender, Color.Red, stationUid ?? uid); // Parkstation-RandomAnnouncers
+        _announcer.SendAnnouncementMessage(_announcer.GetAnnouncementId("NukeArm"), announcement, sender, Color.Red, stationUid ?? uid); // Parkstation-RandomAnnouncers
 
         _sound.PlayGlobalOnStation(uid, _audio.GetSound(component.ArmSound));
 
@@ -495,7 +495,7 @@ public sealed class NukeSystem : EntitySystem
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-unarmed");
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _announcer.SendAnnouncementMessage("nukedisarm", announcement, sender, station: stationUid ?? uid); // Parkstation-RandomAnnouncers
+        _announcer.SendAnnouncementMessage(_announcer.GetAnnouncementId("NukeDisarm"), announcement, sender, station: stationUid ?? uid); // Parkstation-RandomAnnouncers
 
         component.PlayedNukeSong = false;
         _sound.PlayGlobalOnStation(uid, _audio.GetSound(component.DisarmSound));

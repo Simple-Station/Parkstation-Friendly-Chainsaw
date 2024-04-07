@@ -272,7 +272,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (targetGrid == null)
         {
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} unable to dock with station {ToPrettyString(stationUid)}");
-            _announcer.SendAnnouncement("shuttlegoodluck", Filter.Broadcast(), Loc.GetString("emergency-shuttle-good-luck"), colorOverride: DangerColor);
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("ShuttleGoodLuck"), Filter.Broadcast(), Loc.GetString("emergency-shuttle-good-luck"), colorOverride: DangerColor);
             return;
         }
 
@@ -283,7 +283,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             if (TryComp<TransformComponent>(targetGrid.Value, out var targetXform))
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
-                _announcer.SendAnnouncementMessage("shuttledock", Loc.GetString("emergency-shuttle-docked", ("time", $"{_consoleAccumulator:0}"), ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
+                _announcer.SendAnnouncementMessage(_announcer.GetAnnouncementId("ShuttleDock"), Loc.GetString("emergency-shuttle-docked", ("time", $"{_consoleAccumulator:0}"), ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
             }
 
             // shuttle timers
@@ -304,18 +304,18 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             }
 
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} docked with stations");
-            _announcer.SendAnnouncementAudio("shuttledock", Filter.Broadcast()); // Parkstation-RandomAnnouncers
+            _announcer.SendAnnouncementAudio(_announcer.GetAnnouncementId("ShuttleDock"), Filter.Broadcast()); // Parkstation-RandomAnnouncers
         }
         else
         {
             if (TryComp<TransformComponent>(targetGrid.Value, out var targetXform))
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
-                _announcer.SendAnnouncementMessage("shuttlenearby", Loc.GetString("emergency-shuttle-nearby", ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
+                _announcer.SendAnnouncementMessage(_announcer.GetAnnouncementId("ShuttleNearby"), Loc.GetString("emergency-shuttle-nearby", ("direction", angle.GetDir()))); // Parkstation-RandomAnnouncers
             }
 
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} unable to find a valid docking port for {ToPrettyString(stationUid)}");
-            _announcer.SendAnnouncementAudio("shuttlenearby", Filter.Broadcast()); // Parkstation-RandomAnnouncers
+            _announcer.SendAnnouncementAudio(_announcer.GetAnnouncementId("ShuttleNearby"), Filter.Broadcast()); // Parkstation-RandomAnnouncers
         }
     }
 
