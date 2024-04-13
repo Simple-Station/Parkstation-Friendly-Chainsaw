@@ -3,8 +3,10 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.EUI;
+using Content.Server.Parkstation.Announcements.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
+using Robust.Shared.Player;
 
 namespace Content.Server.Administration.UI
 {
@@ -12,6 +14,7 @@ namespace Content.Server.Administration.UI
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly AnnouncerSystem _announcer = default!;
         private readonly ChatSystem _chatSystem;
 
         public AdminAnnounceEui()
@@ -50,7 +53,10 @@ namespace Content.Server.Administration.UI
                             break;
                         // TODO: Per-station announcement support
                         case AdminAnnounceType.Station:
-                            _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, colorOverride: Color.Gold);
+                            // Parkstation-RandomAnnouncers-Start
+                            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("Announce"), Filter.Broadcast(),
+                                doAnnounce.Announcement, doAnnounce.Announcer, Color.Gold);
+                            // Parkstation-RandomAnnouncers-End
                             break;
                     }
 

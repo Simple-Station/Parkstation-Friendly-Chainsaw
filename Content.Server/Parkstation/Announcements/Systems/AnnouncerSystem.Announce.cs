@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Parkstation.Announcements.Events;
+using Content.Shared.Parkstation.Announcements.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 
@@ -28,10 +29,11 @@ public sealed partial class AnnouncerSystem
     /// </summary>
     /// <param name="announcementId">ID of the announcement to get information from</param>
     /// <param name="filter">Who hears the announcement audio</param>
-    public void SendAnnouncementAudio(string announcementId, Filter filter)
+    /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
+    public void SendAnnouncementAudio(string announcementId, Filter filter, AnnouncerPrototype? announcerOverride = null)
     {
         var ev = new AnnouncementSendEvent(
-            Announcer.ID,
+            announcerOverride?.ID ?? Announcer.ID,
             announcementId,
             filter.Recipients.ToList().ConvertAll(p => p.UserId), // I hate this but IEnumerable isn't serializable, and then ICommonSession wasn't, so you get the User ID
             GetAudioParams(announcementId, Announcer) ?? AudioParams.Default
@@ -48,12 +50,14 @@ public sealed partial class AnnouncerSystem
     /// <param name="sender">Who to show as the announcement announcer, defaults to the current announcer's name</param>
     /// <param name="colorOverride">What color the announcement should be</param>
     /// <param name="station">Station ID to send the announcement to</param>
-    public void SendAnnouncementMessage(string announcementId, string message, string? sender = null, Color? colorOverride = null, EntityUid? station = null)
+    /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
+    public void SendAnnouncementMessage(string announcementId, string message, string? sender = null,
+        Color? colorOverride = null, EntityUid? station = null, AnnouncerPrototype? announcerOverride = null)
     {
-        sender ??= Loc.GetString($"announcer-{Announcer.ID}-name");
+        sender ??= Loc.GetString($"announcer-{announcerOverride?.ID ?? Announcer.ID}-name");
 
         // If the announcement has a message override, use that instead of the message parameter
-        if (GetAnnouncementMessage(announcementId) is { } announcementMessage)
+        if (GetAnnouncementMessage(announcementId, announcerOverride?.ID ?? Announcer.ID) is { } announcementMessage)
             message = announcementMessage;
 
         // Don't send nothing
@@ -76,9 +80,11 @@ public sealed partial class AnnouncerSystem
     /// <param name="sender">Who to show as the announcement announcer, defaults to the current announcer's name</param>
     /// <param name="colorOverride">What color the announcement should be</param>
     /// <param name="station">Station ID to send the announcement to</param>
-    public void SendAnnouncement(string announcementId, Filter filter, string message, string? sender = null, Color? colorOverride = null, EntityUid? station = null)
+    /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
+    public void SendAnnouncement(string announcementId, Filter filter, string message, string? sender = null,
+        Color? colorOverride = null, EntityUid? station = null, AnnouncerPrototype? announcerOverride = null)
     {
-        SendAnnouncementAudio(announcementId, filter);
-        SendAnnouncementMessage(announcementId, message, sender, colorOverride, station);
+        SendAnnouncementAudio(announcementId, filter, announcerOverride);
+        SendAnnouncementMessage(announcementId, message, sender, colorOverride, station, announcerOverride);
     }
 }
