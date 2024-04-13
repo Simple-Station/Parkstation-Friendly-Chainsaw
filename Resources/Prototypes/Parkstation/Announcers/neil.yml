@@ -11,7 +11,7 @@
       path: comms/attention.ogg
     # - id: commandReport # Station goal, Central Command messages, etc
     #   path: comms/command_report.ogg
-    # - id: spawnAnnounce # Captain join # TODO That system is annoyingly not modular
+    # - id: spawnAnnounceCaptain # Captain arrives on the station # TODO That system is annoyingly not modular
     #   path: comms/spawn_announce.ogg
     # - id: war # Nuclear Operative declaration of war
     #   path: comms/war.ogg
