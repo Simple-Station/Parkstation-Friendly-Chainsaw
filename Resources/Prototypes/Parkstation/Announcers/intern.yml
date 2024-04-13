@@ -49,7 +49,7 @@
     ### Mid-Round Antagonists
     # - id: ninjaHacking # A Ninja is hacking something
     #   path: comms/ninja_hacking.ogg
-    # - id: powersinkExplosion # A power sink is about to overcharge and explode
+    # - id: powerSinkExplosion # A power sink is about to overcharge and explode
     #   path: comms/powersink_explosion.ogg
     ### Events
     - id: anomalySpawn # An anomaly has spawned in a random place

@@ -135,7 +135,7 @@ namespace Content.Server.PowerSink
             if (station == null)
                 return;
 
-            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("PowersinkExplosion"), _station.GetInOwningStation(station.Value), Loc.GetString("powersink-immiment-explosion-announcement"), colorOverride: Color.Yellow, station: station.Value); // Parkstation-RandomAnnouncers
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("PowerSinkExplosion"), _station.GetInOwningStation(station.Value), Loc.GetString("powersink-immiment-explosion-announcement"), colorOverride: Color.Yellow, station: station.Value); // Parkstation-RandomAnnouncers
         }
     }
 }
