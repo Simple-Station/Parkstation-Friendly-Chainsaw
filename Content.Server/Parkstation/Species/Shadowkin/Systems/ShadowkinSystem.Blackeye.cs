@@ -9,6 +9,7 @@ using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
 
@@ -91,5 +92,41 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
             true,
             null,
             null);
+    }
+
+
+    /// <summary>
+    ///     Tries to blackeye a shadowkin
+    /// </summary>
+    public bool TryBlackeye(EntityUid uid)
+    {
+        var ent = _entity.GetNetEntity(uid);
+        // Raise an attempted blackeye event
+        var ev = new ShadowkinBlackeyeAttemptEvent(ent);
+        RaiseLocalEvent(ev);
+        if (ev.Cancelled)
+            return false;
+
+        Blackeye(uid);
+        return true;
+    }
+
+    /// <summary>
+    ///     Blackeyes a shadowkin
+    /// </summary>
+    public void Blackeye(EntityUid uid)
+    {
+        var ent = _entity.GetNetEntity(uid);
+
+        // Get shadowkin component
+        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        {
+            DebugTools.Assert("Tried to blackeye entity without shadowkin component.");
+            return;
+        }
+
+        component.Blackeye = true;
+        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent));
+        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent));
     }
 }

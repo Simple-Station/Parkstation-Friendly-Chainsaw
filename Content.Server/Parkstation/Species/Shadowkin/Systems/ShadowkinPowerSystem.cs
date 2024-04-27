@@ -10,6 +10,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 {
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly ShadowkinBlackeyeSystem _blackeye = default!;
 
     private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary;
 
@@ -198,15 +199,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// </summary>
     public bool TryBlackeye(EntityUid uid)
     {
-        var ent = _entity.GetNetEntity(uid);
-        // Raise an attempted blackeye event
-        var ev = new ShadowkinBlackeyeAttemptEvent(ent);
-        RaiseLocalEvent(ev);
-        if (ev.Cancelled)
-            return false;
-
-        Blackeye(uid);
-        return true;
+        return _blackeye.TryBlackeye(uid);
     }
 
     /// <summary>
@@ -214,18 +207,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// </summary>
     public void Blackeye(EntityUid uid)
     {
-        var ent = _entity.GetNetEntity(uid);
-
-        // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
-        {
-            DebugTools.Assert("Tried to blackeye entity without shadowkin component.");
-            return;
-        }
-
-        component.Blackeye = true;
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent));
-        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent));
+        _blackeye.Blackeye(uid);
     }
 
 
