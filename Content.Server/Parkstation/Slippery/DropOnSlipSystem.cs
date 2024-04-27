@@ -47,33 +47,30 @@ public sealed class DropOnSlipSystem : EntitySystem
             if (!_inventory.TryGetSlotEntity(entity, slot.Name, out var item))
                 continue;
 
-            // Check for DropOnSlipComponent
-            if (slot.Name != "pocket1" && slot.Name != "pocket2" && EntityManager.TryGetComponent<Parkstation.Slippery.DropOnSlipComponent>(item, out var dropComp) && _random.NextFloat(0, 100) < dropComp.Chance)
+            if (ShouldBeDropped(entity, slot, item))
             {
                 var popupString = Loc.GetString("system-drop-on-slip-text-component", ("name", entity), ("item", item));
 
                 Drop(entity, item.Value, slot.Name, popupString);
-                continue;
-            }
-
-            // Check for any items in pockets
-            if (slot.Name == "pocket1" | slot.Name == "pocket2" && _random.NextFloat(0, 100) < PocketDropChance)
-            {
-                var popupString = Loc.GetString("system-drop-on-slip-text-pocket", ("name", entity), ("item", item));
-
-                Drop(entity, item.Value, slot.Name, popupString);
-                continue;
-            }
-
-            // Check for ClumsyComponent
-            if (slot.Name != "jumpsuit" && _random.NextFloat(0, 100) < ClumsyDropChance && HasComp<ClumsyComponent>(entity))
-            {
-                var popupString = Loc.GetString("system-drop-on-slip-text-clumsy", ("name", entity), ("item", item));
-
-                Drop(entity, item.Value, slot.Name, popupString);
-                continue;
             }
         }
+    }
+
+    private bool ShouldBeDropped(EntityUid entity, SlotDefinition slot, EntityUid? item)
+    {
+        // Check for any items in pockets or other criteria
+        if (slot.SlotFlags == SlotFlags.POCKET && _random.NextFloat(0, 100) < PocketDropChance)
+            return true;
+
+        // Check for DropOnSlipComponent
+        if (EntityManager.TryGetComponent<Parkstation.Slippery.DropOnSlipComponent>(item, out var dropComp) && _random.NextFloat(0, 100) < dropComp.Chance)
+            return true;
+
+        // Check for ClumsyComponent
+        if (slot.Name != "jumpsuit" && _random.NextFloat(0, 100) < ClumsyDropChance && HasComp<ClumsyComponent>(entity))
+            return true;
+
+        return false;
     }
 
     private void Drop(EntityUid entity, EntityUid item, string slot, string popupString)

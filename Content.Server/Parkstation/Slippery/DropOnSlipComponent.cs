@@ -1,7 +1,7 @@
 ﻿namespace Content.Server.Parkstation.Slippery;
 
 /// <summary>
-///     Uses provided chance to try and drop the item when slipped, if equipped.
+///     Marks this item as one that may be dropped when its wearer slips with it equipped.
 /// </summary>
 [RegisterComponent]
 public sealed partial class DropOnSlipComponent : Component
