@@ -247,4 +247,13 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             component.SuppressedFactions.Clear();
         }
     }
+
+    public void ForceDarkSwap(EntityUid uid, ShadowkinComponent component)
+    {
+        // Add/Remove the component, which should handle the rest
+        if (_entity.HasComponent<ShadowkinDarkSwappedComponent>(uid))
+            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
+        else
+            _entity.AddComponent<ShadowkinDarkSwappedComponent>(uid);
+    }
 }

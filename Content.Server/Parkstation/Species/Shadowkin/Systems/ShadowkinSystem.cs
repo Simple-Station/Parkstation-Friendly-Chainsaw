@@ -1,15 +1,11 @@
-﻿using System.Numerics;
-using Content.Server.Mind;
+﻿using Content.Server.Mind;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Parkstation.Species.Shadowkin.Events;
-using Content.Shared.Physics;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
 
 namespace Content.Server.Parkstation.Species.Shadowkin.Systems;
@@ -19,8 +15,10 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+
+    [Dependency] private readonly ShadowkinDarkSwapSystem _darkSwap = default!;
+    [Dependency] private readonly ShadowkinTeleportSystem _teleport = default!;
 
 
     public override void Initialize()
@@ -138,11 +136,11 @@ public sealed class ShadowkinSystem : EntitySystem
 
                     if (chance <= 2)
                     {
-                        ForceDarkSwap(uid, shadowkin);
+                        _darkSwap.ForceDarkSwap(uid, shadowkin);
                     }
                     else if (chance <= 7)
                     {
-                        ForceTeleport(uid, shadowkin);
+                        _teleport.ForceTeleport(uid, shadowkin);
                     }
                 }
             }
@@ -189,48 +187,5 @@ public sealed class ShadowkinSystem : EntitySystem
             }
             #endregion
         }
-    }
-
-    private void ForceDarkSwap(EntityUid uid, ShadowkinComponent component)
-    {
-        // Add/Remove the component, which should handle the rest
-        if (_entity.HasComponent<ShadowkinDarkSwappedComponent>(uid))
-            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
-        else
-            _entity.AddComponent<ShadowkinDarkSwappedComponent>(uid);
-    }
-
-    private void ForceTeleport(EntityUid uid, ShadowkinComponent component)
-    {
-        // Create the event we'll later raise, and set it to our Shadowkin.
-        var args = new ShadowkinTeleportEvent { Performer = uid };
-
-        // Pick a random location on the map until we find one that can be reached.
-        var coords = Transform(uid).Coordinates;
-        EntityCoordinates? target = null;
-
-        // It'll iterate up to 8 times, shrinking in distance each time, and if it doesn't find a valid location, it'll return.
-        for (var i = 8; i != 0; i--)
-        {
-            var angle = Angle.FromDegrees(_random.Next(360));
-            var offset = new Vector2((float) (i * Math.Cos(angle)), (float) (i * Math.Sin(angle)));
-
-            target = coords.Offset(offset);
-
-            if (_interaction.InRangeUnobstructed(uid, target.Value, 0,
-                    CollisionGroup.MobMask | CollisionGroup.MobLayer))
-                break;
-
-            target = null;
-        }
-
-        // If we didn't find a valid location, return.
-        if (target == null)
-            return;
-
-        args.Target = target.Value;
-
-        // Raise the event to teleport the Shadowkin.
-        RaiseLocalEvent(uid, args);
     }
 }
