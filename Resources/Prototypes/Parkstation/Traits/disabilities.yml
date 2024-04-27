@@ -12,7 +12,7 @@
 - type: trait
   id: ShadowkinBlackeye
   name: Blackeye
-  description: You lose your special Shadowkin powers, in return for some points.
+  description: You have lost your Shadowkin powers.
   cost: 5
   category: Negative
   whitelist:

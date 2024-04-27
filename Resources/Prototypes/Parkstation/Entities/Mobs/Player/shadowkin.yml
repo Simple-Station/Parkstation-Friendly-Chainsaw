@@ -17,15 +17,15 @@
     # - type: DiseaseCarrier
       # diseaseResist: 0.1
     - type: Flammable
-      damage:
-        types:
-          Heat: 1.5 # burn more
+      # damage:
+        # types:
+          # Heat: 1.5 # burn more
     - type: MobState
     - type: MobThresholds
       thresholds: # Weak
         0: Alive
         80: Critical
-        160: Dead
+        180: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
         48: 0.85

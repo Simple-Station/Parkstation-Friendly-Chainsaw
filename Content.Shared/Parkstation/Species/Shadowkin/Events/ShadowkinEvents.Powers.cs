@@ -63,13 +63,13 @@ public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakS
     ///     How much stamina to drain when darkening.
     /// </summary>
     [DataField("staminaCostOn")]
-    public float StaminaCostOn;
+    public float StaminaCostOn = 25f;
 
     /// <summary>
     ///     How much stamina to drain when lightening.
     /// </summary>
     [DataField("staminaCostOff")]
-    public float StaminaCostOff;
+    public float StaminaCostOff = 25f;
 
 
     [DataField("speech")]
