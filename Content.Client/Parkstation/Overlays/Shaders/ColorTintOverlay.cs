@@ -43,7 +43,7 @@ public sealed class ColorTintOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null ||
-            _player.LocalPlayer?.ControlledEntity is not { Valid: true } player ||
+            _player.LocalEntity is not { Valid: true } player ||
             Comp != null && !_entity.HasComponent(player, Comp.GetType()))
             return;
 

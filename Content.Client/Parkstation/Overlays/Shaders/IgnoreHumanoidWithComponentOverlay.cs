@@ -30,7 +30,7 @@ public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
 
         foreach (var humanoid in _entityManager.EntityQuery<HumanoidAppearanceComponent>(true))
         {
-            if (_playerManager.LocalPlayer?.ControlledEntity == humanoid.Owner)
+            if (_playerManager.LocalEntity == humanoid.Owner)
                 continue;
 
             var cont = true;

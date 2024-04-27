@@ -34,7 +34,7 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalEntity != uid)
             return;
 
         AddOverlay();
@@ -42,7 +42,7 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalEntity != uid)
             return;
 
         RemoveOverlay();

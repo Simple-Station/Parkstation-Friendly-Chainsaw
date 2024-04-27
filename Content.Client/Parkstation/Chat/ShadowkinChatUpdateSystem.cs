@@ -19,7 +19,7 @@ namespace Content.Client.Parkstation.Chat
         }
 
 
-        public EmpathyChatComponent? Player => CompOrNull<EmpathyChatComponent>(_playerManager.LocalPlayer?.ControlledEntity);
+        public EmpathyChatComponent? Player => CompOrNull<EmpathyChatComponent>(_playerManager.LocalEntity);
         public bool IsShadowkin => Player != null;
 
         private void OnInit(EntityUid uid, EmpathyChatComponent component, ComponentInit args)

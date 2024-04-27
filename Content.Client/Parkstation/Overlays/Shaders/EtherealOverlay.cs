@@ -25,7 +25,7 @@ public sealed class EtherealOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null) return;
-        if (_player.LocalPlayer?.ControlledEntity is not { Valid: true } player) return;
+        if (_player.LocalEntity is not { Valid: true } player) return;
 
         _shader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 

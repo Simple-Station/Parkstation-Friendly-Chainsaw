@@ -39,7 +39,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinComponent component, ComponentStartup args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalEntity != uid)
             return;
 
         _overlay.AddOverlay(_tintOverlay);
@@ -47,7 +47,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalEntity != uid)
             return;
 
         _overlay.RemoveOverlay(_tintOverlay);
@@ -73,7 +73,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var uid = _player.LocalPlayer?.ControlledEntity;
+        var uid = _player.LocalEntity;
         if (uid == null ||
             !_entity.TryGetComponent(uid, out ShadowkinComponent? comp) ||
             !_entity.TryGetComponent(uid, out SpriteComponent? sprite) ||
