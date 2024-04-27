@@ -9,3 +9,14 @@
     components:
       - Blindable
 
+- type: trait
+  id: ShadowkinBlackeye
+  name: Blackeye
+  description: You have lost your Shadowkin powers.
+  cost: 5
+  category: Negative
+  whitelist:
+    species:
+      - Shadowkin
+  components:
+    - type: ShadowkinBlackeyeTrait
