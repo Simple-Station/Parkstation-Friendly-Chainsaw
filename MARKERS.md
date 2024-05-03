@@ -47,7 +47,7 @@ Single line changes:
 
 ```yml
 <Rest of the unchanged file above...>
-[Your code here. This can be entirely original, or modified from the original file] # Parkstation-[TitleOfFeature] E Optional clarification of why this change was done
+[Your code here. This can be entirely original, or modified from the original file] # Parkstation-[TitleOfFeature] # Optional clarification of why this change was done
 <Rest of the unchanged file below...>
 ```
 
@@ -55,7 +55,7 @@ Multiple line changes:
 
 ```yml
 <Rest of the unchanged file above...>
-# Parkstation-[TitleOfFeature]-Start E Optional clarification of why this change was done
+# Parkstation-[TitleOfFeature]-Start # Optional clarification of why this change was done
 [Your code here. This can be entirely original, or modified from the original file]
 # Parkstation-[TitleOfFeature]-End
 <Rest of the unchanged file below...>
