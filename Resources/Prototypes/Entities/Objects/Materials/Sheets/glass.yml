@@ -16,6 +16,7 @@
   - type: Tag
     tags:
     - Sheet
+    - NoPaint
   - type: Material
   - type: Damageable
     damageContainer: Inorganic
