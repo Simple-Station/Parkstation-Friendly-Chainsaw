@@ -50,19 +50,17 @@ We provide some scripts shown below to make the job easier.
 
 > 1. Clone this repository
 > 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/bat/run1buildDebug.bat`
-> 4. Run the `Scripts/bat/run2configDev.bat` if you need other configurations run other config scripts
-> 5. Run both the `Scripts/bat/run3server.bat` and `Scripts/bat/run4client.bat`
-> 6. Connect to localhost and play
+> 3. Run the `Scripts/bat/buildAllDebug.bat`
+> 4. Run both the `Scripts/bat/runQuickServer.bat` and `Scripts/bat/runQuickClient.bat`
+> 5. Connect to localhost and play
 
 ### Linux
 
 > 1. Clone this repository
 > 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/sh/run1buildDebug.sh`
-> 4. Run the `Scripts/sh/run2configDev.sh` if you need other configurations run other config scripts
-> 5. Run both the `Scripts/sh/run3server.bat` and `scripts/sh/run4client.sh`
-> 6. Connect to localhost and play
+> 3. Run the `Scripts/sh/buildAllDebug.sh`
+> 4. Run both the `Scripts/sh/runQuickServer.bat` and `Scripts/sh/runQuickClient.sh`
+> 5. Connect to localhost and play
 
 ### MacOS
 
