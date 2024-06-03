@@ -177,7 +177,7 @@
     layers:
     - state: durathread_3
       map: ["base"]
-    scale: 1, 1 # Parkstation-SmallerMaterials - Durathread looks fine normally
+    scale: 1, 1 # Parkstation-SmallerMaterials # Durathread looks fine normally
   - type: Appearance
   - type: Construction
     graph: Durathread
@@ -284,7 +284,7 @@
     sprite: /Textures/Objects/Misc/monkeycube.rsi
     state: cube
     color: "#8A9A5B"
-    scale: 1, 1 # Parkstation-SmallerMaterials - Biomass looks fine normally
+    scale: 1, 1 # Parkstation-SmallerMaterials # Biomass looks fine normally
   - type: GuideHelp
     guides:
     - Cloning
