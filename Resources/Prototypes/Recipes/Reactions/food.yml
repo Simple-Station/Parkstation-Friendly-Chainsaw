@@ -169,7 +169,7 @@
     - !type:CreateEntityReactionEffect
       entity: FoodMeatMeatball
 
-# Parkstation-ChocolateMilk - That's not how you make a chocolate bar..
+# Parkstation-ChocolateMilk # That's not how you make a chocolate bar..
 # - type: reaction
 #   id: CreateChocolate
 #   impact: Low

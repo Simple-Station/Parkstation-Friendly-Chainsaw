@@ -9,7 +9,7 @@
     layers:
       - state: bluespace_3
         map: ["base"]
-    scale: 1, 1 # Parkstation-SmallerMaterials - Bluespace looks fine normally
+    scale: 1, 1 # Parkstation-SmallerMaterials # Bluespace looks fine normally
   - type: Appearance
   - type: Material
   - type: PhysicalComposition
