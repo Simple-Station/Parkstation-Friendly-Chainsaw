@@ -6,13 +6,14 @@
   components:
   - type: Sprite
     sprite: Objects/Materials/materials.rsi
+    scale: 0.65, 0.65 # Parkstation-SmallerMaterials
   - type: Item
     sprite: Objects/Materials/materials.rsi
     size: Normal
   - type: Tag
     tags:
-      - DroneUsable
       - RawMaterial
+      - NoPaint
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -128,7 +129,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - Gauze
       - RawMaterial
   - type: Construction
@@ -177,6 +177,7 @@
     layers:
     - state: durathread_3
       map: ["base"]
+    scale: 1, 1 # Parkstation-SmallerMaterials # Durathread looks fine normally
   - type: Appearance
   - type: Construction
     graph: Durathread
@@ -193,7 +194,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
 
 - type: entity
@@ -241,7 +241,6 @@
   - type: Tag
     tags:
     - Wooden
-    - DroneUsable
     - RawMaterial
   - type: Extractable
     grindableSolutionName: wood
@@ -285,6 +284,7 @@
     sprite: /Textures/Objects/Misc/monkeycube.rsi
     state: cube
     color: "#8A9A5B"
+    scale: 1, 1 # Parkstation-SmallerMaterials # Biomass looks fine normally
   - type: GuideHelp
     guides:
     - Cloning
@@ -411,9 +411,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
-
 
 - type: entity
   parent: MaterialCotton
@@ -489,7 +487,7 @@
   parent: MaterialBase
   id: MaterialWebSilk
   name: silk
-  description: A webby material
+  description: A webby material.
   suffix: Full
   components:
   - type: PhysicalComposition
@@ -523,7 +521,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
 
 - type: entity

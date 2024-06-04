@@ -9,6 +9,7 @@
     layers:
       - state: bluespace_3
         map: ["base"]
+    scale: 1, 1 # Parkstation-SmallerMaterials # Bluespace looks fine normally
   - type: Appearance
   - type: Material
   - type: PhysicalComposition
@@ -51,6 +52,7 @@
   - type: Sprite
     sprite: Nyanotrasen/Objects/Materials/mothroach.rsi
     state: mothroachhide
+    scale: 0.65, 0.65 # Parkstation-SmallerMaterials
   - type: Tag
     tags:
       - MothroachHide

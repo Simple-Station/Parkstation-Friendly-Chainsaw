@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: FloorTileItemBase
-  description: These could work as a pretty decent throwing weapon.
+  description: The floor was meant to hold this, not you.
   abstract: true
   components:
   - type: Sprite
@@ -12,12 +12,14 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 5
+        Blunt: 2
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
   - type: Stack
     count: 1
   - type: Tag
     tags:
-      - DroneUsable
+      - NoPaint
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -62,6 +64,12 @@
   - type: Construction
     graph: TileSteel
     node: steeltile
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5 #Metal floor tiles deal more damage than standard
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/block_metal1.ogg
 
 - type: entity
   name: steel dark checker tile
@@ -89,7 +97,7 @@
 
 - type: entity
   name: steel tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemMetalDiamond
   components:
   - type: Sprite
@@ -146,7 +154,7 @@
 
 - type: entity
   name: dark tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemDark
   components:
   - type: Sprite
@@ -165,7 +173,7 @@
 
 - type: entity
   name: techmaint floor
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemTechmaint
   components:
   - type: Sprite
@@ -181,7 +189,7 @@
 
 - type: entity
   name: reinforced tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemReinforced
   components:
   - type: Sprite
@@ -230,6 +238,44 @@
     stackType: FloorTileLino
 
 - type: entity
+  name: filled brass plate
+  parent: FloorTileItemBase
+  id: FloorTileItemBrassFilled
+  components:
+  - type: Sprite
+    state: brass-filled
+  - type: Item
+    heldPrefix: brass
+  - type: FloorTile
+    outputs:
+      - PlatingBrass
+      - FloorBrassFilled
+  - type: Stack
+    stackType: FloorTileBrassFilled
+  - type: Construction
+    graph: TilesBrass
+    node: filledPlate
+
+- type: entity
+  name: smooth brass plate
+  parent: FloorTileItemBase
+  id: FloorTileItemBrassReebe
+  components:
+  - type: Sprite
+    state: reebe
+  - type: Item
+    heldPrefix: brass
+  - type: FloorTile
+    outputs:
+      - PlatingBrass
+      - FloorBrassReebe
+  - type: Stack
+    stackType: FloorTileBrassReebe
+  - type: Construction
+    graph: TilesBrass
+    node: reebe
+
+- type: entity
   name: dirty tile
   parent: FloorTileItemBase
   id: FloorTileItemDirty
@@ -247,7 +293,7 @@
 
 - type: entity
   name: elevator shaft tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemElevatorShaft
   components:
   - type: Sprite
@@ -327,7 +373,7 @@
 
 - type: entity
   name: dark mining tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemMiningDark
   components:
   - type: Sprite
@@ -343,7 +389,7 @@
 
 - type: entity
   name: light mining tile
-  parent: FloorTileItemBase
+  parent: FloorTileItemSteel
   id: FloorTileItemMiningLight
   components:
   - type: Sprite
@@ -745,6 +791,38 @@
   - type: Stack
     stackType: FloorTileStackShuttleRed
 
+- type: entity
+  name: grey shuttle floor
+  parent: FloorTileItemBase
+  id: FloorTileItemShuttleGrey
+  components:
+  - type: Sprite
+    state: shuttlegrey
+  - type: Item
+    heldPrefix: shuttlegrey
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorShuttleGrey
+  - type: Stack
+    stackType: FloorTileStackShuttleGrey
+
+- type: entity
+  name: black shuttle floor
+  parent: FloorTileItemBase
+  id: FloorTileItemShuttleBlack
+  components:
+  - type: Sprite
+    state: shuttleblack
+  - type: Item
+    heldPrefix: shuttleblack
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorShuttleBlack
+  - type: Stack
+    stackType: FloorTileStackShuttleBlack
+
 # Materials
 - type: entity
   name: gold floor
@@ -982,6 +1060,40 @@
     stackType: FloorTileAstroGrass
 
 - type: entity
+  id: FloorTileItemMowedAstroGrass
+  parent: FloorTileItemBase
+  name: mowed astro-grass
+  description: Fake grass that covers up wires and even comes with realistic NanoTrimmings!
+  components:
+  - type: Sprite
+    state: grass
+  - type: Item
+    heldPrefix: grass
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorMowedAstroGrass
+  - type: Stack
+    stackType: FloorTileAstroGrass
+
+- type: entity
+  id: FloorTileItemJungleAstroGrass
+  parent: FloorTileItemBase
+  name: jungle astro-grass
+  description: Fake grass that covers up wires and even comes with realistic NanoTrimmings!
+  components:
+  - type: Sprite
+    state: grassjungle
+  - type: Item
+    heldPrefix: grass
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorJungleAstroGrass
+  - type: Stack
+    stackType: FloorTileAstroGrass
+
+- type: entity
   id: FloorTileItemAstroIce
   parent: FloorTileItemBase
   name: astro-ice
@@ -997,3 +1109,39 @@
     - FloorAstroIce
   - type: Stack
     stackType: FloorTileAstroIce
+
+- type: entity
+  id: FloorTileItemAstroSnow
+  parent: FloorTileItemBase
+  name: astro-snow
+  description: Fake snow that's as fluffy as the real thing, while being easily removable!
+  components:
+  - type: Sprite
+    state: snow
+  - type: Item
+    heldPrefix: snow
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorAstroSnow
+  - type: Stack
+    stackType: FloorTileAstroSnow
+
+- type: entity
+  name: large wood floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLarge
+  components:
+  - type: Sprite
+    state: wood-large
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLarge
+  - type: Stack
+    stackType: FloorTileWoodLarge
+  - type: Construction
+    graph: TileWoodLarge
+    node: woodtilelarge
