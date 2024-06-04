@@ -80,7 +80,7 @@
     access: [["External"]]
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalService # Parkstation-CustomExternalAirlocks
   id: AirlockExternalCargoLocked
   suffix: External, Logistics, Locked # DeltaV - Logistics Department replacing Cargo
   components:
@@ -88,7 +88,7 @@
     access: [["Cargo"]]
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalEngineering # Parkstation-CustomExternalAirlocks
   id: AirlockExternalEngineeringLocked
   suffix: External, Engineering, Locked
   components:
@@ -96,7 +96,7 @@
     access: [["Engineering"]]
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalAtmospherics # Parkstation-CustomExternalAirlocks
   id: AirlockExternalAtmosphericsLocked
   suffix: External, Atmospherics, Locked
   components:
@@ -432,7 +432,7 @@
     access: [["Zookeeper"]]
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalSalvage # Parkstation-CustomExternalAirlocks
   id: AirlockExternalSalvageLocked
   suffix: External, Salvage, Locked
   components:
@@ -584,7 +584,7 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
-    
+
 - type: entity
   parent: AirlockChemistryGlass
   id: AirlockChemistryGlassLocked
