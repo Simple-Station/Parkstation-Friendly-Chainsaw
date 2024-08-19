@@ -4,19 +4,19 @@
 
 
 /Content.*/ @DEATHB4DEFEAT
-/Content.*/SimpleStation14/ @Pspritechologist @DEATHB4DEFEAT
+/Content.*/Parkstation/ @Pspritechologist @DEATHB4DEFEAT
 
 
 /Resources/ @DEATHB4DEFEAT
 
-/Resources/Audio/SimpleStation14 @Pspritechologist @DEATHB4DEFEAT
+/Resources/Audio/Parkstation @Pspritechologist @DEATHB4DEFEAT
 
 /Resources/Maps/ @Pspritechologist @DEATHB4DEFEAT
 
 /Resources/Prototypes/Maps @Pspritechologist @DEATHB4DEFEAT
-/Resources/Prototypes/SimpleStation14/ @Pspritechologist @DEATHB4DEFEAT
+/Resources/Prototypes/Parkstation/ @Pspritechologist @DEATHB4DEFEAT
 
-/Resources/Textures/SimpleStation14/ @Pspritechologist @DEATHB4DEFEAT
+/Resources/Textures/Parkstation/ @Pspritechologist @DEATHB4DEFEAT
 
 *.ftl @Pspritechologist @DEATHB4DEFEAT
 
