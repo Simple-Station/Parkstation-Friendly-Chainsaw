@@ -90,10 +90,6 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
-  - type: Sprite
-    sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
