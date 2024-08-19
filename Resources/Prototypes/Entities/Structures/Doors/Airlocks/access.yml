@@ -98,7 +98,7 @@
     access: [["External"]]
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalService # Parkstation-CustomExternalAirlocks
   id: AirlockExternalCargoLocked
   suffix: External, Logistics, Locked # DeltaV - Logistics Department replacing Cargo
   components:
@@ -108,7 +108,7 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalEngineering # Parkstation-CustomExternalAirlocks
   id: AirlockExternalEngineeringLocked
   suffix: External, Engineering, Locked
   components:
@@ -118,7 +118,7 @@
     layoutId: AirlockEngineering
 
 - type: entity
-  parent: AirlockExternal
+  parent: AirlockExternalAtmospherics # Parkstation-CustomExternalAirlocks
   id: AirlockExternalAtmosphericsLocked
   suffix: External, Atmospherics, Locked
   components:
@@ -442,6 +442,80 @@
   - type: Wires
     layoutId: AirlockCommand
 
+#Delta V: Add Airlocks
+- type: entity
+  parent: Airlock
+  id: AirlockBoxerLocked
+  suffix: Boxer, Locked
+  components:
+  - type: AccessReader
+    access: [["Boxer"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockClownLocked
+  suffix: Clown, Locked
+  components:
+  - type: AccessReader
+    access: [["Clown"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockMimeLocked
+  suffix: Mime, Locked
+  components:
+  - type: AccessReader
+    access: [["Mime"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockMusicianLocked
+  suffix: Musician, Locked
+  components:
+  - type: AccessReader
+    access: [["Musician"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockReporterLocked
+  suffix: Reporter, Locked
+  components:
+  - type: AccessReader
+    access: [["Reporter"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockLibraryLocked
+  suffix: Library, Locked
+  components:
+  - type: AccessReader
+    access: [["Library"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockZookeeperLocked
+  suffix: Zookeeper, Locked
+  components:
+  - type: AccessReader
+    access: [["Zookeeper"]]
+
+- type: entity
+  parent: AirlockExternalSalvage # Parkstation-CustomExternalAirlocks
+  id: AirlockExternalSalvageLocked
+  suffix: External, Salvage, Locked
+  components:
+  - type: AccessReader
+    access: [["Salvage"]]
+
+- type: entity
+  parent: AirlockMedical
+  id: AirlockPsychologistLocked
+  suffix: Psychologist, Locked
+  components:
+  - type: AccessReader
+    access: [["Psychologist"]]
+#End of Delta V
+
 # Glass Airlocks
 - type: entity
   parent: AirlockGlass
@@ -624,8 +698,6 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
-  - type: Wires
-    layoutId: AirlockCargo
 
 - type: entity
   parent: AirlockChemistryGlass
