@@ -66,6 +66,8 @@
   - type: Tag
     tags:
     - SecDogWearable # DeltaV - let Laika wear meson goggles
+  - type: DropOnSlip
+    chance: 30
 
 - type: entity
   parent: ClothingEyesBase
@@ -83,6 +85,8 @@
     - HamsterWearable
     - WhitelistChameleon
     - GlassesNearsight # SimpleStation14 NearsightedTrait
+  - type: DropOnSlip
+    chance: 30
 
 - type: entity
   parent: ClothingEyesBase
@@ -144,6 +148,8 @@
     - SecDogWearable # DeltaV - let Laika wear sunglasses
   - type: IdentityBlocker
     coverage: EYES
+  - type: DropOnSlip
+    chance: 30
 
 - type: entity
   parent: ClothingEyesGlassesCheapSunglasses
@@ -210,6 +216,8 @@
       coefficients:
         Heat: 0.95
   - type: GroupExamine
+  - type: DropOnSlip
+    chance: 30
 
 - type: entity
   parent: ClothingEyesBase

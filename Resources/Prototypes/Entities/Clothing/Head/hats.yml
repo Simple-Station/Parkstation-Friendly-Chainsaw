@@ -8,6 +8,8 @@
     sprite: Clothing/Head/Hats/beaver_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beaver_hat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -24,6 +26,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -57,6 +61,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -64,10 +70,12 @@
   name: casa
   description: Cone-shaped hat
   components:
-    - type: Sprite
-      sprite: Clothing/Head/Hats/casa.rsi
-    - type: Clothing
-      sprite: Clothing/Head/Hats/casa.rsi
+  - type: Sprite
+    sprite: Clothing/Head/Hats/casa.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/casa.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -100,6 +108,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -134,6 +144,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -145,6 +157,8 @@
     sprite: DeltaV/Clothing/Head/Hats/beret_warden.rsi # DeltaV - resprite
   - type: Clothing
     sprite: DeltaV/Clothing/Head/Hats/beret_warden.rsi # DeltaV - resprite
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -156,6 +170,8 @@
     sprite: Clothing/Head/Hats/beret_physician.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_physician.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -167,6 +183,8 @@
     sprite: Clothing/Head/Hats/beret_brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_brigmedic.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -189,6 +207,8 @@
     sprite: Clothing/Head/Hats/bowler_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/bowler_hat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -205,6 +225,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -220,6 +242,8 @@
     proto: robot
   - type: IdentityBlocker
   - type: IngestionBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -231,6 +255,8 @@
     sprite: Clothing/Head/Hats/centcom.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/centcom.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -257,6 +283,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -273,6 +301,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -284,6 +314,8 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -295,6 +327,8 @@
     sprite: Clothing/Head/Hats/fez.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/fez.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -311,6 +345,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -327,6 +363,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -338,6 +376,8 @@
     sprite: Clothing/Head/Hats/outlawhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/outlawhat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -349,6 +389,8 @@
     sprite: Clothing/Head/Hats/witchhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witchhat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -360,6 +402,8 @@
     sprite: Clothing/Head/Hats/paper.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/paper.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -371,6 +415,8 @@
     sprite: Clothing/Head/Hats/pirate.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pirate.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -387,6 +433,8 @@
     - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -414,6 +462,8 @@
     sprite: Clothing/Head/Hats/santahat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/santahat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -427,6 +477,8 @@
     sprite: Clothing/Head/Hats/sombrero.rsi
   - type: AddAccentClothing
     accent: SpanishAccent
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -443,6 +495,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -454,6 +508,8 @@
     sprite: Clothing/Head/Hats/surgcap_green.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/surgcap_green.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -465,6 +521,8 @@
     sprite: Clothing/Head/Hats/surgcap_purple.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/surgcap_purple.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -481,6 +539,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -494,6 +554,8 @@
     sprite: Clothing/Head/Hats/ushanka.rsi
   - type: AddAccentClothing
     accent: RussianAccent
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -523,6 +585,8 @@
     sprite: DeltaV/Clothing/Head/Hats/warden.rsi # DeltaV - resprite
   - type: StealTarget
     stealGroup: ClothingHeadHatWarden
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -539,6 +603,8 @@
     - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -582,6 +648,8 @@
     sprite: Clothing/Head/Hats/xmascrown.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/xmascrown.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -593,6 +661,8 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/truckershat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -604,6 +674,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -615,6 +687,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -626,6 +700,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -638,6 +714,8 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/papersack.rsi
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -650,6 +728,8 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/papersacksmile.rsi
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -661,6 +741,8 @@
     sprite: Clothing/Head/Hats/fishcap.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/fishcap.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -677,6 +759,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -688,6 +772,8 @@
     sprite: Clothing/Head/Hats/rasta.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/rasta.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -699,6 +785,8 @@
     sprite: Clothing/Head/Hats/safarihat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/safarihat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -710,6 +798,8 @@
       sprite: Clothing/Head/Hats/jester.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/jester.rsi
+    - type: DropOnSlip
+      chance: 90
 
 - type: entity
   parent: ClothingHeadHatJester
@@ -719,6 +809,8 @@
       sprite: Clothing/Head/Hats/jester2.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/jester2.rsi
+    - type: DropOnSlip
+      chance: 90
 
 - type: entity
   parent: ClothingHeadBase
@@ -735,6 +827,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -761,6 +855,8 @@
     modifiers:
       coefficients:
         Blunt: 0.95
+  - type: DropOnSlip
+    chance: 35
 
 - type: entity
   parent: ClothingHeadBase
