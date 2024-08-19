@@ -1,5 +1,47 @@
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadBaseButcherable, BaseFoldable]
+  id: ClothingHeadHeadHatBaseFlippable
+  abstract: true
+  components:
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: fold-flip-verb
+    foldVerbText: fold-flip-verb
+  - type: FoldableClothing
+    foldedEquippedPrefix: flipped
+    foldedHeldPrefix: flipped
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon_flipped
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHeadHatBaseFlipped
+  suffix: flipped
+  abstract: true
+  components:
+  - type: Foldable
+    folded: true
+  - type: Clothing
+    equippedPrefix: flipped
+  - type: Item
+    heldPrefix: flipped
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+      visible: false
+    - state: icon_flipped
+      map: ["foldedLayer"]
+      visible: true
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatBluesoft
   name: blue cap
   description: "It's a baseball hat in a tasteless blue colour."
@@ -12,20 +54,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBluesoft]
   id: ClothingHeadHatBluesoftFlipped
-  name: blue cap flipped
-  description: "It's a baseball hat in a tasteless blue colour. Flipped."
+  name: blue cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/bluesoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/bluesoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatCargosoft
   name: logistics cap # DeltaV - Logistics Department replacing Cargo
   description: "It's a baseball hat painted in Logistics colours." # DeltaV - Logistics Department replacing Cargo
@@ -43,11 +80,16 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
   id: ClothingHeadHatCargosoftFlipped
-  name: logistics cap flipped # DeltaV - Logistics Department replacing Cargo
+  name: logistics cap # DeltaV - Logistics Department replacing Cargo
   description: "It's a baseball hat painted in Logistics colours. Flipped." # DeltaV - Logistics Department replacing Cargo
   components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
   - type: Sprite
     sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
   - type: Clothing
@@ -56,7 +98,7 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatQMsoft
   name: logistics officer's cap # DeltaV - Logistics Department replacing Cargo
   description: "It's a baseball hat painted in the Logistics Officer's colors."
@@ -69,20 +111,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatQMsoft]
   id: ClothingHeadHatQMsoftFlipped
-  name: logistics officer's cap flipped # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in the Logistics Officer's colors. Flipped."
+  name: logistics officer's cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/qmsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/qmsoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatCorpsoft
   name: corporate cap
   description: A baseball bat in corporation colors.
@@ -95,20 +132,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
   id: ClothingHeadHatCorpsoftFlipped
-  name: corporate cap flipped
-  description: A baseball bat in corporation colors. Flipped.
+  name: corporate cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/corpsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/corpsoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatGreensoft
   name: green cap
   description: "It's a baseball hat in a tasteless green colour."
@@ -121,20 +153,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreensoft]
   id: ClothingHeadHatGreensoftFlipped
-  name: green cap flipped
-  description: "It's a baseball hat in a tasteless green colour. Flipped."
+  name: green cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/greensoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/greensoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatBlacksoft
   name: black cap
   description: "It's a baseball hat in a tasteless black colour."
@@ -147,20 +174,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBlacksoft]
   id: ClothingHeadHatBlacksoftFlipped
-  name: black cap flipped
-  description: "It's a baseball hat in a tasteless black colour. Flipped."
+  name: black cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatGreysoft
   name: grey cap
   description: "It's a baseball hat in a tasteless grey colour."
@@ -173,20 +195,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreysoft]
   id: ClothingHeadHatGreysoftFlipped
-  name: grey cap flipped
-  description: "It's a baseball hat in a tasteless grey colour. Flipped."
+  name: grey cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/greysoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/greysoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatMimesoft
   name: mime cap
   description: "It's a baseball hat in a tasteless white colour."
@@ -199,20 +216,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMimesoft]
   id: ClothingHeadHatMimesoftFlipped
-  name: mime cap flipped
-  description: It's a baseball hat in a tasteless white colour. Flipped.
+  name: mime cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/mimesoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/mimesoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatOrangesoft
   name: orange cap
   description: It's a baseball hat in a good-looking orange colour.
@@ -225,20 +237,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatOrangesoft]
   id: ClothingHeadHatOrangesoftFlipped
-  name: orange cap flipped
-  description: It's a baseball hat in a good-looking orange colour. Flipped.
+  name: orange cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/orangesoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/orangesoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatPurplesoft
   name: purple cap
   description: It's a baseball hat in a tasteless purple colour.
@@ -256,20 +263,20 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatPurplesoft]
   id: ClothingHeadHatPurplesoftFlipped
-  name: purple cap flipped
-  description: It's a baseball hat in a tasteless purple colour. Flipped.
+  name: purple cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/purplesoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/purplesoft_flipped.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatRedsoft
   name: red cap
   description: It's a baseball hat in a tasteless red colour.
@@ -282,20 +289,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatRedsoft]
   id: ClothingHeadHatRedsoftFlipped
-  name: red cap flipped
-  description: It's a baseball hat in a tasteless purple colour. Flipped.
+  name: red cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/redsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/redsoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatSecsoft
   name: security cap
   description: It's a robust baseball hat in tasteful red colour.
@@ -308,20 +310,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
   id: ClothingHeadHatSecsoftFlipped
-  name: security cap flipped
-  description: It's a robust baseball hat in tasteful red colour. Flipped.
+  name: security cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/secsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/secsoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatYellowsoft
   name: yellow cap
   description: A yellow baseball hat.
@@ -334,22 +331,17 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatYellowsoft]
   id: ClothingHeadHatYellowsoftFlipped
-  name: yellow cap flipped
-  description: A yellow flipped baseball hat.
+  name: yellow cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/yellowsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/yellowsoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatBizarreSoft
-  name: troublemaker's soft
+  name: troublemaker's cap
   description: A truly.. bizarre accessory.
   components:
   - type: Sprite
@@ -360,20 +352,15 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBizarreSoft]
   id: ClothingHeadHatBizarreSoftFlipped
-  name: troublemaker's soft flipped
-  description: A truly.. bizarre accessory, flipped.
+  name: troublemaker's cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/bizarresoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/bizarresoft_flipped.rsi
   - type: DropOnSlip
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatParamedicsoft
   name: paramedic cap
   description: "It's a paramedic's baseball hat with a medical logo."
@@ -391,14 +378,14 @@
     chance: 20
 
 - type: entity
-  parent: ClothingHeadBaseButcherable
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
   id: ClothingHeadHatParamedicsoftFlipped
-  name: paramedic cap flipped
-  description: "It's a paramedic's baseball hat with a medical logo. Flipped."
+  name: paramedic cap
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/paramedicsoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/paramedicsoft_flipped.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
   - type: DropOnSlip
     chance: 20

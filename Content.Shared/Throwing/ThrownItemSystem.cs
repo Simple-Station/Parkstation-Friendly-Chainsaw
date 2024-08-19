@@ -35,7 +35,6 @@ namespace Content.Shared.Throwing
             SubscribeLocalEvent<ThrownItemComponent, StartCollideEvent>(HandleCollision);
             SubscribeLocalEvent<ThrownItemComponent, PreventCollideEvent>(PreventCollision);
             SubscribeLocalEvent<ThrownItemComponent, ThrownEvent>(ThrowItem);
-            SubscribeLocalEvent<ThrownItemComponent, EntityUnpausedEvent>(OnThrownUnpaused);
 
             SubscribeLocalEvent<PullStartedMessage>(HandlePullStarted);
         }
@@ -57,14 +56,6 @@ namespace Content.Shared.Throwing
             var fixture = fixturesComponent.Fixtures.Values.First();
             var shape = fixture.Shape;
             _fixtures.TryCreateFixture(uid, shape, ThrowingFixture, hard: false, collisionMask: (int) CollisionGroup.ThrownItem, manager: fixturesComponent, body: body);
-        }
-
-        private void OnThrownUnpaused(EntityUid uid, ThrownItemComponent component, ref EntityUnpausedEvent args)
-        {
-            if (component.LandTime != null)
-            {
-                component.LandTime = component.LandTime.Value + args.PausedTime;
-            }
         }
 
         private void HandleCollision(EntityUid uid, ThrownItemComponent component, ref StartCollideEvent args)
@@ -102,7 +93,7 @@ namespace Content.Shared.Throwing
         {
             if (TryComp<PhysicsComponent>(uid, out var physics))
             {
-                _physics.SetBodyStatus(physics, BodyStatus.OnGround);
+                _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);
 
                 if (physics.Awake)
                     _broadphase.RegenerateContacts(uid, physics);

@@ -76,9 +76,9 @@ namespace Content.Server.Atmos.EntitySystems
             };
 
             _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
-            _confMan.OnValueChanged(CCVars.NetGasOverlayTickRate, UpdateTickRate, true);
-            _confMan.OnValueChanged(CCVars.GasOverlayThresholds, UpdateThresholds, true);
-            _confMan.OnValueChanged(CVars.NetPVS, OnPvsToggle, true);
+            Subs.CVar(_confMan, CCVars.NetGasOverlayTickRate, UpdateTickRate, true);
+            Subs.CVar(_confMan, CCVars.GasOverlayThresholds, UpdateThresholds, true);
+            Subs.CVar(_confMan, CVars.NetPVS, OnPvsToggle, true);
 
             SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
             SubscribeLocalEvent<GasTileOverlayComponent, ComponentStartup>(OnStartup);
@@ -95,9 +95,6 @@ namespace Content.Server.Atmos.EntitySystems
         {
             base.Shutdown();
             _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
-            _confMan.UnsubValueChanged(CCVars.NetGasOverlayTickRate, UpdateTickRate);
-            _confMan.UnsubValueChanged(CCVars.GasOverlayThresholds, UpdateThresholds);
-            _confMan.UnsubValueChanged(CVars.NetPVS, OnPvsToggle);
         }
 
         private void OnPvsToggle(bool value)
@@ -174,7 +171,7 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 var id = VisibleGasId[i];
                 var gas = _atmosphereSystem.GetGas(id);
-                var moles = mixture?.Moles[id] ?? 0f;
+                var moles = mixture?[id] ?? 0f;
                 ref var opacity = ref data.Opacity[i];
 
                 if (moles < gas.GasMolesVisible)
@@ -219,13 +216,13 @@ namespace Content.Server.Atmos.EntitySystems
                 oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity);
             }
 
-            if (tile.Air != null)
+            if (tile is {Air: not null, NoGridTile: false})
             {
                 for (var i = 0; i < VisibleGasId.Length; i++)
                 {
                     var id = VisibleGasId[i];
                     var gas = _atmosphereSystem.GetGas(id);
-                    var moles = tile.Air.Moles[id];
+                    var moles = tile.Air[id];
                     ref var oldOpacity = ref oldData.Opacity[i];
 
                     if (moles < gas.GasMolesVisible)

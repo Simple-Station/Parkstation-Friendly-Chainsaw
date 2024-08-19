@@ -28,6 +28,7 @@
   - Paramedic # DeltaV - Add Paramedic access
   - External # DeltaV - Paramedics need this access
   - Psychologist # DeltaV - Add Psychologist access
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -45,7 +46,6 @@
     jumpsuit: ClothingUniformJumpsuitCMO
     back: ClothingBackpackCMOFilled
     shoes: ClothingShoesColorBrown
-    outerClothing: ClothingOuterCoatLabCmo
     id: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
