@@ -4,10 +4,9 @@
   description: job-description-chaplain
   playTimeTracker: JobChaplain
   requirements:
-    # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Epistemics # DeltaV - Epistemics Department replacing Science
-      time: 3600 # 1 hour
+      min: 3600 # 1 hour
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-rd

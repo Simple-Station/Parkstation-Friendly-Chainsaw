@@ -40,7 +40,8 @@ We provide some scripts shown below to make the job easier.
 
 > - DOTNET SDK 8.0 or higher
 
-### Recommended Tools
+> - Git
+> - .NET SDK 8.0.100
 
 > - Git (needed)
 > - Python 3.7 or higher
@@ -49,18 +50,18 @@ We provide some scripts shown below to make the job easier.
 ### Windows
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/bat/buildAllDebug.bat`
-> 4. Run both the `Scripts/bat/runQuickServer.bat` and `Scripts/bat/runQuickClient.bat`
-> 5. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/bat/buildAllDebug.bat` after making any changes to the source
+> 4. Run `Scripts/bat/runQuickAll.bat` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### Linux
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/sh/buildAllDebug.sh`
-> 4. Run both the `Scripts/sh/runQuickServer.bat` and `Scripts/sh/runQuickClient.sh`
-> 5. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/sh/buildAllDebug.sh` after making any changes to the source
+> 4. Run `Scripts/sh/runQuickAll.sh` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### MacOS
 
@@ -69,4 +70,13 @@ We provide some scripts shown below to make the job easier.
 
 ## License
 
-See the [LEGAL](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LEGAL.md) file for information.
+Content contributed to this repository after commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the GNU Affero General Public License version 3.0 unless otherwise stated.
+See [LICENSE-AGPLv3](./LICENSE-AGPLv3.txt).
+
+Content contributed to this repository before commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the MIT license unless otherwise stated.
+See [LICENSE-MIT](./LICENSE-MIT.txt).
+
+Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file.
+[Example](./Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+
+Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

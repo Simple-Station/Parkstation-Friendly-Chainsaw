@@ -5,11 +5,11 @@
   playTimeTracker: JobSecurityOfficer
   requirements:
     # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 3600 # 1 hour
-    - !type:OverallPlaytimeRequirement
-      time: 14400 # 4 hours
+      min: 3600 # 1 hour
+    - !type:CharacterOverallTimeRequirement
+      min: 14400 # 4 hours
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos

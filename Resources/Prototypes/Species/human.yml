@@ -34,6 +34,7 @@
     Tail: MobHumanoidAnyMarking # Nyanotrasen - Felinid
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
     HeadTop: MobHumanoidAnyMarking # Nyanotrasen - Felinid & Oni
+    HeadSide: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobHumanMarkingLimits
@@ -57,10 +58,10 @@
       points: 1
       required: false
     Legs:
-      points: 2
+      points: 6
       required: false
     Arms:
-      points: 4 # Parkstation-WideUseMarkings
+      points: 6
       required: false
 
 - type: humanoidBaseSprite

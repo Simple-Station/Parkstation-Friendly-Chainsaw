@@ -5,8 +5,8 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     # Parkstation-Playtime
-    - !type:OverallPlaytimeRequirement
-      time: 8000 # 2 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 8000 # 2 hours
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security

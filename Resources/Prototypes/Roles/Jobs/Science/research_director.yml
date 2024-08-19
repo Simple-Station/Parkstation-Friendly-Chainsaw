@@ -6,11 +6,11 @@
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
     # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Epistemics
-      time: 18000 # 5 hours
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24 hours
+      min: 18000 # 5 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 86400 # 24 hours
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -22,7 +22,7 @@
   - Command
   - Maintenance
   - ResearchDirector
-  - Mantis # DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
+  - Mantis # DeltaV - Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
   - Chapel # DeltaV - Chaplain is in Epistemics
   - Cryogenics
   special: # Nyanotrasen - Mystagogue can use the Bible
