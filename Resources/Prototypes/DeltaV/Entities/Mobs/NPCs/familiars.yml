@@ -106,9 +106,10 @@
     allowMovement: true
     allowSpeech: true
     requirements:
-    - !type:DepartmentTimeRequirement
-      department: Epistemics
-      time: 14400 # DeltaV - 4 hours
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Epistemics
+      min: 14400 # DeltaV - 4 hours
 
 - type: entity
   parent: WelderExperimental

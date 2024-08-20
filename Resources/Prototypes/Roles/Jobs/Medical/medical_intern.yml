@@ -5,9 +5,9 @@
   playTimeTracker: JobMedicalIntern
   setPreference: false # Parkstation-Playtime
   requirements:
-    # - !type:DepartmentTimeRequirement # DeltaV - Removes time limit
+    # - !type:CharacterDepartmentRequirement # DeltaV - Removes time limit
     #   department: Medical
-    #   time: 54000 # 15 hrs
+    #   min: 54000 # 15 hrs
     #   inverted: true # stop playing intern if you're good at med!
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"

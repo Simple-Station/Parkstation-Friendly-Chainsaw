@@ -8,12 +8,12 @@
   requirements:
     # - !type:RoleTimeRequirement # DeltaV - No Medical Doctor time requirement
     #   role: JobMedicalDoctor
-    #   time: 14400 #4 hrs
+    #   min: 14400 #4 hrs
     - !type:CharacterDepartmentTimeRequirement # DeltaV - Medical dept time requirement
       department: Medical
       min: 28800 # DeltaV - 8 hours
-    # - !type:OverallPlaytimeRequirement # DeltaV - No playtime requirement
-    #   time: 54000 # 15 hrs
+    # - !type:CharacterOverallTimeRequirement # DeltaV - No playtime requirement
+    #   min: 54000 # 15 hrs
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo

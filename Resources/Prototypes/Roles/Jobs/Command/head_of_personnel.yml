@@ -6,10 +6,10 @@
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
     # Parkstation-Playtime
-    - !type:CharacterPlaytimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Engineering
       min: 3600 # 1 hour
-    - !type:CharacterPlaytimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Medical
       min: 3600 # 1 hour
     - !type:CharacterDepartmentTimeRequirement
