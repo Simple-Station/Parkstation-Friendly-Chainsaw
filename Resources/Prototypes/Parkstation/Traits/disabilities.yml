@@ -13,13 +13,11 @@
 
 - type: trait
   id: ShadowkinBlackeye
-  name: Blackeye
-  description: You have lost your Shadowkin powers.
-  cost: 5
+  points: 5
   category: Negative
   requirements:
-  - !type:CharacterSpeciesRequirement
-    species:
-      - Shadowkin
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Shadowkin
   components:
     - type: ShadowkinBlackeyeTrait
