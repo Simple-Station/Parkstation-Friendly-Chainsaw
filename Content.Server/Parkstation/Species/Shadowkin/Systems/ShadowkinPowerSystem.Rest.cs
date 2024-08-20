@@ -61,7 +61,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
             if (_entity.TryGetComponent<SleepingComponent>(uid, out var sleepingComponent))
                 _actions.RemoveAction(args.Performer, sleepingComponent.WakeAction);
 
-            _power.TryAddMultiplier(args.Performer, 1.5f);
+            _power.TryAddMultiplier(args.Performer, 2f);
 
             // No action cooldown
             _actions.ClearCooldown(sleepingComponent?.WakeAction);
@@ -72,7 +72,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
             // Wake up
             _entity.RemoveComponent<ForcedSleepingComponent>(args.Performer);
             _entity.RemoveComponent<SleepingComponent>(args.Performer);
-            _power.TryAddMultiplier(args.Performer, -1.5f);
+            _power.TryAddMultiplier(args.Performer, -2f);
 
             // Action cooldown
             args.Handled = true;

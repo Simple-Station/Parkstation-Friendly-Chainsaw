@@ -6,9 +6,9 @@
   components:
     - type: Sprite
       netsync: false
-      sprite: Parkstation/Mobs/Species/shadowkin.rsi
+      sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     - type: Icon
-      sprite: Parkstation/Mobs/Species/shadowkin.rsi
+      sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     - type: Damageable
       damageContainer: Biological
     - type: BodyPart

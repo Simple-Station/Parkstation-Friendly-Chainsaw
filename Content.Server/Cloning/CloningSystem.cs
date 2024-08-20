@@ -46,6 +46,7 @@ using Content.Server.Nyanotrasen.Cloning;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects.Components.Localization; //DeltaV End Metem Usings
 using Content.Server.EntityList;
+using Content.Server.Parkstation.Cloning;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Damage.ForceSay;
 using Content.Server.Polymorph.Components;
@@ -249,6 +250,12 @@ namespace Content.Server.Cloning
             }
             // end of genetic damage checks
 
+            // For other systems checking if they should be getting cloned
+            var beingCloned = new BeingClonedEvent(pref, mind, clonePod.Owner);
+            RaiseLocalEvent(ref beingCloned);
+            if (beingCloned.Cancelled)
+                return false;
+
             var mob = FetchAndSpawnMob(clonePod, pref, speciesPrototype, humanoid, bodyToClone, karmaBonus); //DeltaV Replaces CloneAppearance with Metem/Clone via FetchAndSpawnMob
 
             ///Nyano - Summary: adds the potential psionic trait to the reanimated mob.
@@ -269,6 +276,10 @@ namespace Content.Server.Cloning
             _euiManager.OpenEui(new AcceptCloningEui(mindEnt, mind, this), client);
 
             AddComp<ActiveCloningPodComponent>(uid);
+
+            // For other systems adding components to the mob
+            var bce = new BeenClonedEvent(pref, mind, mob, bodyToClone, clonePod.Owner);
+            RaiseLocalEvent(bce);
 
             // TODO: Ideally, components like this should be components on the mind entity so this isn't necessary.
             // Add on special job components to the mob.

@@ -26,7 +26,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
             { ShadowkinPowerThreshold.Good, Locale.GetString("shadowkin-power-good") },
             { ShadowkinPowerThreshold.Okay, Locale.GetString("shadowkin-power-okay") },
             { ShadowkinPowerThreshold.Tired, Locale.GetString("shadowkin-power-tired") },
-            { ShadowkinPowerThreshold.Min, Locale.GetString("shadowkin-power-min") }
+            { ShadowkinPowerThreshold.Min, Locale.GetString("shadowkin-power-min") },
         };
     }
 
@@ -197,17 +197,17 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// <summary>
     ///     Tries to blackeye a shadowkin
     /// </summary>
-    public bool TryBlackeye(EntityUid uid)
+    public bool TryBlackeye(EntityUid uid, bool damage = true, bool checkPower = true)
     {
-        return _blackeye.TryBlackeye(uid);
+        return _blackeye.TryBlackeye(uid, damage, checkPower);
     }
 
     /// <summary>
     ///     Blackeyes a shadowkin
     /// </summary>
-    public void Blackeye(EntityUid uid)
+    public void Blackeye(EntityUid uid, bool damage = true)
     {
-        _blackeye.Blackeye(uid);
+        _blackeye.Blackeye(uid, damage);
     }
 
 

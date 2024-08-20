@@ -73,89 +73,89 @@
 - type: humanoidBaseSprite
   id: MobShadowkinHead
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobShadowkinHeadMale
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobShadowkinHeadFemale
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobShadowkinTorso
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobShadowkinTorsoMale
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobShadowkinTorsoFemale
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobShadowkinLLeg
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobShadowkinLHand
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobShadowkinEyes
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: eyes
 
 - type: humanoidBaseSprite
   id: MobShadowkinLArm
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobShadowkinLFoot
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobShadowkinRLeg
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobShadowkinRHand
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobShadowkinRArm
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobShadowkinRFoot
   baseSprite:
-    sprite: Parkstation/Mobs/Species/shadowkin.rsi
+    sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
     state: r_foot

@@ -59,17 +59,16 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
     private void Teleport(EntityUid uid, ShadowkinTeleportPowerComponent component, ShadowkinTeleportEvent args)
     {
-        // Need power to drain power
-        if (!_entity.TryGetComponent<ShadowkinComponent>(args.Performer, out var comp))
-            return;
-
-        // Don't activate abilities if handcuffed
-        // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (_entity.HasComponent<HandcuffComponent>(args.Performer))
+            // Need power to drain power
+        if (!_entity.TryGetComponent<ShadowkinComponent>(args.Performer, out var comp)
+            // Don't activate abilities if handcuffed
+            || _entity.TryGetComponent<HandcuffComponent>(args.Performer, out var cuff)
+                && cuff.AntiShadowkin)
             return;
 
 
         var transform = Transform(args.Performer);
+        // Must be on the same map
         if (transform.MapID != args.Target.GetMapId(EntityManager))
             return;
 
@@ -98,7 +97,6 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
             _transform.AttachToGridOrMap(pullable.Owner);
 
             // Resume pulling
-            // TODO: This does nothing? // This does things sometimes, but the client never knows // This does nothing??
             _pulling.TryStartPull(args.Performer, pullable.Owner);
         }
 

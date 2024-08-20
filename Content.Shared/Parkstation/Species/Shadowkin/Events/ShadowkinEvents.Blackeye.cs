@@ -5,28 +5,18 @@ namespace Content.Shared.Parkstation.Species.Shadowkin.Events;
 /// <summary>
 ///     Raised to notify other systems of an attempt to blackeye a shadowkin.
 /// </summary>
-public sealed class ShadowkinBlackeyeAttemptEvent : CancellableEntityEventArgs
+public sealed class ShadowkinBlackeyeAttemptEvent(NetEntity ent, bool checkPower = true) : CancellableEntityEventArgs
 {
-    public readonly NetEntity Ent;
-
-    public ShadowkinBlackeyeAttemptEvent(NetEntity ent)
-    {
-        Ent = ent;
-    }
+    public readonly NetEntity Ent = ent;
+    public readonly bool CheckPower = checkPower;
 }
 
 /// <summary>
 ///     Raised when a shadowkin becomes a blackeye.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ShadowkinBlackeyeEvent : EntityEventArgs
+public sealed class ShadowkinBlackeyeEvent(NetEntity ent, bool damage = true) : EntityEventArgs
 {
-    public readonly NetEntity Ent;
-    public readonly bool Damage;
-
-    public ShadowkinBlackeyeEvent(NetEntity ent, bool damage = true)
-    {
-        Ent = ent;
-        Damage = damage;
-    }
+    public readonly NetEntity Ent = ent;
+    public readonly bool Damage = damage;
 }

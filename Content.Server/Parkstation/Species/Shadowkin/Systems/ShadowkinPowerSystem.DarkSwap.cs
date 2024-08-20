@@ -65,13 +65,17 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
         if (component.Pacify)
-            EnsureComp<PacifiedComponent>(uid);
+        {
+            var pax = EnsureComp<PacifiedComponent>(uid);
+            pax.DisallowAllCombat = true;
+            pax.DisallowDisarm = true;
+        }
 
-        if (!component.Invisible)
-            return;
-
-        SetVisibility(uid, true);
-        SuppressFactions(uid, true);
+        if (component.Invisible)
+        {
+            SetVisibility(uid, true, true, true);
+            SuppressFactions(uid, true);
+        }
     }
 
     private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
@@ -80,13 +84,15 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         if (component.Invisible)
         {
-            SetVisibility(uid, false);
+            SetVisibility(uid, false, true, true);
             SuppressFactions(uid, false);
         }
 
+        // Prevent more updates while cleaning up
         component.Darken = false;
 
-        foreach (var light in component.DarkenedLights.ToArray())
+        // In case more updates occur for some reason. create a copy of the list to prevent error
+        foreach (var light in component.DarkenedLights.ToList())
         {
             if (!_entity.TryGetComponent<PointLightComponent>(light, out var pointLight) ||
                 !_entity.TryGetComponent<ShadowkinLightComponent>(light, out var shadowkinLight))
@@ -95,6 +101,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _darken.ResetLight(pointLight, shadowkinLight);
         }
 
+        // Clear the original list
         component.DarkenedLights.Clear();
     }
 
@@ -103,8 +110,10 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     {
         var performer = _entity.GetNetEntity(args.Performer);
 
-        // Need power to drain power
-        if (!_entity.HasComponent<ShadowkinComponent>(args.Performer))
+            // Need power to drain power
+        if (!_entity.HasComponent<ShadowkinComponent>(args.Performer)
+            || _entity.TryGetComponent<HandcuffComponent>(args.Performer, out var cuff)
+                && cuff.AntiShadowkin)
             return;
 
         // Don't activate abilities if handcuffed
@@ -112,64 +121,97 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (_entity.HasComponent<HandcuffComponent>(args.Performer))
             return;
 
-
-        var hasComp = _entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Performer);
-
-        if (hasComp)
-            Darkened(performer, args.StaminaCostOff, args.PowerCostOff, args.SoundOff, args.VolumeOff, args);
-        else
-            UnDarkened(performer, args.StaminaCostOn, args.PowerCostOn, args.SoundOn, args.VolumeOn, args);
+        SetDarkened(performer, !_entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Performer), args.SoundOn,
+            args.VolumeOn, args.SoundOff, args.VolumeOff, args, args.StaminaCostOn, args.PowerCostOn,
+            args.StaminaCostOff, args.PowerCostOff);
 
         _magic.Speak(args, false);
     }
 
-    public void Darkened(NetEntity performer, float staminaCostOff, float powerCostOff, SoundSpecifier soundOff, float volumeOff, ShadowkinDarkSwapEvent? args)
-    {
-        var performerUid = _entity.GetEntity(performer);
 
-        var ev = new ShadowkinDarkSwapAttemptEvent(performerUid);
+    /// <summary>
+    ///     Handles the effects of darkswapping
+    /// </summary>
+    /// <param name="performer">The entity being modified</param>
+    /// <param name="addComp">Is the entity swapping in to or out of The Dark?</param>
+    /// <param name="soundOn">Sound for the darkswapping</param>
+    /// <param name="volumeOn">Volume for the on sound</param>
+    /// <param name="soundOff">Sound for the un swapping</param>
+    /// <param name="volumeOff">Volume for the off sound</param>
+    /// <param name="staminaCostOn">Stamina cost for darkswapping</param>
+    /// <param name="powerCostOn">Power cost for darkswapping</param>
+    /// <param name="staminaCostOff">Stamina cost for un swapping</param>
+    /// <param name="powerCostOff">Power cost for un swapping</param>
+    /// <param name="args">If from an event, handle it</param>
+    public void SetDarkened(
+        NetEntity performer,
+        bool addComp,
+        SoundSpecifier? soundOn,
+        float? volumeOn,
+        SoundSpecifier? soundOff,
+        float? volumeOff,
+        ShadowkinDarkSwapEvent? args,
+        float staminaCostOn = 0,
+        float powerCostOn = 0,
+        float staminaCostOff = 0,
+        float powerCostOff = 0)
+    {
+        var ent = _entity.GetEntity(performer);
+
+        // We require the power component to DarkSwap
+        if (!_entity.TryGetComponent<ShadowkinDarkSwapPowerComponent>(ent, out var power))
+            return;
+
+        // Ask other systems if we can DarkSwap
+        var ev = new ShadowkinDarkSwapAttemptEvent(ent);
         RaiseLocalEvent(ev);
         if (ev.Cancelled)
             return;
 
-        _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(performerUid);
-        RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, false));
+        if (addComp) // Into The Dark
+        {
+            // Add the DarkSwapped component and set variables to match the power component
+            var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(ent);
+            comp.Invisible = power.Invisible;
+            comp.Pacify = power.Pacify;
+            comp.Darken = power.Darken;
+            comp.DarkenRange = power.DarkenRange;
+            comp.DarkenRate = power.DarkenRate;
 
-        _audio.PlayPvs(soundOff, performerUid, AudioParams.Default.WithVolume(volumeOff));
+            // Tell other systems we've DarkSwapped
+            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, true));
 
-        _power.TryAddPowerLevel(performerUid, -powerCostOff);
-        _stamina.TakeStaminaDamage(performerUid, staminaCostOff);
+            // Play a sound if there is one
+            if (soundOn != null)
+                _audio.PlayPvs(soundOn, ent, AudioParams.Default.WithVolume(volumeOn ?? 5f));
 
+            // Drain power and stamina if we have a cost
+            _power.TryAddPowerLevel(ent, -powerCostOn);
+            _stamina.TakeStaminaDamage(ent, staminaCostOn);
+        }
+        else // Out on The Dark
+        {
+            // Remove the DarkSwapped component, the rest is handled in the shutdown event
+            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(ent);
+
+            // Tell other systems we've un DarkSwapped
+            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, false));
+
+            // Play a sound if there is one
+            if (soundOff != null)
+                _audio.PlayPvs(soundOff, ent, AudioParams.Default.WithVolume(volumeOff ?? 5f));
+
+            // Drain power and stamina if we have a cost
+            _power.TryAddPowerLevel(ent, -powerCostOff);
+            _stamina.TakeStaminaDamage(ent, staminaCostOff);
+        }
+
+        // If we have an event, handle it
         if (args != null)
             args.Handled = true;
     }
 
-    public void UnDarkened(NetEntity performer, float staminaCostOn, float powerCostOn, SoundSpecifier soundOn, float volumeOn, ShadowkinDarkSwapEvent? args)
-    {
-        var performerUid = _entity.GetEntity(performer);
-
-        var ev = new ShadowkinDarkSwapAttemptEvent(performerUid);
-        RaiseLocalEvent(ev);
-        if (ev.Cancelled)
-            return;
-
-        var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(performerUid);
-        comp.Invisible = true;
-        comp.Pacify = true;
-        comp.Darken = true;
-
-        RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(performer, true));
-
-        _audio.PlayPvs(soundOn, performerUid, AudioParams.Default.WithVolume(volumeOn));
-
-        _power.TryAddPowerLevel(performerUid, -powerCostOn);
-        _stamina.TakeStaminaDamage(performerUid, staminaCostOn);
-
-        if (args != null)
-            args.Handled = true;
-    }
-
-    public void SetVisibility(EntityUid uid, bool set)
+    public void SetVisibility(EntityUid uid, bool set, bool invisibility, bool stealth)
     {
         // We require the visibility component for this to work
         EnsureComp<VisibilityComponent>(uid);
@@ -180,14 +222,20 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             if (_entity.TryGetComponent(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
 
-            // Make other entities unable to see the entity unless also DarkSwapped
-            _visibility.AddLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
-            _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.Normal, false);
+            if (invisibility)
+            {
+                // Make other entities unable to see the entity unless also DarkSwapped
+                _visibility.AddLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
+                _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.Normal, false);
+            }
             _visibility.RefreshVisibility(uid);
 
             // Add a stealth shader to the entity
-            if (!_entity.HasComponent<GhostComponent>(uid))
+            if (!_entity.HasComponent<GhostComponent>(uid) && stealth)
+            {
                 _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
+                _stealth.SetEnabled(uid, true);
+            }
         }
         else // Visible
         {
@@ -195,14 +243,17 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             if (_entity.TryGetComponent(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.DarkSwapInvisibility, eye);
 
-            // Make other entities able to see the entity again
-            _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
-            _visibility.AddLayer(uid, (ushort) VisibilityFlags.Normal, false);
+            if (invisibility)
+            {
+                // Make other entities able to see the entity again
+                _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
+                _visibility.AddLayer(uid, (ushort) VisibilityFlags.Normal, false);
+            }
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
             if (!_entity.HasComponent<GhostComponent>(uid))
-                _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
+                _stealth.SetEnabled(uid, false);
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using Content.Server.Parkstation.Species.Shadowkin.Components;
+﻿using Content.Server.Nyanotrasen.Cloning;
+using Content.Server.Parkstation.Cloning;
+using Content.Server.Parkstation.Species.Shadowkin.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -30,15 +32,18 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinBlackeyeAttemptEvent>(OnBlackeyeAttempt);
         SubscribeAllEvent<ShadowkinBlackeyeEvent>(OnBlackeye);
+
+        SubscribeLocalEvent<BeenClonedEvent>(OnCloned);
     }
 
 
     private void OnBlackeyeAttempt(ShadowkinBlackeyeAttemptEvent ev)
     {
         var uid = _entity.GetEntity(ev.Ent);
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component) ||
-            component.Blackeye ||
-            !(component.PowerLevel <= ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5))
+        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component)
+            || component.Blackeye
+            || ev.CheckPower
+                && component.PowerLevel > ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5)
             ev.Cancel();
     }
 
@@ -56,13 +61,14 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         _power.SetPowerLevel(uid, ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min]);
 
         // Update client state
-        Dirty(component);
+        Dirty(uid, component);
 
         // Remove powers
         _entity.RemoveComponent<ShadowkinDarkSwapPowerComponent>(uid);
         _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
         _entity.RemoveComponent<ShadowkinRestPowerComponent>(uid);
         _entity.RemoveComponent<ShadowkinTeleportPowerComponent>(uid);
+        _entity.RemoveComponent<EmpathyChatComponent>(uid);
 
 
         if (!ev.Damage)
@@ -73,9 +79,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         // Stamina crit
         if (_entity.TryGetComponent<StaminaComponent>(uid, out var stamina))
-        {
             _stamina.TakeStaminaDamage(uid, stamina.CritThreshold, null, uid);
-        }
 
         // Nearly crit with cellular damage
         // If already 5 damage off of crit, don't do anything
@@ -87,34 +91,46 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
         _damageable.TryChangeDamage(uid,
             new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
-                Math.Max((double) (key.Value - minus - 5), 0)),
-            true,
-            true,
-            null,
-            null);
+                Math.Max((double) (key.Value - minus - 5), 0)), true);
+    }
+
+    private void OnCloned(BeenClonedEvent ev)
+    {
+        // Don't give blackeyed Shadowkin their abilities back when they're cloned.
+        if (_entity.TryGetComponent<ShadowkinComponent>(ev.OriginalMob, out var shadowkin) &&
+            shadowkin.Blackeye)
+            _power.TryBlackeye(ev.Mob, false, false);
+
+        // Blackeye the Shadowkin that come from the metempsychosis machine
+        if (_entity.HasComponent<MetempsychoticMachineComponent>(ev.Cloner) &&
+            _entity.HasComponent<ShadowkinComponent>(ev.Mob))
+            _power.TryBlackeye(ev.Mob, false, false);
     }
 
 
     /// <summary>
     ///     Tries to blackeye a shadowkin
     /// </summary>
-    public bool TryBlackeye(EntityUid uid)
+    public bool TryBlackeye(EntityUid uid, bool damage = true, bool checkPower = true)
     {
+        if (!_entity.HasComponent<ShadowkinComponent>(uid))
+            return false;
+
         var ent = _entity.GetNetEntity(uid);
         // Raise an attempted blackeye event
-        var ev = new ShadowkinBlackeyeAttemptEvent(ent);
+        var ev = new ShadowkinBlackeyeAttemptEvent(ent, checkPower);
         RaiseLocalEvent(ev);
         if (ev.Cancelled)
             return false;
 
-        Blackeye(uid);
+        Blackeye(uid, damage);
         return true;
     }
 
     /// <summary>
     ///     Blackeyes a shadowkin
     /// </summary>
-    public void Blackeye(EntityUid uid)
+    public void Blackeye(EntityUid uid, bool damage = true)
     {
         var ent = _entity.GetNetEntity(uid);
 
@@ -126,7 +142,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         }
 
         component.Blackeye = true;
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent));
-        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent));
+        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent, damage));
+        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent, damage));
     }
 }

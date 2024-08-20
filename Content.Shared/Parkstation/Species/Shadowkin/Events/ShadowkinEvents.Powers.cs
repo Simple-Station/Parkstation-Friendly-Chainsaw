@@ -76,35 +76,21 @@ public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakS
     public string? Speech { get; set; }
 }
 
-public sealed class ShadowkinDarkSwapAttemptEvent : CancellableEntityEventArgs
+public sealed class ShadowkinDarkSwapAttemptEvent(EntityUid performer) : CancellableEntityEventArgs
 {
-    EntityUid Performer;
-
-    public ShadowkinDarkSwapAttemptEvent(EntityUid performer)
-    {
-        Performer = performer;
-    }
+    public EntityUid Performer = performer;
 }
 
 
-public sealed partial class ShadowkinRestEvent: InstantActionEvent
-{
-
-}
+public sealed partial class ShadowkinRestEvent: InstantActionEvent;
 
 
 /// <summary>
 ///     Raised over network to notify the client that they're going in/out of The Dark.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ShadowkinDarkSwappedEvent : EntityEventArgs
+public sealed class ShadowkinDarkSwappedEvent(NetEntity performer, bool darkSwapped) : EntityEventArgs
 {
-    public NetEntity Performer { get; }
-    public bool DarkSwapped { get; }
-
-    public ShadowkinDarkSwappedEvent(NetEntity performer, bool darkSwapped)
-    {
-        Performer = performer;
-        DarkSwapped = darkSwapped;
-    }
+    public NetEntity Performer = performer;
+    public bool DarkSwapped = darkSwapped;
 }

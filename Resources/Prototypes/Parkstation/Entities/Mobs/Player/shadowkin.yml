@@ -6,10 +6,11 @@
   components:
     - type: HumanoidAppearance
       species: Shadowkin
+      initial: Shadowkin
     - type: Hunger
     - type: Thirst
     - type: Icon
-      sprite: Parkstation/Mobs/Species/shadowkin.rsi
+      sprite: Parkstation/Mobs/Species/Shadowkin/parts.rsi
       state: full
     - type: Body
       prototype: Shadowkin
@@ -82,7 +83,58 @@
           layer:
             - MobLayer
     - type: Sprite
+      noRot: true
+      drawdepth: Mobs
       scale: 0.85, 0.85 # Small
+      layers:
+        - map: ["enum.HumanoidVisualLayers.Chest"]
+        - map: ["enum.HumanoidVisualLayers.Head"]
+        - map: ["enum.HumanoidVisualLayers.Snout"]
+        - map: ["enum.HumanoidVisualLayers.Eyes"]
+        - map: ["enum.HumanoidVisualLayers.RArm"]
+        - map: ["enum.HumanoidVisualLayers.LArm"]
+        - map: ["enum.HumanoidVisualLayers.RLeg"]
+        - map: ["enum.HumanoidVisualLayers.LLeg"]
+        - shader: StencilClear
+          sprite: Mobs/Species/Human/parts.rsi
+          state: l_leg
+        - shader: StencilMask
+          map: ["enum.HumanoidVisualLayers.StencilMask"]
+          sprite: Mobs/Customization/masking_helpers.rsi
+          state: full
+          visible: false
+        - map: ["enum.HumanoidVisualLayers.LFoot"]
+        - map: ["enum.HumanoidVisualLayers.RFoot"]
+        - map: ["socks"]
+        - map: ["underpants"]
+        - map: ["undershirt"]
+        - map: ["jumpsuit"]
+        - map: ["enum.HumanoidVisualLayers.LHand"]
+        - map: ["enum.HumanoidVisualLayers.RHand"]
+        - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+          color: "#ffffff"
+          sprite: Objects/Misc/handcuffs.rsi
+          state: body-overlay-2
+          visible: false
+        - map: ["id"]
+        - map: ["gloves"]
+        - map: ["shoes"]
+        - map: ["ears"]
+        - map: ["outerClothing"]
+        - map: ["eyes"]
+        - map: ["belt"]
+        - map: ["neck"]
+        - map: ["back"]
+        - map: ["enum.HumanoidVisualLayers.FacialHair"]
+        - map: ["enum.HumanoidVisualLayers.Hair"]
+        - map: ["enum.HumanoidVisualLayers.HeadSide"]
+        - map: ["enum.HumanoidVisualLayers.HeadTop"]
+        - map: ["mask"]
+        - map: ["head"]
+        - map: ["pocket1"]
+        - map: ["pocket2"]
+        - map: ["enum.HumanoidVisualLayers.Tail"]
+        - map: ["enum.HumanoidVisualLayers.Wings"]
     - type: Eye
       zoom: "0.85, 0.85"
     - type: MeleeWeapon
@@ -129,8 +181,6 @@
     - type: PotentialPsionic
       chance: -2 # They have their own abilities.
     - type: MovementSpeedModifier
-      baseWalkSpeed : 4.5
-      baseSprintSpeed : 2.7
 
 
 - type: entity

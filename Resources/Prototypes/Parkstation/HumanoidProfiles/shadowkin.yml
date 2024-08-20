@@ -1,0 +1,6 @@
+- type: humanoidProfile
+  id: Shadowkin
+  profile:
+    species: Shadowkin
+    height: 0.85
+    width: 0.85
