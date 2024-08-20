@@ -51,14 +51,11 @@ public sealed partial class FaxMachineComponent : Component
     [DataField("receiveNukeCodes")]
     public bool ReceiveNukeCodes { get; set; } = false;
 
-    // Corvax-StationGoal-Start
     /// <summary>
-    /// Should that fax receive station goal info
+    /// 	Should this fax receive station goals
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("receiveStationGoal")]
+    [DataField]
     public bool ReceiveStationGoal { get; set; } = false;
-    // Corvax-StationGoal-End
 
     /// <summary>
     /// Sound to play when fax has been emagged

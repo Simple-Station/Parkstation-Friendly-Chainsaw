@@ -13,7 +13,6 @@
   - type: Tag
     tags:
     - Sheet
-    - NoPaint
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -112,7 +111,6 @@
   - type: Tag
     tags:
     - Sheet
-    - NoPaint
 
 - type: entity
   parent: SheetPlasma
@@ -135,7 +133,6 @@
     tags:
     - Plastic
     - Sheet
-    - NoPaint
   - type: Material
   - type: PhysicalComposition
     materialComposition:

@@ -5,11 +5,11 @@
   playTimeTracker: JobForensicMantis
   setPreference: false # Parkstation-Playtime
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 18000
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterOverallTimeRequirement
+      min: 18000
+    - !type:CharacterDepartmentTimeRequirement
       department: Epistemics # DeltaV - Epistemics Department replacing Science
-      time: 3600
+      min: 3600
   startingGear: ForensicMantisGear
   icon: "JobIconForensicMantis"
   supervisors: job-supervisors-rd
@@ -19,7 +19,7 @@
   access:
   - Research
   - Maintenance
-  - Mantis # DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
+  - Mantis # DeltaV - Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
   special:
   - !type:AddComponentSpecial
     components:

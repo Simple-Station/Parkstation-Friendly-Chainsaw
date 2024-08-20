@@ -65,6 +65,7 @@
     deviceNetId: Wireless
     receiveFrequencyId: Fax
     transmitFrequencyId: Fax
+  - type: RequireProjectileTarget
 
 # Special
 - type: entity
@@ -108,6 +109,6 @@
     - type: FaxMachine
       name: "Command" # Parkstation-Oligarchy
       receiveNukeCodes: true
-      receiveStationGoal: true # Corvax-StationGoal
+      receiveStationGoal: true
     - type: StealTarget
       stealGroup: FaxMachineCaptain
