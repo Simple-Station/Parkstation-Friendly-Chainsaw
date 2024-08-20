@@ -99,6 +99,12 @@ public sealed partial class HandcuffComponent : Component
     /// </summary>
     [DataField]
     public bool UncuffEasierWhenLarge = false;
+
+
+    // Parkstation-Shadowkin Start
+    [DataField]
+    public bool AntiShadowkin;
+    // Parkstation-Shadowkin End
 }
 
 /// <summary>

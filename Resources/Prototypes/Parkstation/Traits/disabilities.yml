@@ -10,3 +10,14 @@
         - MedicalBorg
   components:
     - type: Nearsighted
+
+- type: trait
+  id: ShadowkinBlackeye
+  points: 5
+  category: Negative
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Shadowkin
+  components:
+    - type: ShadowkinBlackeyeTrait

@@ -4,7 +4,7 @@ namespace Content.Shared.Chat
     ///     Represents chat channels that the player can filter chat tabs by.
     /// </summary>
     [Flags]
-    public enum ChatChannel : ushort
+    public enum ChatChannel
     {
         None = 0,
 
@@ -91,9 +91,16 @@ namespace Content.Shared.Chat
         Telepathic = 1 << 15,
 
         /// <summary>
+        ///     Empathy channel for Shadowkin.
+        /// </summary>
+        Empathy = 1 << 16, // Parkstation-EmpathyChat
+
+        /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Notifications, //Nyano - Summary: Adds telepathic as an 'IC' labelled chat..
+        //Nyano - Summary: Adds telepathic as an 'IC' labelled chat..
+        // Parkstation-EmpathyChat
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Empathy | Notifications,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

@@ -23,6 +23,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
     public const char TelepathicPrefix = '='; //Nyano - Summary: Adds the telepathic channel's prefix.
+    public const char EmpathyPrefix = '~'; // Parkstation-EmpathyChat
     public const char DefaultChannelKey = 'h';
 
     [ValidatePrototypeId<RadioChannelPrototype>]
@@ -255,7 +256,8 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
-    Telepathic
+    Telepathic,
+    Empathy, // Parkstation-EmpathyChat
 }
 
 /// <summary>

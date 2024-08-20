@@ -65,6 +65,7 @@
   - type: Item
     sprite: Objects/Tools/flashlight.rsi
     storedRotation: -90
+  - type: ShadowkinLight # Parkstation-Shadowkin
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png

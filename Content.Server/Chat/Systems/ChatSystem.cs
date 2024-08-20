@@ -6,6 +6,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Language;
+using Content.Server.Parkstation.Chat;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Chat;
@@ -65,6 +66,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly ParkstationChatSystem _parkstationChatSystem = default!; // Parkstation-EmpathyChat
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
@@ -276,6 +278,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             //Nyano - Summary: case adds the telepathic chat sending ability.
             case InGameICChatType.Telepathic:
                 _telepath.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);
+                break;
+            // Parkstation-EmpathyChat
+            case InGameICChatType.Empathy:
+                _parkstationChatSystem.SendEmpathyChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
         }
     }

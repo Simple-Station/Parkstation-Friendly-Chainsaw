@@ -1,0 +1,71 @@
+﻿- type: entity
+  id: ShadowkinTeleportAction
+  noSpawn: true
+  name: action-name-shadowkin-teleport
+  description: action-description-shadowkin-teleport
+  components:
+  - type: WorldTargetAction
+    useDelay: 5
+    range: 32
+    itemIconStyle: NoItem
+    icon:
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
+      state: teleport
+    checkCanAccess: true
+    repeat: true
+    priority: -20
+    event: !type:ShadowkinTeleportEvent
+      powerCost: 40
+      staminaCost: 20
+      speech: action-description-shadowkin-teleport
+
+- type: entity
+  id: ShadowkinDarkSwapAction
+  noSpawn: true
+  name: action-name-shadowkin-darkswap
+  description: action-description-shadowkin-darkswap
+  components:
+  - type: InstantAction
+    useDelay: 15
+    itemIconStyle: NoItem
+    priority: -21
+    icon:
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
+      state: darkswap
+    event: !type:ShadowkinDarkSwapEvent
+      powerCostOn: 60
+      powerCostOff: 45
+      staminaCostOn: 25
+      staminaCostOff: 25
+      speech: action-description-shadowkin-darkswap
+
+- type: entity
+  id: ShadowkinRestAction
+  noSpawn: true
+  name: action-name-shadowkin-rest
+  description: action-description-shadowkin-rest
+  components:
+  - type: InstantAction
+    useDelay: 60
+    itemIconStyle: NoItem
+    priority: -22
+    icon:
+      sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
+      state: rest
+    checkCanInteract: false
+    checkConsciousness: false
+    event: !type:ShadowkinRestEvent
+
+- type: entity
+  id: ShadowkinDarkSwapHardsuitToggle
+  noSpawn: true
+  name: action-name-shadowkin-darkswap
+  components:
+  - type: InstantAction
+    useDelay: 15
+    itemIconStyle: NoItem
+    priority: -21
+    icon:
+      sprite: Parkstation/Clothing/Head/Hardsuits/darkened.rsi
+      state: icon
+    event: !type:ToggleClothingEvent
