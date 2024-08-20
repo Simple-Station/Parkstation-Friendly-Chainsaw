@@ -16,6 +16,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string ShadowkinRestActionId = "ShadowkinRestAction";
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -61,8 +62,9 @@ public sealed class ShadowkinRestSystem : EntitySystem
                 _actions.RemoveAction(args.Performer, sleepingComponent.WakeAction);
 
             _power.TryAddMultiplier(args.Performer, 1.5f);
+
             // No action cooldown
-            args.Handled = false;
+            _actions.ClearCooldown(sleepingComponent?.WakeAction);
         }
         // Waking
         else
@@ -71,6 +73,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
             _entity.RemoveComponent<ForcedSleepingComponent>(args.Performer);
             _entity.RemoveComponent<SleepingComponent>(args.Performer);
             _power.TryAddMultiplier(args.Performer, -1.5f);
+
             // Action cooldown
             args.Handled = true;
         }

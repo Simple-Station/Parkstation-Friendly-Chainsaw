@@ -50,4 +50,5 @@
       sprite: Parkstation/Interface/Actions/shadowkin_icons.rsi
       state: rest
     checkCanInteract: false
+    checkConsciousness: false
     event: !type:ShadowkinRestEvent
