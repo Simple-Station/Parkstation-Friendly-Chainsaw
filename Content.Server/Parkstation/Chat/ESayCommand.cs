@@ -1,5 +1,6 @@
 ﻿using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
@@ -7,9 +8,6 @@ using Robust.Shared.Player;
 namespace Content.Server.Parkstation.Chat;
 
 [AnyCommand]
-/// <remarks>
-///     Chat commands are stupid
-/// </remarks>
 internal sealed class ESayCommand : IConsoleCommand
 {
     public string Command => "esay";

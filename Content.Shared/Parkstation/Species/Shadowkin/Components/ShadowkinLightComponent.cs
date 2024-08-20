@@ -1,6 +1,8 @@
-﻿namespace Content.Server.Parkstation.Species.Shadowkin.Components;
+﻿using Robust.Shared.GameStates;
 
-[RegisterComponent]
+namespace Content.Shared.Parkstation.Species.Shadowkin.Components;
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ShadowkinLightComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]

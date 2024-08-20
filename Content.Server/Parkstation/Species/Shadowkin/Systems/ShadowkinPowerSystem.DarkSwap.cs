@@ -37,6 +37,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string ShadowkinDarkSwapActionId = "ShadowkinDarkSwapAction";
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -59,6 +60,42 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, component.ShadowkinDarkSwapActionEntity);
+    }
+
+    private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
+    {
+        if (component.Pacify)
+            EnsureComp<PacifiedComponent>(uid);
+
+        if (!component.Invisible)
+            return;
+
+        SetVisibility(uid, true);
+        SuppressFactions(uid, true);
+    }
+
+    private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
+    {
+        RemComp<PacifiedComponent>(uid);
+
+        if (component.Invisible)
+        {
+            SetVisibility(uid, false);
+            SuppressFactions(uid, false);
+        }
+
+        component.Darken = false;
+
+        foreach (var light in component.DarkenedLights.ToArray())
+        {
+            if (!_entity.TryGetComponent<PointLightComponent>(light, out var pointLight) ||
+                !_entity.TryGetComponent<ShadowkinLightComponent>(light, out var shadowkinLight))
+                continue;
+
+            _darken.ResetLight(pointLight, shadowkinLight);
+        }
+
+        component.DarkenedLights.Clear();
     }
 
 
@@ -132,69 +169,39 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             args.Handled = true;
     }
 
-    private void OnInvisStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
-    {
-        if (component.Pacify)
-            EnsureComp<PacifiedComponent>(uid);
-
-        if (component.Invisible)
-        {
-            SetVisibility(uid, true);
-            SuppressFactions(uid, true);
-        }
-    }
-
-    private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
-    {
-        RemComp<PacifiedComponent>(uid);
-
-        if (component.Invisible)
-        {
-            SetVisibility(uid, false);
-            SuppressFactions(uid, false);
-        }
-
-        component.Darken = false;
-
-        foreach (var light in component.DarkenedLights.ToArray())
-        {
-            if (!_entity.TryGetComponent<PointLightComponent>(light, out var pointLight) ||
-                !_entity.TryGetComponent<ShadowkinLightComponent>(light, out var shadowkinLight))
-                continue;
-
-            _darken.ResetLight(pointLight, shadowkinLight);
-        }
-
-        component.DarkenedLights.Clear();
-    }
-
     public void SetVisibility(EntityUid uid, bool set)
     {
         // We require the visibility component for this to work
-        var visibility = EnsureComp<VisibilityComponent>(uid);
+        EnsureComp<VisibilityComponent>(uid);
+
+        // Allow ghosts to see DarkSwapped entities
+        if (_entity.HasComponent<GhostComponent>(uid))
+        {
+            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
+
+            return;
+        }
 
         if (set) // Invisible
         {
             // Allow the entity to see DarkSwapped entities
             if (_entity.TryGetComponent(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
-                // eye.VisibilityMask |= (int) VisibilityFlags.DarkSwapInvisibility;
 
             // Make other entities unable to see the entity unless also DarkSwapped
             _visibility.AddLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid);
 
-            // If not a ghost, add a stealth shader to the entity
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out var _))
-                _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
+            // Add a stealth shader to the entity
+            _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
         }
         else // Visible
         {
             // Remove the ability to see DarkSwapped entities
             if (_entity.TryGetComponent(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.DarkSwapInvisibility, eye);
-                // eye.VisibilityMask &= ~(int) VisibilityFlags.DarkSwapInvisibility;
 
             // Make other entities able to see the entity again
             _visibility.RemoveLayer(uid, (ushort) VisibilityFlags.DarkSwapInvisibility, false);
@@ -202,8 +209,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out _))
-                _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
+            _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
         }
     }
 
