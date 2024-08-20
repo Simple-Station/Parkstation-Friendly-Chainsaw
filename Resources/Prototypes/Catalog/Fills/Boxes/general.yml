@@ -11,9 +11,18 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,2
+    - 0,0,3,3
   - type: Sprite
     state: box
+  - type: EmitSoundOnPickup
+    sound: /Audio/SimpleStation14/Items/Handling/cardboardbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound: /Audio/SimpleStation14/Items/Handling/cardboardbox_drop.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/SimpleStation14/Items/Handling/cardboardbox_drop.ogg
+  - type: Tag
+    tags:
+    - BoxCardboard
 
 - type: entity
   name: mousetrap box
@@ -50,9 +59,6 @@
     whitelist:
       components:
       - LightBulb
-  - type: Tag
-    tags:
-      - DroneUsable
 
 - type: entity
   name: lighttube box
@@ -74,9 +80,6 @@
     whitelist:
       components:
       - LightBulb
-  - type: Tag
-    tags:
-      - DroneUsable
 
 - type: entity
   name: mixed lights box
@@ -100,9 +103,6 @@
     whitelist:
       components:
       - LightBulb
-  - type: Tag
-    tags:
-      - DroneUsable
 
 - type: entity
   name: PDA box
@@ -182,24 +182,14 @@
       - state: writing
 
 - type: entity
-  name: box of hugs
-  parent: BoxCardboard
+  parent: BoxHug
   id: BoxHugHealing
-  description: A special box for sensitive people.
+  suffix: Medical
   components:
-  - type: Sprite
-    layers:
-      - state: box_hug
-      - state: heart
-  - type: Item
-    heldPrefix: hug
   - type: StorageFill
     contents:
       - id: Brutepack
         amount: 3
-  - type: Tag
-    tags:
-      - BoxHug
 
 - type: entity
   name: inflatable wall box
@@ -217,9 +207,6 @@
     layers:
       - state: box
       - state: inflatable
-  - type: Tag
-    tags:
-      - DroneUsable
 
 
 - type: entity
@@ -263,7 +250,7 @@
   - type: Storage
     grid:
     - 0,0,5,3
-    maxItemSize: Normal
+    maxItemSize: Large
     whitelist:
       tags:
         - TrashBag
@@ -271,9 +258,6 @@
     layers:
       - state: box
       - state: trashbag
-  - type: Tag
-    tags:
-      - DroneUsable
 
 - type: entity
   name: passenger encryption key box

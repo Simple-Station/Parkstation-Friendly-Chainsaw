@@ -1,11 +1,12 @@
 using System.Numerics;
-using Content.Shared.Traits.Assorted;
+using Content.Shared.Traits.Assorted.Systems;
 using Robust.Shared.Random;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Traits.Assorted.Components;
 
 namespace Content.Client.Traits;
 
@@ -30,7 +31,7 @@ public sealed class ParacusiaSystem : SharedParacusiaSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (_player.LocalPlayer?.ControlledEntity is not EntityUid localPlayer)
+        if (_player.LocalEntity is not EntityUid localPlayer)
             return;
 
         PlayParacusiaSounds(localPlayer);

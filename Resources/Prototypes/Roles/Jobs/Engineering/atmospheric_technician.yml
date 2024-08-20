@@ -6,9 +6,9 @@
   antagAdvantage: 10 # DeltaV - Reduced TC: External Access + Fireaxe + Free Hardsuit
   requirements:
     # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Engineering
-      time: 21600 # 6 hours
+      min: 21600 # 6 hours
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce

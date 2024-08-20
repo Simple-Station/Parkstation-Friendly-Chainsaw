@@ -1,7 +1,7 @@
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
-using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Robust.Shared.Map;
@@ -17,14 +17,11 @@ public sealed class EmpSystem : SharedEmpSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EmpDisabledComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
-        SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
-        SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
     }
 
     /// <summary>
@@ -76,7 +73,19 @@ public sealed class EmpSystem : SharedEmpSystem
         if (ev.Disabled)
         {
             var disabled = EnsureComp<EmpDisabledComponent>(uid);
-            disabled.DisabledUntil = Timing.CurTime + TimeSpan.FromSeconds(duration);
+            // couldnt use null-coalescing operator here sadge
+            if (disabled.DisabledUntil == TimeSpan.Zero)
+            {
+                disabled.DisabledUntil = Timing.CurTime;
+            }
+            disabled.DisabledUntil = disabled.DisabledUntil + TimeSpan.FromSeconds(duration);
+
+            /// i tried my best to go through the Pow3r server code but i literally couldn't find in relation to PowerNetworkBatteryComponent that uses the event system
+            /// the code is otherwise too esoteric for my innocent eyes
+            if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery))
+            {
+                powerNetBattery.CanCharge = false;
+            }
         }
     }
 
@@ -92,14 +101,13 @@ public sealed class EmpSystem : SharedEmpSystem
                 RemComp<EmpDisabledComponent>(uid);
                 var ev = new EmpDisabledRemoved();
                 RaiseLocalEvent(uid, ref ev);
+
+                if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery))
+                {
+                    powerNetBattery.CanCharge = true;
+                }
             }
         }
-    }
-
-    private void OnUnpaused(EntityUid uid, EmpDisabledComponent component, ref EntityUnpausedEvent args)
-    {
-        component.DisabledUntil += args.PausedTime;
-        component.TargetTime += args.PausedTime;
     }
 
     private void OnExamine(EntityUid uid, EmpDisabledComponent component, ExaminedEvent args)
@@ -119,16 +127,6 @@ public sealed class EmpSystem : SharedEmpSystem
     }
 
     private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
-
-    private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
-
-    private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args)
     {
         args.Cancelled = true;
     }

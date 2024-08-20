@@ -1,13 +1,15 @@
 - type: trait
   id: Nearsighted
-  name: trait-nearsighted-name
-  description: You require glasses to see properly.
-  traitGear: ClothingEyesGlasses
+  category: Visual
+  points: 1
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - Borg
+        - MedicalBorg
   components:
     - type: Nearsighted
-  whitelist: # Delta V fix to borgs spawning with it.
-    components:
-      - Blindable
 
 - type: trait
   id: ShadowkinBlackeye
@@ -15,7 +17,8 @@
   description: You have lost your Shadowkin powers.
   cost: 5
   category: Negative
-  whitelist:
+  requirements:
+  - !type:CharacterSpeciesRequirement
     species:
       - Shadowkin
   components:

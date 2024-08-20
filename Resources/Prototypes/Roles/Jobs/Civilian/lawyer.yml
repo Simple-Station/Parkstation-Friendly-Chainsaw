@@ -5,11 +5,11 @@
   playTimeTracker: JobLawyer
   antagAdvantage: 2 # DeltaV - Reduced TC: Security Radio and Access
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
-    - !type:DepartmentTimeRequirement # DeltaV - Security dept time requirement
+    - !type:CharacterOverallTimeRequirement
+      min: 36000 # 10 hrs
+    - !type:CharacterDepartmentTimeRequirement # DeltaV - Security dept time requirement
       department: Security
-      time: 14400 # 4 hours
+      min: 14400 # 4 hours
   startingGear: LawyerGear
   icon: "JobIconLawyer"
   supervisors: job-supervisors-css
@@ -22,7 +22,7 @@
   id: LawyerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack  # TODO change jumpsuit to randomiser of the 4 variants
-    back: ClothingBackpackFilled
+    back: ClothingBackpackLawyerFilled #DeltaV - stamp included
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
     ears: ClothingHeadsetSecurity
@@ -30,5 +30,5 @@
   inhand:
     - BriefcaseBrownFilled
   innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  satchel: ClothingBackpackSatchelLawyerFilled #DeltaV - stamp included
+  duffelbag: ClothingBackpackDuffelLawyerFilled #DeltaV - stamp included

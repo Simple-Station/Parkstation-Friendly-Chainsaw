@@ -1,17 +1,17 @@
-{ pkgs ? import (builtins.fetchTarball {
+{ pkgs ? (let lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+in import (builtins.fetchTarball {
   url =
-    "https://github.com/NixOS/nixpkgs/archive/cda0e75a0bd7cf05bd3e40658c163e4f8f376b7b.tar.gz";
-  sha256 = "sha256-Toz3HEHeq6Esr5uDOMel8BiGSa94gj+og3Yz4YEgjYI=";
-}) { } }:
+    "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.nixpkgs.locked.rev}.tar.gz";
+  sha256 = lock.nodes.nixpkgs.locked.narHash;
+}) { }) }:
 
 let
   dependencies = with pkgs; [
-    dotnetCorePackages.sdk_8_0
+    dotnetCorePackages.sdk_8_0_1xx
     glfw
     SDL2
     libGL
     openal
-    glibc
     freetype
     fluidsynth
     soundfont-fluid

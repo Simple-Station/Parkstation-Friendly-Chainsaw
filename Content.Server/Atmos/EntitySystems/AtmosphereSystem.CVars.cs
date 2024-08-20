@@ -12,9 +12,14 @@ namespace Content.Server.Atmos.EntitySystems
         public float SpaceWindPressureForceDivisorPush { get; private set; }
         public float SpaceWindMaxVelocity { get; private set; }
         public float SpaceWindMaxPushForce { get; private set; }
+        public float SpaceWindMinimumCalculatedMass { get; private set; }
+        public float SpaceWindMaximumCalculatedInverseMass { get; private set; }
+        public bool MonstermosUseExpensiveAirflow { get; private set; }
         public bool MonstermosEqualization { get; private set; }
         public bool MonstermosDepressurization { get; private set; }
         public bool MonstermosRipTiles { get; private set; }
+        public float MonstermosRipTilesMinimumPressure { get; private set; }
+        public float MonstermosRipTilesPressureOffset { get; private set; }
         public bool GridImpulse { get; private set; }
         public float SpacingEscapeRatio { get; private set; }
         public float SpacingMinGas { get; private set; }
@@ -26,6 +31,7 @@ namespace Content.Server.Atmos.EntitySystems
         public float AtmosTickRate { get; private set; }
         public float Speedup { get; private set; }
         public float HeatScale { get; private set; }
+        public float HumanoidThrowMultiplier { get; private set; }
 
         /// <summary>
         /// Time between each atmos sub-update.  If you are writing an atmos device, use AtmosDeviceUpdateEvent.dt
@@ -36,25 +42,31 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void InitializeCVars()
         {
-            _cfg.OnValueChanged(CCVars.SpaceWind, value => SpaceWind = value, true);
-            _cfg.OnValueChanged(CCVars.SpaceWindPressureForceDivisorThrow, value => SpaceWindPressureForceDivisorThrow = value, true);
-            _cfg.OnValueChanged(CCVars.SpaceWindPressureForceDivisorPush, value => SpaceWindPressureForceDivisorPush = value, true);
-            _cfg.OnValueChanged(CCVars.SpaceWindMaxVelocity, value => SpaceWindMaxVelocity = value, true);
-            _cfg.OnValueChanged(CCVars.SpaceWindMaxPushForce, value => SpaceWindMaxPushForce = value, true);
-            _cfg.OnValueChanged(CCVars.MonstermosEqualization, value => MonstermosEqualization = value, true);
-            _cfg.OnValueChanged(CCVars.MonstermosDepressurization, value => MonstermosDepressurization = value, true);
-            _cfg.OnValueChanged(CCVars.MonstermosRipTiles, value => MonstermosRipTiles = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosGridImpulse, value => GridImpulse = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosSpacingEscapeRatio, value => SpacingEscapeRatio = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosSpacingMinGas, value => SpacingMinGas = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosSpacingMaxWind, value => SpacingMaxWind = value, true);
-            _cfg.OnValueChanged(CCVars.Superconduction, value => Superconduction = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosMaxProcessTime, value => AtmosMaxProcessTime = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosTickRate, value => AtmosTickRate = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosSpeedup, value => Speedup = value, true);
-            _cfg.OnValueChanged(CCVars.AtmosHeatScale, value => { HeatScale = value; InitializeGases(); }, true);
-            _cfg.OnValueChanged(CCVars.ExcitedGroups, value => ExcitedGroups = value, true);
-            _cfg.OnValueChanged(CCVars.ExcitedGroupsSpaceIsAllConsuming, value => ExcitedGroupsSpaceIsAllConsuming = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWind, value => SpaceWind = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindPressureForceDivisorThrow, value => SpaceWindPressureForceDivisorThrow = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindPressureForceDivisorPush, value => SpaceWindPressureForceDivisorPush = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindMaxVelocity, value => SpaceWindMaxVelocity = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindMaxPushForce, value => SpaceWindMaxPushForce = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindMinimumCalculatedMass, value => SpaceWindMinimumCalculatedMass = value, true);
+            Subs.CVar(_cfg, CCVars.SpaceWindMaximumCalculatedInverseMass, value => SpaceWindMaximumCalculatedInverseMass = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosUseExpensiveAirflow, value => MonstermosUseExpensiveAirflow = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosEqualization, value => MonstermosEqualization = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosDepressurization, value => MonstermosDepressurization = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosRipTiles, value => MonstermosRipTiles = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosRipTilesMinimumPressure, value => MonstermosRipTilesMinimumPressure = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosRipTilesPressureOffset, value => MonstermosRipTilesPressureOffset = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosGridImpulse, value => GridImpulse = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosSpacingEscapeRatio, value => SpacingEscapeRatio = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosSpacingMinGas, value => SpacingMinGas = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosSpacingMaxWind, value => SpacingMaxWind = value, true);
+            Subs.CVar(_cfg, CCVars.Superconduction, value => Superconduction = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosMaxProcessTime, value => AtmosMaxProcessTime = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosTickRate, value => AtmosTickRate = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosSpeedup, value => Speedup = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosHeatScale, value => { HeatScale = value; InitializeGases(); }, true);
+            Subs.CVar(_cfg, CCVars.ExcitedGroups, value => ExcitedGroups = value, true);
+            Subs.CVar(_cfg, CCVars.ExcitedGroupsSpaceIsAllConsuming, value => ExcitedGroupsSpaceIsAllConsuming = value, true);
+            Subs.CVar(_cfg, CCVars.AtmosHumanoidThrowMultiplier, value => HumanoidThrowMultiplier = value, true);
         }
     }
 }

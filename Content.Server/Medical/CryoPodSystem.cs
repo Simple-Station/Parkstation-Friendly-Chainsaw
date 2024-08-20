@@ -30,6 +30,7 @@ using Content.Shared.Medical.Cryogenics;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
@@ -71,6 +72,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         SubscribeLocalEvent<CryoPodComponent, GasAnalyzerScanEvent>(OnGasAnalyzed);
         SubscribeLocalEvent<CryoPodComponent, ActivatableUIOpenAttemptEvent>(OnActivateUIAttempt);
         SubscribeLocalEvent<CryoPodComponent, AfterActivatableUIOpenEvent>(OnActivateUI);
+        SubscribeLocalEvent<CryoPodComponent, EntRemovedFromContainerMessage>(OnEjected);
     }
 
     public override void Update(float frameTime)
@@ -187,6 +189,11 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         TryComp<TemperatureComponent>(entity.Comp.BodyContainer.ContainedEntity, out var temp);
         TryComp<BloodstreamComponent>(entity.Comp.BodyContainer.ContainedEntity, out var bloodstream);
 
+        if (TryComp<HealthAnalyzerComponent>(entity, out var healthAnalyzer))
+        {
+            healthAnalyzer.ScannedEntity = entity.Comp.BodyContainer.ContainedEntity;
+        }
+
         _userInterfaceSystem.TrySendUiMessage(
             entity.Owner,
             HealthAnalyzerUiKey.Key,
@@ -196,6 +203,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                 bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
                 ? bloodSolution.FillFraction
                 : 0,
+            null,
             null
         ));
     }
@@ -250,10 +258,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
     private void OnCryoPodUpdateAtmosphere(Entity<CryoPodComponent> entity, ref AtmosDeviceUpdateEvent args)
     {
-        if (!TryComp(entity, out NodeContainerComponent? nodeContainer))
-            return;
-
-        if (!_nodeContainer.TryGetNode(nodeContainer, entity.Comp.PortName, out PortablePipeNode? portNode))
+        if (!_nodeContainer.TryGetNode(entity.Owner, entity.Comp.PortName, out PortablePipeNode? portNode))
             return;
 
         if (!TryComp(entity, out CryoPodAirComponent? cryoPodAir))
@@ -272,14 +277,21 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         if (!TryComp(entity, out CryoPodAirComponent? cryoPodAir))
             return;
 
-        var gasMixDict = new Dictionary<string, GasMixture?> { { Name(entity.Owner), cryoPodAir.Air } };
+        args.GasMixtures ??= new Dictionary<string, GasMixture?> { { Name(entity.Owner), cryoPodAir.Air } };
         // If it's connected to a port, include the port side
-        if (TryComp(entity, out NodeContainerComponent? nodeContainer))
+        if (_nodeContainer.TryGetNode(entity.Owner, entity.Comp.PortName, out PipeNode? port))
+            args.GasMixtures.Add(entity.Comp.PortName, port.Air);
+    }
+
+    private void OnEjected(Entity<CryoPodComponent> cryoPod, ref EntRemovedFromContainerMessage args)
+    {
+        if (TryComp<HealthAnalyzerComponent>(cryoPod.Owner, out var healthAnalyzer))
         {
-            if (_nodeContainer.TryGetNode(nodeContainer, entity.Comp.PortName, out PipeNode? port))
-                gasMixDict.Add(entity.Comp.PortName, port.Air);
+            healthAnalyzer.ScannedEntity = null;
         }
-        args.GasMixtures = gasMixDict;
+
+        // if body is ejected - no need to display health-analyzer
+        _uiSystem.TryCloseAll(cryoPod.Owner, HealthAnalyzerUiKey.Key);
     }
 
     #endregion

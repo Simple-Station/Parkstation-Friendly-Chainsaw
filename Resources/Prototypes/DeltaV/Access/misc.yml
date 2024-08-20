@@ -15,6 +15,7 @@
     - Command
     - Security
     - Detective
+    - Corpsman
 #    - Armory
     - Lawyer
     - Engineering
@@ -46,3 +47,6 @@
     - Musician
     - Reporter
     - Zookeeper
+    - Justice
+    - Prosecutor
+

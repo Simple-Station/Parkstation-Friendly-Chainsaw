@@ -65,6 +65,8 @@
   - AME
   - Singularity
   - TEG
+  - RTG
+  - Supermatter
 
 - type: guideEntry
   id: AME
@@ -82,6 +84,16 @@
   text: "/ServerInfo/Guidebook/Engineering/TEG.xml"
 
 - type: guideEntry
+  id: RTG
+  name: guide-entry-rtg
+  text: "/ServerInfo/Guidebook/Engineering/RTG.xml"
+
+- type: guideEntry
   id: PortableGenerator
   name: guide-entry-portable-generator
   text: "/ServerInfo/Guidebook/Engineering/PortableGenerator.xml"
+
+- type: guideEntry
+  id: Supermatter
+  name: guide-entry-sm
+  text: "/ServerInfo/Guidebook/Engineering/Supermatter.xml"

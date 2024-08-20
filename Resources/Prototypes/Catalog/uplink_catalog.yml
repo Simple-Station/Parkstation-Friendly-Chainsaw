@@ -66,6 +66,17 @@
   - UplinkWeapons
 
 - type: listing
+  id: UplinkThrowingKnivesKit
+  name: uplink-knives-kit-name
+  description: uplink-knives-kit-desc
+  icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: throwing_knives }
+  productEntity: ThrowingKnivesKit
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeapons
+
+- type: listing
   id: UplinkGlovesNorthStar
   name: uplink-gloves-north-star-name
   description: uplink-gloves-north-star-desc
@@ -89,6 +100,18 @@
       blacklist:
         tags:
           - NukeOpsUplink
+
+- type: listing
+  id: BaseBallBatHomeRun
+  name: uplink-home-run-bat-name
+  description: uplink-home-run-bat-desc
+  productEntity: BaseBallBatHomeRun
+  icon:
+    entity: BaseBallBatHomeRun
+  cost:
+    Telecrystal: 16
+  categories:
+  - UplinkWeapons
 
 # Explosives
 
@@ -232,7 +255,7 @@
     Telecrystal: 11
   categories:
     - UplinkExplosives
-  restockTime: 30
+  restockTime: 1800
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
@@ -308,11 +331,6 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 # For the Cobra
 - type: listing
@@ -362,21 +380,21 @@
 
 #Utility
 
-- type: listing
-  id: UplinkHoloparaKit
-  name: uplink-holopara-kit-name
-  description: uplink-holopara-kit-desc
-  icon: { sprite: /Textures/Objects/Misc/guardian_info.rsi, state: icon }
-  productEntity: BoxHoloparasite
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
+#- type: listing #
+#  id: UplinkHoloparaKit
+#  name: uplink-holopara-kit-name
+#  description: uplink-holopara-kit-desc
+#  icon: { sprite: /Textures/Objects/Misc/guardian_info.rsi, state: icon }
+#  productEntity: BoxHoloparasite
+#  cost:
+#    Telecrystal: 14
+#  categories:
+#  - UplinkUtility
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - NukeOpsUplink
 
 - type: listing
   id: UplinkHolster
@@ -423,7 +441,7 @@
   name: uplink-reinforcement-radio-name
   description: uplink-reinforcement-radio-desc
   productEntity: ReinforcementRadioSyndicate
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+  icon: { sprite: Objects/Devices/communication.rsi, state: radio }
   cost:
     Telecrystal: 16
   categories:
@@ -439,7 +457,7 @@
   name: uplink-reinforcement-radio-name
   description: uplink-reinforcement-radio-desc
   productEntity: ReinforcementRadioSyndicateNukeops
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+  icon: { sprite: Objects/Devices/communication.rsi, state: radio }
   cost:
     Telecrystal: 16
   categories:
@@ -471,7 +489,7 @@
   name: uplink-reinforcement-radio-monkey-name
   description: uplink-reinforcement-radio-monkey-desc
   productEntity: ReinforcementRadioSyndicateMonkey
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+  icon: { sprite: Objects/Devices/communication.rsi, state: radio }
   cost:
     Telecrystal: 8
   categories:
@@ -487,9 +505,9 @@
   name: uplink-reinforcement-radio-monkey-name
   description: uplink-reinforcement-radio-monkey-desc
   productEntity: ReinforcementRadioSyndicateMonkeyNukeops
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+  icon: { sprite: Objects/Devices/communication.rsi, state: radio }
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
   - UplinkUtility
   conditions:
@@ -525,7 +543,7 @@
   description: uplink-binary-translator-key-desc
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: rd_label }
   productEntity: EncryptionKeyBinary
-  cost: 
+  cost:
     Telecrystal: 1
 
   categories:
@@ -551,6 +569,21 @@
     Telecrystal: 2
   categories:
   - UplinkUtility
+
+- type: listing
+  id: UplinkClothingEyesHudSyndicate
+  name: uplink-clothing-eyes-hud-syndicate-name
+  description: uplink-clothing-eyes-hud-syndicate-desc
+  productEntity: ClothingEyesHudSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkRadioJammer
@@ -671,7 +704,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MacroBombImplanter
   cost:
-    Telecrystal: 20
+    Telecrystal: 13
   categories:
     - UplinkImplants
   conditions:
@@ -691,15 +724,20 @@
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
   productEntity: DeathAcidifierImplanter
   cost:
-    Telecrystal: 2
+    Telecrystal: 4
   categories:
-  - UplinkImplants
+    - UplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkUplinkImplanter # uplink uplink real
   name: uplink-uplink-implanter-name
   description: uplink-uplink-implanter-desc
-  icon: { sprite: /Textures/Objects/Devices/communication.rsi, state: old-radio }
+  icon: { sprite: /Textures/Objects/Devices/communication.rsi, state: radio }
   productEntity: UplinkImplanter
   cost:
     Telecrystal: 2
@@ -751,7 +789,19 @@
   cost:
     Telecrystal: 6
   categories:
-    - UplinkBundles
+  - UplinkBundles
+
+- type: listing
+  id: UplinkSyndicateBombFake
+  name: uplink-exploding-syndicate-bomb-fake-name
+  description: uplink-exploding-syndicate-bomb-fake-desc
+  productEntity: SyndicateBombFake
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDeception
+
+# Disruption
 
 - type: listing
   id: UplinkAmmoBundle
@@ -780,6 +830,17 @@
   productEntity: ChemicalSynthesisKit
   cost:
     Telecrystal: 4
+  categories:
+  - UplinkBundles
+
+- type: listing
+  id: UplinkDecoyKit
+  name: uplink-decoy-kit-name
+  description: uplink-decoy-kit-desc
+  icon: { sprite: /Textures/Objects/Tools/Decoys/operative_decoy.rsi, state: folded }
+  productEntity: ClothingBackpackDuffelSyndicateDecoyKitFilled
+  cost:
+    Telecrystal: 6
   categories:
   - UplinkBundles
 
@@ -1193,6 +1254,16 @@
 # Armor
 
 - type: listing
+  id: UplinkChestRig
+  name: uplink-chest-rig-name
+  description: uplink-chest-rig-desc
+  productEntity: ClothingBeltMilitaryWebbing
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkArmor
+
+- type: listing
   id: UplinkChameleon
   name: uplink-chameleon-name
   description: uplink-chameleon-desc
@@ -1269,7 +1340,8 @@
   id: UplinkHardsuitSyndieElite
   name: uplink-hardsuit-syndieelite-name
   description: uplink-hardsuit-syndieelite-desc
-  productEntity: ClothingOuterHardsuitSyndieElite
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
     Telecrystal: 10
   categories:
@@ -1279,7 +1351,8 @@
   id: UplinkClothingOuterHardsuitJuggernaut
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
-  productEntity: ClothingOuterHardsuitJuggernaut
+  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  productEntity: CrateCybersunJuggernautBundle
   cost:
     Telecrystal: 12
   categories:
@@ -1312,6 +1385,16 @@
   name: uplink-cigarettes-name
   description: uplink-cigarettes-desc
   productEntity: CigPackSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkMisc
+
+- type: listing
+  id: UplinkClothingConductingGloves
+  name: uplink-clothing-conducting-gloves-name
+  description: uplink-clothing-conducting-gloves-desc
+  productEntity: ClothingHandsGlovesConducting
   cost:
     Telecrystal: 2
   categories:
@@ -1459,7 +1542,27 @@
         tags:
           - NukeOpsUplink
 
+- type: listing
+  id: UplinkBackpackSyndicate
+  name: uplink-backpack-syndicate-name
+  description: uplink-backpack-syndicate-desc
+  productEntity: ClothingBackpackSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkPointless
+
  # Pointless
+
+- type: listing
+  id: UplinkBarberScissors
+  name: uplink-barber-scissors-name
+  description: uplink-barber-scissors-desc
+  productEntity: BarberScissors
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
 
 - type: listing
   id: UplinkRevolverCapGun

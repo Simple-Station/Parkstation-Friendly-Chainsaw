@@ -1,4 +1,8 @@
-﻿- type: entity
+#Delta-V - This file is licensed under AGPLv3
+# Copyright (c) 2024 Delta-V Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
   id: SpawnPointPlayerCharacter
   name: ghost role spawn point
   suffix: player character, DO NOT MAP
@@ -28,15 +32,20 @@
     description: ghost-role-information-listeningop-description
     rules: ghost-role-information-listeningop-rules
     requirements: # Worth considering these numbers for the goal of making sure someone willing to MRP takes this.
-    - !type:OverallPlaytimeRequirement
-      time: 259200 # 72 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 40000 # 11.5 hours
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 72000 # 20 hours
-    - !type:WhitelistRequirement
+    - !type:CharacterOverallTimeRequirement
+      min: 259200 # 72 hours
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Security
+      min: 40000 # 11.1 hours
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Civilian
+      min: 40000 # 11.1 hours
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Command
+      min: 40000 # 11.1 hours
   - type: GhostRoleMobSpawner
     prototype: MobHumanSyndicateListener
   - type: Sprite

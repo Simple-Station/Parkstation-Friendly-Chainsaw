@@ -5,15 +5,15 @@
   playTimeTracker: JobHeadOfSecurity
   requirements:
     # Parkstation-Playtime
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 14400 # 4 hours
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: JobWarden
+      min: 14400 # 4 hours
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 21600 # 6 hours
-    - !type:OverallPlaytimeRequirement
-      time: 93600 # 26 hours
-    - !type:WhitelistRequirement # DeltaV - Whitelist requirement
+      min: 21600 # 6 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 93600 # 26 hours
+    - !type:CharacterWhitelistRequirement
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
@@ -30,6 +30,8 @@
   - Service
   - External
   - Detective
+  - Corpsman # DeltaV - added Corpsman access
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -47,9 +49,7 @@
     jumpsuit: ClothingUniformJumpsuitHoS
     back: ClothingBackpackHOSFilled
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterCoatHoSTrench
     eyes: ClothingEyesGlassesSunglasses
-    head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity

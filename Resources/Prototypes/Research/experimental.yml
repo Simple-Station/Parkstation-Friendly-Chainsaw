@@ -4,14 +4,13 @@
   id: BasicRobotics
   name: research-technology-basic-robotics
   icon:
-    sprite: Mobs/Silicon/drone.rsi
-    state: drone
+    sprite: Structures/Machines/exosuit_fabricator.rsi
+    state: fab-idle
   discipline: Experimental
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-  - Drone
   - ExosuitFabricatorMachineCircuitboard
 
 - type: technology

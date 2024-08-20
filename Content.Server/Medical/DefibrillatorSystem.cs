@@ -6,6 +6,7 @@ using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.PowerCell;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -49,19 +50,10 @@ public sealed class DefibrillatorSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<DefibrillatorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DefibrillatorComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DefibrillatorComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
-    }
-
-    private void OnUnpaused(EntityUid uid, DefibrillatorComponent component, ref EntityUnpausedEvent args)
-    {
-        if (component.NextZapTime == null)
-            return;
-
-        component.NextZapTime = component.NextZapTime.Value + args.PausedTime;
     }
 
     private void OnUseInHand(EntityUid uid, DefibrillatorComponent component, UseInHandEvent args)

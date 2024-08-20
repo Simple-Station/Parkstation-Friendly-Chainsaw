@@ -33,9 +33,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-autolathe
-    layoutId: Autolathe
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -85,6 +82,8 @@
     runningState: building
     staticRecipes:
       - Wirecutter
+      - Igniter
+      - Signaller
       - Screwdriver
       - Welder
       - Wrench
@@ -98,6 +97,7 @@
       - CableHVStack
       - HandheldGPSBasic
       - TRayScanner
+      - AirTank
       - GasAnalyzer
       - UtilityBelt
       - Fulton
@@ -110,9 +110,11 @@
       - Syringe
       - HandLabeler
       - LightTube
+      - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
       - LightBulb
+      - LedLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -152,27 +154,33 @@
       - APCElectronics
       - SMESMachineCircuitboard
       - SubstationMachineCircuitboard
+      - WallmountSubstationElectronics
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
+      - HandheldStationMap
+      - ClothingHeadHatWelding
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
-       - CartridgeSpecial # DeltaV - .38 Special revolver
        - CartridgeMagnum
        - ShellShotgun
        - ShellShotgunFlare
        - ShellTranquilizer
        - CartridgeLightRifle
        - CartridgeRifle
+       - CombatKnife
        - MagazineBoxPistol
        - MagazineBoxMagnum
        - MagazineBoxRifle
        - MagazineBoxLightRifle
        - GrenadeBlast
+       # DeltaV - .38 special ammo - Add .38 special lethals to emagged autolathe
+       - CartridgeSpecial
+       - MagazineBoxSpecial
+       # End of modified code
     emagDynamicRecipes:
       - CartridgePistolRubber
-      - CartridgeSpecialRubber # DeltaV - .38 Special revolver
       - CartridgeMagnumRubber
       - ShellShotgunBeanbag
       - CartridgeRifleRubber
@@ -205,6 +213,16 @@
       - MagazineGrenadeEmpty
       - GrenadeEMP
       - GrenadeFlash
+      # DeltaV - .38 special ammo - Add various .38 special ammo to emagged autolathe
+      - CartridgeSpecialRubber
+      - CartridgeSpecialIncendiary
+      - CartridgeSpecialUranium
+      - CartridgeSpecialMindbreaker
+      - MagazineBoxSpecialRubber
+      - MagazineBoxSpecialIncendiary
+      - MagazineBoxSpecialUranium
+      - MagazineBoxSpecialMindbreaker
+      # End of modified code
 
 - type: entity
   id: AutolatheHyperConvection
@@ -242,9 +260,6 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: ProtolatheMachineCircuitboard
-  - type: Wires
-    boardName: wires-board-name-protolathe
-    layoutId: Protolathe
   - type: MaterialStorage
     whitelist:
       tags:
@@ -279,7 +294,6 @@
       - Implanter
       - PillCanister
       - ChemistryEmptyBottle01
-      - Drone
       - AdvMopItem
       - WeaponSprayNozzle
       - ClothingBackpackWaterTank
@@ -288,9 +302,11 @@
       - ChemicalPayload
       - FlashPayload
       - Signaller
+      - SignallerAdvanced
       - SignalTrigger
       - VoiceTrigger
       - Igniter
+      - HandHeldMassScanner
       - PowerCellMicroreactor
       - PowerCellHigh
       - WeaponPistolCHIMP
@@ -315,9 +331,30 @@
       - JawsOfLife
       - CoreSilver # Nyanotrasen - Silver Golem core
       - FauxTileAstroGrass
+      - FauxTileMowedAstroGrass
+      - FauxTileJungleAstroGrass
       - FauxTileAstroIce
+      - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+      - CanilunztTranslator
+      - BubblishTranslator
+      - NekomimeticTranslator
+      - DraconicTranslator
+      - SolCommonTranslator
+      - RootSpeakTranslator
+      - XenoTranslator
+      - BasicGalaticCommonTranslatorImplanter
+      - AdvancedGalaticCommonTranslatorImplanter
+      - BubblishTranslatorImplanter
+      - NekomimeticTranslatorImplanter
+      - DraconicTranslatorImplanter
+      - CanilunztTranslatorImplanter
+      - SolCommonTranslatorImplanter
+      - RootSpeakTranslatorImplanter
+      - AnimalTranslator
+      - MofficTranslatorImplanter
+      - MofficTranslator
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -383,6 +420,13 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - MicrowaveMachineCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - ElectricGrillMachineCircuitboard
+    - BoozeDispenserMachineCircuitboard
+    - SodaDispenserMachineCircuitboard
+    - DeepFryerMachineCircuitboard #Nyano - Summary: adds deep fryer circuit board
+    - SpaceHeaterMachineCircuitBoard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -408,9 +452,6 @@
       - PowerComputerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
-      - ReagentGrinderMachineCircuitboard
-      - MicrowaveMachineCircuitboard
-      - ElectricGrillMachineCircuitboard
       - FatExtractorMachineCircuitboard
       - FlatpackerMachineCircuitboard
       - SheetifierMachineCircuitboard
@@ -452,10 +493,9 @@
       - ArtifactAnalyzerMachineCircuitboard
       - TraversalDistorterMachineCircuitboard
       - ArtifactCrusherMachineCircuitboard
-      - BoozeDispenserMachineCircuitboard
-      - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
+      - ReagentGrinderIndustrialMachineCircuitboard
     # Begin Nyano additions
       - ReverseEngineeringMachineCircuitboard
       - CrewMonitoringComputerCircuitboard
@@ -466,8 +506,7 @@
       - MailingUnitElectronics
       - SalvageMagnetMachineCircuitboard
       - StationMapElectronics
-#      - MetempsychoticMachineCircuitboard
-      - DeepFryerMachineCircuitboard
+      - MetempsychoticMachineCircuitboard
     # End Nyano additions
       - SalvageExpeditionsComputerCircuitboard # DeltaV
   - type: MaterialStorage
@@ -476,6 +515,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: RequireProjectileTarget
 
 - type: entity
   id: ExosuitFabricator
@@ -503,7 +543,6 @@
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
-    - BorgModuleGPS
     - BorgModuleRadiationDetection
     - BorgModuleTool
     - BorgModuleAppraisal
@@ -553,7 +592,10 @@
     - BorgModuleMining
     #- BorgModuleGrapplingGun
     - BorgModuleAdvancedTool
+    - BorgModuleGPS
     - BorgModuleRCD
+    - BorgModuleJetpack
+    - BorgModulePka
     - BorgModuleArtifact
     - BorgModuleAnomaly
     - BorgModuleGardening
@@ -667,6 +709,7 @@
     runningState: icon
     staticRecipes:
       - ClothingEyesHudSecurity
+      - CombatKnife
       - Flash
       - Handcuffs
       - Zipties
@@ -677,20 +720,16 @@
       - ShellShotgunSlug
       - ShellShotgunFlare
       - ShellTranquilizer
-      - MagazinePistolSpecial # DeltaV - .38 Special psi-breaker
       - MagazinePistol
       - MagazinePistolSubMachineGun
       - MagazinePistolSubMachineGunTopMounted
       - MagazineRifle
       - MagazineLightRifle
       - MagazineBoxPistol
-      - MagazineBoxSpecial # DeltaV - .38 Special revolver
-      - MagazineBoxSpecialPractice # DeltaV - .38 Special revolver
       - MagazineBoxMagnum
       - MagazineBoxRifle
       - MagazineBoxLightRifle
       - SpeedLoaderMagnum
-      - SpeedLoaderSpecial # DeltaV - .38 Special revolver
       - ClothingOuterArmorPlateCarrier # DeltaV - plate carrier body armour
       - ClothingOuterArmorDuraVest # DeltaV - stabproof vest body armour
       - TargetHuman
@@ -703,10 +742,15 @@
       - ShellShotgunPractice
       - WeaponLaserCarbinePractice
       - WeaponDisablerPractice
+      - ShockCollar
+      # DeltaV - .38 special ammo - Add various .38 special ammo to security techfab
+      - MagazineBoxSpecial
+      - MagazineBoxSpecialPractice
+      - SpeedLoaderSpecial
+      - MagazinePistolSpecial
+      # End of modified code
     dynamicRecipes:
-      - CartridgeSpecialRubber # DeltaV - .38 Special revolver
       - EncryptionKeySyndie # Nyano
-      - MagazineBoxSpecialRubber # DeltaV - .38 Special revolver
       - CartridgeLightRifleIncendiary
       - CartridgeMagnumIncendiary
       - CartridgePistolIncendiary
@@ -731,8 +775,6 @@
       - MagazineBoxMagnumUranium
       - MagazineBoxPistolUranium
       - MagazineBoxRifleUranium
-      - CartridgeSpecialHoly # DeltaV - .38 Special revolver, Holy ammo
-      - CartridgeSpecialMindbreaker # DeltaV - .38 Special revolver, Mindbreaker ammo
       - ShellSoulbreaker # Nyanotrasen - Shotgun shell to get rid of psionics
       - MagazineBoxLightRifleRubber
       - MagazineBoxMagnumRubber
@@ -770,6 +812,17 @@
       - WeaponEnergyGunMini #DeltaV - Energy Gun but miniature
       - WeaponEnergyGunPistol #DeltaV - Energy Gun Mini but with the power of a normal energy gun
       - WeaponGunLaserCarbineAutomatic #DeltaV - New Laser Projectiles with a 20 round carbine
+      # DeltaV - .38 special ammo - Add various .38 special ammo to security techfab
+      - CartridgeSpecialRubber
+      - CartridgeSpecialIncendiary
+      - CartridgeSpecialUranium
+      - CartridgeSpecialHoly
+      - CartridgeSpecialMindbreaker
+      - MagazineBoxSpecialRubber
+      - MagazineBoxSpecialIncendiary
+      - MagazineBoxSpecialUranium
+      - MagazineBoxSpecialMindbreaker
+      # End of modified code
   - type: MaterialStorage
     whitelist:
       tags:
@@ -804,7 +857,6 @@
       staticRecipes:
         - CartridgePistol
         - CartridgeMagnum
-        - CartridgeSpecial # DeltaV - .38 Special revolver
         - ShellShotgun
         - ShellShotgunSlug
         - ShellShotgunFlare
@@ -813,13 +865,18 @@
         - CartridgeRifle
         - MagazineBoxPistol
         - MagazineBoxMagnum
-        - MagazineBoxSpecial # DeltaV - .38 Special revolver
         - MagazineBoxRifle
         - MagazineBoxLightRifle
+        # DeltaV - .38 special ammo - Add lethal .38 special ammo to ammo techfab
+        - CartridgeSpecial
+        - MagazineBoxSpecial
+        # End of modified code
     - type: MaterialStorage
       whitelist:
         tags:
           - Sheet
+          - RawMaterial
+          - Ingot
 
 - type: entity
   id: MedicalTechFab
@@ -947,6 +1004,8 @@
       - ClothingUniformJumpskirtDetective
       - ClothingUniformJumpsuitEngineering
       - ClothingUniformJumpskirtEngineering
+      - ClothingUniformJumpsuitSeniorEngineer
+      - ClothingUniformJumpskirtSeniorEngineer
       - ClothingHeadHatHopcap
       - ClothingUniformJumpsuitHoP
       - ClothingUniformJumpskirtHoP
@@ -980,23 +1039,31 @@
       - ClothingHeadHatBeretSeniorPhysician
       - ClothingUniformJumpsuitMedicalDoctor
       - ClothingUniformJumpskirtMedicalDoctor
+      - ClothingUniformJumpsuitSeniorPhysician
+      - ClothingUniformJumpskirtSeniorPhysician
       - ClothingUniformJumpsuitMime
       - ClothingUniformJumpskirtMime
       - ClothingUniformJumpsuitMusician
       - ClothingUniformJumpsuitParamedic
       - ClothingUniformJumpskirtParamedic
+      - ClothingUniformJumpsuitSeniorOfficer
+      - ClothingUniformJumpskirtSeniorOfficer
       - ClothingUniformJumpsuitPrisoner
       - ClothingUniformJumpskirtPrisoner
       - ClothingHeadHatQMsoft
+      - ClothingHeadHatBeretQM
       - ClothingUniformJumpsuitQM
       - ClothingUniformJumpskirtQM
       - ClothingUniformJumpsuitQMTurtleneck
       - ClothingUniformJumpskirtQMTurtleneck
+      - ClothingUniformJumpsuitQMFormal
       - ClothingHeadHatBeretRND
       - ClothingUniformJumpsuitResearchDirector
       - ClothingUniformJumpskirtResearchDirector
       - ClothingUniformJumpsuitScientist
       - ClothingUniformJumpskirtScientist
+      - ClothingUniformJumpsuitSeniorResearcher
+      - ClothingUniformJumpskirtSeniorResearcher
       - ClothingHeadHatBeretSecurity
       - ClothingUniformJumpsuitSec
       - ClothingUniformJumpskirtSec
@@ -1015,6 +1082,7 @@
       - ClothingUniformJumpskirtWardenBlue # DeltaV - alternate sec uniforms
       - ClothingUniformJumpsuitWardenGrey # DeltaV - alternate sec uniforms
       - ClothingUniformJumpskirtWardenGrey # DeltaV - alternate sec uniforms
+      - ClothingHeadHatParamedicsoft
       # Winter outfits
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
@@ -1064,6 +1132,16 @@
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple
+      # Carpets
+      - Carpet
+      - CarpetBlack
+      - CarpetPink
+      - CarpetBlue
+      - CarpetGreen
+      - CarpetOrange
+      - CarpetPurple
+      - CarpetCyan
+      - CarpetWhite
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - ClothingHeadHatCentcomcap
@@ -1135,6 +1213,9 @@
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
+    - type: MaterialStorageMagnetPickup # Delta V - Summary: Adds magnet pull from Frontier
+      magnetEnabled: True
+      range: 0.30 # Delta V - End Magnet Pull
 
 - type: entity
   parent: OreProcessor
@@ -1194,3 +1275,141 @@
     staticRecipes:
     - MaterialSheetMeat
     - SheetPaper
+
+- type: entity
+  parent: BaseLathe
+  id: PrizeCounter
+  name: prize counter
+  description: Claim your prize and win some toys and cute plushies!
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+    priority: Low
+  # - type: Advertise
+  #   pack: CuddlyCritterAds # TODO Change this
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/prizecounter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - PrizeBall
+      - PlushieMothRandom
+      - PlushieMothMusician
+      - PlushieMothBartender
+      - PlushieBee
+      - PlushieHampter
+      - PlushieRouny
+      - PlushieLamp
+      - PlushieArachind
+      - PlushieLizard
+      - PlushieSpaceLizard
+      - PlushieSharkBlue
+      - PlushieSharkPink
+      - PlushieSharkGrey
+      - PlushieCarp
+      - PlushieMagicarp
+      - PlushieHolocarp
+      - PlushieSlime
+      - PlushieSnake
+      - ToyMouse
+      - ToyRubberDuck
+      - PlushieVox
+      - PlushieAtmosian
+      - PlushiePenguin
+      - PlushieHuman
+      - PlushieArachne
+      - PlushieGnome
+      - PlushieLoveable
+      - PlushieDeer
+      - PlushieIpc
+      - PlushieGrey
+      - PlushieRedFox
+      - PlushiePurpleFox
+      - PlushiePinkFox
+      - PlushieOrangeFox
+      - PlushieMarbleFox
+      - PlushieCrimsonFox
+      - PlushieCoffeeFox
+      - PlushieBlueFox
+      - PlushieBlackFox
+      - PlushieVulp
+      - PlushieCorgi
+      - PlushieGirlyCorgi
+      - PlushieRobotCorgi
+      - PlushieCatBlack
+      - PlushieCatGrey
+      - PlushieCatOrange
+      - PlushieCatSiames
+      - PlushieCatTabby
+      - PlushieCatTuxedo
+      - PlushieCatWhite
+      - ToyAi
+      - ToyIan
+      - BalloonNT
+      - BalloonCorgi
+      - CrayonBox
+      - PetRockCarrier
+      - PlushieXeno
+      - FoamCrossbow
+      - RevolverCapGun
+      - PonderingOrb
+      - ToyAmongPequeno
+      - FoamCutlass
+      - WhoopieCushion
+      - ToyHammer
+      - PlasticBanana
+      - WeaponWaterPistol
+      - WeaponWaterBlaster
+      - NewtonCradle
+      - SnapPopBox
+      - MrDips
+      - MrChips
+      - CrazyGlue
+      - PlushieRatvar
+      - PlushieNar
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - PlushieGhost
+      - PlushieRGBee
+      - PlushieRainbowCarp
+      - PlushieJester
+      - PlushieSlips
+      - PlushieTrystan
+      - PlushieAbductor
+      - PlushieAbductorAgent
+      - PlushieNuke
+      - ToyNuke
+      - FoamBlade
+      - BalloonSyn
+      - SingularityToy
+      - TeslaToy
+      - ToySword
+      - ThronglerToy
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - PrizeTicket

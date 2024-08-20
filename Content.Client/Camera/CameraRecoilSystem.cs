@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
+using Content.Shared.Contests;
 using Robust.Shared.Configuration;
 
 namespace Content.Client.Camera;
@@ -8,27 +9,21 @@ namespace Content.Client.Camera;
 public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private readonly ContestsSystem _contests = default!;
 
-    protected float Intensity;
+    private float _intensity;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<CameraKickEvent>(OnCameraKick);
 
-        _configManager.OnValueChanged(CCVars.ScreenShakeIntensity, OnCvarChanged, true);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-
-        _configManager.UnsubValueChanged(CCVars.ScreenShakeIntensity, OnCvarChanged);
+        Subs.CVar(_configManager, CCVars.ScreenShakeIntensity, OnCvarChanged, true);
     }
 
     private void OnCvarChanged(float value)
     {
-        Intensity = value;
+        _intensity = value;
     }
 
     private void OnCameraKick(CameraKickEvent ev)
@@ -38,21 +33,21 @@ public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
 
     public override void KickCamera(EntityUid uid, Vector2 recoil, CameraRecoilComponent? component = null)
     {
-        if (Intensity == 0)
+        if (_intensity == 0)
             return;
 
         if (!Resolve(uid, ref component, false))
             return;
 
-        recoil *= Intensity;
+        var massRatio = _contests.MassContest(uid);
+        var maxRecoil = KickMagnitudeMax / massRatio;
+        recoil *= _intensity / massRatio;
 
-        // Use really bad math to "dampen" kicks when we're already kicked.
         var existing = component.CurrentKick.Length();
-        var dampen = existing / KickMagnitudeMax;
-        component.CurrentKick += recoil * (1 - dampen);
+        component.CurrentKick += recoil * (1 - existing);
 
-        if (component.CurrentKick.Length() > KickMagnitudeMax)
-            component.CurrentKick = component.CurrentKick.Normalized() * KickMagnitudeMax;
+        if (component.CurrentKick.Length() > maxRecoil)
+            component.CurrentKick = component.CurrentKick.Normalized() * maxRecoil;
 
         component.LastKickTime = 0;
     }

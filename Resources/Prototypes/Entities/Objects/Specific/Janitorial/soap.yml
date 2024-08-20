@@ -9,6 +9,7 @@
     - Soap
   - type: Sprite
     sprite: Objects/Specific/Janitorial/soap.rsi
+    scale: 0.75, 0.75 # Parkstation-BetterSoap
     layers:
     - state: soap-4
       map: ["enum.SolutionContainerLayers.Fill"]
@@ -21,10 +22,11 @@
     sprite: Objects/Specific/Janitorial/soap.rsi
     storedRotation: -90
   - type: Slippery
-    paralyzeTime: 2
-    launchForwardsMultiplier: 1.5
+    paralyzeTime: 1.5 # Parkstation-BetterSoap
+    launchForwardsMultiplier: 0.25 # Parkstation-BetterSoap
   - type: StepTrigger
     intersectRatio: 0.2
+    requiredTriggeredSpeed: 4.5 # Parkstation-BetterSoap
   - type: CollisionWake
     enabled: false
   - type: Physics
@@ -34,14 +36,14 @@
       slips:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,-0.3,0.4,0.3"
+          bounds: "-0.3,-0.225,0.3,0.225" # Parkstation-BetterSoap
         layer:
         - SlipLayer
         hard: false
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,-0.3,0.4,0.3"
+          bounds: "-0.3,-0.225,0.3,0.225" # Parkstation-BetterSoap
         density: 10
         mask:
         - ItemMask
@@ -129,8 +131,8 @@
   - type: SolutionContainerVisuals
     fillBaseName: syndie-
   - type: Slippery
-    paralyzeTime: 5
-    launchForwardsMultiplier: 2.5
+    paralyzeTime: 3.5 # Parkstation-BetterSoap
+    launchForwardsMultiplier: 1 # Parkstation-BetterSoap
   - type: Item
     heldPrefix: syndie
   - type: FlavorProfile
@@ -196,7 +198,7 @@
   - type: SolutionContainerVisuals
     fillBaseName: gibs-
   - type: Slippery
-    paralyzeTime: 2
+    paralyzeTime: 1 # Parkstation-BetterSoap
   - type: StepTrigger
   - type: Item
     heldPrefix: gibs

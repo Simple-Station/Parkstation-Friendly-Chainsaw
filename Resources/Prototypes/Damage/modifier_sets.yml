@@ -66,7 +66,7 @@
     Piercing: 0.7
     Shock: 2
     Heat: 3
-    
+
 # Like metallic, but without flat reduction so it can be damaged with fists.
 - type: damageModifierSet
   id: FlimsyMetallic
@@ -189,6 +189,11 @@
   coefficients:
     Cold: 0.7
     Heat: 1.3
+
+- type: damageModifierSet
+  id: Vox
+  coefficients: # To be decided
+    Poison: 1
 
 - type: damageModifierSet
   id: Zombie #Blunt resistant and immune to biological threats, but can be hacked apart and burned
@@ -331,3 +336,16 @@
   flatReductions:
     # can't punch the endoskeleton to death
     Blunt: 5
+
+- type: damageModifierSet
+  id: HalfSpirit
+  coefficients:
+    Cold: 0.5
+    Shock: 0.75
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.75
+    Heat: 1.25
+    Holy: 1.5
+  flatReductions:
+    Cold: 3

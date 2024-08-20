@@ -30,7 +30,6 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<HealthAnalyzerComponent, EntityUnpausedEvent>(OnEntityUnpaused);
         SubscribeLocalEvent<HealthAnalyzerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<HealthAnalyzerComponent, HealthAnalyzerDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<HealthAnalyzerComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
@@ -50,6 +49,12 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             if (component.ScannedEntity is not {} patient)
                 continue;
 
+            if (Deleted(patient))
+            {
+                StopAnalyzingEntity((uid, component), patient);
+                continue;
+            }
+
             component.NextUpdate = _timing.CurTime + component.UpdateInterval;
 
             //Get distance between health analyzer and the scanned entity
@@ -63,11 +68,6 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
             UpdateScannedUser(uid, patient, true);
         }
-    }
-
-    private void OnEntityUnpaused(Entity<HealthAnalyzerComponent> ent, ref EntityUnpausedEvent args)
-    {
-        ent.Comp.NextUpdate += args.PausedTime;
     }
 
     /// <summary>
@@ -185,16 +185,24 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bodyTemperature = temp.CurrentTemperature;
 
         var bloodAmount = float.NaN;
+        var bleeding = false;
 
         if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
-            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
+            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
+                ref bloodstream.BloodSolution, out var bloodSolution))
+        {
             bloodAmount = bloodSolution.FillFraction;
+            bleeding = bloodstream.BleedAmount > 0;
+        }
+
+
 
         _uiSystem.SendUiMessage(ui, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
             bloodAmount,
-            scanMode
+            scanMode,
+            bleeding
         ));
     }
 }

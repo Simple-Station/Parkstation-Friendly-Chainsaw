@@ -3,6 +3,7 @@ using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Chat;
@@ -216,4 +217,70 @@ public abstract class SharedChatSystem : EntitySystem
 
         return trimmed;
     }
+
+    public static string InjectTagInsideTag(ChatMessage message, string outerTag, string innerTag, string? tagParameter)
+    {
+        var rawmsg = message.WrappedMessage;
+        var tagStart = rawmsg.IndexOf($"[{outerTag}]");
+        var tagEnd = rawmsg.IndexOf($"[/{outerTag}]");
+        if (tagStart < 0 || tagEnd < 0) //If the outer tag is not found, the injection is not performed
+            return rawmsg;
+        tagStart += outerTag.Length + 2;
+
+        string innerTagProcessed = tagParameter != null ? $"[{innerTag}={tagParameter}]" : $"[{innerTag}]";
+
+        rawmsg = rawmsg.Insert(tagEnd, $"[/{innerTag}]");
+        rawmsg = rawmsg.Insert(tagStart, innerTagProcessed);
+
+        return rawmsg;
+    }
+    public static string GetStringInsideTag(ChatMessage message, string tag)
+    {
+        var rawmsg = message.WrappedMessage;
+        var tagStart = rawmsg.IndexOf($"[{tag}]");
+        var tagEnd = rawmsg.IndexOf($"[/{tag}]");
+        if (tagStart < 0 || tagEnd < 0)
+            return "";
+        tagStart += tag.Length + 2;
+        return rawmsg.Substring(tagStart, tagEnd - tagStart);
+    }
+}
+
+/// <summary>
+///     InGame IC chat is for chat that is specifically ingame (not lobby) but is also in character, i.e. speaking.
+/// </summary>
+// ReSharper disable once InconsistentNaming
+[Serializable, NetSerializable]
+public enum InGameICChatType : byte
+{
+    Speak,
+    Emote,
+    Whisper,
+    Telepathic
+}
+
+/// <summary>
+///     InGame OOC chat is for chat that is specifically ingame (not lobby) but is OOC, like deadchat or LOOC.
+/// </summary>
+[Serializable, NetSerializable]
+public enum InGameOOCChatType : byte
+{
+    Looc,
+    Dead
+}
+
+/// <summary>
+///     Controls transmission of chat.
+/// </summary>
+[Serializable, NetSerializable]
+public enum ChatTransmitRange : byte
+{
+    /// Acts normal, ghosts can hear across the map, etc.
+    Normal,
+    /// Normal but ghosts are still range-limited.
+    GhostRangeLimit,
+    /// Hidden from the chat window.
+    HideChat,
+    /// Ghosts can't hear or see it at all. Regular players can if in-range.
+    NoGhosts
 }

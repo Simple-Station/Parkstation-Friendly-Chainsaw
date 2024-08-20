@@ -8,21 +8,21 @@ using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash;
-using Content.Shared.Flash.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
+using Content.Shared.Traits.Assorted.Components;
+using Robust.Shared.Random;
+using Content.Shared.Eye.Blinding.Systems;
 
 namespace Content.Server.Flash
 {
@@ -33,11 +33,14 @@ namespace Content.Server.Flash
         [Dependency] private readonly SharedChargesSystem _charges = default!;
         [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedInteractionSystem _interaction = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly StunSystem _stun = default!;
         [Dependency] private readonly TagSystem _tag = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly BlindableSystem _blindingSystem = default!;
 
         public override void Initialize()
         {
@@ -134,9 +137,16 @@ namespace Content.Server.Flash
                     RaiseLocalEvent(used.Value, ref ev);
             }
 
+            flashDuration *= flashable.DurationMultiplier;
+
             flashable.LastFlash = _timing.CurTime;
             flashable.Duration = flashDuration / 1000f; // TODO: Make this sane...
             Dirty(target, flashable);
+
+            if (TryComp<BlindableComponent>(target, out var blindable)
+                && !blindable.IsBlind
+                && _random.Prob(flashable.EyeDamageChance))
+                _blindingSystem.AdjustEyeDamage((target, blindable), flashable.EyeDamage);
 
             _stun.TrySlowdown(target, TimeSpan.FromSeconds(flashDuration/1000f), true,
                 slowTo, slowTo);
@@ -152,27 +162,23 @@ namespace Content.Server.Flash
         public void FlashArea(EntityUid source, EntityUid? user, float range, float duration, float slowTo = 0.8f, bool displayPopup = false, SoundSpecifier? sound = null)
         {
             var transform = EntityManager.GetComponent<TransformComponent>(source);
-            var mapPosition = transform.MapPosition;
-            var flashableEntities = new List<EntityUid>();
+            var mapPosition = _transform.GetMapCoordinates(transform);
             var flashableQuery = GetEntityQuery<FlashableComponent>();
 
             foreach (var entity in _entityLookup.GetEntitiesInRange(transform.Coordinates, range))
             {
-                if (!flashableQuery.HasComponent(entity))
+                if (!flashableQuery.TryGetComponent(entity, out var flashable))
                     continue;
 
-                flashableEntities.Add(entity);
-            }
 
-            foreach (var entity in flashableEntities)
-            {
                 // Check for unobstructed entities while ignoring the mobs with flashable components.
-                if (!_interaction.InRangeUnobstructed(entity, mapPosition, range, CollisionGroup.Opaque, (e) => flashableEntities.Contains(e) || e == source))
+                if (!_interaction.InRangeUnobstructed(entity, mapPosition, range, flashable.CollisionGroup, (e) => e == source))
                     continue;
 
                 // They shouldn't have flash removed in between right?
                 Flash(entity, user, source, duration, slowTo, displayPopup, flashableQuery.GetComponent(entity));
             }
+
             if (sound != null)
             {
                 _audio.PlayPvs(sound, source, AudioParams.Default.WithVolume(1f).WithMaxDistance(3f));

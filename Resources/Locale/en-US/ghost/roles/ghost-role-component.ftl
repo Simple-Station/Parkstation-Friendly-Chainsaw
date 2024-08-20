@@ -82,7 +82,7 @@ ghost-role-information-salvage-shark-name = Space sharkminnow on salvage wreck
 ghost-role-information-salvage-shark-description = Help the younger fellow carp protect their prey. Smell the blood!
 
 ghost-role-information-willow-name = Willow the kangaroo
-ghost-role-information-willow-description = You're a kangaroo named willow! willow likes to box.
+ghost-role-information-willow-description = You're a kangaroo named willow! Willow likes to box.
 
 ghost-role-information-space-tick-name = Space tick
 ghost-role-information-space-tick-description = Wreak havoc on the station!
@@ -97,7 +97,7 @@ ghost-role-information-jonkbot-name = Jonkbot
 ghost-role-information-jonkbot-description = An artificial being of pure evil.
 
 ghost-role-information-mimebot-name = Mimebot
-ghost-role-information-mimebot-description = A Mimebot, act like a mime but dont act like a greytider.
+ghost-role-information-mimebot-description = A Mimebot, act like a mime but don't act like a greytider.
 
 ghost-role-information-taxibot-name = TaxiBot
 ghost-role-information-taxibot-description = Drive the station crew to their destination.
@@ -161,7 +161,7 @@ ghost-role-information-skeleton-biker-name = Skeleton Biker
 ghost-role-information-skeleton-biker-description = Ride around on your sweet ride.
 
 ghost-role-information-closet-skeleton-name = Closet Skeleton
-ghost-role-information-closet-skeleton-description = Wreak havoc! You are a primordial force with no allegiance. Live happily with the crew or wage sweet skeletal war.
+ghost-role-information-closet-skeleton-description = You are a closet skeleton! You are a primordial force of chaos with no allegiance! You can either join the crew and use your skeletal antics to help them, or be a a prankster, and hinder their efforts!
 
 ghost-role-information-onestar-mecha-name = Onestar Mecha
 ghost-role-information-onestar-mecha-description = You are an experimental mecha created by who-knows-what, all you know is that you have weapons and you detect fleshy moving targets nearby...
@@ -176,19 +176,22 @@ ghost-role-information-cerberus-description = Obey your master. Spread chaos.
 ghost-role-information-cerberus-rules = You are an intelligent, demonic dog. Try to help the chaplain and any of his flock. As an antagonist, you're otherwise unrestrained.
 
 ghost-role-information-ert-leader-name = ERT Leader
-ghost-role-information-ert-leader-description = Lead a team of specialists to resolve the stations issues.
+ghost-role-information-ert-leader-description = Lead a team of specialists to resolve the station's issues.
+
+ghost-role-information-ert-chaplain-name = ERT Chaplain
+ghost-role-information-ert-chaplain-description = Assist with mourning to resolve the station's crew moral issues.
 
 ghost-role-information-ert-janitor-name = ERT Janitor
-ghost-role-information-ert-janitor-description = Assist with custodial efforts to resolve the stations issues.
+ghost-role-information-ert-janitor-description = Assist with custodial efforts to resolve the station's issues.
 
 ghost-role-information-ert-engineer-name = ERT Engineer
-ghost-role-information-ert-engineer-description = Assist with engineering efforts to resolve the stations issues.
+ghost-role-information-ert-engineer-description = Assist with engineering efforts to resolve the station's issues.
 
 ghost-role-information-ert-security-name = ERT Security
-ghost-role-information-ert-security-description = Assist with security efforts to resolve the stations issues.
+ghost-role-information-ert-security-description = Assist with security efforts to resolve the station's issues.
 
 ghost-role-information-ert-medical-name = ERT Medical
-ghost-role-information-ert-medical-description = Assist with medical efforts to resolve the stations issues.
+ghost-role-information-ert-medical-description = Assist with medical efforts to resolve the station's issues.
 
 ghost-role-information-cburn-agent-name = CBURN Agent
 ghost-role-information-cburn-agent-description = A highly trained CentCom agent, capable of dealing with various threats.
@@ -242,3 +245,8 @@ ghost-role-information-syndicate-reinforcement-rules = Normal syndicate antagoni
 ghost-role-information-syndicate-monkey-reinforcement-name = Syndicate Monkey Agent
 ghost-role-information-syndicate-monkey-reinforcement-description = Someone needs reinforcements. You, a trained monkey, will help them.
 ghost-role-information-syndicate-monkey-reinforcement-rules = Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+
+ghost-role-information-artifact-name = Sentient Artifact
+ghost-role-information-artifact-description =
+      Enact your eldritch whims.
+      Forcibly activate your nodes for good or for evil.

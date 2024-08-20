@@ -1,51 +1,4 @@
 - type: entity
-  id: CrateFunPlushie
-  parent: CrateGenericSteel
-  name: plushie crate
-  description: A buncha soft plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: StorageFill
-    contents:
-      - id: PlushieBee
-      - id: PlushieNar
-      - id: PlushieCarp
-      - id: PlushieNuke
-      - id: PlushieSlime
-      - id: PlushieSnake
-      - id: PlushieLizard
-      - id: PlushieSpaceLizard
-      - id: PlushieVox
-      - id: PlushieRouny
-      - id: PlushieRatvar
-      - id: PlushieSharkBlue
-        orGroup: PlushieShark
-      - id: PlushieSharkGrey
-        orGroup: PlushieShark
-      - id: PlushieAtmosian
-      - id: PlushieShadowkin # Parkstation-Shadowkin
-      - id: PlushieDiona
-      - id: PlushieXeno
-      - id: PlushieHampter
-      - id: PlushieMoth
-      - id: PlushieMothRandom # Nyanotrasen - Random Moth Plushies
-        amount: 2
-      - id: PlushieArachind
-      - id: PlushiePenguin
-
-- type: entity
-  id: CrateFunLizardPlushieBulk
-  parent: CrateGenericSteel
-  name: bulk lizard plushie crate
-  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: StorageFill
-    contents:
-      - id: PlushieLizard
-        amount: 3
-      - id: PlushieSpaceLizard
-        amount: 2
-
-- type: entity
   id: CrateFunInstrumentsVariety
   parent: CrateGenericSteel
   name: variety instrument collection
@@ -183,6 +136,8 @@
       - id: GrassBattlemap
       - id: DiceBag
         amount: 6
+      - id: PaperCNCSheet
+        amount: 6
 
 - type: entity
   id: CrateFunSadTromboneImplants
@@ -291,6 +246,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: SnapPopBox
       - id: CrazyGlue
         amount: 2
       - id: PlasticBanana
@@ -301,6 +257,7 @@
       - id: MrDips
         orGroup: Giftpool
       - id: RevolverCapGun
+      - id: BalloonNT
       - id: ClothingShoesClownLarge
       - id: ClothingHeadHatMagician
       - id: BeachBall
@@ -346,4 +303,3 @@
       - id: BoxDarts
         amount: 1
         prob: 0.05
-

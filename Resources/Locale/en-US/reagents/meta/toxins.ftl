@@ -13,6 +13,9 @@ reagent-desc-polytrinic-acid = An extremely corrosive chemical substance. Severe
 reagent-name-chloral-hydrate = chloral hydrate
 reagent-desc-chloral-hydrate = A sedative and hypnotic chemical. Commonly used to put other people to sleep, whether they want to or not.
 
+reagent-name-gastrotoxin = gastrotoxin
+reagent-desc-gastrotoxin = A moderately toxic byproduct of decomposition. Most commonly found in spoiled food.
+
 reagent-name-ferrochromic-acid = ferrochromic acid
 reagent-desc-ferrochromic-acid = A mildy corrosive solution, unable of causing severe danger unless ingested.
 
@@ -72,3 +75,12 @@ reagent-desc-vestine = Has an adverse reaction within the body causing major jit
 
 reagent-name-tazinide = tazinide
 reagent-desc-tazinide = A highly dangerous metallic mixture which can interfere with most movement through an electrifying current.
+
+reagent-name-soulbreaker-toxin = soulbreaker toxin
+reagent-desc-soulbreaker-toxin = An anti-psionic about 4 times as powerful as mindbreaker toxin.
+
+reagent-name-lotophagoi-oil = lotophagoi oil
+reagent-desc-lotophagoi-oil = A super potent drug that is much better at inducing psionics than normal hallucinogens, but with worse side effects.
+
+reagent-name-ectoplasm = ectoplasm
+reagent-desc-ectoplasm = The physical component of semi-corporeal spirits.

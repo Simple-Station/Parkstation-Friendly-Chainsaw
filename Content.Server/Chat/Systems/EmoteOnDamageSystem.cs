@@ -1,3 +1,5 @@
+using Content.Shared.Chat;
+
 namespace Content.Server.Chat.Systems;
 
 using Content.Shared.Chat.Prototypes;
@@ -18,13 +20,7 @@ public sealed class EmoteOnDamageSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EmoteOnDamageComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<EmoteOnDamageComponent, DamageChangedEvent>(OnDamage);
-    }
-
-    private void OnUnpaused(EntityUid uid, EmoteOnDamageComponent emoteOnDamage, ref EntityUnpausedEvent args)
-    {
-        emoteOnDamage.LastEmoteTime += args.PausedTime;
     }
 
     private void OnDamage(EntityUid uid, EmoteOnDamageComponent emoteOnDamage, DamageChangedEvent args)

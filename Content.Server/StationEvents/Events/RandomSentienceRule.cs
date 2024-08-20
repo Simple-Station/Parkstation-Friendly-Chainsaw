@@ -2,16 +2,19 @@
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.Announcements.Systems;
+using Content.Server.Station.Components;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
 {
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
+
     protected override void Started(EntityUid uid, RandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         HashSet<EntityUid> stationsToNotify = new();
 
-        var mod = GetSeverityModifier();
         var targetList = new List<Entity<SentienceTargetComponent>>();
         var query = EntityQueryEnumerator<SentienceTargetComponent>();
         while (query.MoveNext(out var targetUid, out var target))
@@ -21,7 +24,7 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
 
         RobustRandom.Shuffle(targetList);
 
-        var toMakeSentient = (int) (RobustRandom.Next(2, 5) * Math.Sqrt(mod));
+        var toMakeSentient = RobustRandom.Next(2, 5);
         var groups = new HashSet<string>();
 
         foreach (var target in targetList)
@@ -54,14 +57,16 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
         }
         foreach (var station in stationsToNotify)
         {
-            ChatSystem.DispatchStationAnnouncement(
-                station,
-                Loc.GetString("station-event-random-sentience-announcement",
-                    ("kind1", kind1), ("kind2", kind2), ("kind3", kind3), ("amount", groupList.Count),
+            _announcer.SendAnnouncement(
+                _announcer.GetAnnouncementId(args.RuleId),
+                StationSystem.GetInStation(EntityManager.GetComponent<StationDataComponent>(station)),
+                "station-event-random-sentience-announcement",
+                null,
+                Color.Gold,
+                null, null,
+                ("kind1", kind1), ("kind2", kind2), ("kind3", kind3), ("amount", groupList.Count),
                     ("data", Loc.GetString($"random-sentience-event-data-{RobustRandom.Next(1, 6)}")),
-                    ("strength", Loc.GetString($"random-sentience-event-strength-{RobustRandom.Next(1, 8)}"))),
-                playDefaultSound: false,
-                colorOverride: Color.Gold
+                    ("strength", Loc.GetString($"random-sentience-event-strength-{RobustRandom.Next(1, 8)}"))
             );
         }
     }

@@ -4,12 +4,12 @@
   description: job-description-css
   playTimeTracker: JobChiefServiceSupervisor
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Civilian
-      time: 21600
-    - !type:OverallPlaytimeRequirement
-      time: 86400
-    - !type:WhitelistRequirement
+      min: 21600
+    - !type:CharacterOverallTimeRequirement
+      min: 86400
+    - !type:CharacterWhitelistRequirement
   weight: 10
   startingGear: CSSGear
   icon: "JobIconCSS"

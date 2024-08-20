@@ -10,6 +10,7 @@
   id: StandardNanotrasenStation
   parent:
     - BaseStation
+    - BaseStationNews
     - BaseStationCargo
     - BaseStationJobsSpawning
     - BaseStationRecords
@@ -24,6 +25,7 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
+    - BaseRandomStation
     - BaseStationMail # Nyano component, required for station mail to function
   noSpawn: true
   components:

@@ -50,39 +50,45 @@ namespace Content.Shared.Chat
         Visual = 1 << 7,
 
         /// <summary>
+        ///     Notifications from things like the PDA.
+        ///     Receiving a PDA message will send a notification to this channel for example
+        /// </summary>
+        Notifications = 1 << 8,
+
+        /// <summary>
         ///     Emotes
         /// </summary>
-        Emotes = 1 << 8,
+        Emotes = 1 << 9,
 
         /// <summary>
         ///     Deadchat
         /// </summary>
-        Dead = 1 << 9,
+        Dead = 1 << 10,
 
         /// <summary>
         ///     Misc admin messages
         /// </summary>
-        Admin = 1 << 10,
+        Admin = 1 << 11,
 
         /// <summary>
         ///     Admin alerts, messages likely of elevated importance to admins
         /// </summary>
-        AdminAlert = 1 << 11,
+        AdminAlert = 1 << 12,
 
         /// <summary>
         ///     Admin chat
         /// </summary>
-        AdminChat = 1 << 12,
+        AdminChat = 1 << 13,
 
         /// <summary>
         ///     Unspecified.
         /// </summary>
-        Unspecified = 1 << 13,
+        Unspecified = 1 << 14,
 
         /// <summary>
         ///     Nyano - Summary:: Telepathic channel for all psionic entities.
         /// </summary>
-        Telepathic = 1 << 14,
+        Telepathic = 1 << 15,
 
         /// <summary>
         ///     Empathy channel for Shadowkin.
@@ -94,7 +100,7 @@ namespace Content.Shared.Chat
         /// </summary>
         //Nyano - Summary: Adds telepathic as an 'IC' labelled chat..
         // Parkstation-EmpathyChat
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Empathy,
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Empathy | Notifications,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }
