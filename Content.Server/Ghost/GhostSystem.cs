@@ -149,6 +149,9 @@ namespace Content.Server.Ghost
                 _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
             }
 
+            if (TryComp(uid, out EyeComponent? eye))
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
+
             SetCanSeeGhosts(uid, true);
 
             var time = _gameTiming.CurTime;

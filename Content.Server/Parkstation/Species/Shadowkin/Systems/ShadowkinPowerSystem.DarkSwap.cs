@@ -174,15 +174,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         // We require the visibility component for this to work
         EnsureComp<VisibilityComponent>(uid);
 
-        // Allow ghosts to see DarkSwapped entities
-        if (_entity.HasComponent<GhostComponent>(uid))
-        {
-            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
-                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
-
-            return;
-        }
-
         if (set) // Invisible
         {
             // Allow the entity to see DarkSwapped entities
@@ -195,7 +186,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Add a stealth shader to the entity
-            _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
+            if (!_entity.HasComponent<GhostComponent>(uid))
+                _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
         }
         else // Visible
         {
@@ -209,7 +201,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
+            if (!_entity.HasComponent<GhostComponent>(uid))
+                _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
         }
     }
 
