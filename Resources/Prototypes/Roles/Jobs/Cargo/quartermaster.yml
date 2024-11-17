@@ -16,7 +16,7 @@
       tracker: JobMailCarrier
       min: 7200 # 2 hours
     - !type:CharacterDepartmentTimeRequirement
-      department: Cargo
+      department: Civilian
       min: 43200 #DeltaV 12 hours
     - !type:CharacterOverallTimeRequirement
       min: 144000 #40 hrs
