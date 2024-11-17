@@ -363,7 +363,7 @@
   suffix: Cargo Reception
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-cargo-lobby
+    defaultText: station-beacon-cargo-bay
 
 - type: entity
   parent: DefaultStationBeaconSupply

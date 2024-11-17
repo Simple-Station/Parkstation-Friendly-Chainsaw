@@ -169,7 +169,7 @@
   parent: BaseFigurine
   id: ToyFigurineQuartermaster
   name: quartermaster figure
-  description: A figurine depicting the glorious leader of Cargo. // Parkstation-CargoService
+  description: A figurine depicting the glorious leader of Cargo.
   components:
   - type: Sprite
     state: qm

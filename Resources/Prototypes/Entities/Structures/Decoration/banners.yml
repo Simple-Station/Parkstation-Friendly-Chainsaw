@@ -41,7 +41,7 @@
   id: BannerCargo
   parent: BannerBase
   name: cargo banner
-  description: A banner displaying the colors of cargo. // Parkstation-CargoService
+  description: A banner displaying the colors of Cargo.
   components:
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi

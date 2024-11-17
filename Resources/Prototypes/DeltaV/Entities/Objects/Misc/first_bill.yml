@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
   id: SpaceCashLuckyBill
-  name: cargo technician's lucky bill
-  description: The first bill ever earned by a Cargo Technician from trading. A small chip is embedded in it.
+  name: quartermaster's lucky bill
+  description: The first bill ever earned by a Quartermaster from trading. A small chip is embedded in it.
   components:
     - type: Sprite
       sprite: DeltaV/Objects/Misc/first_bill.rsi

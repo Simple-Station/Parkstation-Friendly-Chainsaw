@@ -67,7 +67,7 @@
   departments:
     atmospherics: Engineering
     basic: Civilian
-  #  cargo: Cargo
+    cargo: Cargo
     command: Command
     engineering: Engineering
     freezer: Civilian
