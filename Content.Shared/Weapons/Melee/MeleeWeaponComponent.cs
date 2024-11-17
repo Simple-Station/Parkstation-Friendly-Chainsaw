@@ -1,3 +1,4 @@
+using Content.Shared.Contests;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
@@ -86,6 +87,12 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public FixedPoint2 ClickDamageModifier = FixedPoint2.New(1);
 
+    /// <summary>
+    ///     Part damage is multiplied by this amount for single-target attacks
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float ClickPartDamageMultiplier = 1.00f;
+
     // TODO: Temporarily 1.5 until interactionoutline is adjusted to use melee, then probably drop to 1.2
     /// <summary>
     /// Nearest edge range to hit an entity.
@@ -104,6 +111,12 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float HeavyDamageBaseModifier = 1.2f;
+
+    /// <summary>
+    ///     Part damage is multiplied by this amount for heavy swings
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float HeavyPartDamageMultiplier = 0.5f;
 
     /// <summary>
     /// Total width of the angle for wide attacks.
@@ -128,10 +141,10 @@ public sealed partial class MeleeWeaponComponent : Component
     public bool SwingLeft;
 
     [DataField, AutoNetworkedField]
-    public float HeavyStaminaCost = 20f;
+    public float HeavyStaminaCost = 2.5f;
 
     [DataField, AutoNetworkedField]
-    public int MaxTargets = 5;
+    public int MaxTargets = 3;
 
     // Sounds
 
@@ -156,6 +169,25 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier SoundNoDamage { get; set; } = new SoundCollectionSpecifier("WeakHit");
+
+    /// <summary>
+    ///     Arguments for the MeleeContestInteractions constructor
+    /// </summary>
+    [DataField]
+    public ContestArgs ContestArgs = new ContestArgs
+    {
+        DoStaminaInteraction = true,
+        StaminaDisadvantage = true,
+        DoHealthInteraction = true,
+    };
+
+    /// <summary>
+    ///     If true, the weapon must be equipped for it to be used.
+    ///     E.g boxing gloves must be equipped to your gloves,
+    ///     not just held in your hand to be used.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool MustBeEquippedToUse = false;
 }
 
 /// <summary>

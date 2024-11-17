@@ -29,11 +29,6 @@
     - Theatre
     - Kitchen
     - Hydroponics
-  special:
-    - !type:AddComponentSpecial
-      components:
-        - type: PsionicBonusChance
-          flatBonus: 0.025
 
 - type: startingGear
   id: CSSGear

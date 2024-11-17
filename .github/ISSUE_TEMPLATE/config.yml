@@ -1,7 +1,0 @@
-contact_links:
-  - name: Report a Security Vulnerability
-    url: https://github.com/space-wizards/space-station-14/blob/master/SECURITY.md
-    about: Please report security vulnerabilities to the Space Wizards privately so they can fix them before they are publicly disclosed.
-  - name: Toolshed Feature Request
-    url: https://github.com/space-wizards/space-station-14/issues/new?assignees=moonheart08&labels=Toolshed&projects=&template=toolshed-feature-request.md&title=%5BTOOLSHED+REQUEST%5D
-    about: Suggest a feature for Toolshed (for game admins/developers)

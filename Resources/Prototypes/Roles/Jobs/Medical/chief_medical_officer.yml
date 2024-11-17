@@ -11,7 +11,16 @@
       department: Medical
       min: 18000 # 5 hours
     - !type:CharacterOverallTimeRequirement
-      min: 86400 # 24 hours
+      min: 72000 # DeltaV - 20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          traits:
+            - ShadowkinBlackeye
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
@@ -36,9 +45,9 @@
       - type: CommandStaff
   - !type:AddComponentSpecial
     components:
-    - type: PsionicBonusChance #Nyano - Summary: makes it more likely to become psionic.
-      flatBonus: 0.025
     - type: CPRTraining
+    - type: SurgerySpeedModifier
+      SpeedModifier: 2.5
 
 - type: startingGear
   id: CMOGear

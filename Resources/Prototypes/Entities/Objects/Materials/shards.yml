@@ -18,7 +18,7 @@
           shard2: ""
           shard3: ""
   - type: MeleeWeapon
-    attackRate: 1.5
+    attackRate: 1
     damage:
       types:
         Slash: 3.5
@@ -65,8 +65,11 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: StepTrigger
+    triggerGroups:
+      types:
+      - Shard
     intersectRatio: 0.2
-  - type: ShoesRequiredStepTrigger
+  - type: ClothingRequiredStepTrigger
   - type: Slippery
     slipSound:
       path: /Audio/Effects/glass_step.ogg
@@ -94,7 +97,7 @@
   - type: DamageUserOnTrigger
     damage:
       types:
-        Piercing: 5
+        Piercing: 4.5
   - type: Tag
     tags:
       - GlassShard
@@ -119,6 +122,10 @@
   components:
   - type: Sprite
     color: "#96cdef"
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 4.5
   - type: WelderRefinable
     refineResult:
     - id: SheetGlass1
@@ -126,7 +133,7 @@
   - type: DamageUserOnTrigger
     damage:
       types:
-        Piercing: 5
+        Piercing: 5.5
   - type: Tag
     tags:
       - ReinforcedGlassShard
@@ -151,6 +158,10 @@
   components:
   - type: Sprite
     color: "#FF72E7"
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5.5
   - type: WelderRefinable
     refineResult:
     - id: SheetGlass1
@@ -158,7 +169,7 @@
   - type: DamageUserOnTrigger
     damage:
       types:
-        Piercing: 5
+        Piercing: 6.5
   - type: Tag
     tags:
       - PlasmaGlassShard
@@ -185,6 +196,11 @@
   components:
   - type: Sprite
     color: "#8eff7a"
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 4.5
+        Radiation: 2
   - type: WelderRefinable
     refineResult:
     - id: SheetGlass1
@@ -192,8 +208,8 @@
   - type: DamageUserOnTrigger
     damage:
       types:
-        Piercing: 3
-        Radiation: 2
+        Piercing: 5
+        Radiation: 2.5
   - type: Tag
     tags:
       - UraniumGlassShard
