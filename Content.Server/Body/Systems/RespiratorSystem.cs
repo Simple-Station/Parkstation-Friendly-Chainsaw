@@ -7,9 +7,11 @@ using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Mood;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 
@@ -65,9 +67,12 @@ public sealed class RespiratorSystem : EntitySystem
             if (_mobState.IsDead(uid))
                 continue;
 
+            if (HasComp<RespiratorImmuneComponent>(uid))
+                continue;
+
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            if (!_mobState.IsIncapacitated(uid) || HasComp<DebrainedComponent>(uid)) // Shitmed: cannot breathe in crit or when no brain.
             {
                 switch (respirator.Status)
                 {
@@ -177,6 +182,7 @@ public sealed class RespiratorSystem : EntitySystem
             {
                 _alertsSystem.ShowAlert(ent, comp.Alert);
             }
+            RaiseLocalEvent(ent, new MoodEffectEvent("Suffocating"));
         }
 
         _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);

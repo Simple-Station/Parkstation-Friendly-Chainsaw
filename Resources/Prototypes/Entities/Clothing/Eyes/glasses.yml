@@ -84,7 +84,6 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
-    - GlassesNearsight # SimpleStation14 NearsightedTrait
   - type: DropOnSlip
     chance: 30
 
@@ -162,7 +161,7 @@
     protectionTime: 5
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, ShowSecurityIcons]
   id: ClothingEyesGlassesSecurity
   name: security glasses
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
@@ -182,7 +181,6 @@
   - type: GuideHelp
     guides:
     - Security
-  - type: ShowSecurityIcons
   - type: IdentityBlocker
     coverage: EYES
 
@@ -275,3 +273,15 @@
     sprite: Clothing/Eyes/Glasses/meson.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/meson.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesEthereal
+  name: ethereal goggles
+  description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadowkin. They are designed to allow the wearer to peer into The Dark.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/etherealgoogles.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/etherealgoogles.rsi
+  - type: ShowEthereal
