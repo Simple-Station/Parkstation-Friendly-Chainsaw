@@ -217,7 +217,7 @@
       group: LoadoutBackpacks
     - !type:CharacterDepartmentRequirement
       departments:
-        - Cargo
+        - Civilian
 
 - type: loadout
   id: LoadoutBackpackDuffelSalvage
