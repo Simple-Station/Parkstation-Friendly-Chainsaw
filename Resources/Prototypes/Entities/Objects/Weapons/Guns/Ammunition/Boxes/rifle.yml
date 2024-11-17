@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: BaseMagazineBox
   id: BaseMagazineBoxRifle
   components:
   - type: BallisticAmmoProvider
@@ -9,7 +9,7 @@
       tags:
         - CartridgeRifle
     proto: CartridgeRifle
-    capacity: 60
+    capacity: 50
   - type: Item
     size: Small
   - type: ContainerContainer

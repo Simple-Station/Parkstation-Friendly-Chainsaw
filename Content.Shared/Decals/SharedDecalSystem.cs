@@ -49,7 +49,7 @@ namespace Content.Shared.Decals
                     data[index] = chunk;
             }
 
-            args.State = new DecalGridState(data) { AllChunks = new(component.ChunkCollection.ChunkCollection.Keys) };
+            args.State = new DecalGridDeltaState(data, new(component.ChunkCollection.ChunkCollection.Keys));
         }
 
         private void OnGridInitialize(GridInitializeEvent msg)
@@ -119,39 +119,6 @@ namespace Content.Shared.Decals
         {
             // NOOP on client atm.
             return true;
-        }
-    }
-
-    // TODO: Pretty sure paul was moving this somewhere but just so people know
-    public struct ChunkIndicesEnumerator
-    {
-        private Vector2i _chunkLB;
-        private Vector2i _chunkRT;
-
-        private int _xIndex;
-        private int _yIndex;
-
-        public ChunkIndicesEnumerator(Box2 localAABB, int chunkSize)
-        {
-            _chunkLB = new Vector2i((int)Math.Floor(localAABB.Left / chunkSize), (int)Math.Floor(localAABB.Bottom / chunkSize));
-            _chunkRT = new Vector2i((int)Math.Floor(localAABB.Right / chunkSize), (int)Math.Floor(localAABB.Top / chunkSize));
-
-            _xIndex = _chunkLB.X;
-            _yIndex = _chunkLB.Y;
-        }
-
-        public bool MoveNext([NotNullWhen(true)] out Vector2i? indices)
-        {
-            if (_yIndex > _chunkRT.Y)
-            {
-                _yIndex = _chunkLB.Y;
-                _xIndex += 1;
-            }
-
-            indices = new Vector2i(_xIndex, _yIndex);
-            _yIndex += 1;
-
-            return _xIndex <= _chunkRT.X;
         }
     }
 

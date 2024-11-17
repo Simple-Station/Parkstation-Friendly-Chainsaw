@@ -5,11 +5,11 @@
   playTimeTracker: JobSalvageSpecialist
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering # ParkStation-EngineeringSalvagers
-      time: 21600 #DeltaV 6 hrs
-  #  - !type:OverallPlaytimeRequirement #DeltaV
-  #    time: 36000 #10 hrs
+    - !type:CharacterDepartmentTimeRequirement
+      department: Engineering
+      min: 21600 #DeltaV 6 hrs
+  #  - !type:CharacterOverallTimeRequirement #DeltaV
+  #    min: 36000 #10 hrs
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-ce # Parkstation-EngineeringSalvagers

@@ -1,8 +1,9 @@
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Mind.Components;
-using Content.Shared.Traits.Assorted;
+using Content.Shared.Traits.Assorted.Components;
 
 namespace Content.Server.StationEvents.Events;
 

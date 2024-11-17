@@ -6,7 +6,7 @@ namespace Content.Shared.Damage.Components;
 /// <summary>
 /// Add to an entity to paralyze it whenever it reaches critical amounts of Stamina DamageType.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
 public sealed partial class StaminaComponent : Component
 {
     /// <summary>
@@ -40,6 +40,13 @@ public sealed partial class StaminaComponent : Component
     public float CritThreshold = 100f;
 
     /// <summary>
+    /// A dictionary of active stamina drains, with the key being the source of the drain,
+    /// DrainRate how much it changes per tick, and ModifiesSpeed if it should slow down the user.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<EntityUid, (float DrainRate, bool ModifiesSpeed)> ActiveDrains = new();
+
+    /// <summary>
     /// How long will this mob be stunned for?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField]
@@ -49,5 +56,18 @@ public sealed partial class StaminaComponent : Component
     /// To avoid continuously updating our data we track the last time we updated so we can extrapolate our current stamina.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    [AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
+
+    /// <summary>
+    /// Minimum factor of the crit threshold that the mob must receive in stamina damage in order to start slowing down.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float SlowdownThresholdFactor = 0.5f;
+
+    /// <summary>
+    /// Speed multiplier for entities that are slowed down due to low stamina. Multiplied by how close the mob is to stamcrit.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float SlowdownMultiplier = 0.75f;
 }

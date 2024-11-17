@@ -2,6 +2,7 @@ using Content.Server.Body.Components;
 using Content.Server.Ghost.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
+using Content.Shared.Body.Organ;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;
@@ -12,15 +13,34 @@ namespace Content.Server.Body.Systems
     {
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
+        // Shitmed-Start
         public override void Initialize()
         {
             base.Initialize();
 
-            SubscribeLocalEvent<BrainComponent, AddedToPartInBodyEvent>((uid, _, args) => HandleMind(args.Body, uid));
-            SubscribeLocalEvent<BrainComponent, RemovedFromPartInBodyEvent>((uid, _, args) => HandleMind(uid, args.OldBody));
+            SubscribeLocalEvent<BrainComponent, OrganAddedToBodyEvent>(HandleAddition);
+            SubscribeLocalEvent<BrainComponent, OrganRemovedFromBodyEvent>(HandleRemoval);
             SubscribeLocalEvent<BrainComponent, PointAttemptEvent>(OnPointAttempt);
         }
 
+        private void HandleRemoval(EntityUid uid, BrainComponent _, ref OrganRemovedFromBodyEvent args)
+        {
+            if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OldBody))
+                return;
+
+            // Prevents revival, should kill the user within a given timespan too.
+            EnsureComp<DebrainedComponent>(args.OldBody);
+            HandleMind(uid, args.OldBody);
+        }
+        private void HandleAddition(EntityUid uid, BrainComponent _, ref OrganAddedToBodyEvent args)
+        {
+            if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.Body))
+                return;
+
+            RemComp<DebrainedComponent>(args.Body);
+            HandleMind(args.Body, uid);
+        }
+        // Shitmed-End
         private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
         {
             if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
@@ -39,7 +59,7 @@ namespace Content.Server.Body.Systems
             _mindSystem.TransferTo(mindId, newEntity, mind: mind);
         }
 
-        private void OnPointAttempt(EntityUid uid, BrainComponent component, PointAttemptEvent args)
+        private void OnPointAttempt(Entity<BrainComponent> ent, ref PointAttemptEvent args)
         {
             args.Cancel();
         }

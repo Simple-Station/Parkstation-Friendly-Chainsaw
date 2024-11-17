@@ -8,6 +8,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Flight;
 
 namespace Content.Shared.Gravity
 {
@@ -23,6 +24,9 @@ namespace Content.Shared.Gravity
 
             if ((body?.BodyType & (BodyType.Static | BodyType.Kinematic)) != 0)
                 return false;
+
+            if (TryComp<FlightComponent>(uid, out var flying) && flying.On)
+                return true;
 
             if (TryComp<MovementIgnoreGravityComponent>(uid, out var ignoreGravityComponent))
                 return ignoreGravityComponent.Weightless;
@@ -61,8 +65,6 @@ namespace Content.Shared.Gravity
             SubscribeLocalEvent<GravityChangedEvent>(OnGravityChange);
             SubscribeLocalEvent<GravityComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<GravityComponent, ComponentHandleState>(OnHandleState);
-
-            InitializeShake();
         }
 
         public override void Update(float frameTime)

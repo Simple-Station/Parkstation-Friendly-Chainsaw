@@ -7,7 +7,7 @@ namespace Content.Shared.Bed.Sleep;
 /// <summary>
 /// Added to entities when they go to sleep.
 /// </summary>
-[NetworkedComponent, RegisterComponent]
+[NetworkedComponent, RegisterComponent, AutoGenerateComponentPause(Dirty = true)]
 public sealed partial class SleepingComponent : Component
 {
     /// <summary>
@@ -24,7 +24,14 @@ public sealed partial class SleepingComponent : Component
     public TimeSpan Cooldown = TimeSpan.FromSeconds(1f);
 
     [DataField("cooldownEnd", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan CoolDownEnd;
 
     [DataField("wakeAction")] public EntityUid? WakeAction;
+
+    /// <summary>
+    ///     The moment this entity went to sleep. Initialized on MapInit.
+    /// </summary>
+    [DataField]
+    public TimeSpan SleepingSince;
 }

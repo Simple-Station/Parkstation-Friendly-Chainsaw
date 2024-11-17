@@ -1,7 +1,8 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Server.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Silicons.Borgs;
@@ -190,6 +191,10 @@ public sealed partial class BorgSystem
             if (!component.ItemsCreated)
             {
                 item = Spawn(itemProto, xform.Coordinates);
+                if (TryComp<BorgJetpackComponent>(uid, out var module))
+                {
+                    module.JetpackUid = item;
+                }
             }
             else
             {

@@ -28,8 +28,7 @@
   - CargoTechnician # Parkstation-CargoService
   - MailCarrier # Parkstation-CargoService
   - Janitor
-  - Lawyer
-  - Librarian
+  # - Lawyer # DeltaV - Move Lawyer into Justice
   - Mime
   - Musician
   - Passenger
@@ -110,6 +109,8 @@
   - ResearchAssistant
   - Chaplain # DeltaV - Move Chaplain into Epistemics
   - ForensicMantis # Nyanotrasen - ForensicMantis, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Epistemics/forensicmantis.yml
+  - Librarian
+  - Roboticist
 
 # Parkstation-Oligarchy Start
 #- type: department

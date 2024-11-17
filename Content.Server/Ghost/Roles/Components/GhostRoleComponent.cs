@@ -1,4 +1,6 @@
-﻿using Content.Server.Mind.Commands;
+﻿using Content.Server.Ghost.Roles.Raffles;
+using Content.Server.Mind.Commands;
+using Content.Shared.Customization.Systems;
 using Content.Shared.Roles;
 
 namespace Content.Server.Ghost.Roles.Components
@@ -11,10 +13,10 @@ namespace Content.Server.Ghost.Roles.Components
 
         [DataField("description")] private string _roleDescription = "Unknown";
 
-        [DataField("rules")] private string _roleRules = "";
+        [DataField("rules")] private string _roleRules = "ghost-role-component-default-rules";
 
         [DataField("requirements")]
-        public HashSet<JobRequirement>? Requirements;
+        public List<CharacterRequirement>? Requirements;
 
         /// <summary>
         /// Whether the <see cref="MakeSentientCommand"/> should run on the mob.
@@ -87,5 +89,12 @@ namespace Content.Server.Ghost.Roles.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("reregister")]
         public bool ReregisterOnGhost { get; set; } = true;
+
+        /// <summary>
+        /// If set, ghost role is raffled, otherwise it is first-come-first-serve.
+        /// </summary>
+        [DataField("raffle")]
+        [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+        public GhostRoleRaffleConfig? RaffleConfig { get; set; }
     }
 }

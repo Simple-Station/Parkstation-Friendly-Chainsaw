@@ -17,10 +17,16 @@
   id: AppraisalTool
 
 - type: Tag
+  id: ArachneWeb
+
+- type: Tag
   id: ArtifactFragment
 
 - type: Tag
   id: Arrow
+
+- type: Tag
+  id: Ash
 
 - type: Tag
   id: ATVKeys
@@ -32,7 +38,13 @@
   id: Balloon
 
 - type: Tag
+  id: Banana
+
+- type: Tag
   id: BananaPeel
+
+- type: Tag
+  id: Bandana
 
 - type: Tag
   id: BaseballBat
@@ -41,7 +53,13 @@
   id: BBQsauce
 
 - type: Tag
+  id: Bedsheet
+
+- type: Tag
   id: Bee
+
+- type: Tag
+  id: Beer
 
 - type: Tag
   id: BikeHorn
@@ -203,6 +221,9 @@
   id: Bottle
 
 - type: Tag
+  id: BoxCardboard
+
+- type: Tag
   id: BoxHug
 
 - type: Tag
@@ -216,6 +237,12 @@
 
 - type: Tag
   id: Briefcase
+
+- type: Tag
+  id: BrimFlatcapBrown
+
+- type: Tag
+  id: BrimFlatcapGrey
 
 - type: Tag
   id: Brutepack
@@ -236,6 +263,9 @@
   id: CableCoil
 
 - type: Tag
+  id: CaneBlade
+
+- type: Tag
   id: CapacitorStockPart
 
 - type: Tag
@@ -246,6 +276,36 @@
 
 - type: Tag
   id: Carpet
+
+- type: Tag
+  id: CarpetBlack
+
+- type: Tag
+  id: CarpetBlue
+
+- type: Tag
+  id: CarpetCyan
+
+- type: Tag
+  id: CarpetGreen
+
+- type: Tag
+  id: CarpetOrange
+
+- type: Tag
+  id: CarpetPurple
+
+- type: Tag
+  id: CarpetSBlue
+
+- type: Tag
+  id: CarpetPink
+
+- type: Tag
+  id: CarpetRed
+
+- type: Tag
+  id: CarpetWhite
 
 - type: Tag
   id: CanPilot
@@ -298,6 +358,9 @@
 - type: Tag
   id: CartridgeRocket
 
+- type: Tag
+  id: CaveFactory
+
 # Allows you to walk over tile entities such as lava without steptrigger
 - type: Tag
   id: Catwalk
@@ -312,6 +375,9 @@
   id: ChemDispensable # container that can go into the chem dispenser
 
 - type: Tag
+  id: ChiliBowl
+
+- type: Tag
   id: Cigarette
 
 - type: Tag
@@ -322,6 +388,9 @@
 
 - type: Tag
   id: Cleaver
+
+- type: Tag
+  id: ClockworkGlassShard
 
 - type: Tag
   id: ClothMade
@@ -342,13 +411,22 @@
   id: ClownSuit
 
 - type: Tag
-  id: CluwneHorn
+  id: CluwneHappyHonk
 
-- type: Tag #Ohioans die happy
-  id: Corn
+- type: Tag
+  id: CluwneHorn
 
 - type: Tag
   id: Coldsauce
+
+- type: Tag
+  id: CoordinatesDisk
+
+- type: Tag
+  id: Corn
+
+- type: Tag
+  id: CottonBoll
 
 - type: Tag
   id: Cow
@@ -453,6 +531,9 @@
   id: DoorElectronics
 
 - type: Tag
+  id: DoorElectronicsConfigurator
+
+- type: Tag
   id: DonkPocket
 
 - type: Tag
@@ -466,9 +547,6 @@
 
 - type: Tag
   id: DrinkBottle
-
-- type: Tag
-  id: DroneUsable
 
 - type: Tag
   id: Duck
@@ -538,6 +616,9 @@
 
 - type: Tag
   id: Fruit
+
+- type: Tag
+  id: FullBodyOuter
 
 - type: Tag
   id: Galaxythistle
@@ -615,6 +696,9 @@
   id: Hardsuit # Prevent melee injectors that can't penetrate hardsuits from injecting the wearer (nettles)
 
 - type: Tag
+  id: Haunted
+
+- type: Tag
   id: Head
 
 - type: Tag
@@ -630,10 +714,19 @@
   id: HidesHair # for headwear.
 
 - type: Tag
+  id: HidesNose # for non-standard noses.
+
+- type: Tag
+  id: HidesBeard # for full coverage helmet / masks where beard shouldn't show
+
+- type: Tag
   id: HighRiskItem
 
 - type: Tag
   id: HighSecDoor
+
+- type: Tag
+  id: HiViz
 
 - type: Tag
   id: Hoe
@@ -723,13 +816,19 @@
   id: MacroBomb
 
 - type: Tag
-  id: MicroBomb
+  id: Mail
+
+- type: Tag
+  id: MailCapsule
 
 - type: Tag
   id: MimeBelt
 
 - type: Tag
   id: MimeHappyHonk
+
+- type: Tag
+  id: Mineshaft
 
 # Magazines ordered by slot then caliber
 
@@ -797,10 +896,19 @@
   id: Meat
 
 - type: Tag
+  id: Medal
+
+- type: Tag
   id: Medkit
 
 - type: Tag
   id: Metal
+
+- type: Tag
+  id: MicroBomb
+
+- type: Tag
+  id: MicrowaveMachineBoard
 
 - type: Tag
   id: MindShield
@@ -830,7 +938,16 @@
   id: Multitool
 
 - type: Tag
+  id: Mustard
+
+- type: Tag
+  id: MysteryFigureBox
+
+- type: Tag
   id: NoBlockAnchoring
+
+- type: Tag
+  id: NoPaint
 
 - type: Tag
   id: NozzleBackTank
@@ -840,6 +957,9 @@
 
 - type: Tag
   id: Ointment
+
+- type: Tag
+  id: Oneirophage
 
 - type: Tag
   id: Ore
@@ -944,6 +1064,9 @@
   id: PrisonUniform
 
 - type: Tag
+  id: PrizeTicket
+
+- type: Tag
   id: ProximitySensor
 
 - type: Tag
@@ -955,15 +1078,15 @@
 - type: Tag
   id: RawMaterial
 
-- type: Tag
-  id: RCDDeconstructWhitelist
-
 # Give this to something that doesn't need any special recycler behavior and just needs deleting.
 - type: Tag
   id: Recyclable
 
 - type: Tag
   id: ReinforcedGlassShard
+
+- type: Tag
+  id: ReptilianFood
 
 - type: Tag
   id: RifleStock
@@ -1020,13 +1143,13 @@
   id: Shiv
 
 - type: Tag
-  id: ShoesRequiredStepTriggerImmune
-
-- type: Tag
   id: Shovel
 
 - type: Tag
   id: Sidearm
+
+- type: Tag
+  id: SignalTrigger
 
 - type: Tag
   id: SkeletonMotorcycleKeys
@@ -1044,6 +1167,9 @@
   id: Smokable
 
 - type: Tag
+  id: SnowyLabs
+
+- type: Tag
   id: Soap
 
 - type: Tag
@@ -1051,6 +1177,9 @@
 
 - type: Tag
   id: Soup
+
+- type: Tag
+  id: SpookyFog
 
 - type: Tag
   id: Spray
@@ -1083,10 +1212,16 @@
   id: StationMapElectronics
 
 - type: Tag
+  id: Steak
+
+- type: Tag
   id: SubdermalImplant
 
 - type: Tag
   id: SuitEVA
+
+- type: Tag
+  id: SurgeryTool
 
 - type: Tag
   id: SurveillanceCameraMonitorCircuitboard
@@ -1128,10 +1263,19 @@
   id: Torch
 
 - type: Tag
+  id: ToyRubberDuck
+
+- type: Tag
+  id: ToySidearm
+
+- type: Tag
   id: Trash
 
 - type: Tag
   id: TrashBag
+
+- type: Tag
+  id: Truncheon
 
 - type: Tag
   id: Unimplantable
@@ -1141,6 +1285,9 @@
 
 - type: Tag
   id: UraniumGlassShard
+
+- type: Tag
+  id: Vegetable
 
 - type: Tag
   id: VimPilot
@@ -1161,19 +1308,34 @@
   id: WallmountSubstationElectronics
 
 - type: Tag
+  id: WeaponAntiqueLaser
+
+- type: Tag
   id: WeaponPistolCHIMPUpgradeKit
 
 - type: Tag
   id: WeaponShotgunKammerer
 
 - type: Tag
+  id: WeldingMask
+
+- type: Tag
   id: WetFloorSign
+
+- type: Tag
+  id: Wheat
 
 - type: Tag
   id: WhitelistChameleon
 
 - type: Tag
+  id: WhoopieCushion
+
+- type: Tag
   id: Window
+
+- type: Tag
+  id: Wine
 
 - type: Tag
   id: WizardWand # that evil vvizard vvand
@@ -1201,5 +1363,3 @@
 
 - type: Tag
   id: WriteIgnoreStamps
-
-# PUT YOUR TAGS IN ALPHABETICAL ORDER

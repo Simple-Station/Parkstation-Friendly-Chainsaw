@@ -12,6 +12,15 @@ store-category-implants = Implants
 store-category-job = Job
 store-category-armor = Armor
 store-category-pointless = Pointless
+store-category-deception = Deception
 
 # Revenant
 store-category-abilities = Abilities
+
+# Wizard
+store-caregory-spellbook-offensive = Offensive Spells
+store-caregory-spellbook-defensive = Defensive Spells
+store-caregory-spellbook-utility = Utility Spells
+store-caregory-spellbook-equipment = Wizard Equipment
+store-caregory-spellbook-events = Event Spells
+

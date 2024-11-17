@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponRifle
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: BaseWeaponRifle
   description: A rooty tooty point and shooty.
   abstract: true
@@ -14,6 +14,8 @@
     slots:
     - Back
     - suitStorage
+  - type: Wieldable
+  - type: GunRequiresWield
   - type: AmmoCounter
   - type: Gun
     fireRate: 5
@@ -67,6 +69,7 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+    fireOnDropChance: 0.5
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -159,6 +162,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+    fireOnDropChance: 0.2
   - type: ItemSlots
     slots:
       gun_magazine:

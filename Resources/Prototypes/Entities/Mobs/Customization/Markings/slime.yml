@@ -1,7 +1,7 @@
 - type: marking
   id: SlimeGradientLeftArm
   bodyPart: LArm
-  markingCategory: Arms
+  markingCategory: LeftArm
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
@@ -10,7 +10,7 @@
 - type: marking
   id: SlimeGradientRightArm
   bodyPart: RArm
-  markingCategory: Arms
+  markingCategory: RightArm
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
@@ -18,8 +18,8 @@
 
 - type: marking
   id: SlimeGradientLeftLeg
-  bodyPart: LFoot
-  markingCategory: Legs
+  bodyPart: LLeg
+  markingCategory: LeftLeg
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
@@ -27,17 +27,35 @@
 
 - type: marking
   id: SlimeGradientRightLeg
-  bodyPart: RFoot
-  markingCategory: Legs
+  bodyPart: RLeg
+  markingCategory: RightLeg
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_r_leg
 
 - type: marking
+  id: SlimeGradientLeftFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [SlimePerson, Shadowkin]
+  sprites:
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_foot
+
+- type: marking
+  id: SlimeGradientRightFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [SlimePerson, Shadowkin]
+  sprites:
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_foot
+
+- type: marking
   id: SlimeGradientLeftHand
   bodyPart: LHand
-  markingCategory: Arms
+  markingCategory: LeftHand
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
@@ -46,7 +64,7 @@
 - type: marking
   id: SlimeGradientRightHand
   bodyPart: RHand
-  markingCategory: Arms
+  markingCategory: RightHand
   speciesRestriction: [ Reptilian, SlimePerson, Shadowkin ] # Parkstation-WideUseMarkings
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi

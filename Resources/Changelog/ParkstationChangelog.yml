@@ -1,0 +1,111 @@
+Entries:
+- author: DEATHB4DEFEAT
+  changes:
+    - message: Add automatic changelogs
+      type: Add
+  id: 1
+  time: '2023-10-29T08:00:00.0000000+00:00'
+- author: Parky
+  changes:
+    - message: Added fingerless insulated gloves to the robodrobe
+      type: Add
+  id: 2
+  time: '2023-10-29T08:00:00.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: >-
+        Added a secondary expedition music that plays when the expedition is
+        almost over
+    - type: Add
+      message: Added chocolate milk
+  id: 3
+  time: '2023-10-29T23:36:15.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: Added wings marking layer
+    - type: Tweak
+      message: Moved wings from the tail layer to wings
+    - type: Add
+      message: Added way too many markings to list here
+  id: 4
+  time: '2024-01-18T07:00:43.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Changed most playtime requirements
+  id: 5
+  time: '2024-01-18T08:09:49.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Add
+      message: Animals will no longer be a silent, soulless shell
+  id: 6
+  time: '2024-01-18T08:52:58.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Renamed Shiva to Geoff
+  id: 7
+  time: '2024-01-18T09:53:54.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        The station's crew hivemind has decided to slow down their movement and
+        enjoy The Park instead of sprinting everywhere
+  id: 8
+  time: '2024-01-18T10:25:15.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        Your friendly plant people have realized the immense weight of their
+        roots and have slown down their movement a significant amount!
+  id: 9
+  time: '2024-01-18T10:46:50.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Space has suddenly become less dense (objects don't slow down in space)
+    - type: Remove
+      message: Moths are unable to move in space
+    - type: Tweak
+      message: Moths have way better control in zero gravity environments
+  id: 10
+  time: '2024-02-04T05:49:01.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: >-
+        The crew have suddenly lost some strength in their legs and can't stop
+        or start moving instantly
+  id: 11
+  time: '2024-02-17T22:53:49.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Remove
+      message: >-
+        I have a mouth but must not scream (removed the scream action in favor
+        of emotes)
+  id: 12
+  time: '2024-03-10T08:11:11.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Material sprites are no longer very large
+  id: 13
+  time: '2024-03-10T08:59:05.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Soap is smaller, harder to slip on, and stuns less
+  id: 14
+  time: '2024-08-19T21:33:25.0000000+00:00'
+- author: Finket
+  changes:
+    - type: Add
+      message: Added chance to drop certain items when slipped
+  id: 15
+  time: '2024-08-19T22:18:52.0000000+00:00'

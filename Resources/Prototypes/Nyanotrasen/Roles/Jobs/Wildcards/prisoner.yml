@@ -10,9 +10,18 @@
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-security
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 21600
+      min: 21600
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          traits:
+            - ShadowkinBlackeye
 
 - type: startingGear
   id: PrisonerGear
@@ -20,5 +29,5 @@
     jumpsuit: ClothingUniformJumpsuitPrisoner
     shoes: ClothingShoesColorBlack
     id: PrisonerPDA
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetPrison #deltaV
   innerClothingSkirt: ClothingUniformJumpsuitPrisoner

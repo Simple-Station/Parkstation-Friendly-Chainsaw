@@ -76,17 +76,18 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<MicrowaveComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<MicrowaveComponent, AnchorStateChangedEvent>(OnAnchorChanged);
             SubscribeLocalEvent<MicrowaveComponent, SuicideEvent>(OnSuicide);
+            SubscribeLocalEvent<MicrowaveComponent, RefreshPartsEvent>(OnRefreshParts);
+            SubscribeLocalEvent<MicrowaveComponent, UpgradeExamineEvent>(OnUpgradeExamine);
 
             SubscribeLocalEvent<MicrowaveComponent, SignalReceivedEvent>(OnSignalReceived);
 
-            SubscribeLocalEvent<MicrowaveComponent, MicrowaveStartCookMessage>((u, c, m) => Wzhzhzh(u, c, m.Session.AttachedEntity));
+            SubscribeLocalEvent<MicrowaveComponent, MicrowaveStartCookMessage>((u, c, m) => Wzhzhzh(u, c, m.Actor));
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveEjectMessage>(OnEjectMessage);
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveEjectSolidIndexedMessage>(OnEjectIndex);
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveSelectCookTimeMessage>(OnSelectTime);
 
             SubscribeLocalEvent<ActiveMicrowaveComponent, ComponentStartup>(OnCookStart);
             SubscribeLocalEvent<ActiveMicrowaveComponent, ComponentShutdown>(OnCookStop);
-            SubscribeLocalEvent<ActiveMicrowaveComponent, EntityUnpausedEvent>(OnEntityUnpaused);
             SubscribeLocalEvent<ActiveMicrowaveComponent, EntInsertedIntoContainerMessage>(OnActiveMicrowaveInsert);
             SubscribeLocalEvent<ActiveMicrowaveComponent, EntRemovedFromContainerMessage>(OnActiveMicrowaveRemove);
 
@@ -110,11 +111,6 @@ namespace Content.Server.Kitchen.EntitySystems
 
             SetAppearance(ent.Owner, MicrowaveVisualState.Idle, microwaveComponent);
             microwaveComponent.PlayingStream = _audio.Stop(microwaveComponent.PlayingStream);
-        }
-
-        private void OnEntityUnpaused(Entity<ActiveMicrowaveComponent> ent, ref EntityUnpausedEvent args)
-        {
-            ent.Comp.MalfunctionTime += args.PausedTime;
         }
 
         private void OnActiveMicrowaveInsert(Entity<ActiveMicrowaveComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -277,6 +273,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnContentUpdate(EntityUid uid, MicrowaveComponent component, ContainerModifiedMessage args) // For some reason ContainerModifiedMessage just can't be used at all with Entity<T>. TODO: replace with Entity<T> syntax once that's possible
         {
+            if (component.Storage != args.Container)
+                return;
+
             UpdateUserInterfaceState(uid, component);
         }
 
@@ -348,6 +347,17 @@ namespace Content.Server.Kitchen.EntitySystems
                 _container.EmptyContainer(component.Storage);
         }
 
+        private void OnRefreshParts(Entity<MicrowaveComponent> ent, ref RefreshPartsEvent args)
+        {
+            var cookRating = args.PartRatings[ent.Comp.MachinePartCookTimeMultiplier];
+            ent.Comp.CookTimeMultiplier = MathF.Pow(ent.Comp.CookTimeScalingConstant, cookRating - 1);
+        }
+
+        private void OnUpgradeExamine(Entity<MicrowaveComponent> ent, ref UpgradeExamineEvent args)
+        {
+            args.AddPercentageUpgrade("microwave-component-upgrade-cook-time", ent.Comp.CookTimeMultiplier);
+        }
+
         private void OnSignalReceived(Entity<MicrowaveComponent> ent, ref SignalReceivedEvent args)
         {
             if (args.Port != ent.Comp.OnPort)
@@ -361,15 +371,12 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)
         {
-            var ui = _userInterface.GetUiOrNull(uid, MicrowaveUiKey.Key);
-            if (ui == null)
-                return;
-
-            _userInterface.SetUiState(ui, new MicrowaveUpdateUserInterfaceState(
+            _userInterface.SetUiState(uid, MicrowaveUiKey.Key, new MicrowaveUpdateUserInterfaceState(
                 GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
                 HasComp<ActiveMicrowaveComponent>(uid),
                 component.CurrentCookTimeButtonIndex,
-                component.CurrentCookTimerTime
+                component.CurrentCookTimerTime,
+                component.CurrentCookTimeEnd
             ));
         }
 
@@ -492,6 +499,7 @@ namespace Content.Server.Kitchen.EntitySystems
             activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.CookTimeMultiplier;
             activeComp.TotalTime = component.CurrentCookTimerTime; //this doesn't scale so that we can have the "actual" time
             activeComp.PortionedRecipe = portionedRecipe;
+            component.CurrentCookTimeEnd = _gameTiming.CurTime + TimeSpan.FromSeconds(component.CurrentCookTimerTime);
             if (malfunctioning)
                 activeComp.MalfunctionTime = _gameTiming.CurTime + TimeSpan.FromSeconds(component.MalfunctionInterval);
             UpdateUserInterfaceState(uid, component);
@@ -557,7 +565,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 active.CookTimeRemaining -= frameTime;
 
-                RollMalfunction((uid, active,microwave));
+                RollMalfunction((uid, active, microwave));
 
                 //check if there's still cook time left
                 if (active.CookTimeRemaining > 0)
@@ -580,6 +588,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 }
 
                 _container.EmptyContainer(microwave.Storage);
+                microwave.CurrentCookTimeEnd = TimeSpan.Zero;
                 UpdateUserInterfaceState(uid, microwave);
                 _audio.PlayPvs(microwave.FoodDoneSound, uid);
                 StopCooking((uid, microwave));
@@ -617,6 +626,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
             ent.Comp.CurrentCookTimeButtonIndex = args.ButtonIndex;
             ent.Comp.CurrentCookTimerTime = args.NewCookTime;
+            ent.Comp.CurrentCookTimeEnd = TimeSpan.Zero;
             _audio.PlayPvs(ent.Comp.ClickSound, ent, AudioParams.Default.WithVolume(-2));
             UpdateUserInterfaceState(ent, ent.Comp);
         }

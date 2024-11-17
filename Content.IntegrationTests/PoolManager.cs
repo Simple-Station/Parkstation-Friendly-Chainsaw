@@ -68,11 +68,11 @@ public static partial class PoolManager
 
         options.BeforeStart += () =>
         {
+            // Server-only systems (i.e., systems that subscribe to events with server-only components)
             var entSysMan = IoCManager.Resolve<IEntitySystemManager>();
-            entSysMan.LoadExtraSystemType<ResettingEntitySystemTests.TestRoundRestartCleanupEvent>();
-            entSysMan.LoadExtraSystemType<InteractionSystemTests.TestInteractionSystem>();
             entSysMan.LoadExtraSystemType<DeviceNetworkTestSystem>();
             entSysMan.LoadExtraSystemType<TestDestructibleListenerSystem>();
+
             IoCManager.Resolve<ILogManager>().GetSawmill("loc").Level = LogLevel.Error;
             IoCManager.Resolve<IConfigurationManager>()
                 .OnValueChanged(RTCVars.FailureLogLevel, value => logHandler.FailureLevel = value, true);
@@ -304,11 +304,6 @@ public static partial class PoolManager
             {
                 fallback.Use();
                 Pairs[fallback!] = true;
-            }
-
-            if (fallback == null && _pairId > 8)
-            {
-                var x = 2;
             }
 
             return fallback;

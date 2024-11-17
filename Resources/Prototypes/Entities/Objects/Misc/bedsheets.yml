@@ -20,6 +20,9 @@
     - neck
   - type: StaticPrice
     price: 100
+  - type: Tag
+    tags:
+    - Bedsheet
 
 - type: entity
   id: BedsheetBlack
@@ -270,7 +273,7 @@
 - type: entity
   id: BedsheetRD
   parent: BedsheetBase
-  name: RD's bedsheet
+  name: Mystagogue's bedsheet # DeltaV - Epistemics Department - Replace Research Director with Mystagogue
   description: It appears to have a beaker emblem, and is made out of fire-resistant material, although it probably won't protect you in the event of fires you're familiar with every day.
   components:
   - type: Sprite

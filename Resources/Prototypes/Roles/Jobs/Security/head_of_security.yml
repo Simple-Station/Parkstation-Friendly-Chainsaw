@@ -5,15 +5,15 @@
   playTimeTracker: JobHeadOfSecurity
   requirements:
     # Parkstation-Playtime
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 14400 # 4 hours
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: JobWarden
+      min: 14400 # 4 hours
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 21600 # 6 hours
-    - !type:OverallPlaytimeRequirement
-      time: 93600 # 26 hours
-    - !type:WhitelistRequirement # DeltaV - Whitelist requirement
+      min: 21600 # 6 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 93600 # 26 hours
+    - !type:CharacterWhitelistRequirement
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
@@ -30,16 +30,14 @@
   - Service
   - External
   - Detective
+  - Corpsman # DeltaV - added Corpsman access
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  - !type:AddComponentSpecial
-    components:
-    - type: PsionicBonusChance #Nyano - Summary: makes it more likely to become psionic.
-      flatBonus: 0.025
 
 - type: startingGear
   id: HoSGear
@@ -47,14 +45,11 @@
     jumpsuit: ClothingUniformJumpsuitHoS
     back: ClothingBackpackHOSFilled
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterCoatHoSTrench
     eyes: ClothingEyesGlassesSunglasses
-    head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
   innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled
   duffelbag: ClothingBackpackDuffelHOSFilled

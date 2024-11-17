@@ -5,8 +5,8 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     # Parkstation-Playtime
-    - !type:OverallPlaytimeRequirement
-      time: 8000 # 2 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 8000 # 2 hours
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -15,6 +15,9 @@
   - Security
   #- Brig # Delta V: Removed
   - Maintenance
+  - Service
+  - External
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -23,12 +26,13 @@
   id: SecurityCadetGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterArmorDuraVest # DeltaV - ClothingOuterArmorBasic replaced in favour of stab vest. Sucks to suck, cadets
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
-#    pocket1: WeaponPistolMk58Nonlethal # DeltaV - Security Cadet doesn't spawn with a gun
+    belt: ClothingBeltSecurityFilled
+    pocket2: BookSecurity
   innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+  satchel: ClothingBackpackSatchelSecurity
+  duffelbag: ClothingBackpackDuffelSecurity

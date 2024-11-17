@@ -65,7 +65,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     {
         // If we're applying state then let the server state handle the do_after prediction.
         // This is to avoid scenarios where a do_after is erroneously cancelled on the final tick.
-        if (!args.InterruptsDoAfters || !args.DamageIncreased || args.DamageDelta == null || GameTiming.ApplyingState)
+        if (!args.InterruptsDoAfters || !args.DamageIncreased || args.DamageDelta == null || GameTiming.ApplyingState
+            || args.DamageDelta.DamageDict.ContainsKey("Radiation")) //Sanity check so people can crowbar doors open to flee from Lord Singuloth
             return;
 
         var delta = args.DamageDelta.GetTotal();
@@ -157,7 +158,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         if (doAfter.Delay <= TimeSpan.Zero)
         {
-            Logger.Warning("Awaited instant DoAfters are not supported fully supported");
+            Log.Warning("Awaited instant DoAfters are not supported fully supported");
             return DoAfterStatus.Finished;
         }
 
@@ -246,8 +247,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (args.AttemptFrequency == AttemptFrequency.StartAndEnd && !TryAttemptEvent(doAfter))
             return false;
 
-        if (args.Delay <= TimeSpan.Zero ||
-            _tag.HasTag(args.User, "InstantDoAfters"))
+        // TODO DO AFTER
+        // Why does this tag exist? Just make this a bool on the component?
+        if (args.Delay <= TimeSpan.Zero || _tag.HasTag(args.User, "InstantDoAfters"))
         {
             RaiseDoAfterEvents(doAfter, comp);
             // We don't store instant do-afters. This is just a lazy way of hiding them from client-side visuals.

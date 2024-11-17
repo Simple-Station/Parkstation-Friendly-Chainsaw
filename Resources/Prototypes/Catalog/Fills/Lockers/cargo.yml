@@ -6,8 +6,6 @@
   - type: StorageFill
     contents:
       - id: ClothingOuterHardsuitSpatio
-      - id: OxygenTankFilled
-      - id: NitrogenTankFilled
       - id: ClothingShoesBootsMag
       - id: ClothingMaskGasExplorer
       - id: ClothingBeltUtilityFilled
@@ -17,6 +15,7 @@
       - id: SeismicCharge
         amount: 2
       - id: ClothingShoesBootsWinterMiner #Delta V: Add departmental winter boots
+      - id: JetpackMiniFilled # DeltaV - Salv lost their shuttle
       - id: OreBag
         prob: 0.5
       - id: Flare
@@ -27,6 +26,8 @@
         prob: 0.3
       - id: ClothingNeckSalvager # DeltaV - salvage cloak
         prob: 0.2
+      - id: LunchboxLogisticsFilledRandom # DeltaV - Lunchboxes!
+        prob: 0.3
 
 - type: entity
   id: LockerSalvageSpecialistFilled
@@ -44,6 +45,7 @@
       - id: SeismicCharge
         amount: 2
       - id: ClothingShoesBootsWinterMiner #Delta V: Add departmental winter boots
+      - id: JetpackMiniFilled # DeltaV - Salv lost their shuttle
       - id: OreBag
         prob: 0.5
       - id: Flare
@@ -54,3 +56,5 @@
         prob: 0.3
       - id: ClothingNeckSalvager # DeltaV - salvage cloak
         prob: 0.2
+      - id: LunchboxLogisticsFilledRandom # DeltaV - Lunchboxes!
+        prob: 0.3

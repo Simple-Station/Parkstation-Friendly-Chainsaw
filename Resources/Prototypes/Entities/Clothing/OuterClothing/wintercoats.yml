@@ -32,7 +32,7 @@
     - ClothMade
     - WhitelistChameleon
   - type: StaticPrice
-    price: 70
+    price: 50
 
 - type: entity
   parent: ClothingOuterWinterCoat
@@ -231,9 +231,23 @@
     clothingPrototype: ClothingHeadHatHoodWinterHOP
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterWinterHoS
+  name: head of security's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterHOS
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterHoSUnarmored
   name: head of security's winter coat
+  description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coathos.rsi
@@ -248,6 +262,7 @@
         Slash: 0.75
         Piercing: 0.75
         Heat: 0.75
+        Caustic: 0.75 #not the full 90% from ss13 because of the head
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -417,12 +432,12 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatsec.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSec
-  - type: Armor # DeltaV - adds resists to coat
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.85
         Slash: 0.85
-        Piercing: 0.85 # DeltaV - not as resistant as pre-rebase, but still better than nothing
+        Piercing: 0.85 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.75
 
 - type: entity
@@ -445,22 +460,28 @@
     clothingPrototype: ClothingHeadHatHoodWinterSci
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterWinterWarden
   name: warden's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterWarden
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterWardenUnarmored
+  name: warden's winter coat
+  description: A sturdy coat, a warm coat, but not an armored coat.
+  components:
+  - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.8 #slightly less bulletproof then warden's normal coat
-        Heat: 0.70
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
 
@@ -541,3 +562,113 @@
           Quantity: 20
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWeb
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterCsCorporateJacket
+  name: Cybersun Corporate Jacket
+  description: A cozy jacket with the Cybersun logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_cybersun.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_cybersun.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterEeCorporateJacket
+  name: Einstein Engines Corporate Jacket
+  description: A cozy jacket with the Einstein Engines logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_einstein_engines.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_einstein_engines.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHiCorporateJacket
+  name: Hephaestus Industries Corporate Jacket
+  description: A cozy jacket with the Hephaestus Industries logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hephestus_industries.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hephestus_industries.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHmCorporateJacket
+  name: Hawkmoon Acquisitions Corporate Jacket
+  description: A cozy jacket with the Hawkmoon Acquisitions logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hawkmoon_aquisitions.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hawkmoon_aquisitions.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterIdCorporateJacket
+  name: Interdyne Corporate Jacket
+  description: A cozy jacket with the Interdyne logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_interdyne.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_interdyne.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterBcCorporateJacket
+  name: Bishop Cybernetics Corporate Jacket
+  description: A cozy jacket with the Bishop Cybernetics logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_bishop_cybernetics.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_bishop_cybernetics.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterDdCorporateJacket
+  name: Discount Dan's Corporate Jacket
+  description: A cozy jacket with the Discount Dan's logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_discount_dans.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_discount_dans.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterFaCorporateJacket
+  name: Five Points Armory Corporate Jacket
+  description: A cozy jacket with the Five Points Armory logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_five_points_armory.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_five_points_armory.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterGeCorporateJacket
+  name: Gilthari Exports Corporate Jacket
+  description: A cozy jacket with the Gilthari Exports logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_gilthari_exports.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_gilthari_exports.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterZhCorporateJacket
+  name: Zeng-Hu Pharmaceuticals Corporate Jacket
+  description: A cozy jacket with the Zeng-Hu Pharmaceuticals logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_zeng_hu_pharma.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_zeng_hu_pharma.rsi

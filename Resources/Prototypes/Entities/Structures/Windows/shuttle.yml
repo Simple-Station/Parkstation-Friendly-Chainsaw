@@ -1,7 +1,7 @@
 - type: entity
   id: ShuttleWindow
   name: shuttle window
-  parent: Window
+  parent: WindowRCDResistant
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -63,7 +63,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    key: windows
+    key: walls
     base: state
   - type: Icon
     sprite: Structures/Windows/shuttle_window_diagonal.rsi
@@ -81,6 +81,11 @@
         - FullTileMask
         layer:
         - GlassLayer
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi

@@ -8,7 +8,10 @@
   color: "#DDDDDD"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/sakeglass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -16,7 +19,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.07
+        amount: 0.15
 
 - type: reagent
   id: Soju
@@ -28,7 +31,10 @@
   color: "#DDDDDD"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/sojuglass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -36,7 +42,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.15
+        amount: 0.2
 
 - type: reagent
   id: OrangeCreamice
@@ -48,7 +54,10 @@
   color: "#efaa16"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/orangecreamcicle.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -56,7 +65,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.05
+        amount: 0.1
 
 - type: reagent
   id: Silverjack
@@ -68,7 +77,10 @@
   color: "#978647"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/silverjack.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -76,7 +88,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.0625
+        amount: 0.1375
 
 - type: reagent
   id: Brainbomb
@@ -88,7 +100,10 @@
   color: "#6f7a2c"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/brainbomb.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -103,7 +118,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.085
+        amount: 0.13
       - !type:AdjustReagent
         reagent: THC
         amount: 0.33
@@ -121,7 +136,10 @@
   color: "#94001c"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/clownblood.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -129,7 +147,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.025
+        amount: 0.08
 
 - type: reagent
   id: CircusJuice
@@ -141,7 +159,10 @@
   color: "#c47872"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/circusjuice.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -149,7 +170,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.0625
+        amount: 0.12
       - !type:Emote #It's very funny
         emote: Laugh
         probability: 0.15
@@ -164,7 +185,10 @@
   color: "#c0501a"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/sapopicante.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -172,7 +196,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.065
+        amount: 0.1125
       - !type:AdjustTemperature
         amount: 75 # thermal energy, not temperature!
 
@@ -186,7 +210,10 @@
   color: "#4f1b1b"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/graveyard.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -194,4 +221,4 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.03
+        amount: 0.12

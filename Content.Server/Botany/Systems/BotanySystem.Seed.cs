@@ -104,11 +104,12 @@ public sealed partial class BotanySystem : EntitySystem
     /// <summary>
     /// Spawns a new seed packet on the floor at a position, then tries to put it in the user's hands if possible.
     /// </summary>
-    public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, EntityUid user)
+    public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
     {
         var seed = Spawn(proto.PacketPrototype, coords);
         var seedComp = EnsureComp<SeedComponent>(seed);
         seedComp.Seed = proto;
+        seedComp.HealthOverride = healthOverride;
 
         var name = Loc.GetString(proto.Name);
         var noun = Loc.GetString(proto.Noun);
@@ -205,6 +206,11 @@ public sealed partial class BotanySystem : EntitySystem
                 // Need to disable collision wake so that mobs can collide with and slip on it
                 var collisionWake = EnsureComp<CollisionWakeComponent>(entity);
                 _colWakeSystem.SetEnabled(entity, false, collisionWake);
+            }
+            if (proto.Teleporting)
+            {
+                var teleporting = EnsureComp<TeleportingTraitComponent>(entity);
+                TeleportingTraitSystem.SetPotencyRadius(proto.Potency, teleporting);
             }
         }
 

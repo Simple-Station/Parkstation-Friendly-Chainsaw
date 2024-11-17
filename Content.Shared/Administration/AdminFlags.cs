@@ -89,10 +89,31 @@
         /// </summary>
         EditNotes = 1 << 14,
 
+
         /// <summary>
-        ///     DeltaV - The ability to whitelist people. Either this permission or +BAN is required for remove.
+        ///     Lets you Massban, on SS14.Admin
         /// </summary>
-        Whitelist = 1 << 15,
+        MassBan = 1 << 15,
+
+        /// <summary>
+        /// Allows you to remain hidden from adminwho except to other admins with this flag.
+        /// </summary>
+        Stealth = 1 << 16,
+
+        ///<summary>
+		/// Allows you to use Admin chat
+		///</summary>
+		Adminchat = 1 << 17,
+
+        ///<summary>
+        /// Permits the visibility of Pii in game and on SS14 Admin
+        ///</summary>
+        Pii = 1 << 18,
+
+        /// <summary>
+        /// DeltaV - The ability to whitelist people. Either this permission or +BAN is required for remove.
+        /// </summary>
+        Whitelist = 1 << 20,
 
         /// <summary>
         ///     Dangerous host permissions like scsi.

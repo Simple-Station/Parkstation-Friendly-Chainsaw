@@ -40,6 +40,8 @@ namespace Content.Server.Database
         public DbSet<AdminNote> AdminNotes { get; set; } = null!;
         public DbSet<AdminWatchlist> AdminWatchlists { get; set; } = null!;
         public DbSet<AdminMessage> AdminMessages { get; set; } = null!;
+        public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
+        public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,16 +50,20 @@ namespace Content.Server.Database
                 .IsUnique();
 
             modelBuilder.Entity<Profile>()
-                .HasIndex(p => new {p.Slot, PrefsId = p.PreferenceId})
+                .HasIndex(p => new { p.Slot, PrefsId = p.PreferenceId })
                 .IsUnique();
 
             modelBuilder.Entity<Antag>()
-                .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.AntagName})
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.AntagName })
                 .IsUnique();
 
             modelBuilder.Entity<Trait>()
-                        .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
-                        .IsUnique();
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.TraitName })
+                .IsUnique();
+
+            modelBuilder.Entity<Loadout>()
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LoadoutName })
+                .IsUnique();
 
             modelBuilder.Entity<Job>()
                 .HasIndex(j => j.ProfileId);
@@ -86,15 +92,15 @@ namespace Content.Server.Database
                 .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<AdminFlag>()
-                .HasIndex(f => new {f.Flag, f.AdminId})
+                .HasIndex(f => new { f.Flag, f.AdminId })
                 .IsUnique();
 
             modelBuilder.Entity<AdminRankFlag>()
-                .HasIndex(f => new {f.Flag, f.AdminRankId})
+                .HasIndex(f => new { f.Flag, f.AdminRankId })
                 .IsUnique();
 
             modelBuilder.Entity<AdminLog>()
-                .HasKey(log => new {log.RoundId, log.Id});
+                .HasKey(log => new { log.RoundId, log.Id });
 
             modelBuilder.Entity<AdminLog>()
                 .Property(log => log.Id);
@@ -118,12 +124,8 @@ namespace Content.Server.Database
             modelBuilder.Entity<Round>()
                 .HasIndex(round => round.StartDate);
 
-            modelBuilder.Entity<Round>()
-                .Property(round => round.StartDate)
-                .HasDefaultValue(default(DateTime));
-
             modelBuilder.Entity<AdminLogPlayer>()
-                .HasKey(logPlayer => new {logPlayer.RoundId, logPlayer.LogId, logPlayer.PlayerUserId});
+                .HasKey(logPlayer => new { logPlayer.RoundId, logPlayer.LogId, logPlayer.PlayerUserId });
 
             modelBuilder.Entity<ServerBan>()
                 .HasIndex(p => p.PlayerUserId);
@@ -268,6 +270,11 @@ namespace Content.Server.Database
                 .HasPrincipalKey(author => author.UserId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            // A message cannot be "dismissed" without also being "seen".
+            modelBuilder.Entity<AdminMessage>().ToTable(t =>
+                t.HasCheckConstraint("NotDismissedAndSeen",
+                    "NOT dismissed OR seen"));
+
             modelBuilder.Entity<ServerBan>()
                 .HasOne(ban => ban.CreatedBy)
                 .WithMany(author => author.AdminServerBansCreated)
@@ -295,6 +302,13 @@ namespace Content.Server.Database
                 .HasForeignKey(ban => ban.LastEditedById)
                 .HasPrincipalKey(author => author.UserId)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<RoleWhitelist>()
+                .HasOne(w => w.Player)
+                .WithMany(p => p.JobWhitelists)
+                .HasForeignKey(w => w.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -325,10 +339,13 @@ namespace Content.Server.Database
         public int Slot { get; set; }
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
+        public string CustomSpecieName { get; set; } = null!;
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
+        public float Height { get; set; } = 1f;
+        public float Width { get; set; } = 1f;
         [Column(TypeName = "jsonb")] public JsonDocument? Markings { get; set; } = null!;
         public string HairName { get; set; } = null!;
         public string HairColor { get; set; } = null!;
@@ -342,6 +359,7 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
+        public List<Loadout> Loadouts { get; } = new();
 
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
 
@@ -384,6 +402,15 @@ namespace Content.Server.Database
         public int ProfileId { get; set; }
 
         public string TraitName { get; set; } = null!;
+    }
+
+    public class Loadout
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string LoadoutName { get; set; } = null!;
     }
 
     public enum DbPreferenceUnavailableMode
@@ -438,6 +465,7 @@ namespace Content.Server.Database
         public List<ServerBan> AdminServerBansLastEdited { get; set; } = null!;
         public List<ServerRoleBan> AdminServerRoleBansCreated { get; set; } = null!;
         public List<ServerRoleBan> AdminServerRoleBansLastEdited { get; set; } = null!;
+        public List<RoleWhitelist> JobWhitelists { get; set; } = null!;
     }
 
     [Table("whitelist")]
@@ -489,7 +517,7 @@ namespace Content.Server.Database
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public List<Player> Players { get; set; } = default!;
 
@@ -578,7 +606,7 @@ namespace Content.Server.Database
     public enum ServerBanExemptFlags
     {
         // @formatter:off
-        None       = 0,
+        None = 0,
 
         /// <summary>
         /// Ban is a datacenter range, connections usually imply usage of a VPN service.
@@ -874,6 +902,8 @@ namespace Content.Server.Database
         public byte[] Data { get; set; } = default!;
     }
 
+    // Note: this interface isn't used by the game, but it *is* used by SS14.Admin.
+    // Don't remove! Or face the consequences!
     public interface IAdminRemarksCommon
     {
         public int Id { get; }
@@ -994,6 +1024,79 @@ namespace Content.Server.Database
         [ForeignKey("DeletedBy")] public Guid? DeletedById { get; set; }
         public Player? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
+
+        /// <summary>
+        /// Whether the message has been seen at least once by the player.
+        /// </summary>
         public bool Seen { get; set; }
+
+        /// <summary>
+        /// Whether the message has been dismissed permanently by the player.
+        /// </summary>
+        public bool Dismissed { get; set; }
+    }
+
+    [PrimaryKey(nameof(PlayerUserId), nameof(RoleId))]
+    public class RoleWhitelist
+    {
+        [Required, ForeignKey("Player")]
+        public Guid PlayerUserId { get; set; }
+        public Player Player { get; set; } = default!;
+
+        [Required]
+        public string RoleId { get; set; } = default!;
+    }
+
+    /// <summary>
+    /// Defines a template that admins can use to quickly fill out ban information.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This information is not currently used by the game itself, but it is used by SS14.Admin.
+    /// </para>
+    /// </remarks>
+    public sealed class BanTemplate
+    {
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Title of the ban template. This is purely for reference by admins and not copied into the ban.
+        /// </summary>
+        public required string Title { get; set; }
+
+        /// <summary>
+        /// How long the ban should last. 0 for permanent.
+        /// </summary>
+        public TimeSpan Length { get; set; }
+
+        /// <summary>
+        /// The reason for the ban.
+        /// </summary>
+        /// <seealso cref="ServerBan.Reason"/>
+        public string Reason { get; set; } = "";
+
+        /// <summary>
+        /// Exemptions granted to the ban.
+        /// </summary>
+        /// <seealso cref="ServerBan.ExemptFlags"/>
+        public ServerBanExemptFlags ExemptFlags { get; set; }
+
+        /// <summary>
+        /// Severity of the ban
+        /// </summary>
+        /// <seealso cref="ServerBan.Severity"/>
+        public NoteSeverity Severity { get; set; }
+
+        /// <summary>
+        /// Ban will be automatically deleted once expired.
+        /// </summary>
+        /// <seealso cref="ServerBan.AutoDelete"/>
+        public bool AutoDelete { get; set; }
+
+        /// <summary>
+        /// Ban is not visible to players in the remarks menu.
+        /// </summary>
+        /// <seealso cref="ServerBan.Hidden"/>
+        public bool Hidden { get; set; }
     }
 }

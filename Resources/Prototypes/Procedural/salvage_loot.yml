@@ -135,6 +135,13 @@
     - !type:BiomeMarkerLoot
       proto: OreQuartz
 
+- type: salvageLoot
+  id: OreSalt
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreSalt
+
 # - Medium value
 - type: salvageLoot
   id: OreGold
@@ -178,3 +185,17 @@
   loots:
     - !type:BiomeMarkerLoot
       proto: OreArtifactFragment
+
+- type: salvageLoot
+  id: OreBluespace
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreBluespace
+
+- type: salvageLoot
+  id: OreNormality
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreNormality

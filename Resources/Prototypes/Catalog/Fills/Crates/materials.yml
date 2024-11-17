@@ -54,6 +54,17 @@
       - id: MaterialWoodPlank
 
 - type: entity
+  id: CrateMaterialBrass
+  parent: CrateGenericSteel
+  name: brass crate
+  description: 90 sheets of brass.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SheetBrass
+        amount: 3
+
+- type: entity
   id: CrateMaterialPlasteel
   parent: CrateGenericSteel
   name: plasteel crate
@@ -116,3 +127,33 @@
 #    contents:
 #      - id: WaterTankFull
 #        amount: 1
+
+- type: entity
+  id: CrateMaterialUranium
+  name: uranium crate
+  parent: CrateUranium
+  components:
+  - type: StorageFill
+    contents:
+      - id: SheetUranium
+        amount: 3
+
+- type: entity
+  id: CrateMaterialGold
+  name: gold crate
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: IngotGold
+        amount: 3
+
+- type: entity
+  id: CrateMaterialSilver
+  name: silver crate
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: IngotSilver
+        amount: 3

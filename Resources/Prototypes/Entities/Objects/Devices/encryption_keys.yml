@@ -67,11 +67,13 @@
     - Common
     - Command
     - Engineering
+    - Justice # Delta V- adds Justice department
     - Medical
     - Science
     - Security
     - Service
     - Supply
+    - Prison #DeltaV
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -178,6 +180,7 @@
   - type: EncryptionKey
     channels:
     - Security
+    - Prison #deltaV
     defaultChannel: Security
   - type: Sprite
     layers:
@@ -203,7 +206,7 @@
   parent: EncryptionKey
   id: EncryptionKeySyndie
   name: blood-red encryption key
-  description: An encryption key used by... wait... Who is owner of this chip?
+  description: An encryption key used by... wait... Who is the owner of this chip?
   components:
   - type: EncryptionKey
     channels:

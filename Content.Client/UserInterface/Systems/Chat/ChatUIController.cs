@@ -9,16 +9,19 @@ using Content.Client.Chat.UI;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
+using Content.Shared.Decals;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Radio;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
@@ -27,13 +30,14 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Client.Nyanotrasen.Chat; //Nyano - Summary: chat namespace.
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -43,19 +47,25 @@ public sealed class ChatUIController : UIController
     [Dependency] private readonly IChatManager _manager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; //Nyano - Summary: makes the psionic chat available.
+
+    [ValidatePrototypeId<ColorPalettePrototype>]
+    private const string ChatNamePalette = "ChatNames";
+    private string[] _chatNameColors = default!;
+    private bool _chatNameColorsEnabled;
 
     private ISawmill _sawmill = default!;
 
@@ -173,6 +183,8 @@ public sealed class ChatUIController : UIController
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
+        _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
+        _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
         _speechBubbleRoot = new LayoutContainer();
 
@@ -217,6 +229,16 @@ public sealed class ChatUIController : UIController
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
+
+        var nameColors = _prototypeManager.Index<ColorPalettePrototype>(ChatNamePalette).Colors.Values.ToArray();
+        _chatNameColors = new string[nameColors.Length];
+        for (var i = 0; i < nameColors.Length; i++)
+        {
+            _chatNameColors[i] = nameColors[i].ToHex();
+        }
+
+        _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
+
     }
 
     public void OnScreenLoad()
@@ -225,11 +247,41 @@ public sealed class ChatUIController : UIController
 
         var viewportContainer = UIManager.ActiveScreen!.FindControl<LayoutContainer>("ViewportContainer");
         SetSpeechBubbleRoot(viewportContainer);
+
+        SetChatWindowOpacity(_config.GetCVar(CCVars.ChatWindowOpacity));
     }
 
     public void OnScreenUnload()
     {
         SetMainChat(false);
+    }
+
+    private void OnChatWindowOpacityChanged(float opacity)
+    {
+        SetChatWindowOpacity(opacity);
+    }
+
+    private void SetChatWindowOpacity(float opacity)
+    {
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
+
+        var panel = chatBox?.ChatWindowPanel;
+        if (panel is null)
+            return;
+
+        Color color;
+        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
+            color = styleBoxFlat.BackgroundColor;
+        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
+                 && style is StyleBoxFlat propStyleBoxFlat)
+            color = propStyleBoxFlat.BackgroundColor;
+        else
+            color = StyleNano.ChatBackgroundColor;
+
+        panel.PanelOverride = new StyleBoxFlat
+        {
+            BackgroundColor = color.WithAlpha(opacity)
+        };
     }
 
     public void SetMainChat(bool setting)
@@ -244,15 +296,15 @@ public sealed class ChatUIController : UIController
 
         switch (UIManager.ActiveScreen)
         {
-            case DefaultGameScreen defaultScreen:
-                chatBox = defaultScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.DefaultScreenChatSize);
-                SetChatSizing(chatSizeRaw, defaultScreen, setting);
-                break;
             case SeparatedChatGameScreen separatedScreen:
                 chatBox = separatedScreen.ChatBox;
                 chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
                 SetChatSizing(chatSizeRaw, separatedScreen, setting);
+                break;
+            case OverlayChatGameScreen overlayScreen:
+                chatBox = overlayScreen.ChatBox;
+                chatSizeRaw = _config.GetCVar(CCVars.OverlayScreenChatSize);
+                SetChatSizing(chatSizeRaw, overlayScreen, setting);
                 break;
             default:
                 // this could be better?
@@ -302,11 +354,11 @@ public sealed class ChatUIController : UIController
             $"{size.X.ToString(CultureInfo.InvariantCulture)},{size.Y.ToString(CultureInfo.InvariantCulture)}";
         switch (UIManager.ActiveScreen)
         {
-            case DefaultGameScreen _:
-                _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
-                break;
             case SeparatedChatGameScreen _:
                 _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
+                break;
+            case OverlayChatGameScreen _:
+                _config.SetCVar(CCVars.OverlayScreenChatSize, stringSize);
                 break;
             default:
                 // do nothing
@@ -472,11 +524,12 @@ public sealed class ChatUIController : UIController
 
         if (_state.CurrentState is GameplayStateBase)
         {
-            // can always hear local / radio / emote when in the game
+            // can always hear local / radio / emote / notifications when in the game
             FilterableChannels |= ChatChannel.Local;
             FilterableChannels |= ChatChannel.Whisper;
             FilterableChannels |= ChatChannel.Radio;
             FilterableChannels |= ChatChannel.Emotes;
+            FilterableChannels |= ChatChannel.Notifications;
 
             // Can only send local / radio / emote when attached to a non-ghost entity.
             // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
@@ -497,7 +550,7 @@ public sealed class ChatUIController : UIController
         }
 
         // only admins can see / filter asay
-        if (_admin.HasFlag(AdminFlags.Admin))
+        if (_admin.HasFlag(AdminFlags.Adminchat))
         {
             FilterableChannels |= ChatChannel.Admin;
             FilterableChannels |= ChatChannel.AdminAlert;
@@ -581,7 +634,7 @@ public sealed class ChatUIController : UIController
             CreateSpeechBubble(entity, msg);
         }
 
-        var player = _player.LocalPlayer?.ControlledEntity;
+        var player = _player.LocalEntity;
         var predicate = static (EntityUid uid, (EntityUid compOwner, EntityUid? attachedEntity) data)
             => uid == data.compOwner || uid == data.attachedEntity;
         var playerPos = player != null
@@ -606,7 +659,7 @@ public sealed class ChatUIController : UIController
 
             var otherPos = EntityManager.GetComponent<TransformComponent>(ent).MapPosition;
 
-            if (occluded && !ExamineSystemShared.InRangeUnOccluded(
+            if (occluded && !_examine.InRangeUnOccluded(
                     playerPos,
                     otherPos, 0f,
                     (ent, player), predicate))
@@ -638,7 +691,7 @@ public sealed class ChatUIController : UIController
     private bool TryGetRadioChannel(string text, out RadioChannelPrototype? radioChannel)
     {
         radioChannel = null;
-        return _player.LocalPlayer?.ControlledEntity is EntityUid { Valid: true } uid
+        return _player.LocalEntity is EntityUid { Valid: true } uid
            && _chatSys != null
            && _chatSys.TryProccessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
     }
@@ -763,7 +816,7 @@ public sealed class ChatUIController : UIController
         ProcessChatMessage(msg);
 
         if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
-            _cfg.GetCVar(CCVars.ReplayRecordAdminChat))
+            _config.GetCVar(CCVars.ReplayRecordAdminChat))
         {
             _replayRecording.RecordClientMessage(msg);
         }
@@ -771,6 +824,14 @@ public sealed class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
+        // color the name unless it's something like "the old man"
+        if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
+        {
+            var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
+            if (grammar != null && grammar.ProperNoun == true)
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
+        }
+
         // Log all incoming chat to repopulate when filter is un-toggled
         if (!msg.HideChat)
         {
@@ -815,7 +876,7 @@ public sealed class ChatUIController : UIController
                 break;
 
             case ChatChannel.LOOC:
-                if (_cfg.GetCVar(CCVars.LoocAboveHeadShow))
+                if (_config.GetCVar(CCVars.LoocAboveHeadShow))
                     AddSpeechBubble(msg, SpeechBubble.SpeechType.Looc);
                 break;
         }
@@ -857,6 +918,17 @@ public sealed class ChatUIController : UIController
         {
             chat.Repopulate();
         }
+    }
+
+    /// <summary>
+    /// Returns the chat name color for a mob
+    /// </summary>
+    /// <param name="name">Name of the mob</param>
+    /// <returns>Hex value of the color</returns>
+    public string GetNameColor(string name)
+    {
+        var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
+        return _chatNameColors[colorIdx];
     }
 
     private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);

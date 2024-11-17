@@ -4,7 +4,6 @@ using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.Salvage.Expeditions;
@@ -12,7 +11,7 @@ namespace Content.Server.Salvage.Expeditions;
 /// <summary>
 /// Designates this entity as holding a salvage expedition.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class SalvageExpeditionComponent : SharedSalvageExpeditionComponent
 {
     public SalvageMissionParams MissionParams = default!;
@@ -27,6 +26,7 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// When the expeditions ends.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("endTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan EndTime;
 
     /// <summary>
@@ -40,11 +40,21 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
+    [DataField, AutoNetworkedField]
     public EntityUid? Stream = null;
 
     /// <summary>
     /// Sound that plays when the mission end is imminent.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("sound", customTypeSerializer: typeof(PrototypeIdSerializer<SoundCollectionPrototype>))] // Parkstation-ExpeditionMusic
-    public string Sound = "ExpeditionCountdownDefault"; // Parkstation-ExpeditionMusic
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public SoundSpecifier Sound = new SoundCollectionSpecifier("ExpeditionEnd")
+    {
+        Params = AudioParams.Default.WithVolume(-5),
+    };
+
+    /// <summary>
+    /// Song selected on MapInit so we can predict the audio countdown properly.
+    /// </summary>
+    [DataField]
+    public SoundPathSpecifier SelectedSong;
 }

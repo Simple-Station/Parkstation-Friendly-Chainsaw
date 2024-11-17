@@ -1,9 +1,11 @@
 using Content.Shared.Actions;
+using Content.Shared.CCVar;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -20,6 +22,7 @@ public abstract class SharedJetpackSystem : EntitySystem
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     public override void Initialize()
     {
@@ -92,7 +95,7 @@ public abstract class SharedJetpackSystem : EntitySystem
         _mover.SetRelay(user, jetpackUid);
 
         if (TryComp<PhysicsComponent>(user, out var physics))
-            _physics.SetBodyStatus(physics, BodyStatus.InAir);
+            _physics.SetBodyStatus(user, physics, BodyStatus.InAir);
 
         userComp.Jetpack = jetpackUid;
     }
@@ -103,7 +106,7 @@ public abstract class SharedJetpackSystem : EntitySystem
             return;
 
         if (TryComp<PhysicsComponent>(uid, out var physics))
-            _physics.SetBodyStatus(physics, BodyStatus.OnGround);
+            _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);
 
         RemComp<RelayInputMoverComponent>(uid);
     }
@@ -125,8 +128,11 @@ public abstract class SharedJetpackSystem : EntitySystem
 
     private bool CanEnableOnGrid(EntityUid? gridUid)
     {
-        return gridUid == null ||
-               (!HasComp<GravityComponent>(gridUid));
+        return _config.GetCVar(CCVars.JetpackEnableAnywhere)
+            || gridUid == null
+            || _config.GetCVar(CCVars.JetpackEnableInNoGravity)
+            && TryComp<GravityComponent>(gridUid, out var comp)
+            && comp.Enabled;
     }
 
     private void OnJetpackGetAction(EntityUid uid, JetpackComponent component, GetItemActionsEvent args)

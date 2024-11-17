@@ -17,7 +17,7 @@
       inHandsOnly: true
     - type: UserInterface
       interfaces:
-        - key: enum.HandLabelerUiKey.Key
+        enum.HandLabelerUiKey.Key:
           type: HandLabelerBoundUserInterface
     - type: HandLabeler
       whitelist:
@@ -25,3 +25,6 @@
           - Item
         tags:
           - Structure
+    - type: Tag
+      tags:
+      - HandLabeler # DeltaV - fish labeler

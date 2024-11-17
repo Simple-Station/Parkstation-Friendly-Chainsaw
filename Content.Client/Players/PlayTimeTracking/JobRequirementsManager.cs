@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
+using Content.Shared.Customization.Systems;
+using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
@@ -7,25 +9,23 @@ using Robust.Client;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
-public sealed partial class JobRequirementsManager
+public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
-
     private ISawmill _sawmill = default!;
-
+    private readonly List<string> _jobWhitelists = new();
     public event Action? Updated;
 
     public void Initialize()
@@ -36,6 +36,7 @@ public sealed partial class JobRequirementsManager
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
+        _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
@@ -79,47 +80,26 @@ public sealed partial class JobRequirementsManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    private void RxJobWhitelist(MsgJobWhitelist message)
     {
-        reason = null;
+        _jobWhitelists.Clear();
+        _jobWhitelists.AddRange(message.Whitelist);
+        Updated?.Invoke();
+    }
 
-        if (_roleBans.Contains($"Job:{job.ID}"))
+    public bool CheckJobWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = default;
+        if (!_cfg.GetCVar(CCVars.GameRoleWhitelist))
+            return true;
+
+        if (job.Whitelisted && !_jobWhitelists.Contains(job.ID))
         {
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-not-whitelisted"));
             return false;
         }
 
-        if (job.Requirements == null ||
-            !_cfg.GetCVar(CCVars.GameRoleTimers))
-        {
-            return true;
-        }
-
-        var player = _playerManager.LocalPlayer?.Session;
-        if (player == null)
-            return true;
-
-        return CheckRoleTime(job.Requirements, out reason);
-    }
-
-    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
-    {
-        reason = null;
-
-        if (requirements == null)
-            return true;
-
-        var reasons = new List<string>();
-        foreach (var requirement in requirements)
-        {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes, _whitelisted))
-                continue;
-
-            reasons.Add(jobReason.ToMarkup());
-        }
-
-        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
-        return reason == null;
+        return true;
     }
 
     public TimeSpan FetchOverallPlaytime()
@@ -127,18 +107,28 @@ public sealed partial class JobRequirementsManager
         return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
     }
 
-    public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
+    public Dictionary<string, TimeSpan> FetchPlaytimeByRoles()
     {
         var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
+        var ret = new Dictionary<string, TimeSpan>();
 
         foreach (var job in jobsToMap)
-        {
             if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
-            {
-                yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
-            }
-        }
+                ret.Add(job.Name, locJobName);
+
+        return ret;
     }
 
 
+    public Dictionary<string, TimeSpan> GetPlayTimes()
+    {
+        var dict = FetchPlaytimeByRoles();
+        dict.Add(PlayTimeTrackingShared.TrackerOverall, FetchOverallPlaytime());
+        return dict;
+    }
+
+    public Dictionary<string, TimeSpan> GetRawPlayTimeTrackers()
+    {
+        return _roles;
+    }
 }

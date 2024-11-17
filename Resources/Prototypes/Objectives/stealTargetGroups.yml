@@ -1,11 +1,25 @@
 # Traitor single items
 
 - type: stealTargetGroup
+  id: SupermatterSliver
+  name: supermatter sliver
+  sprite:
+    sprite: Supermatter/supermatter_sliver.rsi
+    state: icon
+
+- type: stealTargetGroup
   id: Hypospray
   name: hypospray
   sprite:
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
+
+- type: stealTargetGroup
+  id: HandheldCrewMonitor
+  name: handheld crew monitor
+  sprite:
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd
@@ -48,13 +62,13 @@
   sprite:
     sprite: Objects/Consumable/Food/meat.rsi
     state: corgi
-    #
+
 - type: stealTargetGroup
   id: CaptainIDCard
   name: captain ID card
   sprite:
     sprite: Objects/Misc/id_cards.rsi
-    state: ert_commander #no one will know the difference.
+    state: gold
 
 - type: stealTargetGroup
   id: JetpackCaptainFilled
@@ -76,6 +90,13 @@
   sprite:
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: HoSAntiqueWeapon
+  name: head of security's personal weapon
+  sprite:
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    state: base
 
 # Thief Collection
 
@@ -135,12 +156,7 @@
     sprite: Objects/Misc/id_cards.rsi
     state: default
 
-- type: stealTargetGroup
-  id: Cannabis
-  name: cannabis
-  sprite:
-    sprite: Objects/Specific/Hydroponics/cannabis.rsi
-    state: produce
+
 
 - type: stealTargetGroup
   id: LAMP
@@ -181,7 +197,7 @@
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitVoidParamed
-  name: paramedic void suit
+  name: paramedic hardsuit
   sprite:
     sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
     state: icon
@@ -215,11 +231,11 @@
     state: icon
 
 - type: stealTargetGroup
-  id: AmePart
+  id: AmePartFlatpack
   name: AME part
   sprite:
-    sprite: Objects/Power/AME/ame_part.rsi
-    state: box
+    sprite: Objects/Devices/flatpack.rsi
+    state: ame-part
 
 - type: stealTargetGroup
   id: SalvageExpeditionsComputerCircuitboard
@@ -330,7 +346,7 @@
 
 - type: stealTargetGroup
   id: PlantRD
-  name: RD's potted plant
+  name: Mystagogue's potted plant # DeltaV - Epistemics Department - Replace Research Director with Mystagogue
   sprite:
     sprite: Structures/Furniture/potted_plants.rsi
     state: plant-25
@@ -380,32 +396,11 @@
     state: fox
 
 - type: stealTargetGroup
-  id: AnimalHamlet
-  name: Hamlet
-  sprite:
-    sprite: Mobs/Pets/hamlet.rsi
-    state: hamster-0
-
-- type: stealTargetGroup
   id: AnimalShiva
   name: Shiva
   sprite:
     sprite: Mobs/Pets/shiva.rsi
     state: shiva
-
-- type: stealTargetGroup
-  id: AnimalSmile
-  name: Smile
-  sprite:
-    sprite: Mobs/Aliens/slimes.rsi
-    state: rainbow_baby_slime
-
-- type: stealTargetGroup
-  id: AnimalPunPun
-  name: Pun Pun
-  sprite:
-    sprite: Mobs/Animals/monkey.rsi
-    state: monkey
 
 - type: stealTargetGroup
   id: AnimalTropico

@@ -10,22 +10,19 @@
       state: cpuboard
     - type: Item
       storedRotation: -90
-    - type: Tag
-      tags:
-        - DroneUsable
     - type: StaticPrice
       price: 100
     - type: PhysicalComposition
       materialComposition:
-        Glass: 400
+        Glass: 230
       chemicalComposition:
         Silicon: 20
 
 - type: entity
   parent: BaseComputerCircuitboard
   id: AlertsComputerCircuitboard
-  name: alerts computer board
-  description: A computer printed circuit board for an alerts computer.
+  name: atmospheric alerts computer board
+  description: A computer printed circuit board for an atmospheric alerts computer.
   components:
     - type: ComputerBoard
       prototype: ComputerAlert
@@ -89,9 +86,6 @@
       prototype: ComputerCargoOrders
     - type: StaticPrice
       price: 750
-    - type: Tag
-      tags:
-      - DroneUsable
 
 - type: entity
   id: CargoBountyComputerCircuitboard
@@ -104,9 +98,6 @@
   - type: ComputerBoard
     prototype: ComputerCargoBounty
   - type: StaticPrice
-  - type: Tag
-    tags:
-    - DroneUsable
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -131,6 +122,10 @@
       prototype: ComputerSalvageExpedition
     - type: StealTarget
       stealGroup: SalvageExpeditionsComputerCircuitboard
+    - type: ReverseEngineering # Nyano
+      difficulty: 2
+      recipes:
+        - SalvageExpeditionsComputerCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -164,7 +159,6 @@
       prototype: ComputerSurveillanceCameraMonitor
     - type: Tag
       tags:
-        - DroneUsable
         - SurveillanceCameraMonitorCircuitboard
 
 - type: entity
@@ -186,7 +180,10 @@
       prototype: ComputerTelevision
     - type: Tag
       tags:
-        - DroneUsable
+        - ComputerTelevisionCircuitboard
+    - type: ReverseEngineering # Nyano
+      difficulty: 2
+      recipes:
         - ComputerTelevisionCircuitboard
 
 - type: entity
@@ -257,7 +254,6 @@
       price: 750
     - type: Tag
       tags:
-      - DroneUsable
       - HighRiskItem
 
 - type: entity
@@ -298,6 +294,10 @@
   components:
   - type: ComputerBoard
     prototype: ComputerRadar
+  - type: ReverseEngineering # Nyano
+    difficulty: 2
+    recipes:
+       - RadarConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -351,6 +351,10 @@
   components:
     - type: ComputerBoard
       prototype: ComputerShuttle
+    - type: ReverseEngineering # Nyano
+      difficulty: 3
+      recipes:
+        - ShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -399,7 +403,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerMassMediaCircuitboard
-  name: mass-media console board
+  name: news manager console board
   description: Write your message to the world!
   components:
     - type: Sprite
@@ -408,6 +412,10 @@
       price: 150
     - type: ComputerBoard
       prototype: ComputerMassMedia
+    - type: ReverseEngineering # Nyano
+      difficulty: 3
+      recipes:
+        - ComputerMassMediaCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -419,3 +427,14 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerSensorMonitoring
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: RoboticsConsoleCircuitboard
+  name: robotics control console board
+  description: A computer printed circuit board for a robotics control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerRoboticsControl

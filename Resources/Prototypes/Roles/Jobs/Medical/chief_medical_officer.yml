@@ -7,12 +7,20 @@
   playTimeTracker: JobChiefMedicalOfficer
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
-    # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Medical
-      time: 18000 # 5 hours
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24 hours
+      min: 18000 # 5 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 72000 # DeltaV - 20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          traits:
+            - ShadowkinBlackeye
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
@@ -28,6 +36,7 @@
   - Paramedic # DeltaV - Add Paramedic access
   - External # DeltaV - Paramedics need this access
   - Psychologist # DeltaV - Add Psychologist access
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -36,8 +45,9 @@
       - type: CommandStaff
   - !type:AddComponentSpecial
     components:
-    - type: PsionicBonusChance #Nyano - Summary: makes it more likely to become psionic.
-      flatBonus: 0.025
+    - type: CPRTraining
+    - type: SurgerySpeedModifier
+      SpeedModifier: 2.5
 
 - type: startingGear
   id: CMOGear
@@ -45,7 +55,6 @@
     jumpsuit: ClothingUniformJumpsuitCMO
     back: ClothingBackpackCMOFilled
     shoes: ClothingShoesColorBrown
-    outerClothing: ClothingOuterCoatLabCmo
     id: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled

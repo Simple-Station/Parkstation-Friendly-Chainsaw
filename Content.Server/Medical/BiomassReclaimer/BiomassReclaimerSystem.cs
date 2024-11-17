@@ -1,5 +1,7 @@
 using System.Numerics;
 using Content.Server.Body.Components;
+using Content.Server.Botany.Components;
+using Content.Server.Construction;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Materials;
 using Content.Server.Power.Components;
@@ -17,6 +19,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Jittering;
 using Content.Shared.Medical;
 using Content.Shared.Mind;
+using Content.Shared.Materials;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
@@ -47,6 +50,9 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
 
+        [ValidatePrototypeId<MaterialPrototype>]
+        public const string BiomassPrototype = "Biomass";
+
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
@@ -75,11 +81,11 @@ namespace Content.Server.Medical.BiomassReclaimer
                 }
 
                 if (reclaimer.ProcessingTimer > 0)
-                {
                     continue;
-                }
 
-                _material.SpawnMultipleFromMaterial(reclaimer.CurrentExpectedYield, "Biomass", Transform(uid).Coordinates);
+                var actualYield = (int) reclaimer.CurrentExpectedYield; // Can only have integer biomass physically
+                reclaimer.CurrentExpectedYield = reclaimer.CurrentExpectedYield - actualYield; // store non-integer leftovers
+                _material.SpawnMultipleFromMaterial(actualYield, BiomassPrototype, Transform(uid).Coordinates);
 
                 reclaimer.BloodReagent = null;
                 reclaimer.SpawnedEntities.Clear();
@@ -94,6 +100,8 @@ namespace Content.Server.Medical.BiomassReclaimer
             SubscribeLocalEvent<ActiveBiomassReclaimerComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
             SubscribeLocalEvent<BiomassReclaimerComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
             SubscribeLocalEvent<BiomassReclaimerComponent, ClimbedOnEvent>(OnClimbedOn);
+            SubscribeLocalEvent<BiomassReclaimerComponent, RefreshPartsEvent>(OnRefreshParts);
+            SubscribeLocalEvent<BiomassReclaimerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
             SubscribeLocalEvent<BiomassReclaimerComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<BiomassReclaimerComponent, SuicideEvent>(OnSuicide);
             SubscribeLocalEvent<BiomassReclaimerComponent, ReclaimerDoAfterEvent>(OnDoAfter);
@@ -101,13 +109,9 @@ namespace Content.Server.Medical.BiomassReclaimer
 
         private void OnSuicide(Entity<BiomassReclaimerComponent> ent, ref SuicideEvent args)
         {
-            if (args.Handled)
-                return;
-
-            if (HasComp<ActiveBiomassReclaimerComponent>(ent))
-                return;
-
-            if (TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered)
+            if (args.Handled
+                || HasComp<ActiveBiomassReclaimerComponent>(ent)
+                || TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered)
                 return;
 
             _popup.PopupEntity(Loc.GetString("biomass-reclaimer-suicide-others", ("victim", args.Victim)), ent, PopupType.LargeCaution);
@@ -130,11 +134,9 @@ namespace Content.Server.Medical.BiomassReclaimer
 
         private void OnPowerChanged(EntityUid uid, BiomassReclaimerComponent component, ref PowerChangedEvent args)
         {
-            if (args.Powered)
-            {
-                if (component.ProcessingTimer > 0)
-                    EnsureComp<ActiveBiomassReclaimerComponent>(uid);
-            }
+            if (args.Powered
+                && component.ProcessingTimer > 0)
+                EnsureComp<ActiveBiomassReclaimerComponent>(uid);
             else
                 RemComp<ActiveBiomassReclaimerComponent>(uid);
         }
@@ -145,13 +147,15 @@ namespace Content.Server.Medical.BiomassReclaimer
         }
         private void OnAfterInteractUsing(Entity<BiomassReclaimerComponent> reclaimer, ref AfterInteractUsingEvent args)
         {
-            if (!args.CanReach || args.Target == null)
+            if (!args.CanReach
+                || args.Target == null
+                || !CanGib(reclaimer, args.Used))
                 return;
 
-            if (!HasComp<MobStateComponent>(args.Used) || !CanGib(reclaimer, args.Used))
-                return;
-
-            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, 7f, new ReclaimerDoAfterEvent(), reclaimer, target: args.Target, used: args.Used)
+            var delay = reclaimer.Comp.BaseInsertionDelay * (TryComp<PhysicsComponent>(args.Used, out var physics)
+                ? physics.FixturesMass
+                : 1);
+            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, delay, new ReclaimerDoAfterEvent(), reclaimer, target: args.Target, used: args.Used)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
@@ -172,13 +176,37 @@ namespace Content.Server.Medical.BiomassReclaimer
             StartProcessing(args.Climber, reclaimer);
         }
 
+        private void OnRefreshParts(EntityUid uid, BiomassReclaimerComponent component, RefreshPartsEvent args)
+        {
+            var laserRating = args.PartRatings[component.MachinePartProcessingSpeed];
+            var manipRating = args.PartRatings[component.MachinePartYieldAmount];
+
+            // Processing time slopes downwards with part rating.
+            component.ProcessingTimePerUnitMass =
+                component.BaseProcessingTimePerUnitMass / MathF.Pow(component.PartRatingSpeedMultiplier, laserRating - 1);
+
+            // Yield slopes upwards with part rating.
+            component.YieldPerUnitMass =
+                component.BaseYieldPerUnitMass * MathF.Pow(component.PartRatingYieldAmountMultiplier, manipRating - 1);
+        }
+
+        private void OnUpgradeExamine(EntityUid uid, BiomassReclaimerComponent component, UpgradeExamineEvent args)
+        {
+            args.AddPercentageUpgrade("biomass-reclaimer-component-upgrade-speed", component.BaseProcessingTimePerUnitMass / component.ProcessingTimePerUnitMass);
+            args.AddPercentageUpgrade("biomass-reclaimer-component-upgrade-biomass-yield", component.YieldPerUnitMass / component.BaseYieldPerUnitMass);
+        }
+
         private void OnDoAfter(Entity<BiomassReclaimerComponent> reclaimer, ref ReclaimerDoAfterEvent args)
         {
-            if (args.Handled || args.Cancelled || args.Args.Target == null || HasComp<BiomassReclaimerComponent>(args.Args.Target.Value))
+            if (args.Handled
+                || args.Cancelled
+                || args.Args.Used == null
+                || args.Args.Target == null
+                || !HasComp<BiomassReclaimerComponent>(args.Args.Target.Value))
                 return;
 
             _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Args.User):player} used a biomass reclaimer to gib {ToPrettyString(args.Args.Target.Value):target} in {ToPrettyString(reclaimer):reclaimer}");
-            StartProcessing(args.Args.Target.Value, reclaimer);
+            StartProcessing(args.Args.Used.Value, reclaimer);
 
             args.Handled = true;
         }
@@ -192,44 +220,36 @@ namespace Content.Server.Medical.BiomassReclaimer
             AddComp<ActiveBiomassReclaimerComponent>(ent);
 
             if (TryComp<BloodstreamComponent>(toProcess, out var stream))
-            {
                 component.BloodReagent = stream.BloodReagent;
-            }
             if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
-            {
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
-            }
 
-            component.CurrentExpectedYield = (int) Math.Max(0, physics.FixturesMass * component.YieldPerUnitMass);
+            component.CurrentExpectedYield += HasComp<ProduceComponent>(toProcess)
+                ? physics.FixturesMass * component.YieldPerUnitMass * component.ProduceYieldMultiplier
+                : physics.FixturesMass * component.YieldPerUnitMass;
+
             component.ProcessingTimer = physics.FixturesMass * component.ProcessingTimePerUnitMass;
+
             QueueDel(toProcess);
         }
 
         private bool CanGib(Entity<BiomassReclaimerComponent> reclaimer, EntityUid dragged)
         {
-            if (HasComp<ActiveBiomassReclaimerComponent>(reclaimer))
+            if (HasComp<ActiveBiomassReclaimerComponent>(reclaimer)
+                || !Transform(reclaimer).Anchored
+                || TryComp<ApcPowerReceiverComponent>(reclaimer, out var power) && !power.Powered)
                 return false;
 
-            if (!HasComp<MobStateComponent>(dragged))
+            bool isPlant = HasComp<ProduceComponent>(dragged);
+            if (!HasComp<ProduceComponent>(dragged) && (!HasComp<MobStateComponent>(dragged) || reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged)))
                 return false;
 
-            if (!Transform(reclaimer).Anchored)
+            if (_configManager.GetCVar(CCVars.CloningReclaimSouledBodies)
+                && HasComp<HumanoidAppearanceComponent>(dragged)
+                && _minds.TryGetMind(dragged, out _, out var mind)
+                && mind.UserId != null
+                && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
                 return false;
-
-            if (TryComp<ApcPowerReceiverComponent>(reclaimer, out var power) && !power.Powered)
-                return false;
-
-            if (reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged))
-                return false;
-
-            // Reject souled bodies in easy mode.
-            if (_configManager.GetCVar(CCVars.BiomassEasyMode) &&
-                HasComp<HumanoidAppearanceComponent>(dragged) &&
-                _minds.TryGetMind(dragged, out _, out var mind))
-            {
-                if (mind.UserId != null && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
-                    return false;
-            }
 
             return true;
         }

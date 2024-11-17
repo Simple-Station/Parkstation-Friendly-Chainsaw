@@ -1,21 +1,24 @@
-using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.NPC.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class NPCJukeComponent : Component
 {
-    [DataField("jukeType")]
+    [DataField]
     public JukeType JukeType = JukeType.Away;
 
-    [DataField("jukeDuration")]
+    [DataField]
     public float JukeDuration = 0.5f;
 
-    [DataField("nextJuke", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField]
+    public float JukeCooldown = 3f;
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextJuke;
 
-    [DataField("targetTile")]
+    [DataField]
     public Vector2i? TargetTile;
 }
 

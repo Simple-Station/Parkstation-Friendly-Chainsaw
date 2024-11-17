@@ -16,7 +16,19 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    understands:
+    - TauCetiBasic
+    - SolCommon
+  - type: FootPrints
 
 - type: entity
   parent: BaseSpeciesDummy

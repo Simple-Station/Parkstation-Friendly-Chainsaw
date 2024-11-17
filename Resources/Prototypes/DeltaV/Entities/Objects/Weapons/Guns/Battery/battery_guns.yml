@@ -23,19 +23,19 @@
     soundEmpty:
       path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
+    maxCharge: 1000
+    startingCharge: 1000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 50
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 50
       name: disable
       state: disabler
     - proto: BulletEnergyGunLaser
-      fireCost: 200
+      fireCost: 100
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -76,23 +76,23 @@
     soundEmpty:
       path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
+    maxCharge: 1000
+    startingCharge: 1000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 50
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 50
       name: disable
       state: disabler
     - proto: BulletEnergyGunLaser
-      fireCost: 200
+      fireCost: 100
       name: lethal
       state: lethal
     # - proto: BulletEnergyGunIon
-    #   fireCost: 500
+    #   fireCost: 250
     #   name: ion
     #   state: special
   - type: MagazineVisuals
@@ -114,7 +114,7 @@
   - type: StaticPrice
     price: 750
   - type: StealTarget
-    stealGroup: WeaponEnergyGunMultiphase
+    stealGroup: HoSAntiqueWeapon
 
 - type: entity
   name: miniature energy gun
@@ -138,19 +138,19 @@
     soundEmpty:
       path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 500
+    startingCharge: 500
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 50
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 50
       name: disable
       state: disabler
     - proto: BulletEnergyGunLaser
-      fireCost: 200
+      fireCost: 100
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -165,6 +165,13 @@
           Disabler: { state: mode-disabler }
           Lethal: { state: mode-lethal }
           Special: { state: mode-stun } # Unused
+
+- type: entity
+  name: miniature energy gun
+  parent: WeaponEnergyGunMini
+  id: WeaponEnergyGunMiniSecurity
+  description: A light version of the Energy gun with a smaller capacity.
+               The serial number on the handguard marks this gun as belonging to an NT Security Officer.
 
 - type: entity
   name: PDW-9 Energy Pistol
@@ -191,19 +198,19 @@
     soundEmpty:
       path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 1600
-    startingCharge: 1600
+    maxCharge: 800
+    startingCharge: 800
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 50
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 50
       name: disable
       state: disabler
     - proto: BulletEnergyGunLaser
-      fireCost: 200
+      fireCost: 100
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -222,6 +229,13 @@
     - Sidearm
   - type: StaticPrice
     price: 750
+
+- type: entity
+  name: PDW-9 Energy Pistol
+  parent: WeaponEnergyGunPistol
+  id: WeaponEnergyGunPistolSecurity
+  description: A military grade sidearm, used by many militia forces throughout the local sector.
+               The serial number on the handguard marks this gun as belonging to an NT Security Officer.
 
 - type: entity
   name: IK-60 laser carbine
@@ -249,11 +263,11 @@
     availableModes:
       - SemiAuto
   - type: Battery
-    maxCharge: 4000
-    startingCharge: 4000
+    maxCharge: 2000
+    startingCharge: 2000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergyGunLaser
-    fireCost: 200
+    fireCost: 100
   - type: MagazineVisuals
     magState: mag
     steps: 5

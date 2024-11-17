@@ -8,12 +8,12 @@
   requirements:
     # - !type:RoleTimeRequirement # DeltaV - No Medical Doctor time requirement
     #   role: JobMedicalDoctor
-    #   time: 14400 #4 hrs
-    - !type:DepartmentTimeRequirement # DeltaV - Medical dept time requirement
+    #   min: 14400 #4 hrs
+    - !type:CharacterDepartmentTimeRequirement # DeltaV - Medical dept time requirement
       department: Medical
-      time: 28800 # DeltaV - 8 hours
-    # - !type:OverallPlaytimeRequirement # DeltaV - No playtime requirement
-    #   time: 54000 # 15 hrs
+      min: 28800 # DeltaV - 8 hours
+    # - !type:CharacterOverallTimeRequirement # DeltaV - No playtime requirement
+    #   min: 54000 # 15 hrs
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
@@ -24,6 +24,12 @@
   - Paramedic # DeltaV - Add Paramedic access
   extendedAccess:
   - Chemistry
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: CPRTraining
+    - type: SurgerySpeedModifier
+      SpeedModifier: 1.75
 
 - type: startingGear
   id: ParamedicGear
@@ -33,7 +39,7 @@
     shoes: ClothingShoesColorBlue
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltParamedicFilled
+    belt: ClothingBeltMedicalEMTFilled
     pocket1: HandheldGPSBasic # DeltaV - Give Paramedics useful tools on spawn
     pocket2: HandheldCrewMonitor # DeltaV - Give Paramedics useful tools on spawn
   innerClothingSkirt: ClothingUniformJumpskirtParamedic

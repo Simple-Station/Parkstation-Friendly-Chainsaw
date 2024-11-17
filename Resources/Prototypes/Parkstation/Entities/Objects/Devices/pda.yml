@@ -1,0 +1,21 @@
+- type: entity
+  parent: BasePDA
+  id: CSSPDA
+  name: chief service supervisor PDA
+  description: Smells like pine and Febreze.
+  components:
+  - type: Pda
+    state: pda-css
+    id: CSSIDCard
+    penSlot:
+      startingItem: PenCSS
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: Parkstation/Objects/Devices/pda.rsi
+    netsync: false
+  - type: Icon
+    sprite: Parkstation/Objects/Devices/pda.rsi
+    state: pda-css

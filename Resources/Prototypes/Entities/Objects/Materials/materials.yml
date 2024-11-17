@@ -12,8 +12,8 @@
     size: Normal
   - type: Tag
     tags:
-      - DroneUsable
       - RawMaterial
+      - NoPaint
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -129,7 +129,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - Gauze
       - RawMaterial
   - type: Construction
@@ -178,7 +177,7 @@
     layers:
     - state: durathread_3
       map: ["base"]
-    scale: 1, 1 # Parkstation-SmallerMaterials - Durathread looks fine normally
+    scale: 1, 1 # Parkstation-SmallerMaterials # Durathread looks fine normally
   - type: Appearance
   - type: Construction
     graph: Durathread
@@ -195,7 +194,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
 
 - type: entity
@@ -243,7 +241,6 @@
   - type: Tag
     tags:
     - Wooden
-    - DroneUsable
     - RawMaterial
   - type: Extractable
     grindableSolutionName: wood
@@ -287,7 +284,7 @@
     sprite: /Textures/Objects/Misc/monkeycube.rsi
     state: cube
     color: "#8A9A5B"
-    scale: 1, 1 # Parkstation-SmallerMaterials - Biomass looks fine normally
+    scale: 1, 1 # Parkstation-SmallerMaterials # Biomass looks fine normally
   - type: GuideHelp
     guides:
     - Cloning
@@ -414,9 +411,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
-
 
 - type: entity
   parent: MaterialCotton
@@ -425,6 +420,58 @@
   components:
   - type: Sprite
     state: cotton
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialPyrotton
+  name: pyrotton
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: Pyrotton
+    baseLayer: base
+    layerStates:
+    - pyrotton
+    - pyrotton_2
+    - pyrotton_3
+  - type: Sprite
+    state: pyrotton_3
+    layers:
+    - state: pyrotton_3
+      map: ["base"]
+  - type: Appearance
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Phlogiston
+          Quantity: 5
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 3
+      - ReagentId: Phlogiston
+        Quantity: 3
+  - type: Tag
+    tags:
+      - ClothMade
+      - RawMaterial
+
+- type: entity
+  parent: MaterialPyrotton
+  id: MaterialPyrotton1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: pyrotton
   - type: Stack
     count: 1
 
@@ -492,7 +539,7 @@
   parent: MaterialBase
   id: MaterialWebSilk
   name: silk
-  description: A webby material
+  description: A webby material.
   suffix: Full
   components:
   - type: PhysicalComposition
@@ -526,7 +573,6 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
       - RawMaterial
 
 - type: entity

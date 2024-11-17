@@ -1,8 +1,14 @@
-﻿- type: entity
+- type: entity
   id: BaseStation
   abstract: true
   components:
     - type: StationData
+
+- type: entity
+  id: BaseRandomStation
+  abstract: true
+  components:
+    - type: StationRandomTransform
 
 - type: entity
   id: BaseStationCargo
@@ -38,7 +44,6 @@
   components:
     - type: GatewayGenerator
 
-
 - type: entity
   id: BaseStationShuttles
   abstract: true
@@ -47,9 +52,17 @@
       path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn
       groups:
+        trade:
+          addComponents:
+          - type: ProtectedGrid
+          # If you comment out the tradestation, make sure to also set cargo.tradestation_spawns_in_ftl_map to TRUE
+          - type: TradeStation
+          paths:
+          - /Maps/Shuttles/trading_outpost.yml
         mining:
           paths:
-          - /Maps/Shuttles/mining.yml
+          - /Maps/Shuttles/pathfinder.yml
+        # Spawn last
         ruins:
           hide: true
           nameGrid: true
@@ -57,15 +70,39 @@
           maxCount: 2
           stationGrid: false
           paths:
-          - /Maps/Ruins/DeltaV/biodome_satellite.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/derelict.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/djstation.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/old_ai_sat.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/relaystation.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/whiteship_ancient.yml #Delta V - Move to DV folder
-          - /Maps/Ruins/DeltaV/whiteship_bluespacejumper.yml #Delta V - Move to DV folder
+          - /Maps/Ruins/DeltaV/biodome_satellite.yml
+          - /Maps/Ruins/DeltaV/derelict.yml
+          - /Maps/Ruins/DeltaV/djstation.yml
+          - /Maps/Ruins/DeltaV/old_ai_sat.yml
+          - /Maps/Ruins/DeltaV/relaystation.yml
+          - /Maps/Ruins/DeltaV/whiteship_ancient.yml
+          - /Maps/Ruins/DeltaV/whiteship_bluespacejumper.yml
 
-
+- type: entity
+  id: BaseStationShuttlesSalvageOnly
+  abstract: true
+  components:
+    - type: GridSpawn
+      groups:
+        mining:
+          addComponents:
+          - type: ProtectedGrid
+          paths:
+          - /Maps/Shuttles/pathfinder.yml
+        ruins:
+          hide: true
+          nameGrid: true
+          minCount: 2
+          maxCount: 2
+          stationGrid: false
+          paths:
+          - /Maps/Ruins/DeltaV/biodome_satellite.yml
+          - /Maps/Ruins/DeltaV/derelict.yml
+          - /Maps/Ruins/DeltaV/djstation.yml
+          - /Maps/Ruins/DeltaV/old_ai_sat.yml
+          - /Maps/Ruins/DeltaV/relaystation.yml
+          - /Maps/Ruins/DeltaV/whiteship_ancient.yml
+          - /Maps/Ruins/DeltaV/whiteship_bluespacejumper.yml
 
 - type: entity
   id: BaseStationShuttlesCore
@@ -78,7 +115,7 @@
           - /Maps/Shuttles/cargo_core.yml
         mining:
           paths:
-          - /Maps/Shuttles/mining.yml
+          - /Maps/Shuttles/pathfinder.yml
         ruins:
           hide: true
           nameGrid: true
@@ -131,6 +168,12 @@
   components:
   - type: SiliconLawProvider
     laws: Crewsimov
+
+- type: entity
+  id: BaseStationNews
+  abstract: true
+  components:
+    - type: StationNews
 
 - type: entity
   id: BaseStationAllEventsEligible

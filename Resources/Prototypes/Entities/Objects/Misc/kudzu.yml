@@ -1,57 +1,63 @@
 - type: entity
-  id: Kudzu
-  name: kudzu
-  description: A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
+  id: BaseKudzu
+  abstract: true
   placement:
     mode: SnapgridCenter
     snap:
       - Wall
   components:
+    - type: Appearance
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Kudzu
+    - type: GrowingKudzu
+    - type: ActiveEdgeSpreader
+    - type: EdgeSpreader
+      id: Kudzu
+
+- type: entity
+  id: Kudzu
+  name: kudzu
+  parent: BaseKudzu
+  description: A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
+  components:
     - type: MeleeSound
       soundGroups:
         Brute:
-          path:
-            "/Audio/Weapons/slash.ogg"
+          path: "/Audio/Weapons/slash.ogg"
     - type: Sprite
       sprite: Objects/Misc/kudzu.rsi
       state: kudzu_11
       drawdepth: Overdoors
-    - type: Appearance
     - type: KudzuVisuals
     - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
           hard: false
           density: 7
-          shape:
-            !type:PhysShapeAabb
+          shape: !type:PhysShapeAabb
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
-          - MidImpassable
+            - MidImpassable
     - type: Damageable
       damageModifierSet: Wood
     - type: Destructible
       thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 10
-        behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
+        - trigger: !type:DamageTrigger
+            damage: 10
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
     - type: Temperature
       heatDamage:
         types:
           Heat: 5
       coldDamage: {}
-      ColdDamageThreshold: 0
+      coldDamageThreshold: 0
     - type: Flammable
       fireSpread: true #If you walk into incredibly dense, flaming vines, you can expect to burn.
-      cold:
-        types: {}
       damage:
         types:
           Heat: 3
@@ -60,40 +66,36 @@
         Flammable: [Touch]
         Extinguish: [Touch]
       reactions:
-      - reagents: [WeedKiller, PlantBGone]
-        methods: [Touch]
-        effects:
-        - !type:HealthChange
-          scaled: true
-          damage:
-            types:
-              Heat: 10
+        - reagents: [WeedKiller, PlantBGone]
+          methods: [Touch]
+          effects:
+            - !type:HealthChange
+              scaleByQuantity: true
+              damage:
+                types:
+                  Heat: 10
     - type: AtmosExposed
     - type: Kudzu
       growthTickChance: 0.3
       spreadChance: 0.4
-    - type: GrowingKudzu
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.2
       sprintSpeedModifier: 0.2
       ignoreWhitelist:
         components:
-        - IgnoreKudzu
-    - type: ActiveEdgeSpreader
-    - type: EdgeSpreader
-      id: Kudzu
+          - IgnoreKudzu
     - type: Food
       requiredStomachs: 2 # ruminants have 4 stomachs but i dont care to give them literally 4 stomachs. 2 is good
       delay: 0.5
     - type: FlavorProfile
       flavors:
-      - fiber
+        - fiber
     - type: SolutionContainerManager
       solutions:
         food:
           reagents:
-          - ReagentId: Nutriment
-            Quantity: 2
+            - ReagentId: Nutriment
+              Quantity: 2
 
 - type: entity
   id: WeakKudzu
@@ -117,30 +119,27 @@
     - type: Kudzu
       spriteVariants: 5
       spreadChance: 0.01
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.8
       sprintSpeedModifier: 0.8
       ignoreWhitelist:
         components:
-        - IgnoreKudzu
+          - IgnoreKudzu
     - type: RandomSpawner
       deleteSpawnerAfterSpawn: false
       rareChance: 0.15
       offset: 0.2
       chance: 0.05
       prototypes:
-      - FloraTree01
-      - FloraTree02
-      - FloraTree03
-      - FloraTree04
-      - FloraTree05
-      - FloraTree06
-      - FloraTreeLarge01
-      - FloraTreeLarge02
-      - FloraTreeLarge03
-      - CrystalCyan
+        - LightTree01
+        - LightTree02
+        - LightTree03
+        - LightTree04
+        - LightTree05
+        - LightTree06
+        - CrystalCyan
       rarePrototypes:
-      - AnomalyFloraBulb
+        - AnomalyFloraBulb
 
 - type: entity
   id: KudzuFlowerAngry
@@ -148,17 +147,20 @@
   parent: KudzuFlowerFriendly
   components:
     - type: Kudzu
-      spreadChance: 0.4
+      spreadChance: 0.2
     - type: RandomSpawner
-      chance: 0.1
+      chance: 0.05
       rarePrototypes:
-      - AnomalyFloraBulb
-      - MobLuminousEntity
-      - MobLuminousObject
+        - AnomalyFloraBulb
+        - AnomalyFloraBulb
+        - MobLuminousEntity
+        - MobLuminousObject
+        - MobLuminousPerson
 
 - type: entity
   id: FleshKudzu
   name: tendons
+  parent: BaseKudzu
   description: A rapidly growing cluster of meaty tendons. WHY ARE YOU STOPPING TO LOOK AT IT?!
   placement:
     mode: SnapgridCenter
@@ -168,37 +170,30 @@
     - type: MeleeSound
       soundGroups:
         Brute:
-          path:
-            "/Audio/Weapons/slash.ogg"
+          path: "/Audio/Weapons/slash.ogg"
     - type: Sprite
       sprite: Objects/Misc/fleshkudzu.rsi
       state: kudzu_11
       drawdepth: Overdoors
-    - type: Appearance
     - type: KudzuVisuals
     - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
           hard: false
           density: 7
-          shape:
-            !type:PhysShapeAabb
+          shape: !type:PhysShapeAabb
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
-          - MidImpassable
+            - MidImpassable
     - type: Damageable
     - type: Destructible
       thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 40
-        behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
+        - trigger: !type:DamageTrigger
+            damage: 40
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
     - type: DamageContacts
       damage:
         types:
@@ -206,7 +201,7 @@
           Piercing: 1.5
       ignoreWhitelist:
         tags:
-        - Flesh
+          - Flesh
     - type: Kudzu
       growthTickChance: 0.1
       spreadChance: 0.4
@@ -231,28 +226,23 @@
     - type: Flammable
       fireSpread: true
       damage:
-       types:
-         Heat: 3
-    - type: GrowingKudzu
-      growthTickChance: 0.3
+        types:
+          Heat: 3
     - type: AtmosExposed
-    - type: ActiveEdgeSpreader
-    - type: EdgeSpreader
-      id: Kudzu
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.3
       sprintSpeedModifier: 0.3
       ignoreWhitelist:
         tags:
-        - Flesh
+          - Flesh
     - type: Food # delightfully devilish !
       delay: 0.5
     - type: SolutionContainerManager
       solutions:
         food:
           reagents:
-          - ReagentId: Protein
-            Quantity: 2
+            - ReagentId: Protein
+              Quantity: 2
     - type: Respirator
       damage:
         types:
@@ -261,3 +251,65 @@
         types:
           Asphyxiation: -0.25
 
+- type: entity
+  name: dark haze
+  id: ShadowKudzu
+  parent: [BaseKudzu, BaseShadow]
+  components:
+    - type: Physics
+      canCollide: false
+    - type: Occluder
+    - type: Sprite
+      drawdepth: Effects
+      sprite: Effects/spookysmoke.rsi
+      layers:
+        - state: spookysmoke
+          color: "#793a80dd"
+          map: [base]
+    - type: Kudzu
+      growthTickChance: 0.2
+      spreadChance: 0.99
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      rareChance: 0.05
+      offset: 0.2
+      chance: 0.45
+      prototypes:
+        - ShadowBasaltRandom
+      rarePrototypes:
+        - ShadowPortal
+        - ShadowKudzuLootSpawner
+    - type: Tag
+      tags:
+        - HideContextMenu
+        - SpookyFog
+    - type: OptionsVisualizer
+      visuals:
+        base:
+          - options: Default
+            data: { state: spookysmoke }
+          - options: ReducedMotion
+            data: { state: spookysmoke_static }
+
+- type: entity
+  name: Haze
+  id: ShadowKudzuWeak
+  parent: ShadowKudzu
+  components:
+    - type: Kudzu
+      spreadChance: 0 #appears during pulsation. It shouldnt spreading.
+
+- type: entity
+  name: Shadowkin Haze
+  id: ShadowkinShadow
+  parent: ShadowKudzuWeak
+  components:
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      rareChance: 0
+      offset: 0.2
+      chance: 0.45
+      prototypes:
+        - ShadowBasaltRandom
+    - type: TimedDespawn
+      lifetime: 30

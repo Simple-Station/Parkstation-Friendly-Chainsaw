@@ -47,3 +47,26 @@
     - Toxin
   supportedTypes:
     - Shock
+
+- type: damageContainer
+  id: ShadowHaze
+  supportedTypes:
+    - Heat
+
+- type: damageContainer
+  id: HalfSpirit
+  supportedGroups:
+    - Burn
+    - Brute
+    - Airloss
+    - Immaterial
+  supportedTypes:
+    - Poison
+
+# Shitmed
+- type: damageContainer
+  id: OrganicPart
+  supportedGroups:
+    - Brute
+    - Burn
+

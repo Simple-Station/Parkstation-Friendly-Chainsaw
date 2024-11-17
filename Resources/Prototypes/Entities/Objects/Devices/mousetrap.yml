@@ -13,9 +13,12 @@
     - type: StepTrigger
       intersectRatio: 0.2
       requiredTriggeredSpeed: 0
+      triggerGroups:
+        types:
+        - Mousetrap
     - type: Mousetrap
     - type: TriggerOnStepTrigger
-    - type: ShoesRequiredStepTrigger
+    - type: ClothingRequiredStepTrigger
     - type: DamageUserOnTrigger
       damage:
         types:
@@ -54,9 +57,6 @@
           mask:
             - ItemMask
     - type: Rotatable
-    - type: Tag
-      tags:
-        - DroneUsable
 
 - type: entity
   name: mousetrap

@@ -25,6 +25,8 @@ materials-meat = meat
 materials-web = silk
 materials-bones = bone
 materials-coal = coal
+materials-bluespace = bluespace
+materials-normality = normality
 
 # Ores
 materials-raw-iron = raw iron
@@ -34,3 +36,9 @@ materials-raw-silver = raw silver
 materials-raw-plasma = raw plasma
 materials-raw-uranium = raw uranium
 materials-raw-bananium = raw bananium
+materials-raw-salt = raw salt
+materials-raw-bluespace = raw bluespace
+materials-raw-normality = raw normality
+
+# Material Reclaimer
+material-reclaimer-upgrade-process-rate = process rate

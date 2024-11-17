@@ -27,6 +27,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    [Dependency] private readonly ThievingSystem _thieving = default!;
 
     public override void Initialize()
     {
@@ -95,7 +96,9 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (component.StripDelay == null)
             return;
 
-        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, (float) component.StripDelay.Value.TotalSeconds);
+        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, component.StripDelay.Value);
+
+        bool hidden = (stealth == ThievingStealth.Hidden);
 
         var args = new DoAfterArgs(EntityManager, user, time, new ToggleClothingDoAfterEvent(), item, wearer, item)
         {
@@ -110,11 +113,8 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (!_doAfter.TryStartDoAfter(args))
             return;
 
-        if (!stealth)
-        {
-            var popup = Loc.GetString("strippable-component-alert-owner-interact", ("user", Identity.Entity(user, EntityManager)), ("item", item));
-            _popupSystem.PopupEntity(popup, wearer, wearer, PopupType.Large);
-        }
+        if (!hidden)
+            _strippable.StripPopup("strippable-component-alert-owner-interact", stealth, wearer, user: Identity.Entity(user, EntityManager), item: item);
     }
 
     private void OnGetAttachedStripVerbsEvent(EntityUid uid, AttachedClothingComponent component, GetVerbsEvent<EquipmentVerb> args)
@@ -170,12 +170,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         // "outside" of the container or not. This means that if a hardsuit takes too much damage, the helmet will also
         // automatically be deleted.
 
-        // remove action.
-        if (_actionsSystem.TryGetActionData(component.ActionEntity, out var action) &&
-            action.AttachedEntity != null)
-        {
-            _actionsSystem.RemoveAction(action.AttachedEntity.Value, component.ActionEntity);
-        }
+        _actionsSystem.RemoveAction(component.ActionEntity);
 
         if (component.ClothingUid != null && !_netMan.IsClient)
             QueueDel(component.ClothingUid.Value);
@@ -199,13 +194,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (toggleComp.LifeStage > ComponentLifeStage.Running)
             return;
 
-        // remove action.
-        if (_actionsSystem.TryGetActionData(toggleComp.ActionEntity, out var action) &&
-            action.AttachedEntity != null)
-        {
-            _actionsSystem.RemoveAction(action.AttachedEntity.Value, toggleComp.ActionEntity);
-        }
-
+        _actionsSystem.RemoveAction(toggleComp.ActionEntity);
         RemComp(component.AttachedUid, toggleComp);
     }
 

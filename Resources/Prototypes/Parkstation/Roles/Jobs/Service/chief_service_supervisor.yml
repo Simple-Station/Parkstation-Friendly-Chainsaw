@@ -1,0 +1,44 @@
+- type: job
+  id: ChiefServiceSupervisor
+  name: job-name-css
+  description: job-description-css
+  playTimeTracker: JobChiefServiceSupervisor
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: Civilian
+      min: 21600
+    - !type:CharacterOverallTimeRequirement
+      min: 86400
+    - !type:CharacterWhitelistRequirement
+  weight: 10
+  startingGear: CSSGear
+  icon: "JobIconCSS"
+  requireAdminNotify: true
+  supervisors: job-supervisors-cc
+  canBeAntag: false
+  antagAdvantage: 6
+  access:
+    - Command
+    - ChiefServiceSupervisor
+    - Bar
+    - Service
+    - Mail
+    - Cargo
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Hydroponics
+
+- type: startingGear
+  id: CSSGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCSS
+    back: ClothingBackpackFilled
+    outerClothing: ClothingOuterCoatCSS
+    shoes: ClothingShoesBootsLaceup
+    id: CSSPDA
+    ears: ClothingHeadsetAltService
+  innerClothingSkirt: ClothingUniformJumpskirtCSS
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

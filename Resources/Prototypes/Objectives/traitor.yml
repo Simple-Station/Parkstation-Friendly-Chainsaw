@@ -33,6 +33,20 @@
   - type: ObjectiveLimit
     limit: 2 # there is usually only 1 of each steal objective, have 2 max for drama
 
+- type: entity # Head of Security steal objective.
+  noSpawn: true
+  parent: BaseTraitorStealObjective
+  id: HoSAntiqueWeaponStealObjective
+  components:
+  - type: Objective
+    difficulty: 3 # HoS will mostly be using the gun to stop you from stealing it
+  - type: NotJobRequirement
+    job: HeadOfSecurity
+  - type: StealCondition
+    verifyMapExistence: true
+    stealGroup: HoSAntiqueWeapon
+    owner: job-name-hos
+
 # state
 
 - type: entity
@@ -147,35 +161,61 @@
 ## cmo
 
 - type: entity
-  noSpawn: true
+  abstract: true
   parent: BaseTraitorStealObjective
-  id: CMOHyposprayStealObjective
+  id: BaseCMOStealObjective
   components:
   - type: NotJobRequirement
     job: ChiefMedicalOfficer
   - type: StealCondition
-    stealGroup: Hypospray
     owner: job-name-cmo
+
+- type: entity
+  noSpawn: true
+  parent: BaseCMOStealObjective
+  id: CMOHyposprayStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: Hypospray
+
+- type: entity
+  noSpawn: true
+  parent: BaseCMOStealObjective
+  id: CMOCrewMonitorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HandheldCrewMonitor
 
 ## rd
 
 - type: entity
-  noSpawn: true
+  abstract: true
   parent: BaseTraitorStealObjective
-  id: RDHardsuitStealObjective
+  id: BaseRDStealObjective
   components:
+  - type: NotJobRequirement
+    job: ResearchDirector
   - type: StealCondition
-    stealGroup: ClothingOuterHardsuitRd
     owner: job-name-rd
 
 - type: entity
   noSpawn: true
-  parent: BaseTraitorStealObjective
+  parent: BaseRDStealObjective
+  id: RDHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: ClothingOuterHardsuitRd
+  - type: Objective
+    # This item must be worn or stored in a slowing duffelbag, very hard to hide.
+    difficulty: 3
+
+- type: entity
+  noSpawn: true
+  parent: BaseRDStealObjective
   id: HandTeleporterStealObjective
   components:
   - type: StealCondition
     stealGroup: HandTeleporter
-    owner: job-name-rd
 
 ## hos
 
@@ -286,3 +326,15 @@
   - type: StealCondition
     stealGroup: NukeDisk
     owner: objective-condition-steal-station
+
+- type: entity
+  noSpawn: true
+  parent: BaseTraitorStealObjective
+  id: StealSupermatterSliverObjective
+  components:
+  - type: Objective
+    difficulty: 3.5
+  - type: StealCondition
+    stealGroup: SupermatterSliver
+    objectiveNoOwnerText: objective-condition-steal-smsliver-title
+    descriptionText: objective-condition-steal-smsliver-description

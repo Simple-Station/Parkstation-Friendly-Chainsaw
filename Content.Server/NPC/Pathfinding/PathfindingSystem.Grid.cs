@@ -44,7 +44,6 @@ public sealed partial class PathfindingSystem
     {
         SubscribeLocalEvent<GridInitializeEvent>(OnGridInit);
         SubscribeLocalEvent<GridRemovalEvent>(OnGridRemoved);
-        SubscribeLocalEvent<GridPathfindingComponent, EntityUnpausedEvent>(OnGridPathPause);
         SubscribeLocalEvent<GridPathfindingComponent, ComponentShutdown>(OnGridPathShutdown);
         SubscribeLocalEvent<CollisionChangeEvent>(OnCollisionChange);
         SubscribeLocalEvent<CollisionLayerChangeEvent>(OnCollisionLayerChange);
@@ -61,10 +60,6 @@ public sealed partial class PathfindingSystem
         DirtyChunk(ev.Entity, Comp<MapGridComponent>(ev.Entity).GridTileToLocal(ev.NewTile.GridIndices));
     }
 
-    private void OnGridPathPause(EntityUid uid, GridPathfindingComponent component, ref EntityUnpausedEvent args)
-    {
-        component.NextUpdate += args.PausedTime;
-    }
 
     private void OnGridPathShutdown(EntityUid uid, GridPathfindingComponent component, ComponentShutdown args)
     {
@@ -400,7 +395,7 @@ public sealed partial class PathfindingSystem
 
     private Vector2i GetOrigin(EntityCoordinates coordinates, EntityUid gridUid)
     {
-        var localPos = _transform.GetInvWorldMatrix(gridUid).Transform(coordinates.ToMapPos(EntityManager, _transform));
+        var localPos = Vector2.Transform(coordinates.ToMapPos(EntityManager, _transform), _transform.GetInvWorldMatrix(gridUid));
         return new Vector2i((int) Math.Floor(localPos.X / ChunkSize), (int) Math.Floor(localPos.Y / ChunkSize));
     }
 

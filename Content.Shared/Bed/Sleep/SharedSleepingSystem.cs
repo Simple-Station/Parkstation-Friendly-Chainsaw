@@ -13,7 +13,6 @@ namespace Content.Server.Bed.Sleep
     public abstract class SharedSleepingSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly INetManager _net = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly BlindableSystem _blindableSystem = default!;
 
@@ -27,30 +26,29 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<SleepingComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<SleepingComponent, CanSeeAttemptEvent>(OnSeeAttempt);
             SubscribeLocalEvent<SleepingComponent, PointAttemptEvent>(OnPointAttempt);
-            SubscribeLocalEvent<SleepingComponent, EntityUnpausedEvent>(OnSleepUnpaused);
         }
 
-        private void OnSleepUnpaused(EntityUid uid, SleepingComponent component, ref EntityUnpausedEvent args)
-        {
-            component.CoolDownEnd += args.PausedTime;
-            Dirty(uid, component);
-        }
 
         private void OnMapInit(EntityUid uid, SleepingComponent component, MapInitEvent args)
         {
+            component.SleepingSince = _gameTiming.CurTime;
+
             var ev = new SleepStateChangedEvent(true);
             RaiseLocalEvent(uid, ev);
             _blindableSystem.UpdateIsBlind(uid);
             _actionsSystem.AddAction(uid, ref component.WakeAction, WakeActionId, uid);
 
             // TODO remove hardcoded time.
-            _actionsSystem.SetCooldown(component.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(15));
+            _actionsSystem.SetCooldown(component.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(2f));
         }
 
         private void OnShutdown(EntityUid uid, SleepingComponent component, ComponentShutdown args)
         {
             _actionsSystem.RemoveAction(uid, component.WakeAction);
-            var ev = new SleepStateChangedEvent(false);
+            var ev = new SleepStateChangedEvent(false)
+            {
+                TimeSlept = _gameTiming.CurTime - component.SleepingSince
+            };
             RaiseLocalEvent(uid, ev);
             _blindableSystem.UpdateIsBlind(uid);
         }
@@ -91,6 +89,11 @@ public sealed partial class WakeActionEvent : InstantActionEvent {}
 public sealed class SleepStateChangedEvent : EntityEventArgs
 {
     public bool FellAsleep = false;
+
+    /// <summary>
+    ///     The amount of time this entity slept for. Null if <see cref="FellAsleep"/> is true.
+    /// </summary>
+    public TimeSpan? TimeSlept;
 
     public SleepStateChangedEvent(bool fellAsleep)
     {

@@ -1,21 +1,31 @@
 ﻿using Content.Server.Anomaly;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.Announcements.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class AnomalySpawnRule : StationEventSystem<AnomalySpawnRuleComponent>
 {
     [Dependency] private readonly AnomalySystem _anomaly = default!;
+    [Dependency] private readonly AnnouncerSystem _announcer = default!;
 
     protected override void Added(EntityUid uid, AnomalySpawnRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
 
-        var str = Loc.GetString("anomaly-spawn-event-announcement",
-            ("sighting", Loc.GetString($"anomaly-spawn-sighting-{RobustRandom.Next(1, 6)}")));
-        ChatSystem.DispatchGlobalAnnouncement(str, colorOverride: Color.FromHex("#18abf5"));
+        _announcer.SendAnnouncement(
+            _announcer.GetAnnouncementId(args.RuleId),
+            Filter.Broadcast(),
+            "anomaly-spawn-event-announcement",
+            null,
+            Color.FromHex("#18abf5"),
+            null, null,
+            ("sighting", Loc.GetString($"anomaly-spawn-sighting-{RobustRandom.Next(1, 6)}"))
+        );
     }
 
     protected override void Started(EntityUid uid, AnomalySpawnRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -33,7 +43,7 @@ public sealed class AnomalySpawnRule : StationEventSystem<AnomalySpawnRuleCompon
         if (grid is null)
             return;
 
-        var amountToSpawn = Math.Max(1, (int) MathF.Round(GetSeverityModifier() / 2));
+        var amountToSpawn = 1;
         for (var i = 0; i < amountToSpawn; i++)
         {
             _anomaly.SpawnOnRandomGridLocation(grid.Value, component.AnomalySpawnerPrototype);

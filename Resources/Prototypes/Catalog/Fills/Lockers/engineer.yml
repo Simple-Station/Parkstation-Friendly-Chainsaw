@@ -65,13 +65,20 @@
   components:
   - type: StorageFill
     contents:
-      - id: WelderMini
-      - id: Welder
-        prob: 0.7
-      - id: WelderIndustrial
-        prob: 0.5
+      - id: ClothingHeadHatWelding
+      - id: ClothingHeadHatWelding
       - id: ClothingHeadHatWelding
         prob: 0.5
+      - id: Welder
+      - id: Welder
+      - id: WelderMini
+        orGroup: thirdWelder
+      - id: Welder
+        prob: 0.33
+        orGroup: thirdWelder
+      - id: WelderIndustrial
+        prob: 0.33
+        orGroup: thirdWelder
 
 - type: entity
   id: LockerAtmosphericsFilledHardsuit
@@ -82,8 +89,6 @@
     contents:
       - id: ClothingOuterHardsuitAtmos
       - id: ClothingMaskGasAtmos
-      - id: OxygenTankFilled
-      - id: NitrogenTankFilled
       - id: ClothingOuterSuitAtmosFire
       - id: ClothingHeadHelmetAtmosFire
       - id: GasAnalyzer
@@ -92,6 +97,8 @@
       - id: DoorRemoteFirefight
       - id: RCD
       - id: RCDAmmo
+      - id: LunchboxEngineeringFilledRandom # Delta-V Lunchboxes!
+        prob: 0.3
 
 - type: entity
   id: LockerAtmosphericsFilled
@@ -109,6 +116,8 @@
       - id: DoorRemoteFirefight
       - id: RCD
       - id: RCDAmmo
+      - id: LunchboxEngineeringFilledRandom # Delta-V Lunchboxes!
+        prob: 0.3
 
 - type: entity
   id: LockerEngineerFilledHardsuit
@@ -120,11 +129,11 @@
       - id: ClothingOuterHardsuitEngineering
       - id: ClothingHandsGlovesColorYellow
       - id: ClothingMaskGas
-      - id: OxygenTankFilled
-      - id: NitrogenTankFilled
       - id: ClothingShoesBootsMag
       - id: RCD
       - id: RCDAmmo
+      - id: LunchboxEngineeringFilledRandom # Delta-V Lunchboxes!
+        prob: 0.3
 
 - type: entity
   id: LockerEngineerFilled
@@ -138,6 +147,8 @@
       - id: trayScanner
       - id: RCD
       - id: RCDAmmo
+      - id: LunchboxEngineeringFilledRandom # Delta-V Lunchboxes!
+        prob: 0.3
 
 - type: entity
   id: ClosetRadiationSuitFilled

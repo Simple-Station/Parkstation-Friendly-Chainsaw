@@ -5,9 +5,9 @@
   playTimeTracker: JobDetective
   setPreference: false # Parkstation-Playtime
   requirements:
-  - !type:DepartmentTimeRequirement
+  - !type:CharacterDepartmentTimeRequirement
     department: Security
-    time: 36000 # DeltaV - 10 hours
+    min: 36000 # DeltaV - 10 hours
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
@@ -18,6 +18,8 @@
   - Maintenance
   - Service
   - Detective
+  - External
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -26,7 +28,7 @@
   id: DetectiveGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
-    back: ClothingBackpackSecurityFilledDetective
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses
     head: ClothingHeadHatFedoraBrown
@@ -35,5 +37,5 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolsterFilled
   innerClothingSkirt: ClothingUniformJumpskirtDetective
-  satchel: ClothingBackpackSatchelSecurityFilledDetective
-  duffelbag: ClothingBackpackDuffelSecurityFilledDetective
+  satchel: ClothingBackpackSatchelSecurity
+  duffelbag: ClothingBackpackDuffelSecurity

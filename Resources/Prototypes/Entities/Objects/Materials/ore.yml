@@ -312,3 +312,84 @@
   components:
   - type: Stack
     count: 1
+
+- type: entity
+  parent: OreBase
+  id: SaltOre
+  name: salt
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: SaltOre
+  - type: Sprite
+    state: salt
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawSalt: 500
+  - type: Extractable
+    grindableSolutionName: saltore
+  - type: SolutionContainerManager
+    solutions:
+      saltore:
+        reagents:
+        - ReagentId: TableSalt
+          Quantity: 10
+        - ReagentId: Iodine
+          Quantity: 5
+
+- type: entity
+  parent: SaltOre
+  id: Salt1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: OreBase
+  id: BluespaceOre
+  name: bluespace ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: BluespaceOre
+  - type: Sprite
+    state: bluespace
+  - type: Item
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawBluespace: 100
+
+- type: entity
+  parent: BluespaceOre
+  id: BluespaceOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: OreBase
+  id: NormalityOre
+  name: normality ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: NormalityOre
+  - type: Sprite
+    state: normality
+  - type: Item
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawNormality: 100
+
+- type: entity
+  parent: NormalityOre
+  id: NormalityOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

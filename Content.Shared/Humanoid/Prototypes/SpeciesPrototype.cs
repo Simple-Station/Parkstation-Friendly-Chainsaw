@@ -15,7 +15,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     /// User visible name of the species.
     /// </summary>
-    [DataField("name", required: true)]
+    [DataField(required: true)]
     public string Name { get; private set; } = default!;
 
     /// <summary>
@@ -23,13 +23,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     for an eventual integration into IdentitySystem
     ///     (i.e., young human person, young lizard person, etc.)
     /// </summary>
-    [DataField("descriptor")]
+    [DataField]
     public string Descriptor { get; private set; } = "humanoid";
 
     /// <summary>
     /// Whether the species is available "at round start" (In the character editor)
     /// </summary>
-    [DataField("roundStart", required: true)]
+    [DataField(required: true)]
     public bool RoundStart { get; private set; } = false;
 
     // The below two are to avoid fetching information about the species from the entity
@@ -47,14 +47,14 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     ///     Default skin tone for this species. This applies for non-human skin tones.
     /// </summary>
-    [DataField("defaultSkinTone")]
+    [DataField]
     public Color DefaultSkinTone { get; private set; } = Color.White;
 
     /// <summary>
     ///     Default human skin tone for this species. This applies for human skin tones.
     ///     See <see cref="SkinColor.HumanSkinTone"/> for the valid range of skin tones.
     /// </summary>
-    [DataField("defaultHumanSkinTone")]
+    [DataField]
     public int DefaultHumanSkinTone { get; private set; } = 20;
 
     /// <summary>
@@ -66,68 +66,130 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     ///     Humanoid species variant used by this entity.
     /// </summary>
-    [DataField("prototype", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string Prototype { get; private set; } = default!;
+    [DataField(required: true)]
+    public EntProtoId Prototype { get; private set; }
 
     /// <summary>
     /// Prototype used by the species for the dress-up doll in various menus.
     /// </summary>
-    [DataField("dollPrototype", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string DollPrototype { get; private set; } = default!;
+    [DataField(required: true)]
+    public EntProtoId DollPrototype { get; private set; }
+
+    /// <summary>
+    /// Allow Custom Specie Name for this Specie.
+    /// </summary>
+    [DataField]
+    public Boolean CustomName { get; private set; } = false;
 
     /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>
-    [DataField("skinColoration", required: true)]
+    [DataField(required: true)]
     public HumanoidSkinColor SkinColoration { get; private set; }
 
-    [DataField("maleFirstNames")]
+    [DataField]
     public string MaleFirstNames { get; private set; } = "names_first_male";
 
-    [DataField("femaleFirstNames")]
+    [DataField]
     public string FemaleFirstNames { get; private set; } = "names_first_female";
 
-    [DataField("lastNames")]
+    [DataField]
     public string LastNames { get; private set; } = "names_last";
 
-    [DataField("naming")]
+    [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;
 
-    [DataField("sexes")]
+    [DataField]
     public List<Sex> Sexes { get; private set; } = new() { Sex.Male, Sex.Female };
 
     /// <summary>
     ///     Characters younger than this are too young to be hired by Nanotrasen.
     /// </summary>
-    [DataField("minAge")]
+    [DataField]
     public int MinAge = 18;
 
     /// <summary>
     ///     Characters younger than this appear young.
     /// </summary>
-    [DataField("youngAge")]
+    [DataField]
     public int YoungAge = 30;
 
     /// <summary>
     ///     Characters older than this appear old. Characters in between young and old age appear middle aged.
     /// </summary>
-    [DataField("oldAge")]
+    [DataField]
     public int OldAge = 60;
 
     /// <summary>
     ///     Characters cannot be older than this. Only used for restrictions...
     ///     although imagine if ghosts could age people WYCI...
     /// </summary>
-    [DataField("maxAge")]
+    [DataField]
     public int MaxAge = 120;
+
+    /// <summary>
+    ///     The minimum height and width ratio for this species
+    /// </summary>
+    [DataField]
+    public float SizeRatio = 1.2f;
+
+    /// <summary>
+    ///     The minimum height for this species
+    /// </summary>
+    [DataField]
+    public float MinHeight = 0.75f;
+
+    /// <summary>
+    ///     The default height for this species
+    /// </summary>
+    [DataField]
+    public float DefaultHeight = 1f;
+
+    /// <summary>
+    ///     The maximum height for this species
+    /// </summary>
+    [DataField]
+    public float MaxHeight = 1.25f;
+
+    /// <summary>
+    ///     The minimum width for this species
+    /// </summary>
+    [DataField]
+    public float MinWidth = 0.7f;
+
+    /// <summary>
+    ///     The default width for this species
+    /// </summary>
+    [DataField]
+    public float DefaultWidth = 1f;
+
+    /// <summary>
+    ///     The maximum width for this species
+    /// </summary>
+    [DataField]
+    public float MaxWidth = 1.3f;
+
+    /// <summary>
+    ///     The average height in centimeters for this species, used to calculate player facing height values in UI elements
+    /// </summary>
+    [DataField]
+    public float AverageHeight = 176.1f;
+
+    /// <summary>
+    ///     The average shoulder-to-shoulder width in cm for this species, used to calculate player facing width values in UI elements
+    /// </summary>
+    [DataField]
+    public float AverageWidth = 40f;
 }
 
 public enum SpeciesNaming : byte
 {
+    First,
     FirstLast,
     FirstDashFirst,
     //Start of Nyano - Summary: for Oni naming
     LastNoFirst,
     //End of Nyano - Summary: for Oni naming
     TheFirstofLast,
+    FirstDashLast,
 }

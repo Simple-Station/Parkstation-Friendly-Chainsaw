@@ -20,6 +20,11 @@
       - BorgModuleGeneric
     hasMindState: robot_e
     noMindState: robot_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    name: cyborg
   - type: Construction
     node: cyborg
   - type: Speech
@@ -57,6 +62,11 @@
       - BorgModuleCargo
     hasMindState: miner_e
     noMindState: miner_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: miner
+    name: salvage cyborg
   - type: Construction
     node: mining
   - type: IntrinsicRadioTransmitter
@@ -100,6 +110,11 @@
       - BorgModuleEngineering
     hasMindState: engineer_e
     noMindState: engineer_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: engineer
+    name: engineer cyborg
   - type: Construction
     node: engineer
   - type: IntrinsicRadioTransmitter
@@ -118,6 +133,8 @@
     access: [["Engineering"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgShort
+  - type: SiliconLawProvider # Delta-V - Adds custom lawset for Engineering Cyborg
+    laws: Engineer
 
 - type: entity
   id: BorgChassisJanitor
@@ -151,6 +168,11 @@
       - BorgModuleJanitor
     hasMindState: janitor_e
     noMindState: janitor_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: janitor
+    name: janitor cyborg
   - type: Construction
     node: janitor
   - type: IntrinsicRadioTransmitter
@@ -169,6 +191,8 @@
     access: [["Service"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgShort
+  - type: SiliconLawProvider # Delta-V Adds custom lawset for Janitor Cyborg
+    laws: Janitor
 
 - type: entity
   id: BorgChassisMedical
@@ -202,6 +226,11 @@
       - BorgModuleMedical
     hasMindState: medical_e
     noMindState: medical_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: medical
+    name: medical cyborg
   - type: Construction
     node: medical
   - type: IntrinsicRadioTransmitter
@@ -220,7 +249,15 @@
     access: [["Medical"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgDutch
-  - type: FabricateCandy # Nyanotrasen - The medical cyborg can generate candies filled with medicine.
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHoverBorg
+  - type: FabricateActions
+    actions:
+    - ActionFabricateLollipop
+    - ActionFabricateGumball
+  - type: SiliconLawProvider
+    laws: Medical
 
 - type: entity
   id: BorgChassisService
@@ -246,6 +283,11 @@
       - BorgModuleService
     hasMindState: service_e
     noMindState: service_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: service
+    name: service cyborg
   - type: Construction
     node: service
   - type: IntrinsicRadioTransmitter
@@ -282,6 +324,8 @@
           shader: unshaded
           map: ["light"]
           visible: false
+    - type: PointLight
+      color: "#dd200b"
     - type: BorgChassis
       maxModules: 3
       moduleWhitelist:

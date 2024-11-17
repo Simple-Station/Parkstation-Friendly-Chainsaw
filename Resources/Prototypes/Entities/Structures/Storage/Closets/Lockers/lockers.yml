@@ -18,6 +18,32 @@
     openSound:
       path: /Audio/Effects/woodenclosetopen.ogg
 
+# Bartender
+- type: entity
+  id: LockerBartender
+  parent: LockerBase
+  name: bartender's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: bartender
+    stateDoorOpen: bartender_open
+    stateDoorClosed: bartender_door
+  - type: AccessReader
+    access: [ [ "Bar" ] ]
+
+# Basic
+- type: entity
+  id: LockerSteel
+  parent: LockerBaseSecure
+  name: secure closet
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
+
 # Cargo
 - type: entity
   id: LockerQuarterMaster
@@ -182,6 +208,20 @@
   - type: AccessReader
     access: [ [ "Hydroponics" ] ]
 
+# Janitor
+- type: entity
+  id: LockerJanitor
+  parent: LockerBase
+  name: janitor locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: jan
+    stateDoorOpen: jan_open
+    stateDoorClosed: jan_door
+  - type: AccessReader
+    access: [ [ "Janitor" ] ]
+
 # Medicine
 - type: entity
   id: LockerMedicine
@@ -321,7 +361,7 @@
     stateDoorOpen: armory_open
     stateDoorClosed: brigmedic_door
   - type: AccessReader
-    access: [["Medical"]]
+    access: [["Corpsman"]] # DeltaV - add corpsman access
 
 # Security Officer
 - type: entity
@@ -381,6 +421,20 @@
     stateBaseClosed: syndicate
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_door
+
+- type: entity
+  id: LockerSyndicateAgentLocker
+  name: syndicate agent locker
+  parent: LockerBase
+  description: It's a personal storage unit for agent gear.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: syndicate1
+    stateDoorOpen: syndicate1_open
+    stateDoorClosed: syndicate1_door
+  - type: AccessReader
+    access: [ [ "SyndicateAgent" ] ]
 
 # Bluespace
 - type: entity

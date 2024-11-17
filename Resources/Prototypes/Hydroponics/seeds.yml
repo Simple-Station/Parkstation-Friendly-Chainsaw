@@ -18,11 +18,11 @@
     Nutriment:
       Min: 1
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Flour:
       Min: 5
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: oat
@@ -44,11 +44,11 @@
     Nutriment:
       Min: 1
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Oats:
       Min: 5
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: banana
@@ -73,11 +73,11 @@
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: mimana
@@ -100,11 +100,11 @@
     MuteToxin:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: carrots
@@ -126,15 +126,48 @@
     JuiceCarrot:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Oculine:
       Min: 2
       Max: 6
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
+
+- type: seed
+  id: laughinPea
+  name: seeds-laughin-pea-name
+  noun: seeds-noun-seeds
+  displayName: seeds-laughin-pea-display-name
+  plantRsi: Objects/Specific/Hydroponics/laughin_pea.rsi
+  packetPrototype: LaughinPeaSeeds
+  productPrototypes:
+    - FoodLaughinPeaPod
+  lifespan: 25
+  growthStages: 3
+  maturation: 7
+  production: 5
+  yield: 3
+  potency: 20
+  idealLight: 8
+  harvestRepeat: Repeat
+  nutrientConsumption: 0.6
+  waterConsumption: 0.6
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 3
+      potencyDivisor: 7
+    Sugar:
+      Min: 1
+      Max: 10
+      potencyDivisor: 5
+    Laughter:
+      Min: 1
+      Max: 10
+      potencyDivisor: 5
 
 - type: seed
   id: lemon
@@ -158,11 +191,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: lemoon
@@ -184,11 +217,11 @@
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Milk:
       Min: 8
       Max: 20
-      PotencyDivisor: 5
+      potencyDivisor: 5
 
 - type: seed
   id: lime
@@ -210,11 +243,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: orange
@@ -236,11 +269,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: pineapple
@@ -263,15 +296,15 @@
     Nutriment:
       Min: 1
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Water:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Vitamin:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: potato
@@ -293,11 +326,11 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: sugarcane
@@ -320,7 +353,7 @@
     Sugar:
       Min: 4
       Max: 5
-      PotencyDivisor: 5
+      potencyDivisor: 5
 
 - type: seed
   id: towercap
@@ -388,21 +421,20 @@
   nutrientConsumption: 0.40
   idealLight: 8
   idealHeat: 298
-  juicy: true
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
       Min: 1
       Max: 7
-      PotencyDivisor: 14
+      potencyDivisor: 14
     Vitamin:
       Min: 1
       Max: 3
-      PotencyDivisor: 33
+      potencyDivisor: 33
     Water:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: blueTomato
@@ -423,21 +455,20 @@
   nutrientConsumption: 0.70
   idealLight: 8
   idealHeat: 298
-  juicy: true
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     SpaceLube:
       Min: 5
       Max: 15
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: bloodTomato
@@ -458,17 +489,16 @@
   nutrientConsumption: 0.70
   idealLight: 8
   idealHeat: 298
-  juicy: true
   splatPrototype: PuddleSplatter
   chemicals:
     Blood:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: eggplant
@@ -493,11 +523,11 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: cabbage
@@ -518,11 +548,11 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: garlic
@@ -543,15 +573,15 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Allicin:
       Min: 1
       Max: 8
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: apple
@@ -573,11 +603,11 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: corn
@@ -601,11 +631,11 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Cornmeal:
       Min: 5
       Max: 15
-      PotencyDivisor: 10
+      potencyDivisor: 10
 
 - type: seed
   id: onion
@@ -631,15 +661,15 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Allicin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: onionred
@@ -663,15 +693,15 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Allicin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: chanterelle
@@ -696,7 +726,7 @@
     Nutriment:
       Min: 1
       Max: 25
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: eggy
@@ -720,7 +750,7 @@
     Egg:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
 
 - type: seed
   id: cannabis
@@ -731,6 +761,8 @@
   packetPrototype: CannabisSeeds
   productPrototypes:
     - LeavesCannabis
+  mutationPrototypes:
+    - rainbowCannabis
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 8
@@ -745,7 +777,52 @@
     THC:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
+
+- type: seed
+  id: rainbowCannabis
+  name: seeds-rainbow-cannabis-name
+  noun: seeds-noun-seeds
+  displayName: seeds-rainbow-cannabis-display-name
+  plantRsi: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+  packetPrototype: RainbowCannabisSeeds
+  productPrototypes:
+    - LeavesCannabisRainbow
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 8
+  production: 12
+  yield: 2
+  potency: 20
+  growthStages: 3
+  waterConsumption: 0.40
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    SpaceDrugs:
+      Min: 1
+      Max: 15
+      potencyDivisor: 10
+    Lipolicide:
+      Min: 1
+      Max: 15
+      potencyDivisor: 10
+    MindbreakerToxin:
+      Min: 1
+      Max: 5
+      potencyDivisor: 20
+    Happiness:
+      Min: 1
+      Max: 5
+#     potencyDivisor: 20
+#   ColorfulReagent:
+#     Min: 0
+#     Max: 5
+#     potencyDivisor: 20
+    Psicodine:
+      Min: 0
+      Max: 5
+      potencyDivisor: 33
 
 - type: seed
   id: tobacco
@@ -770,7 +847,7 @@
     Nicotine:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
 
 - type: seed
   id: nettle
@@ -796,7 +873,7 @@
     Histamine:
       Min: 1
       Max: 25
-      PotencyDivisor: 4
+      potencyDivisor: 4
 
 - type: seed
   id: deathNettle
@@ -821,11 +898,11 @@
     SulfuricAcid:
       Min: 1
       Max: 15
-      PotencyDivisor: 6
+      potencyDivisor: 6
     FluorosulfuricAcid:
       Min: 1
       Max: 15
-      PotencyDivisor: 6
+      potencyDivisor: 6
 
 - type: seed
   id: chili
@@ -835,7 +912,7 @@
   plantRsi: Objects/Specific/Hydroponics/chili.rsi
   packetPrototype: ChiliSeeds
   productPrototypes:
-    - FoodChili
+    - FoodChiliPepper
   mutationPrototypes:
     - chilly
   harvestRepeat: Repeat
@@ -850,15 +927,15 @@
     CapsaicinOil:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Nutriment:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: chilly
@@ -868,7 +945,7 @@
   plantRsi: Objects/Specific/Hydroponics/chilly.rsi
   packetPrototype: ChillySeeds
   productPrototypes:
-    - FoodChilly
+    - FoodChillyPepper
   harvestRepeat: Repeat
   lifespan: 25
   maturation: 6
@@ -881,15 +958,15 @@
     Frostoil:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Nutriment:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: poppy
@@ -900,6 +977,8 @@
   packetPrototype: PoppySeeds
   productPrototypes:
     - FoodPoppy
+  mutationPrototypes:
+    - lily
   lifespan: 25
   maturation: 10
   production: 3
@@ -911,11 +990,11 @@
     Nutriment:
       Min: 1
       Max: 2
-      Potencydivisor: 50
+      potencyDivisor: 50
     Bicaridine:
       Min: 1
       Max: 20
-      PotencyDivisor: 5
+      potencyDivisor: 5
 
 - type: seed
   id: aloe
@@ -937,11 +1016,39 @@
     Aloe:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Dermaline:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
+
+- type: seed
+  id: lily
+  name: seeds-lily-name
+  noun: seeds-noun-seeds
+  displayName: seeds-lily-display-name
+  plantRsi: Objects/Specific/Hydroponics/lily.rsi
+  packetPrototype: LilySeeds
+  productPrototypes:
+    - FoodLily
+  mutationPrototypes:
+    - spacemansTrumpet
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      potencyDivisor: 50
+    Bicaridine:
+      Min: 1
+      Max: 20
+      potencyDivisor: 5
 
 - type: seed
   id: lingzhi
@@ -963,11 +1070,11 @@
     Ultravasculine:
       Min: 1
       Max: 20
-      PotencyDivisor: 5
+      potencyDivisor: 5
     Epinephrine:
       Min: 1
       Max: 20
-      PotencyDivisor: 5
+      potencyDivisor: 5
 
 - type: seed
   id: ambrosiaVulgaris
@@ -991,23 +1098,23 @@
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Bicaridine:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Kelotane:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Desoxyephedrine:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 2
-      Potencydivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: ambrosiaDeus
@@ -1029,19 +1136,19 @@
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Omnizine: # Don't kill me
       Min: 1
       Max: 3
-      PotencyDivisor: 35
+      potencyDivisor: 35
     SpaceDrugs:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Desoxyephedrine:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
 
 - type: seed
   id: galaxythistle
@@ -1063,7 +1170,7 @@
     Stellibinin:
       Min: 1
       Max: 25
-      PotencyDivisor: 4
+      potencyDivisor: 4
 
 - type: seed
   id: flyAmanita
@@ -1086,11 +1193,11 @@
     Amatoxin:
       Min: 1
       Max: 25
-      PotencyDivisor: 4
+      potencyDivisor: 4
     Nutriment: ## yumby :)
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: gatfruit
@@ -1112,11 +1219,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Sulfur:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: rice
@@ -1140,11 +1247,11 @@
     Nutriment:
       Min: 1
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Rice:
       Min: 5
       Max: 20
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: soybeans
@@ -1169,7 +1276,33 @@
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
+
+- type: seed
+  id: spacemansTrumpet
+  name: seeds-spacemans-trumpet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-spacemans-trumpet-display-name
+  plantRsi: Objects/Specific/Hydroponics/spacemans_trumpet.rsi
+  packetPrototype: SpacemansTrumpetSeeds
+  productPrototypes:
+    - FoodSpacemansTrumpet
+  growthStages: 4
+  lifespan: 20
+  maturation: 14
+  production: 3
+  yield: 2
+  potency: 10
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      potencyDivisor: 50
+    PolypyryliumOligomers:
+      Min: 1
+      Max: 15
+      potencyDivisor: 5
 
 - type: seed
   id: koibean
@@ -1192,11 +1325,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     CarpoToxin:
       Min: 1
       Max: 4
-      PotencyDivisor: 30
+      potencyDivisor: 30
 
 - type: seed
   id: grape
@@ -1217,11 +1350,11 @@
     Nutriment:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
 
 - type: seed
   id: watermelon
@@ -1242,15 +1375,15 @@
     Nutriment:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Water:
       Min: 1
       Max: 10
-      PotencyDivisor: 10
+      potencyDivisor: 10
     Vitamin:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: cocoa
@@ -1274,11 +1407,11 @@
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 25
+      potencyDivisor: 25
     Nutriment:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: berries
@@ -1300,11 +1433,11 @@
     Nutriment:
       Min: 2
       Max: 5
-      PotencyDivisor: 30
+      potencyDivisor: 30
     Vitamin:
       Min: 1
       Max: 4
-      PotencyDivisor: 40
+      potencyDivisor: 40
 
 - type: seed
   id: bungo
@@ -1329,11 +1462,11 @@
     Nutriment:
       Min: 5
       Max: 10
-      PotencyDivisor: 20
+      potencyDivisor: 20
     Enzyme:
       Min: 5
       Max: 10
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: pea
@@ -1344,6 +1477,8 @@
   packetPrototype: PeaSeeds
   productPrototypes:
     - FoodPeaPod
+  mutationPrototypes:
+    - laughinPea
   lifespan: 25
   growthStages: 3
   maturation: 8
@@ -1358,11 +1493,11 @@
     Nutriment:
       Min: 1
       Max: 3
-      PotencyDivisor: 33
+      potencyDivisor: 33
     Vitamin:
       Min: 1
       Max: 2
-      PotencyDivisor: 50
+      potencyDivisor: 50
 
 - type: seed
   id: pumpkin
@@ -1384,11 +1519,11 @@
     PumpkinFlesh:
       Min: 1
       Max: 20
-      PotencyDivisor: 5
+      potencyDivisor: 5
     Vitamin:
       Min: 1
       Max: 5
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
 - type: seed
   id: cotton
@@ -1399,6 +1534,8 @@
   packetPrototype: CottonSeeds
   productPrototypes:
     - CottonBol
+  mutationPrototypes:
+    - pyrotton
   lifespan: 25
   maturation: 8
   production: 3
@@ -1411,5 +1548,31 @@
     Fiber:
       Min: 5
       Max: 10
-      PotencyDivisor: 20
+      potencyDivisor: 20
 
+- type: seed
+  id: pyrotton
+  name: seeds-pyrotton-name
+  noun: seeds-noun-seeds
+  displayName: seeds-pyrotton-display-name
+  plantRsi: Objects/Specific/Hydroponics/pyrotton.rsi
+  packetPrototype: PyrottonSeeds
+  productPrototypes:
+    - PyrottonBol
+  lifespan: 25
+  maturation: 8
+  production: 3
+  yield: 2
+  potency: 5
+  idealLight: 8
+  growthStages: 3
+  waterConsumption: 0.80
+  chemicals:
+    Fiber:
+      Min: 5
+      Max: 10
+      potencyDivisor: 20
+    Phlogiston:
+      Min: 4
+      Max: 8
+      potencyDivisor: 30

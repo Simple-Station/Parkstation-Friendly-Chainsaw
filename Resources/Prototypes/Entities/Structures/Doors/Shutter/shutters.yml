@@ -56,12 +56,11 @@
   - type: Appearance
   - type: UserInterface
     interfaces:
-    - key: enum.WiresUiKey.Key
-      type: WiresBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Airtight
-    fixVacuum: true
   - type: RadiationBlocker
-    resistance: 2
+    resistance: 1
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
@@ -73,9 +72,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    mode: NoSprite
   - type: DoorSignalControl
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -90,11 +86,13 @@
   - type: DeviceLinkSource
     ports:
     - DoorStatus
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
+    lastSignals:
+      DoorStatus: false
+  - type: BlockWeather
+  - type: InteractionVerbs
+    allowedVerbs:
+    - KnockOn
+
 
 - type: entity
   id: ShuttersNormal
@@ -127,7 +125,7 @@
   id: ShuttersRadiation
   parent: BaseShutter
   name: radiation shutters
-  description: Why did they make these shutters radioactive?
+  description: A relatively fragile set of shutters, made of radiation blocking lead plates.
   components:
   - type: Sprite
     sprite: Structures/Doors/Shutters/shutters_radiation.rsi
@@ -141,7 +139,15 @@
     containers:
     - board
   - type: RadiationBlocker
-    resistance: 4
+    resistance: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: ShuttersRadiationOpen
