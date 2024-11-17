@@ -90,26 +90,6 @@
       state: mouse
 
 - type: marking
-  id: EarsShadowkin
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/ears.rsi
-      state: shadowkin
-
-- type: marking
-  id: EarsShadowkinStriped
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/ears.rsi
-      state: shadowkin
-    - sprite: Parkstation/Mobs/Customization/ears.rsi
-      state: shadowkin_stripes
-
-- type: marking
   id: EarsSylveon
   bodyPart: HeadTop
   markingCategory: HeadTop
