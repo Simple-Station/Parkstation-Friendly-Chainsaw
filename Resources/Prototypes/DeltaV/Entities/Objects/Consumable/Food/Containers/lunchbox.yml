@@ -282,8 +282,8 @@
 
 - type: entity
   parent: LunchboxGeneric
-  id: LunchboxLogistics
-  suffix: Logistics
+  id: LunchboxCargo
+  suffix: Cargo
   components:
   - type: Sprite
     layers:
@@ -295,8 +295,8 @@
 
 - type: entity
   parent: LunchboxGenericFilledRandom
-  id: LunchboxLogisticsFilledRandom
-  suffix: Logistics, Filled, Random
+  id: LunchboxCargoFilledRandom
+  suffix: Cargo, Filled, Random
   components:
   - type: Sprite
     layers:

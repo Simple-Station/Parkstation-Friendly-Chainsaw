@@ -19,9 +19,9 @@ character-item-group-LoadoutBoxKits = Survival Kits
 character-item-group-LoadoutWritables = Writing Tools
 
 # Cargo
-character-item-group-LoadoutNeckCargo = Logistics Neckwear
-character-item-group-LoadoutOuterCargo = Logistics Outerwear
-character-item-group-LoadoutShoesCargo = Logistics Shoes
+character-item-group-LoadoutNeckCargo = Cargo Neckwear
+character-item-group-LoadoutOuterCargo = Cargo Outerwear
+character-item-group-LoadoutShoesCargo = Cargo Shoes
 
 # Engineering
 character-item-group-LoadoutEyesEngineering = Engineering Eyewear

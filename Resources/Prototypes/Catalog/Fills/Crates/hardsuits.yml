@@ -19,9 +19,9 @@
     contents:
     - id: ClothingOuterHardsuitAtmos
 
-# Logistics
+# Cargo
 - type: entity
-  id: CrateLogisticsKritiHardsuit
+  id: CrateCargoKritiHardsuit
   parent: CrateGenericSteel
   name: kriti hardsuit crate
   description: Contains a single HpI-20s "Kriti" hardsuit.
@@ -31,7 +31,7 @@
     - id: ClothingOuterHardsuitSpatio
 
 - type: entity
-  id: CrateLogisticsLavrionHardsuit
+  id: CrateCargoLavrionHardsuit
   parent: CrateGenericSteel
   name: lavrion hardsuit crate
   description: Contains a single HpI-20a "Lavrion" hardsuit.

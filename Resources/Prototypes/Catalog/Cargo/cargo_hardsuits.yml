@@ -19,23 +19,23 @@
   category: cargoproduct-category-name-hardsuits
   group: market
 
-# Logistics
+# Cargo
 - type: cargoProduct
-  id: LogisticsKritiHardsuit
+  id: CargoKritiHardsuit
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
     state: icon
-  product: CrateLogisticsKritiHardsuit
+  product: CrateCargoKritiHardsuit
   cost: 1250
   category: cargoproduct-category-name-hardsuits
   group: market
 
 - type: cargoProduct
-  id: LogisticsLavrionHardsuit
+  id: CargoLavrionHardsuit
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
     state: icon
-  product: CrateLogisticsLavrionHardsuit
+  product: CrateCargoLavrionHardsuit
   cost: 3500
   category: cargoproduct-category-name-hardsuits
   group: market

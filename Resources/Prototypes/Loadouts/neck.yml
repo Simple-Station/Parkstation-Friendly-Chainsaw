@@ -420,7 +420,7 @@
     - !type:CharacterDepartmentRequirement
        departments:
          - Civilian
-         - Logistics
+         - Cargo
     - !type:CharacterJobRequirement
        inverted: true
        jobs:
