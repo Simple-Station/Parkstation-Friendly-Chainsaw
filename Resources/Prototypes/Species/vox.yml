@@ -31,6 +31,7 @@
     RLeg: MobVoxRLeg
     LFoot: MobVoxLFoot
     RFoot: MobVoxRFoot
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobHumanoidAnyMarking
 
 - type: markingPoints

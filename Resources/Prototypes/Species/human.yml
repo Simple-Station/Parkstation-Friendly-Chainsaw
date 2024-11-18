@@ -31,8 +31,8 @@
     RLeg: MobHumanRLeg
     LFoot: MobHumanLFoot
     RFoot: MobHumanRFoot
-    Tail: MobHumanoidAnyMarking # Nyanotrasen - Felinid
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    Tail: MobHumanoidAnyMarking # Nyanotrasen - Felinid
     HeadTop: MobHumanoidAnyMarking # Nyanotrasen - Felinid & Oni
     HeadSide: MobHumanoidAnyMarking
 

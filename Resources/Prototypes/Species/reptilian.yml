@@ -26,8 +26,8 @@
     Chest: MobReptilianTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobHumanoidAnyMarking
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobReptilianLArm
     RArm: MobReptilianRArm

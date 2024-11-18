@@ -33,6 +33,7 @@
     Snout: MobShadowkinAnyMarkingFollowSkin
     HeadTop: MobShadowkinAnyMarkingFollowSkin
     HeadSide: MobShadowkinAnyMarkingFollowSkin
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobShadowkinAnyMarkingFollowSkin
     Chest: MobShadowkinTorso
     Eyes: MobShadowkinEyes

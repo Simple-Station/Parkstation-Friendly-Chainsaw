@@ -195,6 +195,7 @@
         - map: ["head"]
         - map: ["pocket1"]
         - map: ["pocket2"]
+        - map: ["enum.HumanoidVisualLayers.Wings"]
         - map: ["enum.HumanoidVisualLayers.Tail"]
     - type: MeleeWeapon
       soundHit:
@@ -301,4 +302,5 @@
         - map: ["head"]
         - map: ["pocket1"]
         - map: ["pocket2"]
+        - map: ["enum.HumanoidVisualLayers.Wings"]
         - map: ["enum.HumanoidVisualLayers.Tail"]

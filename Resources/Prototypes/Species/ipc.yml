@@ -30,6 +30,7 @@
     Head: MobIPCHead
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobHumanoidAnyMarking
     Hair: MobHumanoidMarkingMatchSkin
     Chest: MobIPCTorso
