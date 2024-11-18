@@ -20,8 +20,8 @@
     Chest: MobMothTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobHumanoidAnyMarking
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    Tail: MobHumanoidAnyMarking
     Eyes: MobMothEyes
     LArm: MobMothLArm
     RArm: MobMothRArm

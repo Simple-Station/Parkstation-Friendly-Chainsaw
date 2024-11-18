@@ -26,8 +26,8 @@
     LFoot: MobSlimeLFoot
     RFoot: MobSlimeRFoot
     # Parkstation-FixSlimeMarkings-Start
-    Tail: MobSlimeMarking
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    Tail: MobSlimeMarking
     HeadTop: MobSlimeMarking
     Snout: MobSlimeMarking
     # Parkstation-FixSlimeMarkings-End

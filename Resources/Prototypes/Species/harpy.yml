@@ -24,6 +24,7 @@
     Chest: MobHarpyTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobHarpyLArm

@@ -15,6 +15,8 @@
     Head: MobGingerbreadHead
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
+    Tail: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
     Chest: MobGingerbreadTorso
     Eyes: MobGingerbreadEyes
     LArm: MobGingerbreadLArm

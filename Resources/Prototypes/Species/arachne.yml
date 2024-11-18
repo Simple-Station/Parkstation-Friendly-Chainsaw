@@ -44,9 +44,12 @@
   id: MobArachneSprites
   sprites:
     Head: MobHumanHead
-    Hair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
     Chest: MobHumanTorso
-    Eyes: MobArachneEyes
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     LArm: MobHumanLArm
     RArm: MobHumanRArm
     LHand: MobHumanLHand

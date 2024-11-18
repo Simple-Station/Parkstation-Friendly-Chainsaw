@@ -28,8 +28,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
+    Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobHumanoidAnyMarking
-    Wings: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     # Parkstation-WideUseMarkings-End
 
