@@ -190,7 +190,7 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
   - type: PaintableAirlock
-    department: Cargo
+    department: Civilian
   - type: Wires
     layoutId: AirlockCargo
 
