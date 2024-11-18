@@ -65,7 +65,7 @@
   - type: NavMapBeacon
     text: station-beacon-forensic-mantis
 
-#Logistics
+#Cargo
 - type: entity
   parent: DefaultStationBeaconSupply
   id: DefaultStationBeaconMailroom

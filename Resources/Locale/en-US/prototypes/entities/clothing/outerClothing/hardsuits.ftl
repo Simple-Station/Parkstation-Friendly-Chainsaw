@@ -69,7 +69,7 @@ ent-ClothingOuterHardsuitCombatHoS = FPA-99s - "Dayicin Mk.II" tacsuit
     .desc = A top-of-the-line tactical combat hardsuit produced by Five-Points-Armory, painted with the colors of station security.
     The tags on the suit indicate that its rated for moderate amounts of physical and explosion damage. It feels somewhat light.
 ent-ClothingOuterHardsuitLuxury = HpI-20c - "Minos" hardsuit
-    .desc = A modified mining hardsuit from Hephaestus Industries, fashioned after the Logistics Officer's colors.
+    .desc = A modified mining hardsuit from Hephaestus Industries, fashioned after the Quartermaster's colors.
     The labels indicate that it provides slight protection against most forms of damage. It feels incredibly light.
 ent-ClothingOuterHardsuitSyndie = CSA-51a - "Shanlin" tacsuit
     .desc = A tactical combat hardsuit produced by the Cybersun-Armaments Corporation, the suit's tags indicate it provides moderate protection against most forms of damage.

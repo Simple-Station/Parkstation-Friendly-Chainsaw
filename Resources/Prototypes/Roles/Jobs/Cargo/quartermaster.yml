@@ -4,6 +4,7 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
+  setPreference: false # Parkstation-CargoService
   requirements:
   #  - !type:RoleTimeRequirement #DeltaV
   #    role: JobCargoTechnician
@@ -15,7 +16,7 @@
       tracker: JobMailCarrier
       min: 7200 # 2 hours
     - !type:CharacterDepartmentTimeRequirement
-      department: Logistics # DeltaV - Logistics Department replacing Cargo
+      department: Civilian
       min: 43200 #DeltaV 12 hours
     - !type:CharacterOverallTimeRequirement
       min: 144000 #40 hrs

@@ -12,7 +12,7 @@ chat-radio-medical = Medical
 chat-radio-science = Epistemics
 chat-radio-security = Security
 chat-radio-service = Service
-chat-radio-supply = Logistics
+chat-radio-supply = Cargo
 chat-radio-syndicate = Syndicate
 chat-radio-freelance = Freelance
 

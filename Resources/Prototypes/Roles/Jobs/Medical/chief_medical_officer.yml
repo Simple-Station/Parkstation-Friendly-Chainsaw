@@ -25,7 +25,7 @@
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Medical

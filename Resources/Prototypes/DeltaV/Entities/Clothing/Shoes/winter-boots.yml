@@ -160,8 +160,8 @@
 
 - type: entity
   parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterLogisticsOfficer
-  name: LO's winter boots
+  id: ClothingShoesBootsWinterQuartermaster
+  name: QM's winter boots
   components:
   - type: Sprite
     sprite: DeltaV/Clothing/Shoes/Boots/winterbootsqm.rsi

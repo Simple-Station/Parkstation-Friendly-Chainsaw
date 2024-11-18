@@ -6,15 +6,15 @@
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
     - !type:CharacterDepartmentTimeRequirement
-      department: Logistics # DeltaV - Logistics Department replacing Cargo
+      department: Engineering
       min: 21600 #DeltaV 6 hrs
   #  - !type:CharacterOverallTimeRequirement #DeltaV
   #    min: 36000 #10 hrs
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
-  supervisors: job-supervisors-qm
+  supervisors: job-supervisors-ce # Parkstation-EngineeringSalvagers
   access:
-  - Cargo
+  - Engineering # ParkStation-EngineeringSalvagers
   - Salvage
   - Maintenance
   - External
@@ -26,6 +26,6 @@
     back: ClothingBackpackSalvageFilled
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-    ears: ClothingHeadsetCargo
+    ears: ClothingHeadsetEngineering # Parkstation-EngineeringSalvagers
   satchel: ClothingBackpackSatchelSalvageFilled
   duffelbag: ClothingBackpackDuffelSalvageFilled

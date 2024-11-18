@@ -40,8 +40,8 @@
 - type: entity
   id: BannerCargo
   parent: BannerBase
-  name: logistics banner
-  description: A banner displaying the colors of the logistics department. Not. Cargonia. # DeltaV - Logistics Department replacing Cargo
+  name: cargo banner
+  description: A banner displaying the colors of Cargo.
   components:
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi

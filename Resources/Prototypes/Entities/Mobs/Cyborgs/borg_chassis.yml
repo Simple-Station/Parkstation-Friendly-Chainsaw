@@ -82,7 +82,7 @@
     - Common
     - Science
   - type: AccessReader
-    access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
+    access: [["Engineering"], ["Salvage"], ["Command"], ["Research"]] # Parkstation-EngineeringSalvagers
   - type: Inventory
     templateId: borgTall
 

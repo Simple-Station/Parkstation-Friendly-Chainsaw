@@ -30,7 +30,7 @@
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Research

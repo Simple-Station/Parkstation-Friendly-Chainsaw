@@ -349,10 +349,10 @@
     state: pda-chaplain
 
 - type: entity
-  name: logistics officer PDA # DeltaV - Logistics Department replacing Cargo
+  name: quartermaster PDA
   parent: BasePDA
   id: QuartermasterPDA
-  description: PDA for the guy that directs logistics. # DeltaV - Logistics Department replacing Cargo
+  description: PDA for the guy that directs Cargo.
   components:
   - type: Pda
     id: QuartermasterIDCard
@@ -370,10 +370,10 @@
       - MailMetricsCartridge
 
 - type: entity
-  name: LO special PDA unit # DeltaV - Logistics Department replacing Cargo
+  name: QM special PDA unit
   parent: BasePDA
   id: QuartermasterNTPDA
-  description: PDA for the guy that directs logistics.it says in gold "special unit unique to the best logistics officer in the sector". # DeltaV - Logistics Department replacing Cargo
+  description: PDA for the guy that directs Cargo. It says in gold "special unit unique to the best Quartermaster in the sector".
   components:
   - type: Pda
     id: QuartermasterIDCard
@@ -393,8 +393,8 @@
 - type: entity
   parent: BasePDA
   id: CargoPDA
-  name: logistics PDA # DeltaV - Logistics Department replacing Cargo
-  description: PDA for the guys that order the pizzas. # DeltaV - Logistics Department replacing Cargo
+  name: cargo PDA
+  description: PDA for the guys that order the pizzas.
   components:
   - type: Pda
     id: CargoIDCard

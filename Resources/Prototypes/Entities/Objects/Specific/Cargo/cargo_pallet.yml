@@ -1,7 +1,7 @@
 - type: entity
   id: CargoPallet
   name: cargo pallet
-  description: Common fixture of logistics and cargo. Subtle reminder where crates go during transport to avoid bruised shins.
+  description: Common fixture of Cargo. Subtle reminder where crates go during transport to avoid bruised shins.
   parent: BaseStructure
   components:
   - type: InteractionOutline

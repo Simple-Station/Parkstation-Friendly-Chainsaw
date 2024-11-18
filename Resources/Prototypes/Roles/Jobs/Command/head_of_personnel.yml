@@ -5,7 +5,6 @@
   playTimeTracker: JobHeadOfPersonnel
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
-    # Parkstation-Playtime
     - !type:CharacterDepartmentTimeRequirement
       department: Engineering
       min: 3600 # 1 hour
@@ -21,7 +20,7 @@
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Command
@@ -51,13 +50,15 @@
   - Cargo
 #  - Atmospherics
 #  - Medical
-  - Boxer # DeltaV - Add Boxer access
-  - Clown # DeltaV - Add Clown access
-  - Library # DeltaV - Add Library access
-  - Mime # DeltaV - Add Mime access
-  - Musician # DeltaV - Add Musician access
-  - Reporter # DeltaV - Add Reporter access
-  - Zookeeper # DeltaV - Add Zookeeper access
+  # Parkstation-Oligarchy Start
+  # - Boxer # DeltaV - Add Boxer access
+  # - Clown # DeltaV - Add Clown access
+  # - Library # DeltaV - Add Library access
+  # - Mime # DeltaV - Add Mime access
+  # - Musician # DeltaV - Add Musician access
+  # - Reporter # DeltaV - Add Reporter access
+  # - Zookeeper # DeltaV - Add Zookeeper access
+  # Parkstation-Oligarchy End
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

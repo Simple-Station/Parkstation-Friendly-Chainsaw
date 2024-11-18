@@ -230,7 +230,7 @@
       group: LoadoutBackpacks
     - !type:CharacterDepartmentRequirement
       departments:
-        - Logistics
+        - Civilian
 
 - type: loadout
   id: LoadoutBackpackSatchelSalvage
@@ -244,4 +244,4 @@
       group: LoadoutBackpacks
     - !type:CharacterDepartmentRequirement
       departments:
-        - Logistics
+        - Engineering

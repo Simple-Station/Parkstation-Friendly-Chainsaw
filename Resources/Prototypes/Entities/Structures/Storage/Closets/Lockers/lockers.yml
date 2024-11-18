@@ -48,7 +48,7 @@
 - type: entity
   id: LockerQuarterMaster
   parent: LockerBaseSecure
-  name: logistics officer's locker # DeltaV - Logistics Department replacing Cargo
+  name: quartermaster's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals

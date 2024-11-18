@@ -94,7 +94,7 @@
 - type: entity
   parent: AirlockExternal
   id: AirlockExternalCargoLocked
-  suffix: External, Logistics, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: External, Cargo, Locked
   components:
   - type: ContainerFill
     containers:
@@ -184,7 +184,7 @@
 - type: entity
   parent: AirlockCargo
   id: AirlockCargoLocked
-  suffix: Logistics, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo, Locked
   components:
   - type: ContainerFill
     containers:
@@ -346,7 +346,7 @@
 - type: entity
   parent: AirlockCommand
   id: AirlockQuartermasterLocked
-  suffix: Logistics Officer, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo Technician, Locked
   components:
   - type: ContainerFill
     containers:
@@ -469,7 +469,7 @@
 - type: entity
   parent: AirlockExternalGlass
   id: AirlockExternalGlassCargoLocked
-  suffix: External, Glass, Logistics, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: External, Glass, Cargo, Locked
   components:
   - type: ContainerFill
     containers:
@@ -568,7 +568,7 @@
 - type: entity
   parent: AirlockCargoGlass
   id: AirlockCargoGlassLocked
-  suffix: Logistics, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo, Locked
   components:
   - type: ContainerFill
     containers:
@@ -720,7 +720,7 @@
 - type: entity
   parent: AirlockCommandGlass
   id: AirlockQuartermasterGlassLocked
-  suffix: Logistics Officer, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo Technician, Locked
   components:
   - type: ContainerFill
     containers:
@@ -829,7 +829,7 @@
 - type: entity
   parent: AirlockMaint
   id: AirlockMaintCargoLocked
-  suffix: Logistics, Locked # DeltaV - Logistics Department replacing Cargo
+  suffix: Cargo, Locked
   components:
   - type: ContainerFill
     containers:

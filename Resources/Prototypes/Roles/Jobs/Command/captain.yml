@@ -5,9 +5,6 @@
   playTimeTracker: JobCaptain
   requirements:
     - !type:CharacterDepartmentTimeRequirement
-      department: Logistics # DeltaV - Logistics Department replacing Cargo
-      min: 18000 # DeltaV - 5 hours
-    - !type:CharacterDepartmentTimeRequirement
       department: Engineering
       min: 18000 # DeltaV - 5 hours
     - !type:CharacterDepartmentTimeRequirement

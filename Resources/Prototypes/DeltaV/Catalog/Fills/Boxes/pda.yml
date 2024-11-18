@@ -64,14 +64,15 @@
   - type: StorageFill
     contents:
       - id: EngineerPDA
-        amount: 3
+        amount: 2
       - id: AtmosPDA
+      - id: SalvagePDA # Parkstation-EngineeringSalvagers
 
 - type: entity
-  name: logistics PDA box
+  name: cargo PDA box
   parent: BoxPDA
   id: BoxPDACargo
-  description: A box of spare PDA microcomputers for the logistics department.
+  description: A box of spare PDA microcomputers for the cargo department.
   components:
   - type: StorageFill
     contents:

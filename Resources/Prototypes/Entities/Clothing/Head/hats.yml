@@ -114,10 +114,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretQM
-  # DeltaV - Logistics Department - Replace Quartermaster with Logistics Officer
-  name: logistics officer's beret
-  description: A beret with the logistics department's insignia emblazoned on it. For logistics officers that are more inclined towards style.
-  # End of modified code
+  name: quartermaster's beret
+  description: A beret with the Cargo department's insignia emblazoned on it. For Quartermasters that are more inclined towards style.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_qm.rsi
