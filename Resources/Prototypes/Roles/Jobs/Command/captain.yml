@@ -26,6 +26,7 @@
   startingGear: CaptainGear
   icon: "JobIconCaptain"
   requireAdminNotify: true
+  setPreference: false # Parkstation-Oligarchy
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -44,10 +45,6 @@
     jumpsuit: ClothingUniformJumpsuitCaptain
     back: ClothingBackpackCaptainFilled
     shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCaptain
-    eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesCaptain
-    outerClothing: ClothingOuterArmorCaptainCarapace
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
   innerClothingSkirt: ClothingUniformJumpskirtCaptain

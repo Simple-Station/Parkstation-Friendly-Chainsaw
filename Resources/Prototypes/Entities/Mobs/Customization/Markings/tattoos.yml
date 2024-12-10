@@ -137,3 +137,31 @@
   sprites:
   - sprite: Mobs/Customization/tattoos.rsi
     state: tattoo_eye_l
+
+- type: marking
+  id: TattooEyeArachneRight
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Arachne]
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+          negative: true
+  sprites:
+  - sprite: Mobs/Customization/tattoos.rsi
+    state: tattoo_eye_arachne_r
+
+- type: marking
+  id: TattooEyeArachneLeft
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Arachne]
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+          negative: true
+  sprites:
+  - sprite: Mobs/Customization/tattoos.rsi
+    state: tattoo_eye_arachne_l
