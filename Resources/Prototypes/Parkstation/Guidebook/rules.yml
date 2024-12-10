@@ -1,0 +1,4 @@
+﻿- type: guideEntry
+  id: ParkRules
+  name: guide-entry-rules
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/Rules.xml"
