@@ -28,9 +28,12 @@
           mapNameTemplate: "Dev"
         - type: StationJobs
           overflowJobs:
-          - Captain
+          # Parkstation-Oligarchy-Start
+            - Passenger
           availableJobs:
-            Captain: [ -1, -1 ]
+            Captain: [ 0, -1 ]
+            Passenger: [ -1, -1 ]
+          # Parkstation-Oligarchy-End
 
 - type: gameMap
   id: TestTeg
