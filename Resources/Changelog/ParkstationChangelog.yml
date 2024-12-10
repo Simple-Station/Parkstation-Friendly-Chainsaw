@@ -118,3 +118,10 @@ Entries:
   id: 16
   time: '2024-11-18T05:14:32.0000000+00:00'
   url: https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/pull/42
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Remove
+      message: Removed the Captain
+  id: 17
+  time: '2024-12-10T01:19:47.0000000+00:00'
+  url: https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/pull/72
