@@ -26,6 +26,7 @@
   startingGear: CaptainGear
   icon: "JobIconCaptain"
   requireAdminNotify: true
+  setPreference: false # Parkstation-Oligarchy
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
