@@ -5,11 +5,11 @@
   playTimeTracker: JobWarden
   requirements:
     # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 10800 # 3 hours
-    - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hours
+      min: 10800 # 3 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 36000 # 10 hours
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
@@ -32,14 +32,13 @@
   equipment:
     head: ClothingHeadHatWarden
     jumpsuit: ClothingUniformJumpsuitWarden
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
   innerClothingSkirt: ClothingUniformJumpskirtWarden
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+  satchel: ClothingBackpackSatchelSecurity
+  duffelbag: ClothingBackpackDuffelSecurity

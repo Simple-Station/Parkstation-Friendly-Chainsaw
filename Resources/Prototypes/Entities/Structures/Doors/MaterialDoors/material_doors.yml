@@ -40,10 +40,13 @@
       path: /Audio/Effects/stonedoor_openclose.ogg
   - type: Appearance
   - type: Airtight
-    fixVacuum: true
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 6
+    fx: EffectRCDDeconstruct6
   - type: Destructible
     thresholds:
     - trigger:
@@ -54,6 +57,9 @@
         acts: ["Destruction"]
   - type: Occluder
   - type: BlockWeather
+  - type: InteractionVerbs
+    allowedVerbs:
+    - KnockOn
 
 - type: entity
   parent: BaseMaterialDoor

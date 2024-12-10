@@ -1,8 +1,12 @@
+using Content.Shared.CCVar;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Pulling.Components;
+using Robust.Client.GameObjects;
 using Robust.Client.Physics;
 using Robust.Client.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -11,6 +15,7 @@ namespace Content.Client.Physics.Controllers
 {
     public sealed class MoverController : SharedMoverController
     {
+        [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
@@ -24,7 +29,9 @@ namespace Content.Client.Physics.Controllers
 
             SubscribeLocalEvent<InputMoverComponent, UpdateIsPredictedEvent>(OnUpdatePredicted);
             SubscribeLocalEvent<MovementRelayTargetComponent, UpdateIsPredictedEvent>(OnUpdateRelayTargetPredicted);
-            SubscribeLocalEvent<SharedPullableComponent, UpdateIsPredictedEvent>(OnUpdatePullablePredicted);
+            SubscribeLocalEvent<PullableComponent, UpdateIsPredictedEvent>(OnUpdatePullablePredicted);
+
+            Subs.CVar(_config, CCVars.DefaultWalk, _ => RaiseNetworkEvent(new UpdateInputCVarsMessage()));
         }
 
         private void OnUpdatePredicted(EntityUid uid, InputMoverComponent component, ref UpdateIsPredictedEvent args)
@@ -40,7 +47,7 @@ namespace Content.Client.Physics.Controllers
                 args.IsPredicted = true;
         }
 
-        private void OnUpdatePullablePredicted(EntityUid uid, SharedPullableComponent component, ref UpdateIsPredictedEvent args)
+        private void OnUpdatePullablePredicted(EntityUid uid, PullableComponent component, ref UpdateIsPredictedEvent args)
         {
             // Enable prediction if an entity is being pulled by the player.
             // Disable prediction if an entity is being pulled by some non-player entity.

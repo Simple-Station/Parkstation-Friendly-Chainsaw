@@ -32,9 +32,10 @@
     name: "Laika"
     description: "Security's resident she-dog. Badger the officers for headpats and nip at the heels of violent offenders."
     requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 14400 # DeltaV - 4 hours
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Security
+      min: 14400 # DeltaV - 4 hours
   - type: GhostTakeoverAvailable
   - type: InteractionPopup
     successChance: 1

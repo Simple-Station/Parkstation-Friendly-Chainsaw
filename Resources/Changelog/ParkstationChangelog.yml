@@ -97,3 +97,24 @@ Entries:
       message: Material sprites are no longer very large
   id: 13
   time: '2024-03-10T08:59:05.0000000+00:00'
+- author: DEATHB4DEFEAT
+  changes:
+    - type: Tweak
+      message: Soap is smaller, harder to slip on, and stuns less
+  id: 14
+  time: '2024-08-19T21:33:25.0000000+00:00'
+- author: Finket
+  changes:
+    - type: Add
+      message: Added chance to drop certain items when slipped
+  id: 15
+  time: '2024-08-19T22:18:52.0000000+00:00'
+- author: Adrian16199
+  changes:
+    - type: Tweak
+      message: >-
+        Some jobs have been adjusted! Some are in new departments, some gained
+        access.
+  id: 16
+  time: '2024-11-18T05:14:32.0000000+00:00'
+  url: https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/pull/42

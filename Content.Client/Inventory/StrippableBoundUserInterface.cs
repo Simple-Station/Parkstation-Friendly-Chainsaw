@@ -19,6 +19,7 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.Player;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -31,6 +32,7 @@ namespace Content.Client.Inventory
     public sealed class StrippableBoundUserInterface : BoundUserInterface
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
         private readonly ExamineSystem _examine;
         private readonly InventorySystem _inv;
         private readonly SharedCuffableSystem _cuffable;
@@ -198,7 +200,8 @@ namespace Content.Client.Inventory
             var entity = container.ContainedEntity;
 
             // If this is a full pocket, obscure the real entity
-            if (entity != null && slotDef.StripHidden)
+            if (entity != null && slotDef.StripHidden
+                && !(EntMan.TryGetComponent<ThievingComponent>(_playerManager.LocalEntity, out var thiefcomponent) && thiefcomponent.IgnoreStripHidden))
                 entity = _virtualHiddenEntity;
 
             var button = new SlotButton(new SlotData(slotDef, container));
@@ -219,7 +222,7 @@ namespace Content.Client.Inventory
 
             if (entity == null)
             {
-                button.SpriteView.SetEntity(null);
+                button.SetEntity(null);
                 return;
             }
 
@@ -231,7 +234,7 @@ namespace Content.Client.Inventory
             else
                 return;
 
-            button.SpriteView.SetEntity(viewEnt);
+            button.SetEntity(viewEnt);
         }
     }
 }

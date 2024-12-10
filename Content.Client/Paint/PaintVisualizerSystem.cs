@@ -1,4 +1,3 @@
-using System.Linq;
 using Robust.Client.GameObjects;
 using static Robust.Client.GameObjects.SpriteComponent;
 using Content.Shared.Clothing;
@@ -7,114 +6,96 @@ using Content.Shared.Paint;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Paint
+namespace Content.Client.Paint;
+
+public sealed class PaintedVisualizerSystem : VisualizerSystem<PaintedComponent>
 {
-    public sealed class PaintedVisualizerSystem : VisualizerSystem<PaintedComponent>
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+
+
+    public override void Initialize()
     {
-        /// <summary>
-        /// Visualizer for Paint which applies a shader and colors the entity.
-        /// </summary>
+        base.Initialize();
 
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly IPrototypeManager _protoMan = default!;
+        SubscribeLocalEvent<PaintedComponent, HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
+        SubscribeLocalEvent<PaintedComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<PaintedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
+    }
 
-        public ShaderInstance? Shader; // in Robust.Client.Graphics so cannot move to shared component.
 
-        public override void Initialize()
+    protected override void OnAppearanceChange(EntityUid uid, PaintedComponent component, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite == null
+            || !_appearance.TryGetData(uid, PaintVisuals.Painted, out bool isPainted))
+            return;
+
+        var shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
+        foreach (var spriteLayer in args.Sprite.AllLayers)
         {
-            base.Initialize();
+            if (spriteLayer is not Layer layer)
+                continue;
 
-            SubscribeLocalEvent<PaintedComponent, HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
-            SubscribeLocalEvent<PaintedComponent, ComponentShutdown>(OnShutdown);
-            SubscribeLocalEvent<PaintedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
-        }
-
-        protected override void OnAppearanceChange(EntityUid uid, PaintedComponent component, ref AppearanceChangeEvent args)
-        {
-            // ShaderPrototype sadly in Robust.Client, cannot move to shared component.
-            Shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
-
-            if (args.Sprite == null)
-                return;
-
-            if (!_appearance.TryGetData<bool>(uid, PaintVisuals.Painted, out bool isPainted))
-                return;
-
-            var sprite = args.Sprite;
-
-
-            foreach (var spriteLayer in sprite.AllLayers)
+            if (layer.Shader == null || layer.Shader == shader)
             {
-                if (spriteLayer is not Layer layer)
-                    continue;
-
-                if (layer.Shader == null) // If shader isn't null we dont want to replace the original shader.
-                {
-                    layer.Shader = Shader;
-                    layer.Color = component.Color;
-                }
+                layer.Shader = shader;
+                layer.Color = component.Color;
             }
         }
+    }
 
-        private void OnHeldVisualsUpdated(EntityUid uid, PaintedComponent component, HeldVisualsUpdatedEvent args)
+    private void OnShutdown(EntityUid uid, PaintedComponent component, ref ComponentShutdown args)
+    {
+        if (!TryComp(uid, out SpriteComponent? sprite))
+            return;
+        component.BeforeColor = sprite.Color;
+
+        if (Terminating(uid))
+            return;
+
+        foreach (var spriteLayer in sprite.AllLayers)
         {
-            if (args.RevealedLayers.Count == 0)
-                return;
+            if (spriteLayer is not Layer layer
+                || layer.Shader != _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance())
+                continue;
 
-            if (!TryComp(args.User, out SpriteComponent? sprite))
-                return;
+            layer.Shader = null;
+            if (layer.Color == component.Color)
+                layer.Color = component.BeforeColor;
+        }
+    }
 
-            foreach (var revealed in args.RevealedLayers)
-            {
-                if (!sprite.LayerMapTryGet(revealed, out var layer) || sprite[layer] is not Layer notlayer)
-                    continue;
+    private void OnHeldVisualsUpdated(EntityUid uid, PaintedComponent component, HeldVisualsUpdatedEvent args) =>
+        UpdateVisuals(component, args);
+    private void OnEquipmentVisualsUpdated(EntityUid uid, PaintedComponent component, EquipmentVisualsUpdatedEvent args) =>
+        UpdateVisuals(component, args);
+    private void UpdateVisuals(PaintedComponent component, EntityEventArgs args)
+    {
+        var layers = new HashSet<string>();
+        var entity = EntityUid.Invalid;
 
-                sprite.LayerSetShader(layer, component.ShaderName);
-                sprite.LayerSetColor(layer, component.Color);
-            }
+        switch (args)
+        {
+            case HeldVisualsUpdatedEvent hgs:
+                layers = hgs.RevealedLayers;
+                entity = hgs.User;
+                break;
+            case EquipmentVisualsUpdatedEvent eqs:
+                layers = eqs.RevealedLayers;
+                entity = eqs.Equipee;
+                break;
         }
 
-        private void OnEquipmentVisualsUpdated(EntityUid uid, PaintedComponent component, EquipmentVisualsUpdatedEvent args)
+        if (layers.Count == 0 || !TryComp(entity, out SpriteComponent? sprite))
+            return;
+
+        foreach (var revealed in layers)
         {
-            if (args.RevealedLayers.Count == 0)
-                return;
+            if (!sprite.LayerMapTryGet(revealed, out var layer))
+                continue;
 
-            if (!TryComp(args.Equipee, out SpriteComponent? sprite))
-                return;
-
-            foreach (var revealed in args.RevealedLayers)
-            {
-                if (!sprite.LayerMapTryGet(revealed, out var layer) || sprite[layer] is not Layer notlayer)
-                    continue;
-
-                sprite.LayerSetShader(layer, component.ShaderName);
-                sprite.LayerSetColor(layer, component.Color);
-            }
-        }
-
-        private void OnShutdown(EntityUid uid, PaintedComponent component, ref ComponentShutdown args)
-        {
-            if (!TryComp(uid, out SpriteComponent? sprite))
-                return;
-
-            component.BeforeColor = sprite.Color;
-            Shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
-
-            if (!Terminating(uid))
-            {
-                foreach (var spriteLayer in sprite.AllLayers)
-                {
-                    if (spriteLayer is not Layer layer)
-                        continue;
-
-                    if (layer.Shader == Shader) // If shader isn't same as one in component we need to ignore it.
-                    {
-                        layer.Shader = null;
-                        if (layer.Color == component.Color) // If color isn't the same as one in component we don't want to change it.
-                            layer.Color = component.BeforeColor;
-                    }
-                }
-            }
+            sprite.LayerSetShader(layer, component.ShaderName);
+            sprite.LayerSetColor(layer, component.Color);
         }
     }
 }

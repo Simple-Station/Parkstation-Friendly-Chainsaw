@@ -4,10 +4,10 @@
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   setPreference: false # Parkstation-Playtime
-  requirements:
-    # - !type:DepartmentTimeRequirement # DeltaV - Removes time limit
+  # requirements:
+    # - !type:CharacterDepartmentRequirement # DeltaV - Removes time limit
     #   department: Science
-    #   time: 54000 #15 hrs
+    #   min: 54000 #15 hrs
     #   inverted: true # stop playing intern if you're good at science!
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"

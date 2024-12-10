@@ -9,11 +9,13 @@
     state: icon_alt
   - type: Clothing
     equippedPrefix: alt
+  - type: DropOnSlip
+    chance: 0
 
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltCargo
-  name: logistics officer's over-ear headset # DeltaV - Logistics Department replacing Cargo
+  name: cargo technician's over-ear headset
   components:
   - type: ContainerFill
     containers:

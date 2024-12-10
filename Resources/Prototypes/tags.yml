@@ -17,10 +17,16 @@
   id: AppraisalTool
 
 - type: Tag
+  id: ArachneWeb
+
+- type: Tag
   id: ArtifactFragment
 
 - type: Tag
   id: Arrow
+
+- type: Tag
+  id: Ash
 
 - type: Tag
   id: ATVKeys
@@ -32,7 +38,13 @@
   id: Balloon
 
 - type: Tag
+  id: Banana
+
+- type: Tag
   id: BananaPeel
+
+- type: Tag
+  id: Bandana
 
 - type: Tag
   id: BaseballBat
@@ -41,7 +53,13 @@
   id: BBQsauce
 
 - type: Tag
+  id: Bedsheet
+
+- type: Tag
   id: Bee
+
+- type: Tag
+  id: Beer
 
 - type: Tag
   id: BikeHorn
@@ -203,6 +221,9 @@
   id: Bottle
 
 - type: Tag
+  id: BoxCardboard
+
+- type: Tag
   id: BoxHug
 
 - type: Tag
@@ -240,6 +261,9 @@
 
 - type: Tag
   id: CableCoil
+
+- type: Tag
+  id: CaneBlade
 
 - type: Tag
   id: CapacitorStockPart
@@ -334,6 +358,9 @@
 - type: Tag
   id: CartridgeRocket
 
+- type: Tag
+  id: CaveFactory
+
 # Allows you to walk over tile entities such as lava without steptrigger
 - type: Tag
   id: Catwalk
@@ -346,6 +373,9 @@
 
 - type: Tag
   id: ChemDispensable # container that can go into the chem dispenser
+
+- type: Tag
+  id: ChiliBowl
 
 - type: Tag
   id: Cigarette
@@ -381,13 +411,22 @@
   id: ClownSuit
 
 - type: Tag
-  id: CluwneHorn
+  id: CluwneHappyHonk
 
-- type: Tag #Ohioans die happy
-  id: Corn
+- type: Tag
+  id: CluwneHorn
 
 - type: Tag
   id: Coldsauce
+
+- type: Tag
+  id: CoordinatesDisk
+
+- type: Tag
+  id: Corn
+
+- type: Tag
+  id: CottonBoll
 
 - type: Tag
   id: Cow
@@ -492,6 +531,9 @@
   id: DoorElectronics
 
 - type: Tag
+  id: DoorElectronicsConfigurator
+
+- type: Tag
   id: DonkPocket
 
 - type: Tag
@@ -574,6 +616,9 @@
 
 - type: Tag
   id: Fruit
+
+- type: Tag
+  id: FullBodyOuter
 
 - type: Tag
   id: Galaxythistle
@@ -672,10 +717,16 @@
   id: HidesNose # for non-standard noses.
 
 - type: Tag
+  id: HidesBeard # for full coverage helmet / masks where beard shouldn't show
+
+- type: Tag
   id: HighRiskItem
 
 - type: Tag
   id: HighSecDoor
+
+- type: Tag
+  id: HiViz
 
 - type: Tag
   id: Hoe
@@ -765,7 +816,10 @@
   id: MacroBomb
 
 - type: Tag
-  id: MicroBomb
+  id: Mail
+
+- type: Tag
+  id: MailCapsule
 
 - type: Tag
   id: MimeBelt
@@ -842,10 +896,19 @@
   id: Meat
 
 - type: Tag
+  id: Medal
+
+- type: Tag
   id: Medkit
 
 - type: Tag
   id: Metal
+
+- type: Tag
+  id: MicroBomb
+
+- type: Tag
+  id: MicrowaveMachineBoard
 
 - type: Tag
   id: MindShield
@@ -875,6 +938,12 @@
   id: Multitool
 
 - type: Tag
+  id: Mustard
+
+- type: Tag
+  id: MysteryFigureBox
+
+- type: Tag
   id: NoBlockAnchoring
 
 - type: Tag
@@ -888,6 +957,9 @@
 
 - type: Tag
   id: Ointment
+
+- type: Tag
+  id: Oneirophage
 
 - type: Tag
   id: Ore
@@ -992,6 +1064,9 @@
   id: PrisonUniform
 
 - type: Tag
+  id: PrizeTicket
+
+- type: Tag
   id: ProximitySensor
 
 - type: Tag
@@ -1002,9 +1077,6 @@
 
 - type: Tag
   id: RawMaterial
-
-- type: Tag
-  id: RCDDeconstructWhitelist
 
 # Give this to something that doesn't need any special recycler behavior and just needs deleting.
 - type: Tag
@@ -1071,13 +1143,13 @@
   id: Shiv
 
 - type: Tag
-  id: ShoesRequiredStepTriggerImmune
-
-- type: Tag
   id: Shovel
 
 - type: Tag
   id: Sidearm
+
+- type: Tag
+  id: SignalTrigger
 
 - type: Tag
   id: SkeletonMotorcycleKeys
@@ -1090,9 +1162,6 @@
 
 - type: Tag
   id: SmallMech
-
-- type: Tag
-  id: SnapPop
 
 - type: Tag
   id: Smokable
@@ -1141,6 +1210,9 @@
 
 - type: Tag
   id: StationMapElectronics
+
+- type: Tag
+  id: Steak
 
 - type: Tag
   id: SubdermalImplant
@@ -1203,6 +1275,9 @@
   id: TrashBag
 
 - type: Tag
+  id: Truncheon
+
+- type: Tag
   id: Unimplantable
 
 - type: Tag
@@ -1210,6 +1285,9 @@
 
 - type: Tag
   id: UraniumGlassShard
+
+- type: Tag
+  id: Vegetable
 
 - type: Tag
   id: VimPilot
@@ -1239,6 +1317,9 @@
   id: WeaponShotgunKammerer
 
 - type: Tag
+  id: WeldingMask
+
+- type: Tag
   id: WetFloorSign
 
 - type: Tag
@@ -1248,7 +1329,13 @@
   id: WhitelistChameleon
 
 - type: Tag
+  id: WhoopieCushion
+
+- type: Tag
   id: Window
+
+- type: Tag
+  id: Wine
 
 - type: Tag
   id: WizardWand # that evil vvizard vvand
@@ -1276,5 +1363,3 @@
 
 - type: Tag
   id: WriteIgnoreStamps
-
-# PUT YOUR TAGS IN ALPHABETICAL ORDER

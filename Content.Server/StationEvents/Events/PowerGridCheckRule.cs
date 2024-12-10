@@ -1,4 +1,5 @@
 using System.Threading;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -54,13 +55,6 @@ namespace Content.Server.StationEvents.Events
                 }
             }
 
-            // Can't use the default EndAudio
-            component.AnnounceCancelToken?.Cancel();
-            component.AnnounceCancelToken = new CancellationTokenSource();
-            Timer.Spawn(3000, () =>
-            {
-                Audio.PlayGlobal("/Audio/Announcements/power_on.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-4f));
-            }, component.AnnounceCancelToken.Token);
             component.Unpowered.Clear();
         }
 

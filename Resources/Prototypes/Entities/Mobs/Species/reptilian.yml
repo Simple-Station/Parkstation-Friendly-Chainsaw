@@ -33,9 +33,9 @@
     proto: lizard
   - type: Vocal
     sounds:
-      Male: UnisexReptilian
-      Female: UnisexReptilian
-      Unsexed: UnisexReptilian
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -59,6 +59,16 @@
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
   - type: Wagging
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Draconic
+    understands:
+    - TauCetiBasic
+    - Draconic
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-lizard"
+    rightBarePrint: "footprint-right-bare-lizard"
 
 - type: entity
   parent: BaseSpeciesDummy

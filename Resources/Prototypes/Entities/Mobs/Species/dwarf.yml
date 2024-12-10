@@ -21,7 +21,6 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-    scale: 1, 0.8
   - type: Body
     prototype: Dwarf
     requiredLegs: 2
@@ -52,11 +51,27 @@
     accent: dwarf
   - type: Speech
     speechSounds: Bass
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    understands:
+    - TauCetiBasic
+    - SolCommon
+  - type: LightweightDrunk
+    boozeStrengthMultiplier: 0.5
+  - type: Stamina
+    critThreshold: 115
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-dwarf"
+    rightBarePrint: "footprint-right-bare-dwarf"
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobDwarfDummy
   noSpawn: true
-  components:
-  - type: Sprite
-    scale: 1, 0.8

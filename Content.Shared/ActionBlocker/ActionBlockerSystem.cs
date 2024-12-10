@@ -169,8 +169,16 @@ namespace Content.Shared.ActionBlocker
 
         public bool CanAttack(EntityUid uid, EntityUid? target = null, Entity<MeleeWeaponComponent>? weapon = null, bool disarm = false)
         {
+            // If target is in a container can we attack
+            if (target != null && _container.IsEntityInContainer(target.Value))
+            {
+                return false;
+            }
+
             _container.TryGetOuterContainer(uid, Transform(uid), out var outerContainer);
-            if (target != null &&  target != outerContainer?.Owner && _container.IsEntityInContainer(uid))
+
+            // If we're in a container can we attack the target.
+            if (target != null && target != outerContainer?.Owner && _container.IsEntityInContainer(uid))
             {
                 var containerEv = new CanAttackFromContainerEvent(uid, target);
                 RaiseLocalEvent(uid, containerEv);
@@ -202,7 +210,7 @@ namespace Content.Shared.ActionBlocker
         public bool CanShiver(EntityUid uid)
         {
             var ev = new ShiverAttemptEvent(uid);
-            RaiseLocalEvent(uid, ev);
+            RaiseLocalEvent(uid, ref ev);
 
             return !ev.Cancelled;
         }
@@ -210,7 +218,7 @@ namespace Content.Shared.ActionBlocker
         public bool CanSweat(EntityUid uid)
         {
             var ev = new SweatAttemptEvent(uid);
-            RaiseLocalEvent(uid, ev);
+            RaiseLocalEvent(uid, ref ev);
 
             return !ev.Cancelled;
         }

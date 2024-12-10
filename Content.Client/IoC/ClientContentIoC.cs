@@ -4,25 +4,23 @@ using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
 using Content.Client.DiscordAuth;
 using Content.Client.JoinQueue;
-using Content.Client.Options;
 using Content.Client.Eui;
 using Content.Client.GhostKick;
 using Content.Client.Info;
 using Content.Client.Launcher;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
-using Content.Client.Preferences;
 using Content.Client.Screenshot;
 using Content.Client.Fullscreen;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Module;
 using Content.Client.Guidebook;
+using Content.Client.Lobby;
 using Content.Client.Replay;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Players.PlayTimeTracking;
 
 
 namespace Content.Client.IoC
@@ -31,6 +29,8 @@ namespace Content.Client.IoC
     {
         public static void Register()
         {
+            var collection = IoCManager.Instance!;
+
             IoCManager.Register<IParallaxManager, ParallaxManager>();
             IoCManager.Register<IChatManager, ChatManager>();
             IoCManager.Register<IClientPreferencesManager, ClientPreferencesManager>();
@@ -51,6 +51,7 @@ namespace Content.Client.IoC
             IoCManager.Register<JobRequirementsManager>();
             IoCManager.Register<DocumentParsingManager>();
             IoCManager.Register<ContentReplayPlaybackManager, ContentReplayPlaybackManager>();
+            collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
             IoCManager.Register<JoinQueueManager>();
             IoCManager.Register<DiscordAuthManager>();
         }

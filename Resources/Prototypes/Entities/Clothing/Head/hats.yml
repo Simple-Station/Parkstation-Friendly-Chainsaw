@@ -8,6 +8,8 @@
     sprite: Clothing/Head/Hats/beaver_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beaver_hat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -24,6 +26,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -57,6 +61,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -64,10 +70,12 @@
   name: casa
   description: Cone-shaped hat
   components:
-    - type: Sprite
-      sprite: Clothing/Head/Hats/casa.rsi
-    - type: Clothing
-      sprite: Clothing/Head/Hats/casa.rsi
+  - type: Sprite
+    sprite: Clothing/Head/Hats/casa.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/casa.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -100,14 +108,14 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretQM
-  # DeltaV - Logistics Department - Replace Quartermaster with Logistics Officer
-  name: logistics officer's beret
-  description: A beret with the logistics department's insignia emblazoned on it. For logistics officers that are more inclined towards style.
-  # End of modified code
+  name: quartermaster's beret
+  description: A beret with the Cargo department's insignia emblazoned on it. For Quartermasters that are more inclined towards style.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_qm.rsi
@@ -134,6 +142,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -145,6 +155,8 @@
     sprite: DeltaV/Clothing/Head/Hats/beret_warden.rsi # DeltaV - resprite
   - type: Clothing
     sprite: DeltaV/Clothing/Head/Hats/beret_warden.rsi # DeltaV - resprite
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -156,6 +168,8 @@
     sprite: Clothing/Head/Hats/beret_physician.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_physician.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -167,6 +181,8 @@
     sprite: Clothing/Head/Hats/beret_brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_brigmedic.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -189,6 +205,8 @@
     sprite: Clothing/Head/Hats/bowler_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/bowler_hat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -205,6 +223,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -220,6 +240,8 @@
     proto: robot
   - type: IdentityBlocker
   - type: IngestionBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -231,6 +253,8 @@
     sprite: Clothing/Head/Hats/centcom.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/centcom.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -247,7 +271,7 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
+      enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
@@ -257,6 +281,38 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefNt
+  name: nanotrasen chef's hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_nt.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_nt.rsi
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefIdris
+  name: idris incorporated chef's hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_idris.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_idris.rsi
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefOrion
+  name: orion express' chef hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_orion.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_orion.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -273,6 +329,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -284,6 +342,8 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -295,6 +355,8 @@
     sprite: Clothing/Head/Hats/fez.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/fez.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -311,6 +373,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -327,6 +391,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -338,6 +404,8 @@
     sprite: Clothing/Head/Hats/outlawhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/outlawhat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -349,6 +417,8 @@
     sprite: Clothing/Head/Hats/witchhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witchhat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -360,6 +430,8 @@
     sprite: Clothing/Head/Hats/paper.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/paper.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -371,6 +443,8 @@
     sprite: Clothing/Head/Hats/pirate.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pirate.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -384,12 +458,17 @@
     sprite: Clothing/Head/Hats/plaguedoctor.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatRedwizard
   name: red wizard hat
   description: Strange-looking red hat-wear that most certainly belongs to a real magic user.
@@ -414,6 +493,8 @@
     sprite: Clothing/Head/Hats/santahat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/santahat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -427,6 +508,8 @@
     sprite: Clothing/Head/Hats/sombrero.rsi
   - type: AddAccentClothing
     accent: SpanishAccent
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -443,6 +526,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -454,6 +539,8 @@
     sprite: Clothing/Head/Hats/surgcap_green.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/surgcap_green.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -465,6 +552,8 @@
     sprite: Clothing/Head/Hats/surgcap_purple.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/surgcap_purple.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -481,22 +570,38 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseFoldable]
   id: ClothingHeadHatUshanka
   name: ushanka
   description: "Perfect for winter in Siberia, da?"
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/ushanka.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/ushanka.rsi
+  - type: Appearance
   - type: AddAccentClothing
     accent: RussianAccent
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+  - type: Sprite
+    sprite: Clothing/Head/Hats/ushanka.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatVioletwizard
   name: violet wizard hat
   description: "Strange-looking violet hat-wear that most certainly belongs to a real magic user."
@@ -523,6 +628,8 @@
     sprite: DeltaV/Clothing/Head/Hats/warden.rsi # DeltaV - resprite
   - type: StealTarget
     stealGroup: ClothingHeadHatWarden
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -530,15 +637,20 @@
   name: witch hat
   description: A witch hat.
   components:
+  - type: WizardClothes #Yes this will count
   - type: Sprite
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -552,7 +664,14 @@
     sprite: Clothing/Head/Hats/wizard_fake.rsi
 
 - type: entity
+  abstract: true
   parent: ClothingHeadBase
+  id: ClothingHeadHatWizardBase
+  components:
+  - type: WizardClothes
+
+- type: entity
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
   name: wizard hat
   description: Strange-looking blue hat-wear that most certainly belongs to a powerful magic user.
@@ -582,6 +701,8 @@
     sprite: Clothing/Head/Hats/xmascrown.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/xmascrown.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -593,6 +714,8 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/truckershat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -604,6 +727,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -615,6 +740,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -626,6 +753,8 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -638,6 +767,8 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/papersack.rsi
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -650,6 +781,8 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/papersacksmile.rsi
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -661,6 +794,8 @@
     sprite: Clothing/Head/Hats/fishcap.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/fishcap.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -677,6 +812,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -688,6 +825,8 @@
     sprite: Clothing/Head/Hats/rasta.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/rasta.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -699,6 +838,8 @@
     sprite: Clothing/Head/Hats/safarihat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/safarihat.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -710,6 +851,8 @@
       sprite: Clothing/Head/Hats/jester.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/jester.rsi
+    - type: DropOnSlip
+      chance: 90
 
 - type: entity
   parent: ClothingHeadHatJester
@@ -719,6 +862,8 @@
       sprite: Clothing/Head/Hats/jester2.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/jester2.rsi
+    - type: DropOnSlip
+      chance: 90
 
 - type: entity
   parent: ClothingHeadBase
@@ -735,6 +880,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadBase
@@ -761,6 +908,8 @@
     modifiers:
       coefficients:
         Blunt: 0.95
+  - type: DropOnSlip
+    chance: 35
 
 - type: entity
   parent: ClothingHeadBase
@@ -833,8 +982,8 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
-        type: StorageBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -1085,3 +1234,33 @@
     sprite: Clothing/Head/Hats/beret_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_medic.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderNanotrasen
+  name: bartender's nanotrasen flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_nt.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_nt.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderIdris
+  name: bartender's idris incorporated flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_idris.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_idris.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderOrion
+  name: bartender's orion express flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_orion.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_orion.rsi

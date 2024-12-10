@@ -1,33 +1,11 @@
-- type: loadout
-  id: LoadoutCommandRDNeckMantle
-  category: Jobs
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:LoadoutJobRequirement
-      jobs:
-        - ResearchDirector
-  items:
-    - ClothingNeckMantleRD
-
-- type: loadout
-  id: LoadoutCommandRDNeckCloak
-  category: Jobs
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:LoadoutJobRequirement
-      jobs:
-        - ResearchDirector
-  items:
-    - ClothingNeckCloakRd
+# Outer
 
 - type: loadout
   id: LoadoutCommandRDOuterWinter
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 1
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - ResearchDirector
   items:
@@ -35,22 +13,88 @@
 
 - type: loadout
   id: LoadoutCommandRDOuterMysta
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - ResearchDirector
   items:
     - ClothingOuterCoatRndMysta
 
+# Head
+
 - type: loadout
-  id: LoadoutCommandRDShoesBootsWinter
-  category: Jobs
-  cost: 1
+  id: LoadoutCommandRDHeadHatBeretMysta
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
+      jobs:
+        - ResearchDirector
+  items:
+    - ClothingHeadHatBeretMysta
+
+- type: loadout
+  id: LoadoutCommandRDHeadHoodMysta
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - ResearchDirector
+  items:
+    - ClothingHeadHoodMysta
+
+# Neck
+
+- type: loadout
+  id: LoadoutCommandRDNeckMantle
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - ResearchDirector
+  items:
+    - ClothingNeckMantleRD
+
+- type: loadout
+  id: LoadoutCommandRDNeckCloak
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - ResearchDirector
+  items:
+    - ClothingNeckCloakRd
+
+- type: loadout
+  id: LoadoutCommandRDNeckCloakMystagogue
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - ResearchDirector
+  items:
+    - ClothingNeckCloakMystagogue
+
+# Shoes
+
+- type: loadout
+  id: LoadoutCommandRDShoesBootsWinter
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
       jobs:
         - ResearchDirector
   items:

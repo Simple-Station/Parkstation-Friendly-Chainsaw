@@ -105,7 +105,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterCargo
-  name: logistics winter boots #Delta V: Rename Logistics
+  name: cargo winter boots
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootscargo.rsi
@@ -202,7 +202,7 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpurs
-      
+
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyBlack
@@ -212,7 +212,7 @@
     sprite: Clothing/Shoes/Boots/cowboybootsblack.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/cowboybootsblack.rsi
-    
+
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyWhite
@@ -222,7 +222,7 @@
     sprite: Clothing/Shoes/Boots/cowboybootswhite.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/cowboybootswhite.rsi
-    
+
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyFancy

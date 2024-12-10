@@ -11,9 +11,9 @@
   setPreference: true
 #  whitelistRequired: true
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
-      time: 21600
+      min: 21600
   special:
   - !type:AddComponentSpecial
     components:

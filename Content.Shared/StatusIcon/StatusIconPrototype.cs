@@ -40,13 +40,19 @@ public partial class StatusIconData : IComparable<StatusIconData>
     /// </summary>
     [DataField]
     public StatusIconLayer Layer = StatusIconLayer.Base;
+
+    /// <summary>
+    /// Sets if the icon should be rendered with or without the effect of lighting.
+    /// </summary>
+    [DataField]
+    public bool IsShaded;
 }
 
 /// <summary>
 /// <see cref="StatusIconData"/> but in new convenient prototype form!
 /// </summary>
 [Prototype("statusIcon")]
-public sealed class StatusIconPrototype : StatusIconData, IPrototype, IInheritingPrototype
+public sealed partial class StatusIconPrototype : StatusIconData, IPrototype, IInheritingPrototype
 {
     /// <inheritdoc />
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<StatusIconPrototype>))]

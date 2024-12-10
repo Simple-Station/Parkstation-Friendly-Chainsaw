@@ -18,9 +18,9 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,1,1
-    - 3,0,1,1
-    - 4,0,4,1
+    - 0,0,1,2
+    - 3,0,1,2
+    - 4,0,4,2
   - type: PhysicalComposition
     materialComposition:
       Plastic: 100
@@ -282,8 +282,8 @@
 
 - type: entity
   parent: LunchboxGeneric
-  id: LunchboxLogistics
-  suffix: Logistics
+  id: LunchboxCargo
+  suffix: Cargo
   components:
   - type: Sprite
     layers:
@@ -295,8 +295,8 @@
 
 - type: entity
   parent: LunchboxGenericFilledRandom
-  id: LunchboxLogisticsFilledRandom
-  suffix: Logistics, Filled, Random
+  id: LunchboxCargoFilledRandom
+  suffix: Cargo, Filled, Random
   components:
   - type: Sprite
     layers:

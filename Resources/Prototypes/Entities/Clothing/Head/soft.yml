@@ -50,17 +50,22 @@
     sprite: Clothing/Head/Soft/bluesoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/bluesoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBluesoft]
   id: ClothingHeadHatBluesoftFlipped
   name: blue cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatCargosoft
-  name: logistics cap # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in Logistics colours." # DeltaV - Logistics Department replacing Cargo
+  name: cargo cap
+  description: "It's a baseball hat painted in Cargo colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/cargosoft.rsi
@@ -71,34 +76,43 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
   id: ClothingHeadHatCargosoftFlipped
-  name: logistics cap # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in Logistics colours. Flipped." # DeltaV - Logistics Department replacing Cargo
+  name: cargo cap flipped
+  description: "It's a baseball hat painted in Cargo colors. Flipped."
   components:
   - type: Tag
     tags:
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatQMsoft
-  name: logistics officer's cap # DeltaV - Logistics Department replacing Cargo
-  description: "It's a baseball hat painted in the Logistics Officer's colors."
+  name: quartermaster's cap
+  description: "It's a baseball hat painted in the Quartermaster's colors."
   components:
   - type: Sprite
     sprite: Clothing/Head/Soft/qmsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/qmsoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatQMsoft]
   id: ClothingHeadHatQMsoftFlipped
-  name: logistics officer's cap
+  name: quartermaster's cap flipped
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -110,11 +124,16 @@
     sprite: Clothing/Head/Soft/corpsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/corpsoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
   id: ClothingHeadHatCorpsoftFlipped
   name: corporate cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -126,11 +145,16 @@
     sprite: Clothing/Head/Soft/greensoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/greensoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreensoft]
   id: ClothingHeadHatGreensoftFlipped
   name: green cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -142,11 +166,16 @@
     sprite: Clothing/Head/Soft/blacksoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/blacksoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBlacksoft]
   id: ClothingHeadHatBlacksoftFlipped
   name: black cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -158,11 +187,16 @@
     sprite: Clothing/Head/Soft/greysoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/greysoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreysoft]
   id: ClothingHeadHatGreysoftFlipped
   name: grey cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -174,11 +208,16 @@
     sprite: Clothing/Head/Soft/mimesoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/mimesoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMimesoft]
   id: ClothingHeadHatMimesoftFlipped
   name: mime cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -190,11 +229,16 @@
     sprite: Clothing/Head/Soft/orangesoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/orangesoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatOrangesoft]
   id: ClothingHeadHatOrangesoftFlipped
   name: orange cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -211,6 +255,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatPurplesoft]
@@ -222,6 +268,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -233,11 +281,16 @@
     sprite: Clothing/Head/Soft/redsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/redsoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatRedsoft]
   id: ClothingHeadHatRedsoftFlipped
   name: red cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -249,11 +302,16 @@
     sprite: Clothing/Head/Soft/secsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/secsoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
   id: ClothingHeadHatSecsoftFlipped
   name: security cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -265,11 +323,16 @@
     sprite: Clothing/Head/Soft/yellowsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/yellowsoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatYellowsoft]
   id: ClothingHeadHatYellowsoftFlipped
   name: yellow cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -281,11 +344,16 @@
     sprite: Clothing/Head/Soft/bizarresoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/bizarresoft.rsi
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBizarreSoft]
   id: ClothingHeadHatBizarreSoftFlipped
   name: troublemaker's cap
+  components:
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -302,6 +370,8 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
@@ -313,3 +383,5 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 20

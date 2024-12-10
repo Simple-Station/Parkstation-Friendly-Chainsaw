@@ -50,6 +50,12 @@
     solutions:
       glass:
         canReact: false
+  # Estacao Pirata - IPC Healing
+  - type: BlindHealing
+    damageContainers:
+      - Silicon
+  - type: StackPrice
+    price: 2
 
 - type: entity
   parent: SheetGlassBase
@@ -87,6 +93,22 @@
         reagents:
         - ReagentId: Silicon
           Quantity: 10
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: Window
+    - prototype: WindowDirectional
+    - prototype: WindowDiagonal
+    - prototype: SheetRGlass
+    - prototype: SheetPGlass
+    - prototype: SheetUGlass
 
 - type: entity
   parent: SheetGlass
@@ -173,6 +195,21 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: SheetRPGlass1
+    - prototype: SheetRUGlass1
+    - prototype: ReinforcedWindow
+    - prototype: ReinforcedWindowDiagonal
+    - prototype: WindowReinforcedDirectional
 
 - type: entity
   parent: SheetRGlass
@@ -250,6 +287,20 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: SheetRPGlass0
+    - prototype: PlasmaWindow
+    - prototype: PlasmaWindowDiagonal
+    - prototype: PlasmaWindowDirectional
 
 - type: entity
   parent: SheetPGlass
@@ -316,6 +367,19 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: ReinforcedPlasmaWindow
+    - prototype: ReinforcedPlasmaWindowDiagonal
+    - prototype: PlasmaReinforcedWindowDirectional
 
 - type: entity
   parent: SheetRPGlass
@@ -391,6 +455,20 @@
         - ReagentId: Uranium
           Quantity: 10
         canReact: false
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: SheetRUGlass0
+    - prototype: UraniumWindow
+    - prototype: UraniumWindowDiagonal
+    - prototype: UraniumWindowDirectional
 
 - type: entity
   parent: SheetUGlass
@@ -445,6 +523,19 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  - type: UserInterface
+    interfaces:
+      enum.RadialSelectorUiKey.Key:
+        type: RadialSelectorMenuBUI
+  - type: ActivatableUI
+    key: enum.RadialSelectorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+  - type: ShortConstruction
+    entries:
+    - prototype: ReinforcedUraniumWindow
+    - prototype: ReinforcedUraniumWindowDiagonal
+    - prototype: UraniumReinforcedWindowDirectional
 
 - type: entity
   parent: SheetRUGlass

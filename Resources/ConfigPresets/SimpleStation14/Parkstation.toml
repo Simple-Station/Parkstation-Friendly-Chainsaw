@@ -19,12 +19,12 @@ pathfinding = true
 rules_file = "Parkstation/ParkstationRules.txt"
 id = "parkstation"
 
-# [whitelist]
-# enabled = true
+[whitelist]
+enabled = true
 # min_players = 24
 
-# [queue]
-# enabled = true
+[queue]
+enabled = true
 
 [rules]
 time = 120
@@ -33,21 +33,6 @@ time = 120
 # ramping_average_end_time = 120.0
 # ramping_average_chaos = 7.0
 
-[traitor]
-min_players = 2
-players_per_traitor = 8
-starting_balance = 16
-
-[zombie]
-min_players = 10
-
-
-[mapping]
-autosave_interval = 180.0
-
-[atmos]
-space_wind = true
-space_wind_max_velocity = 22.0
 
 [shuttle]
 emergency_early_launch_allowed = true
@@ -57,9 +42,6 @@ emergency_transit_time_max = 240.0
 recall_turning_point = 0.75
 auto_call_time = 150
 arrivals = false
-
-[biomass]
-easy_mode = false
 
 [explosion]
 tiles_per_tick = 128

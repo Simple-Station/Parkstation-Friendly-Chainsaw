@@ -159,7 +159,7 @@
     state: stamp-mime
 
 - type: entity
-  name: logistics officer's rubber stamp # DeltaV - Logistics Department replacing Cargo
+  name: quartermaster's rubber stamp
   parent: RubberStampBase
   id: RubberStampQm
   suffix: DO NOT MAP

@@ -90,6 +90,8 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-rat-king-rules
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: Tag
     tags:
@@ -118,7 +120,13 @@
   - type: Grammar
     attributes:
       gender: male
-  - type: PotentialPsionic # Nyano
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Mouse
+    understands:
+    - TauCetiBasic
+    - Mouse
 
 - type: entity
   id: MobRatKingBuff
@@ -163,6 +171,8 @@
   description: He's da mini rat. He don't make da roolz.
   noSpawn: true #Must be configured to a King or the AI breaks.
   components:
+  - type: Carriable
+    freeHandsRequired: 1
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
@@ -289,6 +299,15 @@
   - type: Food
   - type: Item
     size: Tiny # Delta V - Make them eatable and pickable.
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - TauCetiBasic
+    - Mouse
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
 
 - type: weightedRandomEntity
   id: RatKingLoot

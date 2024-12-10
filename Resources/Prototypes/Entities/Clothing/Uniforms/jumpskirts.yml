@@ -9,6 +9,19 @@
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/bartender.rsi
 
+# This has been placed here, as it visually resembles a skirt.
+# Likewise, the sprite file location has been moved to jumpskirts and the parent has been changed to ClothingUniformSkirtBase.
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitBartenderPurple
+  name: purple bartender's uniform
+  description: A special purple outfit to serve drinks.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/bartender_purple.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/bartender_purple.rsi
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCaptain
@@ -24,7 +37,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCargo
   name: cargo tech jumpskirt
-  description: A sturdy jumpskirt, issued to members of the Logistics department. # DeltaV - Logistics Department replacing Cargo
+  description: A sturdy jumpskirt, issued to members of the Cargo department.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/cargotech.rsi
@@ -35,7 +48,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtChiefEngineer
   name: chief engineer's jumpskirt
-  description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer. It has minor radiation shielding.
+  description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/ce.rsi
@@ -167,7 +180,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoS
   name: head of security's jumpskirt
-  description: A standard Station Security uniform, adorned with gold emblems and commander's epaulettes. # DeltaV - improved description
+  description: A standard Station Security uniform, adorned with gold emblems and commander's epaulettes.
   components:
   - type: Sprite
     sprite: DeltaV/Clothing/Uniforms/Jumpskirt/hos.rsi # DeltaV - resprite
@@ -178,7 +191,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoSAlt
   name: head of security's turtleneck
-  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security. Its sturdy fabric provides minor protection from slash and pierce damage.
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos_alt.rsi
@@ -217,6 +230,19 @@
     sprite: Clothing/Uniforms/Jumpskirt/janitor.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/janitor.rsi
+
+# This has been moved here, as it visually resembles a skirt.
+# Likewise, the sprite file location has been moved to jumpskirts and the parent has been changed to ClothingUniformSkirtBase.
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitKimono
+  name: kimono
+  description: traditional chinese clothing
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/kimono.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/kimono.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -263,15 +289,34 @@
     sprite: DeltaV/Clothing/Uniforms/Jumpskirt/brigmedic.rsi # DeltaV - resprite
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: ClothingUniformBase
   id: ClothingUniformJumpskirtPrisoner
   name: prisoner jumpskirt
   description: Busted.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/prisoner.rsi
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    layers:
+    - state: icon
+      color: "#ff8300"
+    - state: prisoner-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ff8300"
+      - state: prisoner-inhand-left
+      right:
+      - state: inhand-right
+        color: "#ff8300"
+      - state: prisoner-inhand-right
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/prisoner.rsi
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#ff8300"
+      - state: prisoner-equipped-INNERCLOTHING
   - type: SuitSensor
     controlsLocked: true
     randomMode: false
@@ -279,14 +324,14 @@
   - type: Tag
     tags:
     - ClothMade
-    - WhitelistChameleon
     - PrisonUniform
+    - WhitelistChameleon
     - Skirt # Delta-V - Skirt Tag so Harpies can wear it.
 
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtQM
-  name: logistics officer's jumpskirt # DeltaV - Logistics Department replacing Cargo
+  name: quartermaster's jumpskirt
   description: 'What can brown do for you?'
   components:
   - type: Sprite
@@ -297,7 +342,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtQMTurtleneck
-  name: logistics officer's turtleneck # DeltaV - Logistics Department replacing Cargo
+  name: quartermaster's turtleneck
   description: A sharp turtleneck made for the hardy work environment of supply.
   components:
     - type: Sprite
@@ -320,7 +365,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtScientist
   name: scientist jumpskirt
-  description: It's made of a special fiber that provides minor protection against explosives. It has markings that denote the wearer as a scientist.
+  description: It's made of a special fiber that increases perceived intelligence and decreases personal ethics. It has markings that denote the wearer as a scientist.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/scientist.rsi
@@ -359,184 +404,6 @@
     sprite: DeltaV/Clothing/Uniforms/Jumpskirt/warden.rsi # DeltaV - resprite
   - type: Clothing
     sprite: DeltaV/Clothing/Uniforms/Jumpskirt/warden.rsi # DeltaV - resprite
-
-# COLORS
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorGrey
-  description: A tasteful grey jumpskirt that reminds you of the good old days.
-  name: grey jumpskirt
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/grey.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/grey.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorBlack
-  name: black jumpskirt
-  description: A generic black jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/black.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/black.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorBlue
-  name: blue jumpskirt
-  description: A generic blue jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/blue.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/blue.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorGreen
-  name: green jumpskirt
-  description: A generic green jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/green.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/green.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorOrange
-  name: orange jumpskirt
-  description: "Don't wear this near paranoid security officers."
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/orange.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/orange.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorPink
-  name: pink jumpskirt
-  description: "Just looking at this makes you feel fabulous."
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/pink.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/pink.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorRed
-  name: red jumpskirt
-  description: A generic red jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/red.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/red.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorWhite
-  name: white jumpskirt
-  description: A generic white jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/white.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/white.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorYellow
-  name: yellow jumpskirt
-  description: A generic yellow jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/yellow.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/yellow.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorDarkBlue
-  name: dark blue jumpskirt
-  description: A generic dark blue jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/darkblue.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/darkblue.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorTeal
-  name: teal jumpskirt
-  description: A generic teal jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/teal.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/teal.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorPurple
-  name: purple jumpskirt
-  description: A generic purple jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/lightpurple.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/lightpurple.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorDarkGreen
-  name: dark green jumpskirt
-  description: A generic dark green jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/darkgreen.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/darkgreen.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorLightBrown
-  name: light brown jumpskirt
-  description: A generic light brown jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/lightbrown.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/lightbrown.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorBrown
-  name: brown jumpskirt
-  description: A generic brown jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/brown.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/brown.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtColorMaroon
-  name: maroon jumpskirt
-  description: A generic maroon jumpskirt with no rank markings.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/Color/maroon.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/Color/maroon.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -751,6 +618,30 @@
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
 
+# Both the light and dark monastic robes have been moved here.
+# They have also had their parent changed to ClothingUniformSkirtBase, and their sprite has likewise been moved to the jumpskirts directory.
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitMonasticRobeDark
+  name: dark monastic robe
+  description: It's a dark robe, often worn by religious folk.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpskirt/monastic_robe_dark.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpskirt/monastic_robe_dark.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitMonasticRobeLight
+  name: light monastic robe
+  description: It's a light robe, often worn by religious folk.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpskirt/monastic_robe_light.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpskirt/monastic_robe_light.rsi
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSeniorEngineer
@@ -836,6 +727,17 @@
   - type: Construction
     graph: WebObjects
     node: jumpskirt
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitGladiator
+  name: gladiator uniform
+  description: Made for true gladiators (or Ash Walkers).
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/gladiator.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/gladiator.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -926,3 +828,14 @@
       - state: equipped-INNERCLOTHING-jumpskirt
       - state: equipped-INNERCLOTHING-shirt
         color: "#b30000"
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtOldDress
+  name: old dress
+  description: A worn-looking dress from a very long time ago.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/olddress.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/olddress.rsi

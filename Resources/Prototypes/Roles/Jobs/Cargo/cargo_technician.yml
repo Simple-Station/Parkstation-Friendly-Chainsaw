@@ -6,12 +6,12 @@
   antagAdvantage: 2 # DeltaV - Reduced TC: External Access
   startingGear: CargoTechGear
   icon: "JobIconCargoTechnician"
-  supervisors: job-supervisors-qm
+  supervisors: job-supervisors-css
   access:
   - Cargo
   - Maintenance
-  extendedAccess:
-  - Salvage
+  # extendedAccess: # Parkstation-CargoService
+  # - Salvage # Parkstation-CargoService
   - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
 
 - type: startingGear

@@ -107,14 +107,14 @@
   - type: WarpPoint
     location: Epistemics
 
-#Logistics
+#Cargo
 - type: entity
-  id: WarpPointLogistics
+  id: WarpPointCargo
   parent: WarpPoint
-  suffix: Logistics
+  suffix: Cargo
   components:
   - type: WarpPoint
-    location: Logistics
+    location: Cargo
 
 - type: entity
   id: WarpPointSalvage

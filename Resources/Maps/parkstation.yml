@@ -76295,28 +76295,8 @@ entities:
     - pos: 23.340097,-16.159224
       parent: 1
       type: Transform
-- proto: CrystalNormality
+- proto: MaterialNormality5
   entities:
-  - uid: 10400
-    components:
-    - pos: 43.692856,-28.36033
-      parent: 1
-      type: Transform
-  - uid: 16327
-    components:
-    - pos: 43.619904,-28.245667
-      parent: 1
-      type: Transform
-  - uid: 16328
-    components:
-    - pos: 43.328094,-28.41245
-      parent: 1
-      type: Transform
-  - uid: 16329
-    components:
-    - pos: 43.390625,-28.1727
-      parent: 1
-      type: Transform
   - uid: 16330
     components:
     - pos: 43.567795,-28.527113

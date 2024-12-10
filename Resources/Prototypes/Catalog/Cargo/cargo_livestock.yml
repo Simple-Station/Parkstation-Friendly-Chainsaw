@@ -54,8 +54,18 @@
     sprite: Mobs/Animals/duck.rsi
     state: icon-0
   product: CrateNPCDuck
-  cost: 6000
+  cost: 4000
   category: cargoproduct-category-name-livestock
+  group: market
+
+- type: cargoProduct
+  id: LivestockPibble
+  icon:
+    sprite: Mobs/Pets/pitbull.rsi
+    state: pibble
+  product: CrateNPCPibble
+  cost: 700
+  category: Livestock
   group: market
 
 - type: cargoProduct

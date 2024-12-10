@@ -1,10 +1,10 @@
 - type: loadout
   id: LoadoutCommandHOPNeckMantle
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -12,11 +12,11 @@
 
 - type: loadout
   id: LoadoutCommandHOPNeckCloak
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -24,11 +24,11 @@
 
 - type: loadout
   id: LoadoutCommandHOPJumpsuitTurtleneckBoatswain
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -36,11 +36,11 @@
 
 - type: loadout
   id: LoadoutCommandHOPJumpsuitMess
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -48,11 +48,11 @@
 
 - type: loadout
   id: LoadoutCommandHOPJumpskirtMess
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -60,10 +60,10 @@
 
 - type: loadout
   id: LoadoutcommandHOPOuterCoatFormal
-  category: Jobs
-  cost: 2
+  category: JobsCommand
+  cost: 0
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -71,10 +71,10 @@
 
 - type: loadout
   id: LoadoutCommandHOPBackIan
-  category: Jobs
-  cost: 4
+  category: JobsCommand
+  cost: 2
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -82,10 +82,10 @@
 
 - type: loadout
   id: LoadoutCommandHOPHatCap
-  category: Jobs
-  cost: 1
+  category: JobsCommand
+  cost: 0
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
@@ -93,12 +93,24 @@
 
 - type: loadout
   id: LoadoutCommandHOPShoesBootsWinter
-  category: Jobs
-  cost: 1
+  category: JobsCommand
+  cost: 0
   exclusive: true
   requirements:
-    - !type:LoadoutJobRequirement
+    - !type:CharacterJobRequirement
       jobs:
         - HeadOfPersonnel
   items:
     - ClothingShoesBootsWinterHeadOfPersonel
+
+- type: loadout
+  id: LoadoutCommandHOPBedsheetIan
+  category: JobsCommand
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - HeadOfPersonnel
+  items:
+    - BedsheetIan

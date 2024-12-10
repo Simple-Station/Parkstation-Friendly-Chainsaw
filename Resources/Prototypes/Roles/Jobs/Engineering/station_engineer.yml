@@ -6,8 +6,8 @@
   antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Engineering
   requirements:
     # Parkstation-Playtime
-    - !type:OverallPlaytimeRequirement
-      time: 7200 # 2 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 7200 # 2 hours
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce

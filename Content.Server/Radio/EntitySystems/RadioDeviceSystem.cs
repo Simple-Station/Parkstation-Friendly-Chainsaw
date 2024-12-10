@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
+using Content.Server.Language;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -29,6 +30,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
@@ -201,14 +203,18 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnReceiveRadio(EntityUid uid, RadioSpeakerComponent component, ref RadioReceiveEvent args)
     {
-        var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
+        if (uid == args.RadioSource)
+            return;
+
+        var nameEv = new TransformSpeakerSpeechEvent(args.MessageSource, Name(args.MessageSource));
         RaiseLocalEvent(args.MessageSource, nameEv);
 
         var name = Loc.GetString("speech-name-relay", ("speaker", Name(uid)),
-            ("originalName", nameEv.Name));
+            ("originalName", nameEv.VoiceName ?? Name(args.MessageSource)));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chat.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false);
+        var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
+        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
     }
 
     private void OnBeforeIntercomUiOpen(EntityUid uid, IntercomComponent component, BeforeActivatableUIOpenEvent args)
@@ -218,25 +224,25 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnToggleIntercomMic(EntityUid uid, IntercomComponent component, ToggleIntercomMicMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager) || args.Session.AttachedEntity is not { } user)
+        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
             return;
 
-        SetMicrophoneEnabled(uid, user, args.Enabled, true);
+        SetMicrophoneEnabled(uid, args.Actor, args.Enabled, true);
         UpdateIntercomUi(uid, component);
     }
 
     private void OnToggleIntercomSpeaker(EntityUid uid, IntercomComponent component, ToggleIntercomSpeakerMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager) || args.Session.AttachedEntity is not { } user)
+        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
             return;
 
-        SetSpeakerEnabled(uid, user, args.Enabled, true);
+        SetSpeakerEnabled(uid, args.Actor, args.Enabled, true);
         UpdateIntercomUi(uid, component);
     }
 
     private void OnSelectIntercomChannel(EntityUid uid, IntercomComponent component, SelectIntercomChannelMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager) || args.Session.AttachedEntity is not { })
+        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
             return;
 
         if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out _) || !component.SupportedChannels.Contains(args.Channel))
@@ -259,6 +265,6 @@ public sealed class RadioDeviceSystem : EntitySystem
         var availableChannels = component.SupportedChannels;
         var selectedChannel = micComp?.BroadcastChannel ?? SharedChatSystem.CommonChannel;
         var state = new IntercomBoundUIState(micEnabled, speakerEnabled, availableChannels, selectedChannel);
-        _ui.TrySetUiState(uid, IntercomUiKey.Key, state);
+        _ui.SetUiState(uid, IntercomUiKey.Key, state);
     }
 }

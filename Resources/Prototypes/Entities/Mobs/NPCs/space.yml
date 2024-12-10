@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: basic
   id: MobSpaceBasic
   parent: SimpleSpaceMobBase
@@ -165,14 +165,17 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepBounce
-  - type: ReplacementAccent
-    accent: kangaroo
+  - type: LanguageKnowledge
+    speaks:
+    - Kangaroo
+    understands:
+    - Kangaroo
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
 
 - type: entity
   id: MobKangarooSpaceSalvage
@@ -248,8 +251,11 @@
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 4
-  - type: ReplacementAccent
-    accent: xeno
+  - type: LanguageKnowledge
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
   - type: InteractionPopup
     successChance: 0.20
     interactSuccessString: petting-success-tarantula
@@ -263,6 +269,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -270,6 +277,9 @@
       Unsexed: UnisexArachnid
   - type: TypingIndicator
     proto: spider
+  - type: BloodSucker
+    webRequired: true
+  - type: Cocooner
 
 - type: entity
   id: MobSpiderSpaceSalvage
@@ -351,8 +361,11 @@
     - type: MeleeChemicalInjector
       solution: melee
       transferAmount: 6
-    - type: ReplacementAccent
-      accent: xeno
+    - type: LanguageKnowledge
+      speaks:
+      - Xeno
+      understands:
+      - Xeno
     - type: InteractionPopup
       successChance: 0.2
       interactSuccessString: petting-success-snake

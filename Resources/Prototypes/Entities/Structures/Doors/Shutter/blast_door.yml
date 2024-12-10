@@ -4,6 +4,7 @@
   name: blast door
   description: This one says 'BLAST DONGER'.
   components:
+  - type: AccessReader
   - type: Sprite
     sprite: Structures/Doors/Shutters/blastdoor.rsi
     layers:
@@ -23,7 +24,7 @@
   - type: Occluder
   - type: Appearance
   - type: RadiationBlocker
-    resistance: 8
+    resistance: 10
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic

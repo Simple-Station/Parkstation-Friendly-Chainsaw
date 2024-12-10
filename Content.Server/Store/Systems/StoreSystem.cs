@@ -10,6 +10,8 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Server.StoreDiscount;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Store.Systems;
 
@@ -21,11 +23,13 @@ public sealed partial class StoreSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly StoreDiscountSystem _storeDiscount = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<StoreComponent, ActivatableUIOpenAttemptEvent>(OnStoreOpenAttempt);
         SubscribeLocalEvent<CurrencyComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<StoreComponent, BeforeActivatableUIOpenEvent>(BeforeActivatableUiOpen);
 
@@ -65,6 +69,21 @@ public sealed partial class StoreSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev, true);
     }
 
+    private void OnStoreOpenAttempt(EntityUid uid, StoreComponent component, ActivatableUIOpenAttemptEvent args)
+    {
+        if (!component.OwnerOnly)
+            return;
+
+        component.AccountOwner ??= args.User;
+        DebugTools.Assert(component.AccountOwner != null);
+
+        if (component.AccountOwner == args.User)
+            return;
+
+        _popup.PopupEntity(Loc.GetString("store-not-account-owner", ("store", uid)), uid, args.User);
+        args.Cancel();
+    }
+
     private void OnAfterInteract(EntityUid uid, CurrencyComponent component, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach)
@@ -83,7 +102,7 @@ public sealed partial class StoreSystem : EntitySystem
         if (args.Handled)
         {
             var msg = Loc.GetString("store-currency-inserted", ("used", args.Used), ("target", args.Target));
-            _popup.PopupEntity(msg, args.Target.Value);
+            _popup.PopupEntity(msg, args.Target.Value, args.User);
             QueueDel(args.Used);
         }
     }
@@ -182,11 +201,10 @@ public sealed partial class StoreSystem : EntitySystem
         if (component.Balance == new Dictionary<string, FixedPoint2>() && preset.InitialBalance != null) //if we don't have a value stored, use the preset
             TryAddCurrency(preset.InitialBalance, uid, component);
 
-        var ui = _ui.GetUiOrNull(uid, StoreUiKey.Key);
-        if (ui != null)
-        {
-            _ui.SetUiState(ui, new StoreInitializeState(preset.StoreName));
-        }
+        _storeDiscount.ApplyDiscounts(component.Listings, preset);
+
+        if (_ui.HasUi(uid, StoreUiKey.Key))
+            _ui.SetUiState(uid, StoreUiKey.Key, new StoreInitializeState(preset.StoreName));
     }
 }
 
@@ -208,7 +226,7 @@ public sealed class CurrencyInsertAttemptEvent : CancellableEntityEventArgs
 
 
 /// <summary>
-/// Nyano/DeltaV Code. For penguin bombs and what not. 
+/// Nyano/DeltaV Code. For penguin bombs and what not.
 /// Raised on an item when it is purchased.
 /// An item may need to set it upself up for its purchaser.
 /// For example, to make sure it isn't hostile to them or

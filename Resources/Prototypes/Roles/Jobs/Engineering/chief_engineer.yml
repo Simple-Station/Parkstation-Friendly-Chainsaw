@@ -5,22 +5,22 @@
   playTimeTracker: JobChiefEngineer
   requirements:
     # Parkstation-Playtime
-    - !type:RoleTimeRequirement
-      role: JobAtmosphericTechnician
-      time: 21600 # 6 hours
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 7200 # 2 hours
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: JobAtmosphericTechnician
+      min: 21600 # 6 hours
+    - !type:CharacterPlaytimeRequirement
+      tracker: JobSalvageSpecialist
+      min: 7200 # 2 hours
+    - !type:CharacterDepartmentTimeRequirement
       department: Engineering
-      time: 36000 # 10 hours
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24 hours
+      min: 36000 # 10 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 86400 # 24 hours
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Maintenance
@@ -36,10 +36,6 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  - !type:AddComponentSpecial
-    components:
-    - type: PsionicBonusChance #Nyano - Summary: makes it more likely to become psionic.
-      flatBonus: 0.025
 
 - type: startingGear
   id: ChiefEngineerGear

@@ -132,6 +132,15 @@
 
 - type: entity
   parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelRobotics
+  name: robotics duffel bag
+  description: A large and sturdy duffel bag to fit everything needed to build a cyborg.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/robotics.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelHydroponics
   name: hydroponics duffel bag
   description: A large duffel bag for holding extra gardening tools.
@@ -142,8 +151,8 @@
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelCargo
-  name: logistics duffel bag # DeltaV - Logistics Department replacing Cargo
-  description: A large duffel bag for stealing logistics's precious loot. # DeltaV - Logistics Department replacing Cargo
+  name: cargo duffel bag
+  description: A large duffel bag for stealing cargo's precious loot.
   components:
     - type: Sprite
       sprite: Clothing/Back/Duffels/cargo.rsi
@@ -167,6 +176,9 @@
     sprite: Clothing/Back/Duffels/syndicate.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,8,4
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate

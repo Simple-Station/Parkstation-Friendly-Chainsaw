@@ -364,8 +364,8 @@
 - type: entity
   parent: BaseSign
   id: SignCargo
-  name: logistics sign # DeltaV - Logistics Department replacing Cargo
-  description: A sign indicating the logistics area. # DeltaV - Logistics Department replacing Cargo
+  name: cargo sign
+  description: A sign indicating the cargo area.
   components:
   - type: Sprite
     state: cargo

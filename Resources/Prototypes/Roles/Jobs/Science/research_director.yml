@@ -6,23 +6,38 @@
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
     # Parkstation-Playtime
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Epistemics
-      time: 18000 # 5 hours
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24 hours
+      min: 18000 # 5 hours
+    - !type:CharacterOverallTimeRequirement
+      min: 72000 # DeltaV - 20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - IPC
+        - !type:CharacterTraitRequirement
+          traits:
+            - AnomalousPositronics
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-cc # ParkStation-Oligarchy
   canBeAntag: false
   access:
   - Research
   - Command
   - Maintenance
   - ResearchDirector
-  - Mantis # DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
+  - Mantis # DeltaV - Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
   - Chapel # DeltaV - Chaplain is in Epistemics
   - Cryogenics
   special: # Nyanotrasen - Mystagogue can use the Bible
@@ -30,12 +45,17 @@
     components:
     - type: BibleUser # Nyano - Lets them heal with bibles
     - type: Psionic # Nyano - They start with telepathic chat
-    - type: DispelPower # Nyano - They get the Dispel psionic power on spawn
+      powerSlots: 3
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: InnatePsionicPowers
+        powersToAdd:
+          - DispelPower
+          - MetapsionicPower
+          - TelepathyPower
 
 - type: startingGear
   id: ResearchDirectorGear

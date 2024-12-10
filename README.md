@@ -38,29 +38,24 @@ We provide some scripts shown below to make the job easier.
 
 ### Build Dependencies
 
-> - DOTNET SDK 8.0 or higher
-
-### Recommended Tools
-
-> - Git (needed)
-> - Python 3.7 or higher
-> - Visual Studio Code (**NOT** Visual Studio)
+> - Git
+> - .NET SDK 8.0.100
 
 ### Windows
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/bat/buildAllDebug.bat`
-> 4. Run both the `Scripts/bat/runQuickServer.bat` and `Scripts/bat/runQuickClient.bat`
-> 5. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/bat/buildAllDebug.bat` after making any changes to the source
+> 4. Run `Scripts/bat/runQuickAll.bat` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### Linux
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/sh/buildAllDebug.sh`
-> 4. Run both the `Scripts/sh/runQuickServer.bat` and `Scripts/sh/runQuickClient.sh`
-> 5. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/sh/buildAllDebug.sh` after making any changes to the source
+> 4. Run `Scripts/sh/runQuickAll.sh` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### MacOS
 
@@ -69,4 +64,4 @@ We provide some scripts shown below to make the job easier.
 
 ## License
 
-See the [LEGAL](https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw/blob/master/LEGAL.md) file for information.
+Please read the [LEGAL.md](./LEGAL.md) file for information on the licenses of the code and assets in this repository.
