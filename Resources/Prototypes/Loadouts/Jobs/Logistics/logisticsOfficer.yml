@@ -75,7 +75,7 @@
       jobs:
         - Quartermaster
   items:
-    - ClothingShoesBootsWinterLogisticsOfficer
+    - ClothingShoesBootsWinterQuartermaster
 
 # Uniforms
 - type: loadout

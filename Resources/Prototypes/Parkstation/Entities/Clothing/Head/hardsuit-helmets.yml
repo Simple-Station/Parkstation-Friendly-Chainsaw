@@ -1,9 +1,9 @@
 ﻿- type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitHoP
-  noSpawn: true
   name: head of personnel's hardsuit helmet
   description: Fancy helmet for a fancy hardsuit. Doesn't offer much damage protection.
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       netsync: false
