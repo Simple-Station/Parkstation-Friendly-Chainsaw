@@ -16,7 +16,7 @@ enabled = true
 pathfinding = true
 
 [server]
-rules_file = "Parkstation/ParkstationRules.txt"
+rules_file = "ParkRules"
 id = "parkstation"
 
 [whitelist]
@@ -25,9 +25,6 @@ enabled = true
 
 [queue]
 enabled = true
-
-[rules]
-time = 120
 
 # [events]
 # ramping_average_end_time = 120.0
@@ -81,8 +78,8 @@ discord = "https://discord.gg/49KeKwXc8g"
 github = "https://github.com/Simple-Station/Parkstation-Friendly-Chainsaw"
 patreon = "https://www.patreon.com/simple14"
 
-# [admin]
-# new_player_join_sound = true
+[admin]
+new_player_join_sound = true
 
 
 [build]
