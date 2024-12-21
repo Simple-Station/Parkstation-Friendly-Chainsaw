@@ -7,7 +7,7 @@ lobbyenabled = true
 lobbyduration = 180
 role_timers = true
 fallbackpreset = "extended"
-map_pool = "ParkMapPool"
+map_pool = "DefaultMapPool"
 # loadouts_enabled = true
 # loadouts_points = 14
 
