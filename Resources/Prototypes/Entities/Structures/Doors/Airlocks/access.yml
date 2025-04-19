@@ -360,6 +360,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+  - type: AirlockVirusTarget
 
 - type: entity
   parent: AirlockSecurity
@@ -369,6 +370,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsDetective ]
+  - type: AirlockVirusTarget
 
 #Delta V: Removed Brig Access
 #- type: entity
@@ -388,6 +390,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurityLawyer ]
+  - type: AirlockVirusTarget
 
 - type: entity
   parent: AirlockSecurity
@@ -733,6 +736,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+  - type: AirlockVirusTarget
 
 - type: entity
   parent: AirlockSecurityGlass
@@ -742,6 +746,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsDetective ]
+  - type: AirlockVirusTarget
 
 #- type: entity
 #  parent: AirlockSecurityGlass
@@ -760,6 +765,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurityLawyer ]
+  - type: AirlockVirusTarget
 
 - type: entity
   parent: AirlockSecurityGlass
@@ -966,6 +972,15 @@
 
 - type: entity
   parent: AirlockMaintMedLocked
+  id: AirlockMedicalMorgueMaintLocked
+  suffix: Morgue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMorgue ]
+
+- type: entity
+  parent: AirlockMaintMedLocked
   id: AirlockMaintChemLocked
   suffix: Chemistry, Locked
   components:
@@ -1003,6 +1018,7 @@
       board: [ DoorElectronicsSecurity ]
   - type: Wires
     layoutId: AirlockSecurity
+  - type: AirlockVirusTarget
 
 - type: entity
   parent: AirlockMaintSecLocked
@@ -1222,6 +1238,15 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsArmory ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 #Airtight hatch
 

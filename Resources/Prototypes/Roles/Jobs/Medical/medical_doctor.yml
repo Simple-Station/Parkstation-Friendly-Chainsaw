@@ -3,6 +3,15 @@
   name: job-name-doctor
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: Medical
+      min: 14400 #4 hrs
+    - !type:CharacterEmployerRequirement
+      employers:
+      - ZengHuPharmaceuticals
+      - Interdyne
+      - NanoTrasen
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
@@ -17,10 +26,12 @@
     components:
     - type: CPRTraining
     - type: SurgerySpeedModifier
-      SpeedModifier: 1.75
+      speedModifier: 1.75
 
 - type: startingGear
   id: DoctorGear
+  subGear:
+  - DoctorPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     back: ClothingBackpackMedicalFilled
@@ -30,3 +41,11 @@
   innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
   satchel: ClothingBackpackSatchelMedicalFilled
   duffelbag: ClothingBackpackDuffelMedicalFilled
+
+- type: startingGear
+  id: DoctorPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitMedicalDoctor
+    head: ClothingHeadEnvirohelmMedicalDoctor
+    gloves: ClothingHandsGlovesEnviroglovesWhite

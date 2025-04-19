@@ -17,6 +17,8 @@
     HeadSide: MobHumanoidAnyMarking
     Wings: MobHumanoidAnyMarking # Parkstation-Wings
     Tail: MobHumanoidAnyMarking # Parkstation-WideUseMarkings
+    Underwear: MobHumanoidAnyMarking
+    Undershirt: MobHumanoidAnyMarking
     Chest: MobGingerbreadTorso
     Eyes: MobGingerbreadEyes
     LArm: MobGingerbreadLArm

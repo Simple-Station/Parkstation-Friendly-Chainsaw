@@ -4,18 +4,16 @@
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
   requirements:
-    # Parkstation-Playtime
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobAtmosphericTechnician
-      min: 21600 # 6 hours
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobSalvageSpecialist
-      min: 7200 # 2 hours
-    - !type:CharacterDepartmentTimeRequirement
-      department: Engineering
-      min: 36000 # 10 hours
-    - !type:CharacterOverallTimeRequirement
-      min: 86400 # 24 hours
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - Foreigner
+        - ForeignerLight
+    - !type:CharacterEmployerRequirement
+      employers:
+      - NanoTrasen
+      - ZavodskoiInterstellar
+      - HephaestusIndustries
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
@@ -36,15 +34,30 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 8
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellPotato
 
 - type: startingGear
   id: ChiefEngineerGear
+  subGear:
+  - ChiefEngineerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
     back: ClothingBackpackChiefEngineerFilled
     shoes: ClothingShoesColorBrown
     id: CEPDA
-    ears: ClothingHeadsetCE
+    ears: ClothingHeadsetAltEngineering # Goobstation
   innerClothingSkirt: ClothingUniformJumpskirtChiefEngineer
   satchel: ClothingBackpackSatchelChiefEngineerFilled
   duffelbag: ClothingBackpackDuffelChiefEngineerFilled
+
+- type: startingGear
+  id: ChiefEngineerPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitChiefEngineer
+    head: ClothingHeadEnvirohelmChiefEngineer
+    gloves: ClothingHandsGlovesEnviroglovesChiefEngineer
