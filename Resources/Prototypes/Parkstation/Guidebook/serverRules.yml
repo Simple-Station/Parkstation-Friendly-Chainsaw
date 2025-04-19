@@ -1,0 +1,89 @@
+﻿- type: guideEntry
+  id: ParkRules
+  name: guide-entry-rules
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/Rules.xml"
+  children:
+    - ParkRule2
+    - ParkRule3
+    - ParkRule9
+    - ParkRule11
+    - ParkRule14
+    - ParkRule15
+    - ParkRule16
+    - ParkRule17
+    - ParkRule19
+    - ParkRule20
+    - ParkRule22
+    - ParkRule27
+    - ParkRule29
+    - ParkRule30
+
+- type: guideEntry
+  id: ParkRule2
+  name: guide-entry-rule2
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/2-hate.xml"
+
+- type: guideEntry
+  id: ParkRule3
+  name: guide-entry-rule3
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/3-sex.xml"
+
+- type: guideEntry
+  id: ParkRule9
+  name: guide-entry-rule9
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/9-names.xml"
+
+- type: guideEntry
+  id: ParkRule11
+  name: guide-entry-rule11
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/11-dick.xml"
+
+- type: guideEntry
+  id: ParkRule14
+  name: guide-entry-rule14
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/14-metagaming.xml"
+
+- type: guideEntry
+  id: ParkRule15
+  name: guide-entry-rule15
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/15-antag-rolling.xml"
+
+- type: guideEntry
+  id: ParkRule16
+  name: guide-entry-rule16
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/16-escalation.xml"
+
+- type: guideEntry
+  id: ParkRule17
+  name: guide-entry-rule17
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/17-powergaming.xml"
+
+- type: guideEntry
+  id: ParkRule19
+  name: guide-entry-rule19
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/19-basics.xml"
+
+- type: guideEntry
+  id: ParkRule20
+  name: guide-entry-rule20
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/20-lethals.xml"
+
+- type: guideEntry
+  id: ParkRule22
+  name: guide-entry-rule22
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/22-prison-life.xml"
+
+- type: guideEntry
+  id: ParkRule27
+  name: guide-entry-rule27
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/27-roleplay.xml"
+
+- type: guideEntry
+  id: ParkRule29
+  name: guide-entry-rule29
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/29-ssd.xml"
+
+- type: guideEntry
+  id: ParkRule30
+  name: guide-entry-rule30
+  text: "/ServerInfo/Parkstation/Guidebook/Rules/30-antags.xml"
