@@ -60,4 +60,4 @@
   suffix: Service, External
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Doors/Airlocks/External/service.rsi
+    sprite: SimpleStation14/Structures/Doors/Airlocks/External/security.rsi #???

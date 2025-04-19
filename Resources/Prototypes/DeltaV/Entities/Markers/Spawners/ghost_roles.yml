@@ -27,21 +27,6 @@
     name: ghost-role-information-listeningop-name
     description: ghost-role-information-listeningop-description
     rules: ghost-role-information-listeningop-rules
-    requirements: # Worth considering these numbers for the goal of making sure someone willing to MRP takes this.
-    - !type:CharacterOverallTimeRequirement
-      min: 259200 # 72 hours
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - Security
-      min: 40000 # 11.1 hours
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - Civilian
-      min: 40000 # 11.1 hours
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - Command
-      min: 40000 # 11.1 hours
   - type: GhostRoleMobSpawner
     prototype: MobHumanSyndicateListener
   - type: Sprite
@@ -50,6 +35,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
+  - type: GhostRoleAntagSpawner
 
 - type: entity
   parent: MarkerBase
@@ -61,6 +47,7 @@
     description: ghost-role-information-paradox-anomaly-description
     rules: ghost-role-information-paradox-anomaly-rules
   - type: ParadoxAnomalySpawner
+  - type: GhostRoleAntagSpawner
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

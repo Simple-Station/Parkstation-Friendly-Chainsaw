@@ -18,16 +18,19 @@
         - !type:CharacterTraitRequirement
           traits:
             - AnomalousPositronics
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
+        - !type:CharacterTraitRequirement
           inverted: true
-          species:
-            - Shadowkin
+          traits:
+            - Pacifist
+    - !type:CharacterEmployerRequirement
+      employers:
+      - NanoTrasen
+      - ZengHuPharmaceuticals
+    - !type:CharacterItemGroupRequirement
+      group: TraitsCasterType
   startingGear: ForensicMantisGear
   icon: "JobIconForensicMantis"
   supervisors: job-supervisors-rd
-  antagAdvantage: 5 # DeltaV - From 4 to 5
   canBeAntag: true # DeltaV - Mantis is no longer a Detective
   # whitelistRequired: true
   access:
@@ -39,15 +42,22 @@
     components:
     - type: Psionic
       powerSlots: 2
+      baselinePowerCost: 75
+      nextPowerCost: 75
+      removable: false
+      powerPool: PsychoHistorianPowerPool
   - !type:AddComponentSpecial
     components:
     - type: InnatePsionicPowers
       powersToAdd:
         - MetapsionicPower
         - TelepathyPower
+        - MantisSummonBlackBlade # Dear Maintainer, say NOTHING about this.
 
 - type: startingGear
   id: ForensicMantisGear
+  subGear:
+  - ForensicMantisPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMantis
     back: ClothingBackpackMantisFilled
@@ -59,7 +69,15 @@
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatMantis
     belt: ClothingBeltMantis
-    pocket2: ForensicScanner
+    pocket1: BookPsionicsGuidebook
   innerClothingSkirt: ClothingUniformSkirtMantis
   satchel: ClothingBackpackSatchelMantisFilled
   duffelbag: ClothingBackpackDuffelMantisFilled
+
+- type: startingGear
+  id: ForensicMantisPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitMantis
+    head: ClothingHeadEnvirohelmMantis
+    gloves: ClothingHandsGlovesEnviroglovesWhite

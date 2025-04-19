@@ -4,9 +4,20 @@
   description: job-description-cadet
   playTimeTracker: JobSecurityCadet
   requirements:
-    # Parkstation-Playtime
-    - !type:CharacterOverallTimeRequirement
-      min: 8000 # 2 hours
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - Foreigner
+        - ForeignerLight
+        - Muted
+        - Blindness
+        - Pacifist
+        - BrittleBoneDisease
+    - !type:CharacterEmployerRequirement
+      employers:
+      - ZavodskoiInterstellar
+      - PMCG
+      - NanoTrasen
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -21,16 +32,23 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 6
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellHigh
 
 - type: startingGear
   id: SecurityCadetGear
+  subGear:
+  - SecurityOfficerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
     back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterArmorDuraVest # DeltaV - ClothingOuterArmorBasic replaced in favour of stab vest. Sucks to suck, cadets
     id: SecurityCadetPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityRegular # Goobstation
     belt: ClothingBeltSecurityFilled
     pocket2: BookSecurity
   innerClothingSkirt: ClothingUniformJumpskirtColorRed

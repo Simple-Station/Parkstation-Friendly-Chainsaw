@@ -1,41 +1,4 @@
 - type: marking
-  id: TailAxolotl
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: axolotl
-
-- type: marking
-  id: TailDatashark
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: datashark_ears_inner
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: datashark_ears
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: datashark_fin
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: datashark_tail
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: datashark_taildata
-
-- type: marking
-  id: TailEasternDragon
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: easternd_primary
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: easternd_secondary
-
-- type: marking
   id: TailFennec
   bodyPart: Tail
   markingCategory: Tail
@@ -43,17 +6,6 @@
   sprites:
     - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
       state: fennec
-
-- type: marking
-  id: TailFish
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: fish_primary
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: fish_secondary
 
 - type: marking
   id: TailFluffy
@@ -76,19 +28,6 @@
       state: fox_secondary
 
 - type: marking
-  id: TailGecko
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: gecko_primary
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: gecko_secondary
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: gecko_tertiary
-
-- type: marking
   id: TailKitsune
   bodyPart: Tail
   markingCategory: Tail
@@ -98,35 +37,6 @@
       state: kitsune_primary
     - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
       state: kitsune_secondary
-
-- type: marking
-  id: TailMaw
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: maw
-
-- type: marking
-  id: TailShark
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: shark_fin
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: shark_tail
-
-- type: marking
-  id: TailSnake
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/tails32x32.rsi
-      state: snake
 
 - type: marking
   id: TailSuccubus

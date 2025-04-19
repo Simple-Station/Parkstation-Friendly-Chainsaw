@@ -10,10 +10,12 @@
     - type: loadout
       id: LoadoutBackpackDuffelRobotics
 
-#- type: characterItemGroup
-#  id: LoadoutGolemancerBelt
-#  maxItems: 1
-#  items:
+- type: characterItemGroup
+  id: LoadoutGolemancerBelt
+  maxItems: 1
+  items:
+    - type: loadout
+      id: LoadoutGolemancerBeltUtility
 #
 #- type: characterItemGroup
 #  id: LoadoutGolemancerEars
@@ -61,10 +63,12 @@
 #  maxItems: 1
 #  items:
 #
-#- type: characterItemGroup
-#  id: LoadoutGolemancerOuter
-#  maxItems: 1
-#  items:
+- type: characterItemGroup
+  id: LoadoutGolemancerOuter
+  maxItems: 1
+  items:
+    - type: loadout
+      id: LoadoutScienceUniformWinterCoatRoboticist
 #
 #- type: characterItemGroup
 #  id: LoadoutGolemancerShoes

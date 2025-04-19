@@ -65,6 +65,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HardHat
   - type: DropOnSlip
     chance: 15
 

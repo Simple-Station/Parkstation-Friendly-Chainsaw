@@ -39,7 +39,7 @@ We provide some scripts shown below to make the job easier.
 ### Build Dependencies
 
 > - Git
-> - .NET SDK 8.0.100
+> - .NET SDK 9.0.101
 
 ### Windows
 

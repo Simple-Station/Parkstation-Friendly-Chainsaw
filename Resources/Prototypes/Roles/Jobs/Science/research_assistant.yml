@@ -1,14 +1,14 @@
-﻿- type: job
+- type: job
   id: ResearchAssistant
   name: job-name-research-assistant
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   setPreference: false # Parkstation-Playtime
-  # requirements:
-    # - !type:CharacterDepartmentRequirement # DeltaV - Removes time limit
-    #   department: Science
-    #   min: 54000 #15 hrs
-    #   inverted: true # stop playing intern if you're good at science!
+  requirements:
+    - !type:CharacterEmployerRequirement
+      employers:
+      - NanoTrasen
+      - ZengHuPharmaceuticals
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
@@ -19,12 +19,15 @@
 
 - type: startingGear
   id: ResearchAssistantGear
+  subGear:
+  - ScientistPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     back: ClothingBackpackScienceFilled
     shoes: ClothingShoesColorWhite
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
+    pocket1: BookPsionicsGuidebook
     pocket2: BookScientistsGuidebook
   innerClothingSkirt: ClothingUniformJumpskirtColorWhite
   satchel: ClothingBackpackSatchelScienceFilled

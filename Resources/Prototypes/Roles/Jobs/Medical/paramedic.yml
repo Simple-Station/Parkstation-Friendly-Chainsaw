@@ -3,8 +3,6 @@
   name: job-name-paramedic
   description: job-description-paramedic
   playTimeTracker: JobParamedic
-  setPreference: false # Parkstation-Playtime
-  antagAdvantage: 2 # DeltaV - Reduced TC: External Access
   requirements:
     # - !type:RoleTimeRequirement # DeltaV - No Medical Doctor time requirement
     #   role: JobMedicalDoctor
@@ -12,8 +10,13 @@
     - !type:CharacterDepartmentTimeRequirement # DeltaV - Medical dept time requirement
       department: Medical
       min: 28800 # DeltaV - 8 hours
-    # - !type:CharacterOverallTimeRequirement # DeltaV - No playtime requirement
-    #   min: 54000 # 15 hrs
+    - !type:CharacterEmployerRequirement
+      employers:
+      - Interdyne
+      - NanoTrasen
+      - ZengHuPharmaceuticals
+    # - !type:OverallPlaytimeRequirement # DeltaV - No playtime requirement
+    #   time: 54000 # 15 hrs
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
@@ -29,10 +32,12 @@
     components:
     - type: CPRTraining
     - type: SurgerySpeedModifier
-      SpeedModifier: 1.75
+      speedModifier: 1.75
 
 - type: startingGear
   id: ParamedicGear
+  subGear:
+  - ParamedicPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitParamedic
     back: ClothingBackpackParamedicFilledDV
@@ -45,3 +50,12 @@
   innerClothingSkirt: ClothingUniformJumpskirtParamedic
   satchel: ClothingBackpackSatchelParamedicFilledDV
   duffelbag: ClothingBackpackDuffelParamedicFilledDV
+
+- type: startingGear
+  id: ParamedicPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitParamedic
+    head: ClothingHeadEnvirohelmParamedic
+    gloves: ClothingHandsGlovesEnviroglovesNitrile
+    shoes: ClothingShoesColorBlue

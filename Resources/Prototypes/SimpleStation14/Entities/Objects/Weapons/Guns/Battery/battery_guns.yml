@@ -5,7 +5,7 @@
   description: Standard issue Nanotrasen laser SMG. Pew! Pew pew! Now we're talkin' scifi!
   components:
   - type: Item
-    size: 28
+    size: Small
   - type: Sprite
     sprite: SimpleStation14/Objects/Weapons/Guns/SMGs/pv3compact.rsi
     layers:

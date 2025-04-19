@@ -65,18 +65,6 @@
 
 # External Airlocks
 - type: entity
-  parent: AirlockExternalCommand
-  id: AirlockExternalCommandLocked
-  suffix: Command, External, Locked
-  components:
-  - type: AccessReader
-    access: [["Command"]]
-  - type: Wires
-    BoardName: "HighSec Control"
-    LayoutId: HighSec
-    alwaysRandomize: true
-
-- type: entity
   parent: AirlockExternalMedical
   id: AirlockExternalMedicalLocked
   suffix: Medical, External, Locked
@@ -91,11 +79,3 @@
   components:
   - type: AccessReader
     access: [["Research"]]
-
-- type: entity
-  parent: AirlockExternalSecurity
-  id: AirlockExternalSecurityLocked
-  suffix: Security, External, Locked
-  components:
-  - type: AccessReader
-    access: [["Security"]]

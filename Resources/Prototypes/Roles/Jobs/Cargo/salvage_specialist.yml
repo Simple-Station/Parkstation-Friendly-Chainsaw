@@ -3,13 +3,15 @@
   name: job-name-salvagespec
   description: job-description-salvagespec
   playTimeTracker: JobSalvageSpecialist
-  antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: Engineering
       min: 21600 #DeltaV 6 hrs
-  #  - !type:CharacterOverallTimeRequirement #DeltaV
-  #    min: 36000 #10 hrs
+    - !type:CharacterEmployerRequirement
+      employers:
+      - OrionExpress
+      - PMCG
+      - NanoTrasen
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-ce # Parkstation-EngineeringSalvagers
@@ -21,6 +23,8 @@
 
 - type: startingGear
   id: SalvageSpecialistGear
+  subGear:
+  - SalvageSpecialistPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     back: ClothingBackpackSalvageFilled
@@ -29,3 +33,13 @@
     ears: ClothingHeadsetEngineering # Parkstation-EngineeringSalvagers
   satchel: ClothingBackpackSatchelSalvageFilled
   duffelbag: ClothingBackpackDuffelSalvageFilled
+
+- type: startingGear
+  id: SalvageSpecialistPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitSalvage
+    head: ClothingHeadEnvirohelmSalvage
+    gloves: ClothingHandsGlovesEnviroglovesSalvage
+    mask: ClothingMaskGasExplorer
+    pocket1: MiningVoucher

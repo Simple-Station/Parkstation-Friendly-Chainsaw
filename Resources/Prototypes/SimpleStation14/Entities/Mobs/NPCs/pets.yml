@@ -8,7 +8,7 @@
     successChance: 0.7
   - type: NpcFactionMember
     factions:
-    - Pet
+    - PetsNT
   - type: Grammar
     attributes:
       proper: true
@@ -24,7 +24,7 @@
     successChance: 0.35
   - type: NpcFactionMember
     factions:
-    - Pet
+    - PetsNT
   - type: Grammar
     attributes:
       proper: true
@@ -40,7 +40,7 @@
     successChance: 0.25
   - type: NpcFactionMember
     factions:
-    - Pet
+    - PetsNT
   - type: Grammar
     attributes:
       proper: true

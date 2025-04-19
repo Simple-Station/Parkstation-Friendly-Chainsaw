@@ -1,7 +1,7 @@
 - type: trait
   id: CPRTraining
   category: Mental
-  points: -4
+  points: -3
   functions:
     - !type:TraitAddComponent
       components:
@@ -16,6 +16,8 @@
         - Paramedic
         - ChiefMedicalOfficer
         - Brigmedic
+        - SeniorPhysician
+        - BlueshieldOfficer
 
 - type: trait
   id: SelfAware
@@ -135,6 +137,8 @@
       traits:
         - Sluggish
         - SnailPaced
+        - BadKnees
+        - WheelchairBound
     - !type:CharacterSpeciesRequirement
       inverted: true
       species:
@@ -143,10 +147,12 @@
     - !type:TraitReplaceComponent
       components:
         - type: ClimbDelayModifier
-          climbDelayMultiplier: 0.35
-        - type: LayingDownModifier
-          layingDownCooldownMultiplier: 0.5
-          downedSpeedMultiplierMultiplier: 1.65
+          climbDelayMultiplier: 0.5
+        - type: SlippableModifier
+          paralyzeTimeMultiplier: 0.7
+        - type: SpeedModifiedByContactModifier
+          walkModifierEffectiveness: 0.5
+          sprintModifierEffectiveness: 0.5
 
 - type: trait
   id: LightStep
@@ -163,6 +169,7 @@
       inverted: true
       species:
         - Felinid
+        - Tajaran
 
 - type: trait
   id: Singer
@@ -173,6 +180,10 @@
       inverted: true
       species:
         - Harpy
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - Muted
   functions:
     - !type:TraitAddComponent
       components:
@@ -180,81 +191,22 @@
           proto: NormalSinger
 
 - type: trait
-  id: LatentPsychic
-  category: Mental
-  points: -4
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: Psionic
+  id: LyreBird
+  category: Auditory
+  points: -10
   requirements:
-    - !type:CharacterJobRequirement
-      inverted: true
-      jobs:
-        - Borg
-        - MedicalBorg
-        - ResearchDirector
-        - ForensicMantis
-        - Chaplain
-        - Librarian
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - IPC
-        - !type:CharacterTraitRequirement
-          traits:
-            - AnomalousPositronics
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - Shadowkin
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Harpy
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
-        - PsionicInsulation
-
-- type: trait
-  id: PsionicInsulation
-  category: Mental
-  points: -10 #Buy a significant disability to get this.
+        - Muted
   functions:
-    - !type:TraitAddComponent
+    - !type:TraitReplaceComponent
       components:
-        - type: PsionicInsulation
-        - type: Mindbroken
-  requirements:
-    - !type:CharacterJobRequirement
-      inverted: true
-      jobs:
-        - Borg
-        - MedicalBorg
-        - ResearchDirector
-        - ForensicMantis
-        - Chaplain
-        - Librarian
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - IPC
-        - !type:CharacterTraitRequirement
-          traits:
-            - AnomalousPositronics
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - LatentPsychic
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - Shadowkin
+        - type: Singer
+          proto: HarpySingerAll
 
 - type: trait
   id: NaturalTelepath
@@ -288,12 +240,6 @@
         - !type:CharacterTraitRequirement
           traits:
             - AnomalousPositronics
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - Shadowkin
 
 - type: trait
   id: TrapAvoider
@@ -314,6 +260,7 @@
       inverted: true
       species:
         - Felinid
+        - Tajaran
         - Harpy
 
 - type: trait
@@ -337,3 +284,43 @@
     - !type:TraitModifyFactions
       addFactions:
         - AnimalFriend
+
+- type: trait
+  id: SurgeryTraining
+  category: Mental
+  points: -3
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: SurgerySpeedModifier
+          speedModifier: 1.6
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - MedicalDoctor
+        - Chemist
+        - MedicalIntern
+        - Paramedic
+        - ChiefMedicalOfficer
+        - Brigmedic
+        - SeniorPhysician
+
+- type: trait
+  id: ExperiencedSurgeon
+  category: Mental
+  points: -3
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+      - type: SurgerySpeedModifier
+        speedModifier: 2.5
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+      - MedicalDoctor
+      - Chemist
+      - Paramedic
+      - Brigmedic
+      - SeniorPhysician
+
