@@ -1,12 +1,4 @@
 - type: marking
-  id: HumanHairAfricanPigtails
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Corvax/Mobs/Customization/human_hair.rsi
-      state: africanpigtails
-
-- type: marking
   id: HumanHairAfropuffdouble
   bodyPart: Hair
   markingCategory: Hair
@@ -287,14 +279,6 @@
       state: halfshave_snout
 
 - type: marking
-  id: HumanHairHightight
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Corvax/Mobs/Customization/human_hair.rsi
-      state: hightight
-
-- type: marking
   id: HumanHairHyenamane
   bodyPart: Hair
   markingCategory: Hair
@@ -309,14 +293,6 @@
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: jessica
-
-- type: marking
-  id: HumanHairLong4
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Corvax/Mobs/Customization/human_hair.rsi
-      state: long4
 
 - type: marking
   id: HumanHairLongdtails

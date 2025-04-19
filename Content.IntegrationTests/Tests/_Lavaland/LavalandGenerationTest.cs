@@ -30,7 +30,7 @@ public sealed class LavalandGenerationTest
         pair.Server.CfgMan.SetCVar(CCVars.LavalandEnabled, false);
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "ParkStation");
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);

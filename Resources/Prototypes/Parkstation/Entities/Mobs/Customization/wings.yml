@@ -71,15 +71,6 @@
       state: mothra
 
 - type: marking
-  id: WingsRobotic
-  bodyPart: Wings
-  markingCategory: Wings
-  speciesRestriction: [nHuman]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/wings64x34.rsi
-      state: robotic
-
-- type: marking
   id: WingsSkeletonOpen
   bodyPart: Wings
   markingCategory: Wings
@@ -87,12 +78,3 @@
   sprites:
     - sprite: Parkstation/Mobs/Customization/wings96x34.rsi
       state: skeleton_open
-
-- type: marking
-  id: WingsSkeleton
-  bodyPart: Wings
-  markingCategory: Wings
-  speciesRestriction: [Skeleton]
-  sprites:
-    - sprite: Parkstation/Mobs/Customization/wings64x34.rsi
-      state: skeleton

@@ -6,7 +6,5 @@ marking-WingsMegamothOpen=Megamoth (Open)
 marking-WingsMegamoth=Megamoth
 marking-WingsMothraOpen=Mothra (Open)
 marking-WingsMothra=Mothra
-marking-WingsRobotic=Robotic
 marking-WingsSkeletonOpen=Skeleton (Open)
-marking-WingsSkeleton=Skeleton
 marking-WingsHarpy=Harpy

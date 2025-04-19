@@ -11,7 +11,7 @@
     - The Bar
     # Begin DeltaV Additions
     - The Kitchen
-    - Logistics
+    - Cargo
     - the Janitorial Department
     - Reporting
     - Entertainment
@@ -62,7 +62,7 @@
     - The Chapel
     - The Bar
     - The Boxing Ring
-    - The Logistics Front Desk
+    - The Cargo Front Desk
     - The Tool Room
     - Evac
     - Solars
@@ -79,7 +79,7 @@
     - The Singularity Generator
     - The Bridge
     - The Automated Trading Station
-    - The Logistics Shuttle
+    - The Cargo Shuttle
     - The Perma Brig
     - The Burn Chamber
     - Hydroponics
@@ -177,7 +177,7 @@
     - Bingus Day
     - Foster's Feast
     # Begin DeltaV Additions
-    - Preston’s Tomato Incident 
+    - Preston’s Tomato Incident
     - Submarine's Memorial
     - Pranksgiving
     - Sector Delta Employee Appreciation Week
@@ -188,7 +188,7 @@
     - Roy’s Birthday
     - NT Corporate Mindfulness Day
     - Night of Holy Herbs
-    - Logistics Appreciation Week
+    - Cargo Appreciation Week
     - Big Ear Syndrome Awareness Day
     - Gunchday
     - Gerry Patrick's Ascension
@@ -196,7 +196,7 @@
     - the Talent Show
     - Luperthavia
     - Penny's Big Day
-    - Taco Tuesday 
+    - Taco Tuesday
     # End DeltaV Additions
 
 - type: dataset
@@ -221,7 +221,7 @@
   id: CommandRoles
   values:
     - Captain
-    - Logistics Officer # DeltaV - what is a quartermaster
+    - Quartermaster
     - Head of Security
     - Head of Personnel
     - Chief Engineer
@@ -229,7 +229,7 @@
     # Begin DeltaV Additions
     - Mystagogue
     - Chief Justice
-    - Administrative Assistant 
+    - Administrative Assistant
     # End DeltaV Additions
 
 - type: dataset

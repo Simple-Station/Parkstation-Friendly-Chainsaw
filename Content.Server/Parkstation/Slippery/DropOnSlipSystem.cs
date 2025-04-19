@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using Content.Server.Popups;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Clumsy;
 using Content.Shared.Database;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;

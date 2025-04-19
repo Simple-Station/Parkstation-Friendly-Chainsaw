@@ -29,8 +29,6 @@ markings-category-RightLeg = Right Leg
 markings-category-RightFoot = Right Foot
 markings-category-LeftLeg = Left Leg
 markings-category-LeftFoot = Left Foot
-## Parkstation-Wings
-markings-category-Wings = Wings
 markings-category-Tail = Tail
 markings-category-Overlay = Overlay
 markings-category-Undershirt = Undershirt
